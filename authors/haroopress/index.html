@@ -15,7 +15,6 @@
     <![endif]-->
 
     <link href="/rss.xml" rel="alternate" title="{bbon}" type="application/rss+xml">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- Le styles -->
     <link rel="canonical" href="http://bbon.me">
@@ -27,7 +26,7 @@
     <link href="/css/haroopress.css" rel="stylesheet">
     <link href="/css/theme.css" rel="stylesheet">
     <link href="/css/code/default.css" rel="stylesheet">
-
+    
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
@@ -40,70 +39,79 @@
     <script src="/js/apps/github.js"></script>
     <script src="/js/apps/twitter.js"></script>
 </head>
-
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-    <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+        <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
 
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/archives">Archives</a>
-                    </li>
+          <a class="pull-right" href="/rss.xml"><span class="icon-rss"></span></a>
+          
+            <a class="pull-right" href="http://twitter.com/bbonkr" target="_blank"><span class="icon-twitter"></span></a>
+          
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
+              <li>
+                <a href="/slides">Slides</a>
+              </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container page-author">
+    <div class="row">
+        <div class="span3">
+                
+                        <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/category/repository"><i class="icon-book"></i> repository</a></li>
+                    
+                    <li><a href="/category/computing"><i class="icon-book"></i> computing</a></li>
                     
                 </ul>
             </div>
-            <div class="social">
-                
-                    <a class="twitter" href="http://twitter.com/bbonkr" target="_blank">Twitter</a>
-                
-                <a class="rss" href="/rss.xml">RSS</a>
-            </div>
-            <form action="/search" id="search">
-                <input type="text" value="" placeholder="Search" name="q" id="search-text" class="placeholder">
-            </form>
-        </div>
-    </div>
-</div>
 
-    <div class="container">
-    <div class="row">
-        <div class="span9 articles">
-            <div class="well">
+        </div>
+        <div class="span9">
+            <div class="well bg">
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <a>
+                                <img src="http://www.gravatar.com/avatar/a8618a255192bd842fdd62d099776735?r=pg&amp;s=128.jpg&amp;d=identicon" width="48"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="page-header">
-                    <h1>
-                        <img src="http://www.gravatar.com/avatar/a8618a255192bd842fdd62d099776735?r=pg&amp;s=128.jpg&amp;d=identicon" width="50" class="thumb" />
-                        haroopress's Articles
+                    <h1>haroopress's Articles
                     </h1>
                 </div>
-
-                <ul class="lists">
+                <div class="row">
+                    <div class="span8">
+                        <ul>
                     
-                </ul>
-            </div>
-        </div>
-        <div class="span3 side">
-                
-            			<div class="well category">
-                <ul class="nav nav-list">
-                    <li class="nav-header title">Categories</li>
-                    <li class="active"><a href="/category">Home</a></li>
-                    
-                    <li><a href="/category/repository">repository</a></li>
-                    
-                    <li><a href="/category/computing">computing</a></li>
-                    
-                </ul>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -113,9 +121,9 @@
         <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="span12">
+                <div class="span12 ">
                     <div class="well">
-                        <p class="pull-right"><a href="#" class="backtotop">Back to top</a></p>
+                        <p class="pull-right"><a href="#">Back to top</a></p>
                             <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
                             Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
                             Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
