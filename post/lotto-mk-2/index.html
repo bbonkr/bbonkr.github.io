@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lotto mk 2 |  {bbon}</title>
+    <meta name="description" content="Personal development journal">
+    <meta name="author" content="Pon Cheol Ku">
+    <meta name="keywords" content=".net-framework,ms-sql,c#,win-forms,asp.net,javascript,jquery,html5" />
+    <meta name="generator" content="haroopress v0.9.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/rss.xml" rel="alternate" title="{bbon}" type="application/rss+xml">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- Le styles -->
+    <link rel="canonical" href="http://bbon.me">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/markdown.css" rel="stylesheet">
+    <link href="/css/haroopress.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/code/default.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
+
+    <!-- Le javascript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.jsonp.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/apps/github.js"></script>
+    <script src="/js/apps/twitter.js"></script>
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/archives">Archives</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="social">
+                
+                    <a class="twitter" href="http://twitter.com/bbonkr" target="_blank">Twitter</a>
+                
+                <a class="rss" href="/rss.xml">RSS</a>
+            </div>
+            <form action="/search" id="search">
+                <input type="text" value="" placeholder="Search" name="q" id="search-text" class="placeholder">
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+    <div class="row">      
+        <div class="span9 articles">
+            <div class="row">
+                <div class="span9">
+                    <div class="well bg">
+                        
+                        <div class="page-header">
+                            <p class="meta">
+                                Javascript <!-- 임시 카테고리 -->
+                                <span class="time">Sunday, July 5 2015 8:44 PM</span>
+                            </p>
+                            <h1>Lotto mk 2</h1>
+                        </div>
+
+                        <div class="pull-right social-area">
+                            
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="Lotto mk 2 -" data-url="http://bbon.me/post/lotto-mk-2" data-via="bbonkr">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                            
+    <!-- Place this tag where you want the +1 button to render -->
+    <g:plusone href="/post/lotto-mk-2" size="medium"></g:plusone>
+
+    <!-- Place this render call where appropriate -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+
+                            
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial" data-href="http://bbon.me/post/lotto-mk-2"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=246177242115486";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+                        </div>
+
+                        <div class="markdown-wrapper">
+                            <h1 id="toc_12">어떤 번호를 살까?</h1>
+<p>버전: v1.0.1.0</p><p>웹페이지 : <a href="http://bbon.kr/lottomk2">http://bbon.kr/lottomk2</a></p>
+<h2 id="toc_13">번호확인</h2>
+<p>구입하려고 하는 번호를 하나씩 입력하면 입력된 번호들이 포함된 1등 당첨번호가 아래쪽 리스트에 출력됩니다.</p><p>리스트에 출력되는 항목이 없으면 입력한 번호는 당첨내역에 존재하지 않는 번호 조합입니다.</p><p>입력된 번호가 당첨내역 정보를 검색할 때, 보너스 번호를 포함해서 검색하려면 <code>보너스 번호 포함</code> 체크박스를 선택합니다.</p><p><img src="./@img/s-001.png" alt="실행화면"></p>
+<h2 id="toc_14">당첨번호 입력</h2>
+<p><code>파일메뉴</code> &gt; <code>당첨번호관리</code>를 실행합니다.</p>
+<h3 id="toc_15">추가</h3>
+<p>리스트의 아래쪽으로 스크롤바를 움직이면 빈 행이 있습니다.
+빈 행에 회차, 추첨일자, 당첨번호를 입력하고 <code>저장</code> 버튼을 클릭합니다.</p>
+<h3 id="toc_16">수정</h3>
+<p>수정할 리스트의 항목을 선택하고 각 필드의 값을 변경하고 <code>저장</code> 버튼을 클릭합니다.</p>
+<h2 id="toc_17">삭제</h2>
+<p>삭제할 리스트의 항목을 선택하고 <code>삭제</code> 버튼을 클릭합니다.</p>
+<h2 id="toc_18">데이터베이스 파일 가져오기</h2>
+<p><code>도구</code> &gt; <code>데이터베이스</code> &gt; <code>가져오기</code> 를 실행합니다.</p><p>파일을 선택하는 창이 열리고, 가져올 데이터베이스 파일을 선택하고 열기를 클릭합니다.
+파일 복사된 후 검색 버튼을 클릭해서 자료를 잘 가져왔는지 확인합니다.</p>
+<h2 id="toc_19">데이터베이스 파일 내보내기</h2>
+<p><code>도구</code> &gt; <code>데이터베이스</code> &gt; <code>내보내기</code> 를 실행합니다.</p><p>파일을 선택하는 창이 열리고, 파일을 저장할 위치로 이동한 후 저장할 파일이름을 입력하고 저장버튼을 클릭합니다.</p>
+                        </div>
+                                            
+                        <div class="meta clearfix">
+                            
+                            <div class="pull-right prev-next">
+                                <a href="/post/naver-works" class="button next">Naver Works<i class="icon"></i></a>
+                            </div>
+                            
+
+                            
+                            <div class="pull-left prev-next">
+                                <a href="/post/hostseditor" class="button prev"><i class="icon"></i> HostsEditor</a>
+                            </div>
+                            
+                        </div>
+                    
+                        <div class="row">
+                            <div class="span8 disqus">
+                                
+    <div class="row-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'bbon'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="span3 side">
+            <div id="author" class="well">
+                <h3 class="title">About Author</h3>
+                 <div class="gravatar">
+                    <img src="http://www.gravatar.com/avatar/a1a49cf7ddf6e8d000df613c0843b4ba?r=pg&amp;s=128.jpg&amp;d=identicon" />
+                </div>
+                <ul class="profile">
+                    <li class="nickname">Pon Cheol Ku</li>
+                    <li class="blog"><a href="http://bbon.me" target="_blank">http://bbon.me</a></li>
+                    <li class="twitter"><a href="http://twitter.com/bbonkr" target="_blank">@bbonkr</a></li>
+                    <li class="github"><a href="https://github.com/bbonkr" target="_blank">bbonkr</li>
+                </ul>
+     
+                <p>
+                    <a href="https://twitter.com/bbonkr" class="twitter-follow-button" data-show-count="true">Follow @bbonkr</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </p>
+                <p>I&#39;m Pon Cheol Ku and Application Developer powered by Microsoft .Net Framework. </p><p>Live in Korea. Work in Pusan in Korea.</p>
+            </div>
+            <div class="well recent">
+    <h6 class="title">Recent Articles</h6>
+    <ul class="nav nav-list">
+    
+        <li>
+            <a href="/post/etude-tic-tac-toe" target="_blank">Etude Tic tac toe</a>
+
+        </li>
+    
+        <li>
+            <a href="/post/exchange-web-service" target="_blank">Exchange Web Service</a>
+
+        </li>
+    
+        <li>
+            <a href="/post/hostseditor" target="_blank">HostsEditor</a>
+
+        </li>
+    
+        <li>
+            <a href="/post/lotto-mk-2" target="_blank">Lotto mk 2</a>
+
+        </li>
+    
+        <li>
+            <a href="/post/naver-works" target="_blank">Naver Works</a>
+
+        </li>
+    
+    </ul>
+</div>
+            			<div class="well category">
+                <ul class="nav nav-list">
+                    <li class="nav-header title">Categories</li>
+                    <li class="active"><a href="/category">Home</a></li>
+                    
+                    <li><a href="/category/repository">repository</a></li>
+                    
+                    <li><a href="/category/computing">computing</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="offset3 span9">-->
+            <!--<strong>tags</strong> :-->
+            <!---->
+            <!--<a href="/tag/.net">.net</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/app">app</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/c#">c#</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/sqlite">sqlite</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/windows">windows</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/windows-forms">windows-forms</a>&nbsp;-->
+            <!---->
+            <!--<a href="/tag/로또">로또</a>&nbsp;-->
+            <!---->
+        <!--</div>-->
+    <!--</div>-->
+</div><!-- /container -->
+
+
+        <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="well">
+                        <p class="pull-right"><a href="#" class="backtotop">Back to top</a></p>
+                            <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
+                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-64779499-1']);
+            _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+
+</body>
+</html>
