@@ -17,10 +17,19 @@ Windows 10 사진 앱을 실행하면, 원격 프로시저를 호출하지 못�
 
 아래 이미지와 같은 순으로 동작하다 오류가 발생하면서 종료되어 버립니다.
 
-![사진앱 시작](/images/2015/09/04/windows-10-media-pack/p-001.png)
+<a href="/images/2015/09/windows-10-media-pack/p-001.png" data-lightbox="galler1" rel="lightbox">
+	<img src="/images/2015/09/windows-10-media-pack/p-001.png" rel="lightbox" class="img-responsive" />
+</a>
 
-![오류발생](/images/2015/09/04/windows-10-media-pack/p-002.png)
+<a href="/images/2015/09/windows-10-media-pack/p-002.png" data-lightbox="galler1" rel="lightbox">
+	<img src="/images/2015/09/windows-10-media-pack/p-002.png" rel="lightbox" class="img-responsive" />
+</a>
 
+<!--
+[![사진앱 시작](/images/2015/09/windows-10-media-pack/p-001.png)](/images/2015/09/windows-10-media-pack/p-001.png)
+
+[![오류발생](/images/2015/09/windows-10-media-pack/p-002.png)](/images/2015/09/windows-10-media-pack/p-002.png)
+-->
 관련 문제의 해결방법을 검색해보니, 미디어 기능팩을 설치하라고 합니다.
 
 제가 사용중인 Windows 10은 Windows 10 Enterprise N 에디션이라고 되어있습니다.
