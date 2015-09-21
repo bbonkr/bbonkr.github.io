@@ -11,6 +11,8 @@
     <div class="content">
       {{ content }}
     </div>
+  
+  <hr class="seperator" />
 
   {% unless page.categories == empty %}
     <ul class="tag_box inline">
@@ -19,8 +21,6 @@
       {% include JB/categories_list %}
     </ul>
   {% endunless %}  
-  
-  <hr class="seperator" />
 
   {% unless page.tags == empty %}
     <ul class="tag_box inline">

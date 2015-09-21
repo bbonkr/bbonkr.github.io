@@ -7,12 +7,18 @@ tagline: hello world!
     
 ## Posts
 
-<dl class="posts">
+<div class="posts row">
 
   {% for post in site.posts %}
-    <dt><h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>  <small><span>&raquo; {{ post.date | date_to_string }}</span></small></h3></dt>
-    <dd>{{ post.excerpt }}</dd>
+    <div class="col-md-4">
+        <h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>  <small><span>&raquo; {{ post.date | date_to_string }}</span></small></h3>
+        <p>
+            <a href="{{ BASE_PATH }}{{ post.url }}">
+                <img src="{{ post.image }}" class="center-block img-thumbnail" />
+            </a>
+        </p>
+        {{ post.excerpt }}
+    </div>
   {% endfor %}
-</dl>
-
+</div>
 
