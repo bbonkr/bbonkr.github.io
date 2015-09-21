@@ -14,7 +14,7 @@ tagline: hello world!
         <h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>  <small><span>&raquo; {{ post.date | date_to_string }}</span></small></h3>
         <p>
             <a href="{{ BASE_PATH }}{{ post.url }}">
-                <img src="{{ post.image }}" class="center-block img-thumbnail" />
+                <img src="{{ post.image }}" class="center-block img-thumbnail img-small" />
             </a>
         </p>
         {{ post.excerpt }}
