@@ -7,8 +7,12 @@ tagline: hello world!
     
 ## Posts
 
-<ul class="posts">
+<dl class="posts">
+
   {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <dt><h3><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>  <small><span>&raquo; {{ post.date | date_to_string }}</span></small></h3></dt>
+    <dd>{{ post.excerpt }}</dd>
   {% endfor %}
-</ul>
+</dl>
+
+

@@ -12,7 +12,7 @@ Windows OS에 MySQL 을 설치하고, 데이터 파일을 관리하는 위치를
 
 ## Stop MySQL Service
 
-Services ~~Services.msc~~ 를 실행하고, MySQL 서비스를 찾아서 중지합니다.
+Services <small>Services.msc</small> 를 실행하고, MySQL 서비스를 찾아서 중지합니다.
 
 ## Modify ini
 
@@ -20,20 +20,20 @@ MySQL 설치 위치의 my.ini 파일을 텍스트 편집기로 열어서 아래�
 아래 내용은 D:\Database\MySql\ 디렉터리에 데이터 파일을 관리하려고 하는 경우입니다.
 
 원본
-```
+{% highlight text %}
 datadir="C:/ProgramData/MySQL/MySQL Server 5.5/Data/"
-```
+{% endhighlight %}
 
 변경
-```
+{% highlight text %}
 datadir="D:/Database/MySql/"
-```
+{% endhighlight %}
 
 ## Move Data files
-기본위치 : C:\ProgramData\MySQL\MySQL Server 5.5\Data\
+기본위치 : `C:\ProgramData\MySQL\MySQL Server 5.5\Data\`
 
 변경할 위치로 데이터 파일을 이동합니다. 
 
 ## Start MySQL Service
 
-Services ~~Services.msc~~를 실행하고, MySQL 서비스를 찾아서 시작합니다.
+Services <small>Services.msc</small>를 실행하고, MySQL 서비스를 찾아서 시작합니다.

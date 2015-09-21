@@ -9,13 +9,13 @@ tags: ["jekyll"]
 
 ## Install Xcode Command Line Tools
 
-```sh
+{% highlight sh %}
 $ xcode-select --install
-```
+{% endhighlight %}
 
 ## Use Gem
 
-```sh
+{% highlight sh %}
 $ gem install jekyll
-```
+{% endhighlight %}
 

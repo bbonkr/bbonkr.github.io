@@ -7,6 +7,7 @@
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
+    
     <div class="content">
       {{ content }}
     </div>
@@ -18,6 +19,8 @@
       {% include JB/categories_list %}
     </ul>
   {% endunless %}  
+  
+  <hr class="seperator" />
 
   {% unless page.tags == empty %}
     <ul class="tag_box inline">
