@@ -12,7 +12,7 @@ title : "{bbon}"
 tagline: "..."
 author :
   name : "Pon Cheol, Ku"
-  email : bbon@bbon.kr
+  email : bbon@live.com
   github : bbonkr
   twitter : bbonkr
   feedburner : ""
@@ -20,6 +20,7 @@ gems: ["jekyll-auto-image"]
 
 # jekyll-auto-image default image path
 image: "/images/no-image.png"
+
 markdown: Redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
