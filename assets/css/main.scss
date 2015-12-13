@@ -627,7 +627,11 @@ img {
   }
 }
 
-
+.post .banner-image img, 
+.page .banner-image img {
+    margin-left:auto;
+    margin-right:auto;
+}
 
 
 

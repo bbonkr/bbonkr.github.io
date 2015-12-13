@@ -11,7 +11,7 @@ tags: [
     "dev"
     ]
 published : true
-image: "/images/icon/dev.png"
+banner_image: "icon/dev.png"
 ---
 
 ## 파일 다운로드

@@ -4,7 +4,7 @@ title: "The Creatable Freebie Bundle!"
 description: "The Creatable Freebie Bundle!"
 category: Computing
 tags: ["freebie", "paddle", "creatable", "free","mac", "osx"]
-image: "/images/2015/09/paddle-the-creatable-freebie-bundle/logo.png"
+banner_image: "2015/09/paddle-the-creatable-freebie-bundle/logo.png"
 ---
 
 
