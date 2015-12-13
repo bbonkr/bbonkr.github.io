@@ -13,8 +13,6 @@ tags: [
     ]
 ---
 
-{% include JB/setup %}
-
 ## 개요
 Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다.
 
@@ -42,4 +40,4 @@ Windows 7인 경우 .Net Framework 4.0설치 필요, Windows 8 이후 OS인 경�
 -->
 
 
-{% include JB/github_buttons user="bbonkr" repo="HostsEditor" %}
+{% include plugins/github_buttons user="bbonkr" repo="HostsEditor" %}

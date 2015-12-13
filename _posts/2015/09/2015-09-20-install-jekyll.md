@@ -5,17 +5,17 @@ description: "지킬 설치"
 category: Computing
 tags: ["jekyll"]
 ---
-{% include JB/setup %}
+
 
 ## Install Xcode Command Line Tools
 
-{% highlight sh %}
+```sh
 $ xcode-select --install
-{% endhighlight %}
+```
 
 ## Use Gem
 
-{% highlight sh %}
+```sh
 $ gem install jekyll
-{% endhighlight %}
+```
 

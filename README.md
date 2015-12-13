@@ -1,78 +1,132 @@
-# Jekyll-Bootstrap
+# Gaya Jekyll Theme
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+Modern responsive theme made for jekyll blogging platform. 
+Gaya is a simple theme build from ground up with the focus of performance. 
+The theme itself quickly adapts to the users device, so it looks great on 
+smartphones, tablets, desktops or even the large monitors.
 
-## Usage
+- Ability to change theme color at any time with any color.
+- Easy customizable menu navigation.
+- SEO Friendly
+- Embed image, YouTube/Vimeo video or SoundCloud audio to your post.
 
-For all usage and documentation please see: <http://jekyllbootstrap.com>
+---
 
-## Version
+![Theme preview](http://gayan.me/thumbnails/gaya-jekyll-theme-preview-590x300.png "Gaya jekyll theme")
 
-0.3.0 - stable and versioned using [semantic versioning](http://semver.org/).
+### Need Help?
 
-**NOTE:** 0.3.0 introduces a new theme which is not backwards compatible in the sense it won't _look_ like the old version.
-However, the actual API has not changed at all.
-You might want to run 0.3.0 in a branch to make sure you are ok with the theme design changes.
+Please submit as an 
+[issue](https://github.com/web-create/harmony/issues/new), I am happy 
+to response back.
 
-## Milestones
+## How to install/run
 
-[0.4.0](https://github.com/plusjade/jekyll-bootstrap/milestones/v%200.4.0) - next release [ETA 03/29/2015]
+1. [Fork](https://github.com/gayanvirajith/gaya) this repository.
+2. Clone it: git clone https://github.com/YOUR-USERNAME/gaya.
+3. If you completely new to jekyll, please read more about [Jekyll](http://jekyllrb.com/) and [Github pages](https://help.github.com/articles/using-jekyll-with-pages).
+4. Change your directory into cloned repository. 
+5. Run `bundle install`
+6. Edit the _config.yml on root directory. Change `url` property to to 
+`http://127.0.0.1:4000` since you are going to run on localhost.
+7. Run the jekyll server by having: `bundle exec jekyll serve --baseurl ''` or `rake preview`   
 
-### GOALS
+Try to locate your browser at [http://localhost:4000](http://localhost:4000).
 
-* No open PRs against master branch.
-* Squash some bugs.
-* Add some new features (low-hanging fruit).
-* Establish social media presence.
-
-
-### Bugs
-
-|Bug |Description
-|------|---------------
-|[#86](https://github.com/plusjade/jekyll-bootstrap/issues/86)  |&#x2611; Facebook Comments
-|[#113](https://github.com/plusjade/jekyll-bootstrap/issues/113)|&#x2611; ASSET_PATH w/ page & post
-|[#144](https://github.com/plusjade/jekyll-bootstrap/issues/144)|&#x2610; BASE_PATH w/ FQDN
-|[#227](https://github.com/plusjade/jekyll-bootstrap/issues/227)|&#x2611; Redundant JB/setup
-
-### Features
-
-|Bug |Description
-|------|---------------
-|[#98](https://github.com/plusjade/jekyll-bootstrap/issues/98)  |&#x2611; GIST Integration
-|[#244](https://github.com/plusjade/jekyll-bootstrap/issues/244)|&#x2611; JB/file_exists Helper
-|[#42](https://github.com/plusjade/jekyll-bootstrap/issues/42)  |&#x2611; Sort collections of Pages / Posts
-|[#84](https://github.com/plusjade/jekyll-bootstrap/issues/84)  |&#x2610; Detecting production mode
-
-### TODOS
-
-Review existing pull requests against plusjake/jekyll-bootstrap:master. Merge or close each.
-
-* Create twitter account. Add link / icon on jekyllbootstrap.com.
-* Create blog posts under plusjade/gh-pages, expose on jekyllbootstrap.com, feed to twitter account.
-* Announce state of project, announce roadmap(s), announce new versions as they’re released.
-
-## Contributing
+Note: If you are a windows user please refer this nice website - http://jekyll-windows.juthilo.com/ by Julian Thilo to configure ruby + jekyll on windows.
 
 
-To contribute to the framework please make sure to checkout your branch based on `jb-development`!!
-This is very important as it allows me to accept your pull request without having to publish a public version release.
+## Theme options and configurations
 
-Small, atomic Features, bugs, etc.
-Use the `jb-development` branch but note it will likely change fast as pull requests are accepted.
-Please rebase as often as possible when working.
-Work on small, atomic features/bugs to avoid upstream commits affecting/breaking your development work.
+Following options can be seen within the file `_config.yml`. More information 
+about configuration can be found on the [Jekyll Documentationn][jekyll]
 
-For Big Features or major API extensions/edits:
-This is the one case where I'll accept pull-requests based off the master branch.
-This allows you to work in isolation but it means I'll have to manually merge your work into the next public release.
-Translation : it might take a bit longer so please be patient! (but sincerely thank you).
+### General settings
 
-**Jekyll-Bootstrap Documentation Website.**
+| Property name | Description  |
+------------ | -------------
+`title` | The title of your blog shown in the site header along with the logo.
+`tagline` | The site tagline also shown in the site header along with the title.
+`email` | The email address associated with blog/site.
+`description` | The site description used to show author's/site's description in the top of the sidebar.
+`baseurl` | The subpath of your site, e.g. /blog/. More information can be found in the [Jekyll Documentationn][jekyll].
+`url` | The base host name & protocol for your site. More information can be found in the [Jekyll Documentationn][jekyll].
+`logourl` | Path to main logo image.
+`author_thumbnail` | Path to author's thumbnail image. 
+`author` | Name of the author.
+`paginate` | Number of posts to show per page, More information can be found in the [Jekyll Documentationn][jekyll].
 
-The documentation website at <http://jekyllbootstrap.com> is maintained at https://github.com/plusjade/jekyllbootstrap.com
+### Social profile links
 
+| Property name | Description  |
+------------ | -------------
+`github` | GitHub link (Leave empty to exclude)
+`twitter` | Twitter link (Leave empty to exclude)
+`facebook` | Facebook link (Leave empty to exclude)
+`gplus` | Google plus link (Leave empty to exclude)
+`dribble` | Dribble link (Leave empty to exclude)
+`pinterest` | Pinterest link (Leave empty to exclude)
+
+### Theme settings
+
+| Property name | Description  |
+------------ | -------------
+`highlight_color` | The main highlight/theme color of the site. You can put any color as a hex color. The configured color will be applied to sidebar, anchor links, buttons etc.
+`show_share_buttons` | Set as True/False to enable or disable Post share option.
+`show_author_info` | Set as True/False to enable or disable the author information on a post.
+`disqus_shortname` | Disqus Short name for Disqus comments. Leave empty to disable comments.
+`google_analytics_key` | Enter your Google analytics tracking ID to enable analytic support.
+`google_webmaster_key` | Enter your Google web-master verification key to verify your site with the web-master tool. (This is an alternative way of verifying your site with the web-master tool, the general way is to upload a file to your server.)
+
+
+### Page level configurations
+
+These configurations can be found within the top section of the each page, see the a post under `_posts` directory for example. 
+
+| Property name | Description  |
+------------ | -------------
+`banner_image` | Specify the image name eg: `sample-banner-image-1.jpg` for banner image for the post. Jekyll system tries to locate the image under `assets/images`. So make sure you place all banner images under assets/images.
+`banner_video` | If you want to embed `Youtube/Vimeo` Video or `SoundCloud` audio, Specify the resource within single quotes. Please have a look on example post in `_posts/2014-12-14-what-is-nodejs.md` to see how we embed YouTube video. 
+`comments` | Set as True/False, if false will disable comments for current page/post.
+`browser_title` | SEO property.  Use this property if you want to display different browser title other than default page title. Please have a look on example post under `_posts/2014-12-14-what-is-nodejs.md` to see how we used the property.
+`meta_description` | SEO property. Use this property If you want to have unique meta description for each post. See the example post on `_posts/2014-12-14-what-is-nodejs.md` to see how we used the property.
+
+### Sidebar navigation configurations
+
+As jekyll supports data files, **Gaya** theme uses `YAML` [data file][df] to load sidebar navigation items. You could find the `main-nav.yaml` data file under `_data/` directory. You could add any number of menu items by modifying `main-nav.yaml`. 
+
+An example of `main-nav.yaml`:
+
+```
+- title: "About me" # Title/Caption of the menu item
+  href: "/about" # the page where it pointed
+- title: "Blog Archive"
+  href: "/archive"
+```
+
+At some point you want to link an external URL, in that case you could edit the `_includes/sidebar.html` file. See the following example:
+
+```
+<nav class="sidebar-nav">
+   <a class="sidebar-nav-item" 
+      href="http://www.example.com"
+      target="_blank">
+      Example site
+    </a>
+</nav>
+```
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+(The MIT License)
+
+Copyright (c) 2014 Gayan Virajith
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[jekyll]: http://jekyllrb.com
+[df]: http://jekyllrb.com/docs/datafiles/

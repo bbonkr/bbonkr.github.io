@@ -14,9 +14,6 @@ published : true
 image: "/images/icon/dev.png"
 ---
 
-{% include JB/setup %}
-
-
 ## 파일 다운로드
 
 [Oracle Instant Client](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html) 페이지에서 설치할 대상 OS 및 아키텍쳐가 기술된 링크를 클릭해서 아래 항목을 다운로드 받습니다.

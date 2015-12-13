@@ -11,7 +11,7 @@ tags: [".net",
         "github"
         ]
 ---
-{% include JB/setup %}
+
 
 Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.
 <!--
@@ -36,4 +36,4 @@ File > Statistics 메뉴를 선택하면 현재까지 진행한 게임수, 승�
 -->
 
 
-{% include JB/github_buttons user="bbonkr" repo="Tic-tac-toe" %}
+{% include plugins/github_buttons user="bbonkr" repo="Tic-tac-toe" %}

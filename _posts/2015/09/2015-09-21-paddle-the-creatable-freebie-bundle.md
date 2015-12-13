@@ -6,7 +6,7 @@ category: Computing
 tags: ["freebie", "paddle", "creatable", "free","mac", "osx"]
 image: "/images/2015/09/paddle-the-creatable-freebie-bundle/logo.png"
 ---
-{% include JB/setup %}
+
 
 ## Bundle
 

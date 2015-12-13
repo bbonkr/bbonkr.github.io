@@ -5,7 +5,7 @@ description: "Windows 10 사진 앱 실행불가"
 category: Computing
 tags: ["windows", "windows-10", "app", "error"]
 ---
-{% include JB/setup %}
+
 
 
 Windows 10 사진 앱을 실행하면, 원격 프로시저를 호출하지 못했습니다 에러가 발생하며 사진 앱이 종료되어 버려 이미지를 확인할 수 없습니다.

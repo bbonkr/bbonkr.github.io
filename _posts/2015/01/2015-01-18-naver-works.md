@@ -7,7 +7,7 @@ tags: ["naver",
         "service",
         "domain"]
 ---
-{% include JB/setup %}
+
 
 ## 소개
 
