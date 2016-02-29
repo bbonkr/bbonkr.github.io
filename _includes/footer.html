@@ -1,0 +1,24 @@
+<footer class="c-footer">
+  <div class="u-container c-footer__container">
+    <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }}</p>
+    <p>
+      {% if site.twitterUsername %}<a href="https://twitter.com/{{ site.twitterUsername }}">Twitter</a>{% endif %}
+      {% if site.githubUsername %}<a href="https://github.com/{{ site.githubUsername }}">Github</a>{% endif %}
+      {% if site.dribbbleUsername %}<a href="https://dribbble.com/{{ site.dribbbleUsername }}">Dribbble</a>{% endif %}
+      {% if site.codepenUsername %}<a href="http://codepen.io/{{ site.codepenUsername }}">CodePen</a>{% endif %}
+    </p>
+  </div>
+</footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+<script async="async" defer="defer" id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="/assets/js/lightbox-plus-jquery.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$('.carousel').carousel();		
+	});
+</script>

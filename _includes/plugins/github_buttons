@@ -9,7 +9,8 @@ Usage:
 -->{% endcomment %}
 
 <hr />
-<div class="github-buttons">
+<aside class="github-buttons">
+	<h3>GITHUB:</h3>
 	<ul class="list-inline">
 		<li>
 	<a class="github-button" href="https://github.com/{{ include.user }}" data-count-href="/{{ include.user }}/followers" data-count-api="/users/{{ include.user }}#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @{{ include.user }} on GitHub">Follow @{{ include.user }}</a></li>
@@ -24,4 +25,4 @@ Usage:
 		<li>
 	<a class="github-button" href="https://github.com/{{ include.user }}/{{ include.repo }}/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download {{ include.user }}/{{ include.repo }} on GitHub">Download</a></li>
 	</ul>
-</div>
+</aside>

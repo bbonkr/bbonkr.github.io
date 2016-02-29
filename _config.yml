@@ -1,78 +1,23 @@
 # Site settings
 title: "{bbon}"
-tagline:
-email: bbon@live.com
-description: 
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://bbon.me" # the base hostname & protocol for your site
-logourl: /assets/images/logo.png # Site logo
-author: "Pon Cheol Ku"
-author_thumbnail: "/assets/images/avatar.png" # Author avatar
-# Theme customization - please change from the defaults!
-theme:
-  # Color for sidebar bar, links, etc
-  highlight_color: "#205081" #205081" #205081" # "#272935"
-  # Social media links, leave blank to ignore
-  social: 
-    github: bbonkr
-    twitter: bbonkr
-    facebook: bbonkr
-    gplus: +PonKu
-    # dribble: gayanvirajith
-    pinterest: bbonkr
-
-  # Enable share buttons on post footer
-  show_share_buttons: true
-
-  # Show author picure, name and social links on post footer
-  show_author_info: true
-
-  # Disqus comments manager - shortname
-  disqus_shortname: bbon
-
-  # Google Analytics/Webmaster key, leave blank to ignore
-  google_analytics_key: UA-64779499-1
-  google_webmaster_key: 
+email: bbon@bbon.me
+description: >
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: ""
+url: "http://bbon.me"
+fixedNav: 'true' # true or false
+theme: blue # green, blue, orange, purple, grey
+twitterUsername: bbonkr
+githubUsername: bbonkr
+dribbbleUsername:
+codepenUsername:
 
 # Build settings
-markdown: kramdown #redcarpet #kramdown
-
-redcarpet:
-  extensions: []
-
-kramdown:
-  auto_ids:       true
-  footnote_nr:    1
-  entity_output:  as_char
-  toc_levels:     1..2
-  smart_quotes:   lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-  input: GFM
-  coderay:
-    coderay_wrap:              div
-    coderay_line_numbers:      inline
-    coderay_line_number_start: 1
-    coderay_tab_width:         4
-    coderay_bold_every:        10
-    coderay_css:               style
-
-# Permalinks
-permalink: pretty
-
-# Pagination config
-paginate: 5
-
-# Files/Folders to be excluded from generated _site folder
-exclude: 
-  - CNAME
-  - Gemfile
-  - Rakefile
-  - README.md
-  - .gitignore
-  - .sass-cache
-  - Gemfile.lock
-
-# Sass conversion configs
+permalink: /:year/:month/:title
+markdown: kramdown
+include: [_pages]
+exclude: [_site, _drafts, CHANGELOG.md, LICENSE, README.md]
 sass:
-  sass_dir: assets/css/_sass
-  style: :compressed
+  style: compressed
