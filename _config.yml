@@ -21,3 +21,7 @@ include: [_pages]
 exclude: [_site, _drafts, CHANGELOG.md, LICENSE, README.md]
 sass:
   style: compressed
+gems:
+  - jekyll-auto-image
+
+image: /images/no-image.png

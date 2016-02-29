@@ -1,21 +1,26 @@
 ---
 layout: page
-title: Material Jekyll Theme
+title: "{bbon}"
 ---
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis [nostrud exercitation](http://alexcarpenter.me) ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<div class="row">
+{% for post in site.posts limit: 3 %}
 
-## Heading Level 2
+	<div class="col s12 m4">
+		<div class="card-panel card small">
+			<a href="{{ post.url }}">
+				<div class="card-image waves-effect waves-block waves-light">
+					<img alt="{{ post.title }}" src="{{ post.image }}" />
+					<span class="card-title">{{ post.title }}</span>
+				</div>
+			</a>
+			<div class="card-content">
+				{% if post.excerpt %}<p>{{ post.excerpt }}</p>{% endif %}
+			</div>
+			<div class="card-action">
+			 	<a href="{{ post.url }}" class="waves-effect waves-teal c-btn">READ MORE</a>
+			</div>
+		</div>
+	</div>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-{% highlight scss %}
-  .header {
-    font-size: 100px;
-  }
-{% endhighlight %}
-
-### Heading Level 3
-
-> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+{% endfor %}
+</div>

@@ -2,6 +2,7 @@
 layout: post
 title: "Install Oracle Instant Client"
 description: "Install and Configure Oracle Instant Client"
+excerpt: "Oracle Instant Client 설치 및 설정을 간략하게 정리"
 category: Computing
 tags: [
     "oracle", 
@@ -12,6 +13,7 @@ tags: [
     ]
 published : true
 banner_image: "icon/dev.png"
+image:
 ---
 
 ## 파일 다운로드
@@ -71,11 +73,11 @@ banner_image: "icon/dev.png"
 )
 ```
 
-* <ALIAS>: 접속시 사용할 별칭입니다.
-* <ServerHostName or Server IP>: Oracle Database 서버 정보와 동일하게 입력합니다.
-* <Oracle Port Number>: Oracle Database Listener 의 대기 포트를 입력합니다. (기본값: 1521)
-* <SERVICE_NAME orSID>: Oracle Database 서버 정보와 동일하게 입력합니다. 서버가 SERVICE_NAME 이면 SERVICE_NAME, 서버가 SID 이면 SID 를 입력합니다.
-* <Service_Name or sid 실제값>: Oracle Database 서버 정보와 동일하게 입력합니다. SERVICE_NAME 혹은 SID 실제 값을 입력합니다.
+* ALIAS: 접속시 사용할 별칭입니다.
+* ServerHostName or Server IP: Oracle Database 서버 정보와 동일하게 입력합니다.
+* Oracle Port Number: Oracle Database Listener 의 대기 포트를 입력합니다. (기본값: 1521)
+* SERVICE_NAME orSID: Oracle Database 서버 정보와 동일하게 입력합니다. 서버가 SERVICE_NAME 이면 SERVICE_NAME, 서버가 SID 이면 SID 를 입력합니다.
+* Service_Name or sid 실제값: Oracle Database 서버 정보와 동일하게 입력합니다. SERVICE_NAME 혹은 SID 실제 값을 입력합니다.
 
 ## 확인 
 
