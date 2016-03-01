@@ -8,11 +8,13 @@ description: >
 baseurl: ""
 url: "http://bbon.me"
 fixedNav: 'true' # true or false
-theme: blue # green, blue, orange, purple, grey
+theme: purple # green, blue, orange, purple, grey
 twitterUsername: bbonkr
 githubUsername: bbonkr
 dribbbleUsername:
 codepenUsername:
+facebookUsername: bbonkr
+googlePlusUsername: 
 
 # Build settings
 permalink: /:year/:month/:title

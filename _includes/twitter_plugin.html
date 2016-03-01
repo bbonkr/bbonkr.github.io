@@ -1,0 +1,15 @@
+{% if page.twitter %}
+<div class="card">
+	<div class="card-content">
+		<p>
+If you liked this post, you can
+<a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title }}&via=bbonkr" 
+   target="_blank">
+  share it with your followers</a> 
+or 
+<a href="https://twitter.com/bbonkr">
+  follow me on Twitter</a>!
+  	</p>
+  </div>
+</div>
+{% endif %}
