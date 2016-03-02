@@ -5,6 +5,7 @@ description: "The Creatable Freebie Bundle!"
 category: Computing
 tags: ["freebie", "paddle", "creatable", "free","mac", "osx"]
 banner_image: "2015/09/paddle-the-creatable-freebie-bundle/logo.png"
+image_width: 100
 ---
 
 
@@ -16,7 +17,7 @@ Grab 9 awesome Mac apps, totally FREE!
 
 ### MacBooster 3
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/82.png" class="center-block img-thumbnail img-small" />
+[![MacBooster 3](/images/2015/09/paddle-the-creatable-freebie-bundle/82.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/82.png)
 
 $39.95
 
@@ -26,7 +27,7 @@ Min Requirements: Intel, 64-bit processor, OS X 10.6 or later
 
 ### PlugSpy 2
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/83.png" class="center-block img-thumbnail img-small" />
+[![PlugSpy 2](/images/2015/09/paddle-the-creatable-freebie-bundle/83.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/83.png)
 
 $4.00
 
@@ -36,7 +37,7 @@ Min Requirements: OS X 10.10 or later, 64-bit processor
 
 ### Mousai
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/84.png" class="center-block img-thumbnail img-small" />
+[![Mousai](/images/2015/09/paddle-the-creatable-freebie-bundle/84.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/84.png)
 
 $4.00
 
@@ -52,7 +53,7 @@ Min Requirements: OS X 10.9 or later
 
 ### HyperPDF
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/85.png" class="center-block img-thumbnail img-small" />
+[![HyperPDF](/images/2015/09/paddle-the-creatable-freebie-bundle/85.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/85.png)
 
 $16.00
 
@@ -70,7 +71,7 @@ Turn your PDF into awesome slides. HyperPDF provides built-in transitions.
 
 ### Code Cookbook
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/86.png" class="center-block img-thumbnail img-small" />
+[![Code Cookbook](/images/2015/09/paddle-the-creatable-freebie-bundle/86.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/86.png)
 
 $6.00
 
@@ -82,7 +83,7 @@ Min Requirements: OS X 10.7 or later, Intel 64-bit processor
 
 ### Audio Recorder
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/87.png" class="center-block img-thumbnail img-small" />
+[![Audio Recorder](/images/2015/09/paddle-the-creatable-freebie-bundle/87.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/87.png)
 
 $30.00
 
@@ -93,7 +94,7 @@ Min Requirements: OS X 10.6 or later
 
 ### QuickWeb
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/88.png" class="center-block img-thumbnail img-small" />
+[![QuickWeb](/images/2015/09/paddle-the-creatable-freebie-bundle/88.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/88.png)
 
 $2.00
 
@@ -113,7 +114,7 @@ Min Requirements: Intel, 64-bit processor, OS X 10.7 or later
 
 ### Bits
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/89.png" class="center-block img-thumbnail img-small" />
+[![Bits](/images/2015/09/paddle-the-creatable-freebie-bundle/89.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/89.png)
 
 $5.00
 
@@ -124,7 +125,7 @@ Min Requirements: OS X 10.7 or later
 
 ### Better Window Manager
 
-<img src="/images/2015/09/paddle-the-creatable-freebie-bundle/90.png" class="center-block img-thumbnail img-small" />
+[![Better Window Manager](/images/2015/09/paddle-the-creatable-freebie-bundle/90.png)](/images/2015/09/paddle-the-creatable-freebie-bundle/90.png)
 
 $3.00
 

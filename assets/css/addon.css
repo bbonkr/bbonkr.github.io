@@ -3,3 +3,31 @@
 .list-inline li {
 	display: inline;
 }
+
+/* Card */
+.card {
+	boder-size:0.1rem;
+	border-style: solid;
+	border-color: #e0e0e0;
+	border-radius: 10px;
+	padding: 1.2rem;
+	display:block;
+	box-shadow: 0rem 1rem #f0f0f0;
+}
+
+.small{
+	width: 30rem;
+	max-height:30rem;
+}
+
+.card-title {
+
+}
+
+.card-content {
+	
+}
+
+.card-action {
+
+}
