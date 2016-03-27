@@ -4,6 +4,7 @@ title: "Windows 10 사진 앱 실행불가"
 description: "Windows 10 사진 앱 실행불가"
 category: Computing
 tags: ["windows", "windows-10", "app", "error"]
+image_width: 100
 ---
 
 
@@ -17,19 +18,9 @@ Windows 10 사진 앱을 실행하면, 원격 프로시저를 호출하지 못�
 
 아래 이미지와 같은 순으로 동작하다 오류가 발생하면서 종료되어 버립니다.
 
-<a href="/images/2015/09/windows-10-media-pack/p-001.png" data-toggle="lightbox" data-title="Screenshot" data-footer="Starting">
-	<img src="/images/2015/09/windows-10-media-pack/p-001.png" rel="lightbox" class="img-responsive" />
-</a>
-
-<a href="/images/2015/09/windows-10-media-pack/p-002.png" data-toggle="lightbox" data-title="Screenshot" data-footer="Error">
-	<img src="/images/2015/09/windows-10-media-pack/p-002.png" rel="lightbox" class="img-responsive" />
-</a>
-
-<!--
 [![사진앱 시작](/images/2015/09/windows-10-media-pack/p-001.png)](/images/2015/09/windows-10-media-pack/p-001.png)
 
 [![오류발생](/images/2015/09/windows-10-media-pack/p-002.png)](/images/2015/09/windows-10-media-pack/p-002.png)
--->
 
 관련 문제의 해결방법을 검색해보니, 미디어 기능팩을 설치하라고 합니다.
 
