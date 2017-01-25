@@ -1,12 +1,15 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
-<html class="t-{{ site.theme }}">
-  {% include head.html %}
-  <body>
-    {% include navigation.html %}
-
-    {{ content }}
-
-    {% include footer.html %}
-    {% include google_analytics.html %}
-  </body>
+<html lang="en">
+    {% include head.html %}
+    <body>
+        {% include svg-icons.html %}
+        {% include header-default.html %}
+            <main role="main" class="content">
+                {{ content }}
+            </main>
+        {% include scripts.html %}
+    </body>
 </html>

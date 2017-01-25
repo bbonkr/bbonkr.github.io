@@ -1,29 +1,49 @@
 # Site settings
-title: "{bbon}"
+title: Developer bbon
+description: "A blog about {bbon}"
+baseurl: "" # for test: remove string '/space-jekyll-templa' to ''
+url: "http://bbon.me" # for test: remove string 'http://victorvoid.github.io' to '' but in production: 'https://yourusername.githu.io'
+# User settings
+username: bbon
+user_title: bbon
 email: bbon@bbon.me
-description: >
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: ""
-url: "http://bbon.me"
-fixedNav: 'true' # true or false
-theme: purple # green, blue, orange, purple, grey
-twitterUsername: bbonkr
-githubUsername: bbonkr
-dribbbleUsername:
-codepenUsername:
-facebookUsername: bbonkr
-googlePlusUsername: 
+twitter_username: bbonkr
+github_username: bbonkr
+gplus_username: PonKu
+disqus_username: bbon
 
 # Build settings
-permalink: /:year/:month/:title
 markdown: kramdown
-include: [_pages]
-exclude: [_site, _drafts, CHANGELOG.md, LICENSE, README.md]
-sass:
-  style: compressed
-gems:
-  - jekyll-auto-image
+highlighter: rouge
+permalink: /:title/
 
-image: /images/no-image.png
+
+# html minify
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  profile: false
+
+# Links to include in menu navigation
+links:
+  - title: home
+    url: /
+  - title: my posts
+    url: /posts
+  - title: series
+    url: /series
+  - title: tags
+    url: /tags
+  - title: about me
+    url: /about
+# projects in header index
+projects:
+  - name: Web Storage API
+    url: https://github.com/bbonkr/html5-web-storage-api
+  - name: Reset active directory user's password
+    url: https://github.com/bbonkr/reset-password-active-directory
+  - name: Assembly Binding Error Logging
+    url: https://github.com/bbonkr/activate-assembly-binding-error-log
+# exclude my node related stuff
+exclude: ['package.json', 'src', 'node_modules']
