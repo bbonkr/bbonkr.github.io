@@ -17,8 +17,8 @@ SQL Server JDBC Driver
 
 [Download: SQL Server용 Microsoft JDBC Driver 4.2, 4.1 및 4.0](https://www.microsoft.com/ko-kr/download/details.aspx?id=11774)
 
-> * 드라이버 이름: **com.microsoft.sqlserver.jdbc.SQLServerDriver**
-> * JDBC URL: jdbc:sqlserver://**Server**:**Port**;databasename=**Database**
+* 드라이버 이름: `com.microsoft.sqlserver.jdbc.SQLServerDriver`
+* JDBC URL: `jdbc:sqlserver://**Server**:**Port**;databasename=**Database**`
 
 
 지원되는 SQL Server 버전:
