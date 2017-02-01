@@ -8,9 +8,8 @@ Usage:
 	{% include plugins/github_buttons user="bbonkr" repo="Tic-tac-toe" %}
 -->{% endcomment %}
 
-<hr />
 <aside class="github-buttons">
-	<h3>GITHUB:</h3>
+	<h4>GITHUB:</h4>
 	<ul class="list-inline">
 		<li>
 	<a class="github-button" href="https://github.com/{{ include.user }}" data-count-href="/{{ include.user }}/followers" data-count-api="/users/{{ include.user }}#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @{{ include.user }} on GitHub">Follow @{{ include.user }}</a></li>

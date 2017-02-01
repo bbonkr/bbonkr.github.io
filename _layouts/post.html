@@ -12,8 +12,18 @@ layout: default
 	<div class="divider"></div>
 
 	{{ content }}
+	{% comment %}<!--
+	 Tags: <aside>{{ page.tags | array_to_sentence_string }}</aside> %}
+	 -->{% endcomment %}
+
+
+  {% if page.github_buttons %}
+    {% include plugins/github_buttons user=page.github_user repo=page.github_repo %}
+  {% endif %}
 
 </article>
+
+
 
 <div class="page-navigation">
 	{% if page.next.url %}
