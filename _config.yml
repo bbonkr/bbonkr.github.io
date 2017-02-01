@@ -1,49 +1,54 @@
-# Site settings
-title: Developer bbon
-description: "A blog about {bbon}"
-baseurl: "" # for test: remove string '/space-jekyll-templa' to ''
-url: "http://bbon.me" # for test: remove string 'http://victorvoid.github.io' to '' but in production: 'https://yourusername.githu.io'
-# User settings
-username: bbon
-user_title: bbon
-email: bbon@bbon.me
-twitter_username: bbonkr
-github_username: bbonkr
-gplus_username: PonKu
-disqus_username: bbon
+# Site Info
+title:              "{bbon}"
+description:        "Write blog & code."
+google_verify:      VfpSeEgW3aZLux9qRzsM1OMdSUu3_9LQ12IltC7D1RU # Put your Google Verification here
+google_analytics:   UA-64779499-1 # Put your Google Analytics code
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: /:title/
+# Author Info
+author_name:        "Pon Cheol Ku"
+author_email:       bbon@bbon.kr
+author_gravatar:    7305c166cb25a4f864c146b5e0c62333 # Gravatar md5 hash
+twitter_username:   bbonkr
+github_username:    bbonkr # GitHub username
+
+# Site Settings
+baseurl:            "" # Base URL must end WITHOUT a slash, default: ""
+permalink:          /:year/:month/:title # Post permalink
+timezone:           Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+mathjax:            true  # enables support for mathjax - set to false to disable
+
+# Site Build
+highlighter:        rouge
+#markdown:           redcarpet
+#redcarpet:
+#    extensions:     ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data", "highlight", "footnotes"]
+markdown:           kramdown
+kramdown:
+    input:          GFM
+sass:
+    style:          :compressed
+
+# Other Params
+include:            [ "robots.txt" ]
+exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile" ]
+gems:
+  - jekyll-sitemap
 
 
-# html minify
-compress_html:
-  clippings: all
-  comments: all
-  endings: []
-  profile: false
 
-# Links to include in menu navigation
-links:
-  - title: home
-    url: /
-  - title: my posts
-    url: /posts
-  - title: series
-    url: /series
-  - title: tags
-    url: /tags
-  - title: about me
-    url: /about
-# projects in header index
-projects:
-  - name: Web Storage API
-    url: https://github.com/bbonkr/html5-web-storage-api
-  - name: Reset active directory user's password
-    url: https://github.com/bbonkr/reset-password-active-directory
-  - name: Assembly Binding Error Logging
-    url: https://github.com/bbonkr/activate-assembly-binding-error-log
-# exclude my node related stuff
-exclude: ['package.json', 'src', 'node_modules']
+defaults:
+  -
+    scope:
+      path:         ""
+    values:
+      layout:       "null"
+  -
+    scope:
+      type:         "pages"
+    values:
+      layout:       "page"
+  -
+    scope:
+      type:         "posts"
+    values:
+      layout:       "post"
