@@ -25,3 +25,5 @@ Usage:
 	<a class="github-button" href="https://github.com/{{ include.user }}/{{ include.repo }}/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download {{ include.user }}/{{ include.repo }} on GitHub">Download</a></li>
 	</ul>
 </aside>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
