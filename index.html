@@ -18,7 +18,7 @@ layout: default
 		<ul>
 			<li>
 				<div class="post-date">
-					<span>{{ post.date | date: "%b %d" }}</span>
+					<span><small>{{ post.date | date: "%b %d" }}</small></span>
 				</div>
 				<div class="title">
 					<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>

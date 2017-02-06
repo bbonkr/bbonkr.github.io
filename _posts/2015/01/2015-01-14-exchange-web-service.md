@@ -2,7 +2,7 @@
 layout: post
 title: "Exchange Web Service"
 description: "Exchange Web Service"
-category: computing
+category: Computing
 tags: [".net",
         "exchange",
         "csharp",
