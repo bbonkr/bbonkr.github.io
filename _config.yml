@@ -12,16 +12,15 @@ twitter_username:   bbonkr
 github_username:    bbonkr # GitHub username
 
 # Site Settings
+url:                http://bbon.me # main url
 baseurl:            "" # Base URL must end WITHOUT a slash, default: ""
 permalink:          /:year/:month/:title # Post permalink
 timezone:           Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 mathjax:            true  # enables support for mathjax - set to false to disable
 
+
 # Site Build
 highlighter:        rouge
-#markdown:           redcarpet
-#redcarpet:
-#    extensions:     ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data", "highlight", "footnotes"]
 markdown:           kramdown
 kramdown:
     input:          GFM
