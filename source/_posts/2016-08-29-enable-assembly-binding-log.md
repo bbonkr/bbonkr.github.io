@@ -10,6 +10,8 @@ categories: Computing
 comments: false
 ---
 
+{% githubCard user:bbonkr repo:activate-assembly-binding-error-log %}
+
 런타임<small>Runtime</small>에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다.
 
 ```plaintext

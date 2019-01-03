@@ -13,6 +13,8 @@ tags:
 comments: false
 ---
 
+{% githubCard user:bbonkr repo:HostsEditor %}
+
 ## 개요
 
 Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다.

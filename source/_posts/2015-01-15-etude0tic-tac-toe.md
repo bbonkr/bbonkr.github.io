@@ -13,13 +13,9 @@ tags:
 comments: false
 ---
 
-Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.
+{% githubCard user:bbonkr repo:Tic-tac-toe %}
 
-<!--
-<div class="center-align">
-    <a href="/images/2015/01/etude-tic-tac-toe/tictactoe.png" data-toggle="lightbox" data-title="실행화면" data-footer="Tic-tac-toe" data-lightbox="image-1" data-lightbox="image-1"><img src="/images/2015/01/etude-tic-tac-toe/tictactoe.png"  /></a>
-</div>
--->
+Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.
 
 {% asset_img tictactoe.png tic-tac-toe %}
 
