@@ -80,7 +80,7 @@ theme: flexy
 deploy:
     type: git
     repo: https://github.com/bbonkr/bbonkr.github.io.git
-    branch: published
+    branch:
     message:
 
 markdown:
