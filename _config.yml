@@ -1,53 +1,105 @@
-# Site Info
-title:              "{bbon}"
-description:        "Write blog & code."
-google_verify:      VfpSeEgW3aZLux9qRzsM1OMdSUu3_9LQ12IltC7D1RU # Put your Google Verification here
-google_analytics:   UA-64779499-1 # Put your Google Analytics code
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
 
-# Author Info
-author_name:        "Pon Cheol Ku"
-author_email:       bbon@bbon.kr
-author_gravatar:    7305c166cb25a4f864c146b5e0c62333 # Gravatar md5 hash
-twitter_username:   bbonkr
-github_username:    bbonkr # GitHub username
+# Site
+title: "{bbon}"
+subtitle:
+description:
+keywords:
+author: bbon
+language: ko
+timezone: Asia/Seoul
 
-# Site Settings
-url:                http://bbon.me # main url
-baseurl:            "" # Base URL must end WITHOUT a slash, default: ""
-permalink:          /:year/:month/:title # Post permalink
-timezone:           Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-mathjax:            true  # enables support for mathjax - set to false to disable
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://bbon.me
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
 
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
 
-# Site Build
-highlighter:        rouge
-markdown:           kramdown
-kramdown:
-    input:          GFM
-sass:
-    style:          :compressed
+# Writing
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+    enable: true
+    line_number: true
+    auto_detect: false
+    tab_replace:
 
-# Other Params
-include:            [ "robots.txt" ]
-exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile" ]
-gems:
-  - jekyll-sitemap
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+    path: ""
+    per_page: 10
+    order_by: -date
 
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
 
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
 
-defaults:
-  -
-    scope:
-      path:         ""
-    values:
-      layout:       "null"
-  -
-    scope:
-      type:         "pages"
-    values:
-      layout:       "page"
-  -
-    scope:
-      type:         "posts"
-    values:
-      layout:       "post"
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: flexy
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+    type: git
+    repo: https://github.com/bbonkr/bbonkr.github.io.git
+    branch: published
+    message:
+
+markdown:
+    render:
+        html: true
+        xhtmlOut: false
+        breaks: true
+        linkify: true
+        typographer: true
+        quotes: "“”‘’"
+    plugins:
+        - markdown-it-abbr
+        - markdown-it-footnote
+        - markdown-it-ins
+        - markdown-it-sub
+        - markdown-it-sup
+    anchors:
+        level: 2
+        collisionSuffix: "v"
+        permalink: true
+        permalinkClass: header-anchor
+        permalinkSymbol: "📎 "
