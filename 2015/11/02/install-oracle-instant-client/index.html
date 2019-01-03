@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Install Oracle Instant Client | {bbon}</title><meta name="description" content="Install and Configure Oracle Instant Client"><meta name="generator" content="{bbon}"><meta name="author" content="bbon"><meta name="keywords" content="developer, .net xamarin aspnetcore c#"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="{bbon}" title="{bbon}"></a><h1><a href="/" alt="{bbon}" title="{bbon}" itemprop="headline">{bbon}</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">Install Oracle Instant Client</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2015-11-01T15:00:00.000Z"> 월요일, 11월 2일 2015 at 0:00</time><br>Last updated on<time itemprop="dateModified" datetime="2015-11-01T15:00:00.000Z"> 목요일, 1월 3일 2019 at 12:57</time></span><h2 id="파일-다운로드"><a class="header-anchor" href="#파일-다운로드">📎 </a>파일 다운로드</h2>
+<p><a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener">Oracle Instant Client</a> 페이지에서 설치할 대상 OS 및 아키텍쳐가 기술된 링크를 클릭해서 아래 항목을 다운로드 받습니다.</p>
+<ul>
+<li>Instant Client Package - Basic</li>
+<li>Instant Client Package - SQL*Plus</li>
+</ul>
+<h2 id="설치"><a class="header-anchor" href="#설치">📎 </a>설치</h2>
+<p>다운로드 받은 파일의 압축을 해제한 후 원하는 디렉터리로 복사/이동합니다.</p>
+<p>설명을 위해 <code>D:\Oracle\InstantClient</code> 디렉터리에 압축을 해제한 것으로 합니다.</p>
+<h2 id="설정"><a class="header-anchor" href="#설정">📎 </a>설정</h2>
+<h3 id="시스템-변수"><a class="header-anchor" href="#시스템-변수">📎 </a>시스템 변수</h3>
+<p>시스템 &gt; 고급 시스템 설정 을 클릭하여 시스템 속성창을 실행합니다.</p>
+<p>시스템 속성창의 고급 탭 아래쪽의 환경 변수를 클릭하여 환경 변수창을 실행합니다.</p>
+<p>시스템 변수에 새로 만들기 버튼을 클릭해서 아래 항목을 추가합니다.</p>
+<p>변수 이름: ORACLE_HOME</p>
+<p>변수 값: D:\Oracle\InstantClient</p>
+<p>변수 이름: TNS_ADMIN</p>
+<p>변수 값: D:\Oracle\InstantClient</p>
+<p>변수 이름: NLS_LANG</p>
+<p>변수 값: KOREAN_KOREA.KO16MSWIN949</p>
+<p>시스템 변수 중 이미 존재하는 Path 변수를 선택하고 편집 버튼을 클릭하여 아래 항목을 추가합니다.</p>
+<p>기존 값은 그대로 두고 기존 값 뒤에 추가합니다.</p>
+<p>변수 이름: Path<br>
+변수 값: &lt;기존값은 유지&gt;;D:\Oracle\InstantClient</p>
+<h3 id="tns-name"><a class="header-anchor" href="#tns-name">📎 </a>TNS Name</h3>
+<p>텍스트 편집기를 실행하고 아래 내용을 입력한 후 파일이름을 tnsnames.ora 로 변경한 후 Instant Client 디렉터리(D:\Oracle\InstantClient\tnsnames.ora)로 저장합니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ALIAS&gt; =</span><br><span class="line"> (DESCRIPTION =</span><br><span class="line">   (ADDRESS = (PROTOCOL = TCP)(HOST = &lt;ServerHostName or Server IP&gt;)(PORT = &lt;Oracle Port Number&gt;))</span><br><span class="line">   (CONNECT_DATA =</span><br><span class="line">     (SERVER = DEDICATED)</span><br><span class="line">     (&lt;SERVICE_NAME or SID&gt; = &lt;Service_Name or sid 실제값&gt;)</span><br><span class="line">   )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ALIAS: 접속시 사용할 별칭입니다.</li>
+<li>ServerHostName or Server IP: Oracle Database 서버 정보와 동일하게 입력합니다.</li>
+<li>Oracle Port Number: Oracle Database Listener 의 대기 포트를 입력합니다. (기본값: 1521)</li>
+<li>SERVICE_NAME orSID: Oracle Database 서버 정보와 동일하게 입력합니다. 서버가 SERVICE_NAME 이면 SERVICE_NAME, 서버가 SID 이면 SID 를 입력합니다.</li>
+<li>Service_Name or sid 실제값: Oracle Database 서버 정보와 동일하게 입력합니다. SERVICE_NAME 혹은 SID 실제 값을 입력합니다.</li>
+</ul>
+<h2 id="확인"><a class="header-anchor" href="#확인">📎 </a>확인</h2>
+<p>시스템 변수 값이 적용될 수 있도록 서버를 재시작합니다.</p>
+<p>D:\Oracle\InstantClient 디렉터리에 Instant Client Package - SQL*Plus 압축 파일의 내용까지 복사/이동한 상태라면 명령 프롬프트(CMD)를 실행하고, Instant Client 가 존재하는 디렉터리로 이동합니다.</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">c:\&gt; <span class="title">d</span>:</span></span><br><span class="line"><span class="function"><span class="title">d</span>:\&gt; <span class="title">cd</span> \<span class="title">Oracle</span>\<span class="title">InstantClient</span></span></span><br><span class="line"><span class="function"><span class="title">d</span>:\<span class="title">Oracle</span>\<span class="title">InstantClient</span>\&gt; <span class="title">sqlplus</span> <span class="title">userid</span>/<span class="title">password</span>@<span class="title">sid</span></span></span><br></pre></td></tr></table></figure>
+<p>userid 와 password, sid 부분을 실제 사용하는 값으로 치환하여 sqlplus 로 연결을 시도하면 연결 성공 혹은 실패시 에러 코드를 알 수 있습니다.</p>
+</article></main></body></html>

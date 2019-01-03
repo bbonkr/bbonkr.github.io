@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Visual Studio 2017 RC 설치 | {bbon}</title><meta name="description" content="Visual Studio 2017 RC 오프라인 설치본 만들기"><meta name="generator" content="{bbon}"><meta name="author" content="bbon"><meta name="keywords" content="developer, .net xamarin aspnetcore c#"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"><link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="{bbon}" title="{bbon}"></a><h1><a href="/" alt="{bbon}" title="{bbon}" itemprop="headline">{bbon}</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">Visual Studio 2017 RC 설치</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2016-12-06T15:00:00.000Z"> 수요일, 12월 7일 2016 at 0:00</time><br>Last updated on<time itemprop="dateModified" datetime="2016-12-06T15:00:00.000Z"> 목요일, 1월 3일 2019 at 13:20</time></span><p>다운로드 페이지에서 온라인 설치 파일을 내려받습니다.<br>
+<small>이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.</small></p>
+<h2 id="오프라인-설치파일-준비"><a class="header-anchor" href="#오프라인-설치파일-준비">📎 </a>오프라인 설치파일 준비</h2>
+<p>명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 <strong>layout</strong> 옵션을 추가해서 실행합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>layout 옵션의 매개변수인 오프라인 설치파일 다운로드 경로는 상대경로를 지원하지 않습니다. (2016-12-07 현재)</li>
+<li>오프라인 설치본을 만들때, Android SDK 가 포함되지 않습니다. (2016-12-07 현재)</li>
+</ul>
+</blockquote>
+<p>오프라인 설치본에 포함할 언어를 제한하기 위해서 <strong>lang</strong> 옵션을 사용합니다.</p>
+<p>영문만 포함하려면 아래와 같이 --lang en-US 옵션을 추가합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US</span><br></pre></td></tr></table></figure>
+<p>여러가지 언어를 포함하려면 아래와 같이 --lang 옵션의 매개변수에 포함할 언어의 ISO 코드를 추가합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US ko-KR ja-JP</span><br></pre></td></tr></table></figure>
+<h2 id="설치"><a class="header-anchor" href="#설치">📎 </a>설치</h2>
+<p>오프라인 설치본이 다운로드된 디렉터리의 내용중 Certificates 디렉터리로 이동합니다.</p>
+<p>디렉터리의 인증서 파일을 모두 설치합니다.<br>
+(윈도우 탐색기에서 인증서 파일을 선택하고, 마우스 오른쪽 버튼을 클릭하여 메뉴를 열고 설치 항목을 선택합니다.)</p>
+<p>그 후, 오프라인 설치본이 다운로드된 디렉터리의 vs_enterprise.exe 파일을 실행합니다.</p>
+<h2 id="업데이트"><a class="header-anchor" href="#업데이트">📎 </a>업데이트</h2>
+<p>업데이트가 가능한 시점이 되었을 때, 이미 만들어둔 오프라인 설치본이 있는 경로를 대상으로 다시 오프라인 설치본 만들기 명령을 실행합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure>
+<h2 id="관련-페이지"><a class="header-anchor" href="#관련-페이지">📎 </a>관련 페이지</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/welcome-to-visual-studio" target="_blank" rel="noopener">Visual Studio 문서</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/use-command-line-parameters-to-install-visual-studio" target="_blank" rel="noopener">Visual Studio 온라인 설치 파일의 명령 프롬프트 매개변수</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/create-an-offline-installation-of-visual-studio" target="_blank" rel="noopener">Visual Studio 오프라인 설치본 만들기</a></li>
+</ul>
+</article></main></body></html>

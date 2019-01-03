@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{bbon}</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://bbon.me/"/>
+  <updated>2019-01-03T04:42:59.946Z</updated>
+  <id>http://bbon.me/</id>
+  
+  <author>
+    <name>bbon</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gulp: 자동화 도구</title>
+    <link href="http://bbon.me/2018/01/03/gulp-task-automation/"/>
+    <id>http://bbon.me/2018/01/03/gulp-task-automation/</id>
+    <published>2018-01-02T15:00:00.000Z</published>
+    <updated>2019-01-03T04:42:59.946Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="gulp"><a class="header-anchor" href="#gulp">📎 </a>Gulp</h2><p>Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.</p><p>자세한 내용은 <a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 확인할 수 있습니다.</p><h2 id="시작하기"><a class="header-anchor" href="#시작하기">📎 </a>시작하기</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-cli -g</span><br><span class="line">$ npm install gulp -D</span><br><span class="line">$ touch gulpfile.js</span><br><span class="line">$ gulp --<span class="built_in">help</span></span><br></pre></td></tr></table></figure><blockquote><p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 발췌</p></blockquote><p>CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js 파일을 만들어서 시작합니다.</p><h2 id="뭘-할-수-있지"><a class="header-anchor" href="#뭘-할-수-있지">📎 </a>뭘 할 수 있지?</h2><p>gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구입니다.</p><p>어떻게 활용할 것인지를 생각하고, 하고 싶은 동작을 구현해 놓은 플러그인의 도움을 받으면 대부분의 빌드 작업을 자동화할 수 있습니다.</p><h2 id="예제"><a class="header-anchor" href="#예제">📎 </a>예제</h2><h3 id="pgu-less"><a class="header-anchor" href="#pgu-less">📎 </a>PGU &amp; LESS</h3><p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="keyword">var</span> pug = <span class="built_in">require</span>(<span class="string">"gulp-pug"</span>);</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">"gulp-less"</span>);</span><br><span class="line"><span class="keyword">var</span> minifycss = reuqire(<span class="string">"gulp-csso"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// html 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">"html"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">"client/templates/*.pug"</span>)</span><br><span class="line">        .pipe(pug())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">"build/html"</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">"css"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">"client/templates/*.less"</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">"build/css"</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 작업으로 html 작업, css 작업을 지정</span></span><br><span class="line">gulp.task(<span class="string">"default"</span>, [<span class="string">"html"</span>, <span class="string">"css"</span>]);</span><br></pre></td></tr></table></figure><h3 id="typescript"><a class="header-anchor" href="#typescript">📎 </a>Typescript</h3><p>타입스크립트를 컴파일해서 필요한 위치에 출력하는 작업을 gulp로 작성한 예제입니다.</p><p><code>[ProjectDir]/Scripts/**/*.ts</code> 파일을 컴파일해서 <code>[ProjectDir]/wwwroot/js/**/*.js</code> 로 출력합니다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">"gulp-rename2"</span>),</span><br><span class="line">    clean = <span class="built_in">require</span>(<span class="string">"gulp-clean"</span>),</span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">"gulp-uglify"</span>),</span><br><span class="line">    ts = <span class="built_in">require</span>(<span class="string">"gulp-typescript"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wwwroot = <span class="string">"./wwwroot/"</span>,</span><br><span class="line">    sourceroot = <span class="string">"./Scripts/"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">    ts: sourceroot + <span class="string">"**/*.ts"</span>,</span><br><span class="line">    tsDefinitionFiles: <span class="string">"npm_modules/@types/**/*.d.ts"</span>,</span><br><span class="line">    jsDest: <span class="string">`<span class="subst">$&#123;wwwroot&#125;</span>js/`</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"typescript"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> tsProject = ts.createProject(<span class="string">"tsconfig.json"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src([paths.tsDefinitionFiles, paths.ts, <span class="string">"!"</span> + paths.minJS], &#123;</span><br><span class="line">            base: <span class="string">"."</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .pipe(tsProject())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(</span><br><span class="line">            rename(<span class="function">(<span class="params">pathObj, file</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> pathObj.join(</span><br><span class="line">                    pathObj.dirname(file).replace(<span class="regexp">/^Scripts\/?\\?/</span>, <span class="string">""</span>),</span><br><span class="line">                    pathObj.basename(file)</span><br><span class="line">                );</span><br><span class="line">            &#125;)</span><br><span class="line">        )</span><br><span class="line">        .pipe(clean(&#123;&#125;))</span><br><span class="line">        .pipe(gulp.dest(paths.jsDest));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"default"</span>, [<span class="string">"typescript"</span>]);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;gulp&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#gulp&quot;&gt;📎 &lt;/a&gt;Gulp&lt;/h2&gt;
+&lt;p&gt;Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.&lt;/p&gt;
+&lt;p&gt;자세한 내용은 &lt;a href=&quot;htt
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="nodejs" scheme="http://bbon.me/tags/nodejs/"/>
+    
+      <category term="gulp" scheme="http://bbon.me/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://bbon.me/tags/npm/"/>
+    
+      <category term="task" scheme="http://bbon.me/tags/task/"/>
+    
+      <category term="automation" scheme="http://bbon.me/tags/automation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11.1.2</title>
+    <link href="http://bbon.me/2017/11/19/ios-11.1.2/"/>
+    <id>http://bbon.me/2017/11/19/ios-11.1.2/</id>
+    <published>2017-11-18T15:00:00.000Z</published>
+    <updated>2019-01-03T04:41:39.275Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 11.1.2 includes bug fixes for your iPhone and iPad. This update:</p><ul><li>Fixes an issue where the iPhone X screen becomes temporarily unresponsive to touch after a rapid temperature drop</li><li>Addresses an issue that could cause distortion in Live Photos and videos captured with iPhone X</li></ul><p>For information on the security content of Apple software updates, please visit this website:<a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 11.1.2 includes bug fixes for your iPhone and iPad. This update:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixes an issue where the iPhone X screen becomes tempor
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11.1.1</title>
+    <link href="http://bbon.me/2017/11/11/iso-11.1.1/"/>
+    <id>http://bbon.me/2017/11/11/iso-11.1.1/</id>
+    <published>2017-11-10T15:00:00.000Z</published>
+    <updated>2019-01-03T04:40:35.242Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 11.1.1 업데이트는 iPhone 또는 iPad의 오류 수정을 포함합니다. 이 업데이트의 세부사항은 다음과 같습니다.</p><ul><li>키보드 자동 수정과 관련된 문제를 수정함</li><li>‘Siri야’의 동작이 중단되는 오류를 수정함</li></ul><p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener"><br>https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 11.1.1 업데이트는 iPhone 또는 iPad의 오류 수정을 포함합니다. 이 업데이트의 세부사항은 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;키보드 자동 수정과 관련된 문제를 수정함&lt;/li&gt;
+&lt;li&gt;‘Siri야’의 동작이 중단되는 오류를
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11.1</title>
+    <link href="http://bbon.me/2017/11/01/ios-11.1/"/>
+    <id>http://bbon.me/2017/11/01/ios-11.1/</id>
+    <published>2017-10-31T15:00:00.000Z</published>
+    <updated>2019-01-03T04:40:45.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 11.1 업데이트는 70여 개의 이모티콘을 새로 추가하고 오류 수정 및 기능 향상을 포함합니다.</p><h2 id="이모티콘"><a class="header-anchor" href="#이모티콘">📎 </a>이모티콘</h2><ul><li>새로운 음식 종류, 동물, 신화 속 동물, 의류, 더 다양한 표정의 스마일리 이모티콘 및 성별 중립적인 캐릭터를 포함한 70여 개의 새로운 이모티콘이 추가됨</li></ul><h2 id="사진"><a class="header-anchor" href="#사진">📎 </a>사진</h2><ul><li>일부 사진이 흐리게 보이는 문제를 해결함</li><li>Live Photo 효과가 느리게 재생되는 오류를 수정함</li><li>iCloud 백업에서 복원한 경우 ‘사람들’ 앨범의 일부 사진이 표시되지 않는 문제를 수정함</li><li>스크린샷 간에 쓸어넘길 때 기능이 제대로 동작하지 않는 문제를 해결함</li></ul><h2 id="손쉬운-사용"><a class="header-anchor" href="#손쉬운-사용">📎 </a>손쉬운 사용</h2><ul><li>축약된 점자(Grade 2) 입력의 점자 지원을 향상함</li><li>여러 페이지의 PDF 파일에 대한 VoiceOver의 접근을 향상함</li><li>수신 알림을 알려줄 때의 VoiceOver 로터 동작을 향상함</li><li>앱 전환기에서 앱을 제거할 때의 VoiceOver 로터 동작을 향상함</li><li>터치 입력으로 VoiceOver를 사용할 때 일부 사용자에게 대체 키가 보이지 않는 문제를 수정함</li><li>Mail에서 VoiceOver 로터가 항상 기본 동작으로 되돌아가는 오류를 수정함</li><li>VoiceOver 로터가 메시지를 삭제하지 않는 문제를 해결함</li></ul><h2 id="기타-기능-향상-및-오류-수정"><a class="header-anchor" href="#기타-기능-향상-및-오류-수정">📎 </a>기타 기능 향상 및 오류 수정</h2><ul><li>3D Touch로 화면 가장자리를 눌러서 앱 전환기에 접근하는 기능을 다시 추가함</li><li>잠금 화면에 지운 Mail 알림이 다시 표시되는 문제를 수정함</li><li>기업 환경에서 데이터가 관리되는 앱 간에 이동되지 않는 오류를 수정함</li><li>일부 타사 GPS 액세서리에서 위치 데이터가 정확하지 않은 문제를 해결함</li><li>심박수 알림의 설정이 Apple Watch(1세대) 앱에 표시되는 문제를 수정함</li><li>Apple Watch의 알림에서 앱 아이콘이 표시되지 않는 오류를 수정함</li></ul><p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br><a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener">https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 11.1 업데이트는 70여 개의 이모티콘을 새로 추가하고 오류 수정 및 기능 향상을 포함합니다.&lt;/p&gt;
+&lt;h2 id=&quot;이모티콘&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#이모티콘&quot;&gt;📎 &lt;/a&gt;이모티콘&lt;/h2&gt;
+&lt;ul&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11.0.2</title>
+    <link href="http://bbon.me/2017/10/06/ios-11.0.2/"/>
+    <id>http://bbon.me/2017/10/06/ios-11.0.2/</id>
+    <published>2017-10-05T15:00:00.000Z</published>
+    <updated>2019-01-03T04:40:53.328Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 11.0.2 업데이트는 iPhone 또는 iPad의 오류 수정 및 기능 향상을 포함합니다. 업데이트 세부사항은 다음과 같습니다.</p><ul><li>일부 소수의 iPhone 8 및 8 Plus 기기에서 통화 중에 치직거리는 소리가 들리는 문제를 수정함</li><li>일부 사진이 가려지는 문제를 해결함</li><li>S/MIME 암호화된 이메일의 첨부 파일이 열리지 않는 오류를 수정함</li></ul><p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener"><br>https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 11.0.2 업데이트는 iPhone 또는 iPad의 오류 수정 및 기능 향상을 포함합니다. 업데이트 세부사항은 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;일부 소수의 iPhone 8 및 8 Plus 기기에서 통화 중에 치직거리는 소리가 들리
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11.0.1</title>
+    <link href="http://bbon.me/2017/09/27/ios-11.0.1/"/>
+    <id>http://bbon.me/2017/09/27/ios-11.0.1/</id>
+    <published>2017-09-26T15:00:00.000Z</published>
+    <updated>2019-01-03T04:41:01.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 11.0.1 includes bug fixes and improvements for your iPhone or iPad.</p><p>For information on the security content of Apple software updates, please visit this website:<br><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 11.0.1 includes bug fixes and improvements for your iPhone or iPad.&lt;/p&gt;
+&lt;p&gt;For information on the security content of Apple software 
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 11</title>
+    <link href="http://bbon.me/2017/09/19/ios-11/"/>
+    <id>http://bbon.me/2017/09/19/ios-11/</id>
+    <published>2017-09-18T15:00:00.000Z</published>
+    <updated>2019-01-03T04:38:30.341Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="app-store"><a class="header-anchor" href="#app-store">📎 </a>App Store</h2><ul><li>매일 멋진 앱과 게임을 찾아보기 수월하게 App Store의 디자인이 새로워짐</li><li>새로운 앱과 게임을 스토리, 사용 안내 등의 설명과 더불어 소개하는 ‘투데이’ 탭을 새로 선보임</li><li>새로 제공되는 ‘게임’ 탭에서 새로운 게임을 살펴보고 게임 차트 상위권의 인기 앱을 확인할 수 있음</li><li>인기 추천 앱, 앱 전용 차트 및 카테고리 등 앱을 위한 전용 탭인 ‘앱’ 제공</li><li>앱 페이지가 비디오 미리보기, 에디터 추천 배지, 사용자 평가에 대한 손쉬운 접근, 앱 내 구입 정보 등으로 더욱 풍성해짐</li></ul><h2 id="siri"><a class="header-anchor" href="#siri">📎 </a>Siri</h2><ul><li>Siri 음성이 더 자연스럽고 표현력이 풍부하게 새로워짐</li><li>영어 단어 및 구문을 중국어, 불어, 독일어, 이탈리아어 또는 스페인어로 번역하는 기능 추가(베타)</li><li>Siri가 사용자의 Safari, News, Mail 및 메시지 앱 사용 내용을 기반으로 제안함</li><li>메모 앱과 연동해서 해야 할 일 목록, 메모 및 미리 알림을 생성함</li><li>은행 앱과 연동하여 계좌 이체 및 잔액 조회 요청을 수행함</li><li>QR 코드가 표시되는 앱과 연동됨</li><li>힌디어 및 상하이어 받아쓰기 제공</li></ul><h2 id="카메라"><a class="header-anchor" href="#카메라">📎 </a>카메라</h2><ul><li>인물 사진 모드에서 광학 이미지 흔들림 보정 기능, HDR 및 True Tone flash를 지원함</li><li>새로운 HEIF 및 HEVC 이미지, 그리고 비디오 포맷 기술로 사진과 비디오의 크기를 반으로 줄임</li><li>자연스러운 피부 톤을 표현하는 데 최적화된 9개의 새로 디자인된 필터 제공</li><li>자동으로 QR 코드를 인식하여 스캔함</li></ul><h2 id="사진"><a class="header-anchor" href="#사진">📎 </a>사진</h2><ul><li>Live Photo에서 루프, 바운스 및 장노출 효과 제공</li><li>Live Photo에서 소리 끔, 다듬기, 새로운 대표 사진 선택 기능 제공</li><li>‘추억’ 동영상이 세로 또는 가로 화면 방향에 맞추어 콘텐츠를 자동으로 조절함</li><li>반려동물, 아기, 결혼식, 스포츠 이벤트를 포함하여 12개 이상의 새로운 추억 카테고리가 추가됨</li><li>‘사람들’ 앨범이 더 정확해지고 iCloud 사진 보관함을 통해 모든 기기에서 최신으로 유지됨</li><li>움직이는 GIF 지원</li></ul><h2 id="지도"><a class="header-anchor" href="#지도">📎 </a>지도</h2><ul><li>주요 공항 및 쇼핑센터의 내부 안내 지도 제공</li><li>턴 바이 턴 경로 사용 시 차선 안내 및 제한 속도 정보 제공</li><li>이중 탭하고 쓸어넘기는 동작으로 지도를 한 손으로 확대 및 축소할 수 있음</li><li>기기를 움직여서 Flyover 이용하기</li></ul><h2 id="운전-중-방해금지-모드"><a class="header-anchor" href="#운전-중-방해금지-모드">📎 </a>운전 중 방해금지 모드</h2><ul><li>운전 중에 알림을 자동으로 끄고 iPhone의 소리와 화면을 꺼진 상태로 유지함</li><li>사용자가 선택한 연락처에 운전 중이라는 iMessage 자동 응답을 보낼 수 있음</li></ul><h2 id="ipad를-위한-새로운-기능"><a class="header-anchor" href="#ipad를-위한-새로운-기능">📎 </a>iPad를 위한 새로운 기능</h2><ul><li>새로 제공되는 Dock을 통해 자주 사용하거나 최근에 사용한 앱에 빠르게 접근할 수 있으며 이런 앱이 활성화된 앱보다 먼저 표시됨<ul><li>자주 사용하는 앱을 모두 추가할 수 있도록 Dock이 크기를 조절함</li><li>최근 사용한 앱 및 계속 사용 중인 앱이 오른쪽에 표시됨</li></ul></li><li>Slide Over 및 Split View 기능 향상<ul><li>Dock의 Slide Over 및 Split View에서 손쉽게 앱을 실행할 수 있음</li><li>Slide Over 및 백그라운드 앱을 동시에 실행할 수 있음</li><li>Slide Over 및 Split View의 앱을 화면 왼쪽에 둘 수 있음</li></ul></li><li>드래그 앤 드롭<ul><li>iPad에서 다른 앱 간에 텍스트, 이미지 및 파일을 이동함</li><li>Multi-Touch를 이용하여 여러 개의 항목을 동시에 이동함</li><li>자동 열림 기능으로 다른 앱 간에 콘텐츠를 이동함</li></ul></li><li>마크업<ul><li>도큐멘트, PDF 파일, 웹 페이지, 사진 등에서 마크업을 사용할 수 있음</li><li>iOS에서 원하는 곳 어디든지 Apple Pencil로 즉시 마크업을 사용할 수 있음</li><li>프린트할 수 있다면 무엇이든 PDF 파일을 생성하고 마크업을 사용할 수 있음</li></ul></li><li>메모<ul><li>잠금 화면을 Apple Pencil로 탭하여 새로운 메모를 바로 생성함</li><li>메모의 본문에 Apple Pencil로 간편하게 인라인 그림을 추가할 수 있음</li><li>손글씨 텍스트 검색</li><li>도큐멘트 스캔 기능은 비스듬한 모서리를 자동으로 수정하고 이미지 필터를 사용하여 그림자를 제거함</li><li>표 작성 시 정보가 잘 정렬되고 디스플레이되도록 지원</li><li>중요한 메모를 목록 맨 위에 고정할 수 있음</li></ul></li><li>파일<ul><li>새로 제공되는 파일 앱으로 파일을 둘러보고 검색하고 정리할 수 있음</li><li>iCloud Drive 및 타사 클라우드 파일 제공업체와 연동하여 사용함</li><li>'최근 항목’에서 모든 앱과 클라우드 서비스에서 최근 사용한 파일에 빠르게 접근할 수 있음</li><li>폴더를 생성하고 파일을 이름, 날짜, 크기 및 태그 순으로 정렬할 수 있음</li></ul></li></ul><h2 id="quicktype"><a class="header-anchor" href="#quicktype">📎 </a>QuickType</h2><ul><li>iPad에서 문자 키를 아래로 빠르게 쓸어넘겨서 숫자, 기호 및 구두점을 입력할 수 있음</li><li>iPhone에서 한 손 키보드 지원</li><li>다음 언어를 위한 키보드 새로 제공: 아르메니아어, 아제르바이잔어, 벨라루스어, 조지아어, 아일랜드어, 칸나다어, 말라얄람어, 마오리어, 오디아어, 스와힐리어 및 웨일스어</li><li>10키 병음 키보드에서 영어 입력 가능</li><li>일본어 Romaji 키보드에서 영어 입력 가능</li></ul><h2 id="homekit"><a class="header-anchor" href="#homekit">📎 </a>HomeKit</h2><ul><li>AirPlay 2 스피커, 스프링클러, 수도꼭지 등을 포함한 새로운 액세서리 종류 추가</li><li>재실 감지, 시간 및 액세서리 기반 작동 확대</li><li>‘QR 코드’ 및 ‘탭하여 액세서리 쌍으로 연결’ 기능을 통해 기기 설정 가능</li></ul><h2 id="증강-현실-augmented-reality"><a class="header-anchor" href="#증강-현실-augmented-reality">📎 </a>증강 현실(Augmented Reality)</h2><ul><li>App Store의 앱에서 사용할 수 있는 증강 현실 기술은 현실 세계 위에 콘텐츠를 추가하여 인터렉티브 게임, 실감 나는 쇼핑 경험, 산업 디자인 등에 이용할 수 있음</li></ul><h2 id="기계-학습-machine-learning"><a class="header-anchor" href="#기계-학습-machine-learning">📎 </a>기계 학습(Machine Learning)</h2><ul><li>App Store의 앱에서 사용할 수 있는 코어 기계 학습은 더 향상된 성능과 사용자 개인 정보 보호를 위해 기기에서 처리된 기계 학습 데이터로 지능형 기능을 제공함</li></ul><h2 id="기타-기능-및-향상"><a class="header-anchor" href="#기타-기능-및-향상">📎 </a>기타 기능 및 향상</h2><ul><li>새로 디자인된 제어 센터는 모든 제어 기능을 한 페이지에 모음</li><li>제어 센터에서 손쉬운 사용, 사용법 유도, 확대기, 텍스트 크기, 화면 기록, Wallet 등의 제어를 사용자 설정할 수 있음</li><li>Apple Music에서 친구와 함께 음악 발견하기 - 프로필을 생성하면 친구들이 사용자가 공유한 플레이리스트를 함께 듣고 사용자가 자주 듣는 음악을 볼 수 있음</li><li>개인 맞춤화된 ‘Top Stories’, Siri의 제안, 'Today View’에서 오늘의 베스트 비디오, 새로운 ‘Spotlight’ 탭에서 에디터가 엄선한 기사가 Apple News에 포함됨</li><li>자동 설정 기능을 통해 사용자의 Apple ID로 iCloud, 키체인, iTunes, App Store, iMessage 및 FaceTime에 로그인함</li><li>자동 설정 기능을 통해 언어, 지역, 네트워크, 키보드 환경설정, 자주 가는 장소, Siri에게 말하는 방식, 홈 및 건강 데이터 등의 기기 설정을 복원함</li><li>사용자의 Wi-Fi 네트워크에 대한 접근을 손쉽게 공유할 수 있음</li><li>저장 공간 최적화 알림을 받고 사진 및 메시지 등의 앱 설정에서 저장 공간을 늘릴 수 있음</li><li>긴급 구조 요청 기능은 사용자의 위치를 기반으로 긴급 서비스에 전화를 걸고, 자동으로 긴급 연락처에 이를 알리며, 사용자의 위치를 공유하고, 의료 정보를 표시함</li><li>FaceTime에서 다른 사람의 Mac 또는 iPhone 카메라로 Live Photo를 찍을 수 있음</li><li>Spotlight 및 Safari에서 간편하게 항공편 상황을 확인할 수 있음</li><li>Safari에서 단어 정의, 단위 변환 및 계산을 지원함</li><li>러시아어-영어 사전 지원</li><li>포르투갈어-영어 사전 지원</li><li>아랍어 시스템 서체 지원</li></ul><h2 id="손쉬운-사용"><a class="header-anchor" href="#손쉬운-사용">📎 </a>손쉬운 사용</h2><ul><li>VoiceOver로 이미지 설명 지원</li><li>VoiceOver로 PDF 파일의 표 및 목록 설명 지원</li><li>기본적인 검색 요청 시 ‘입력하여 Siri 사용하기’ 지원</li><li>비디오에서 음성 및 점자 자막 지원</li><li>‘유동적 글자 크기 조절’ 기능으로 텍스트 및 앱 UI의 글자가 크게 조절됨</li><li>새로 디자인된 '색상 반전’으로 미디어 콘텐츠 보기가 더 쉬워짐</li><li>‘선택 항목 말하기’ 및 '화면 말하기’에서 하이라이트 색상 기능이 향상됨</li><li>스위치 제어 입력은 모든 단어를 동시에 스캔 및 입력할 수 있음</li></ul><p>iOS 11의 기능은 64비트 앱에 최적화되어 있습니다. 32비트 앱이 이 iOS 버전에서 제대로 작동하려면 앱 개발자가 앱을 업데이트해야 합니다.</p><p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://www.apple.com/kr/ios/feature-availability" target="_blank" rel="noopener">https://www.apple.com/kr/ios/feature-availability</a>및 <a href="https://www.apple.com/kr/ios/whats-new" target="_blank" rel="noopener">https://www.apple.com/kr/ios/whats-new</a></p><p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br><a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener">https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;app-store&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#app-store&quot;&gt;📎 &lt;/a&gt;App Store&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;매일 멋진 앱과 게임을 찾아보기 수월하게 App Store의 디자인이 새로워짐&lt;/li
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생</title>
+    <link href="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/"/>
+    <id>http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/</id>
+    <published>2017-08-15T15:00:00.000Z</published>
+    <updated>2019-01-03T04:37:33.653Z</updated>
+    
+    <content type="html"><![CDATA[<p>Visual Studio 2017 에서 원격 저장소를 대상으로 <strong>push</strong> 명령을 실행하면, 아래와 유사한 오류가 발생합니다.</p><img src="/2017/08/16/error-git-on-visual-studio-2017/error-git-visual-studio-2017-001.png"><p>아래와 유사한 내용을 출력창에서 확인할 수 있습니다.</p><blockquote><p><span class="text-danger">Error encountered while pushing to the remote repository: Git failed with a fatal error.</span><br>PushCommand.ExecutePushCommand</p></blockquote><p>커뮤니티에서는 Visual Studio 확장 중 Git for Windows 에 포함된 Git core 에 openSSL 관련 파일이 원인으로 추정되고 있습니다.</p><h2 id="해결방법"><a class="header-anchor" href="#해결방법">📎 </a>해결방법</h2><p>Visual Studio 2017 이 설치된 디렉터리로 이동합니다.</p><p><code>[Visual Studio 2017 디렉터리]\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin</code> 디렉터리에 있는 <strong>libeay32.dll</strong>, <strong>ssleay32.dll</strong> 파일을 <code>[Visual Studio 2017 디렉터리]\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\libexec\git-core</code> 디렉터리로 복사합니다.</p><p>그 후 Visual Studio 2017 에서 커밋을 만들고, 원격 저장소로 전송합니다.</p><h3 id="visual-studio-2017-enterprise-의-경우-예제"><a class="header-anchor" href="#visual-studio-2017-enterprise-의-경우-예제">📎 </a>Visual Studio 2017 Enterprise 의 경우 예제</h3><ol><li>윈도우 탐색기를 열고, <code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin</code> 디렉터리로 이동합니다.</li><li>아래 두 파일을 선택하고 복사합니다.<ol><li><strong>libeay32.dll</strong></li><li><strong>ssleay32.dll</strong></li></ol></li><li><code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\libexec\git-core</code> 디렉터리로 이동합니다.</li><li>붙여넣기합니다.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Visual Studio 2017 에서 원격 저장소를 대상으로 &lt;strong&gt;push&lt;/strong&gt; 명령을 실행하면, 아래와 유사한 오류가 발생합니다.&lt;/p&gt;
+&lt;img src=&quot;/2017/08/16/error-git-on-visual-studi
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term=".net" scheme="http://bbon.me/tags/net/"/>
+    
+      <category term="git" scheme="http://bbon.me/tags/git/"/>
+    
+      <category term="troubleshooting" scheme="http://bbon.me/tags/troubleshooting/"/>
+    
+      <category term="visualstudio" scheme="http://bbon.me/tags/visualstudio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql Password 함수</title>
+    <link href="http://bbon.me/2017/07/13/function-password-mysql/"/>
+    <id>http://bbon.me/2017/07/13/function-password-mysql/</id>
+    <published>2017-07-12T15:00:00.000Z</published>
+    <updated>2019-01-03T04:35:46.933Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySql 의 PASSWORD 함수는 해시값을 계산한 문자열을 반환하는 함수입니다.</p><p>비밀번호를 처리할 때 많이 사용됩니다. 실제 서버의 계정 비밀번호도 PASSWORD 함수를 사용해서 처리하게 됩니다.</p><blockquote><p>주의<br>해시가 계산된 값이 4.1.0 이전 버전과 4.1.1 이후 버전이 다릅니다.<br><a href="https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html" target="_blank" rel="noopener">Password Hashing in MySQL</a> 페이지 참조하십시오.</p></blockquote><p>4.1.1 이후 버전에서 PASSWORD 함수 결과는 아래와 같습니다.<br>결과는 문자열입니다.</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello');</span><br></pre></td></tr></table></figure><blockquote><p>결과<br><code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p></blockquote><p>PASSWORD 함수의 동작에 대한 내용을 <a href="https://www.pythian.com/blog/hashing-algorithm-in-mysql-password-2/" target="_blank" rel="noopener">HASHING ALGORITHM IN MYSQL PASSWORD()</a> 페이지에서 찾을 수 있습니다.</p><p>위 링크 페이지의 내용에서는 아래와 같이 동일한 값을 얻을 수 있다고 합니다.</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello') as result</span><br><span class="line">union all</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'*'</span>, <span class="keyword">convert</span>(<span class="keyword">sha1</span>(<span class="keyword">unhex</span>(<span class="keyword">sha1</span>(<span class="string">'hello'</span>))) <span class="keyword">USING</span> utf8));</span><br></pre></td></tr></table></figure><blockquote><p><code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code><br><code>*6b4f89a54e2d27ecd7e8da05b4ab8fd9d1d8b119</code></p></blockquote><p>password 함수는 sha1 해시 값을 다시 sha1 해시 값을 계산한 값을 문자열로 표현하고, ‘<code>*</code>’ 을 앞에 붙인 것과 동일합니다.</p><p>기존 시스템이 MySql 로 운영되고 있을 때, 이를 다른 DBMS로 이관을 해야하면 문자열을 그대로 이관하고, PASSWORD 함수와 동일한 동작을 할 수 있는 해시 함수를 작성해서 처리할 수 있습니다.</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">GenerateMySQLHash</span>(<span class="params"><span class="keyword">string</span> key</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] keyArray = Encoding.UTF8.GetBytes(key);</span><br><span class="line">    SHA1Managed enc = <span class="keyword">new</span> SHA1Managed();</span><br><span class="line">    <span class="keyword">byte</span>[] encodedKey = enc.ComputeHash(enc.ComputeHash(keyArray));</span><br><span class="line">    StringBuilder myBuilder = <span class="keyword">new</span> StringBuilder(encodedKey.Length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">byte</span> b <span class="keyword">in</span> encodedKey)</span><br><span class="line">    &#123;</span><br><span class="line">        myBuilder.Append(b.ToString(<span class="string">"X2"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"*"</span> + myBuilder.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GenerateMySQLHash(<span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure><blockquote><p>결과<br><code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      Mysql Password 함수
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="mysql" scheme="http://bbon.me/tags/mysql/"/>
+    
+      <category term="password" scheme="http://bbon.me/tags/password/"/>
+    
+      <category term="function" scheme="http://bbon.me/tags/function/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 10.3</title>
+    <link href="http://bbon.me/2017/03/29/ios-10.3/"/>
+    <id>http://bbon.me/2017/03/29/ios-10.3/</id>
+    <published>2017-03-28T15:00:00.000Z</published>
+    <updated>2019-01-03T04:33:59.440Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 10.3은 나의 iPhone 찾기를 사용하여 AirPods의 위치를 찾고, 결제, 차량 예약 및 차량용 앱과 함께 Siri를 사용하는 등 더욱 새롭고 다양해진 기능을 선보입니다.</p><h2 id="나의-iphone-찾기"><a class="header-anchor" href="#나의-iphone-찾기">📎 </a>나의 iPhone 찾기</h2><ul><li>AirPods의 현재 또는 마지막 파악된 위치 보기</li><li>AirPods를 쉽게 찾을 수 있도록 한쪽 또는 양쪽의 AirPods에서 사운드 재생</li></ul><h2 id="siri"><a class="header-anchor" href="#siri">📎 </a>Siri</h2><ul><li>결제용 앱과 함께 사용하여 청구서 확인 및 결제 지원</li><li>차량 예약용 앱과 함께 사용하여 차량 예약 지원</li><li>차량용 앱과 함께 사용하여 차량 연료 및 차 문 잠금 상태 확인, 라이트 켜기 및 경적 울리기 수행</li><li>인디안 프리미어 리그 및 국제 크리켓 협회의 크리켓 경기 스코어와 통계 지원</li></ul><h2 id="carplay"><a class="header-anchor" href="#carplay">📎 </a>CarPlay</h2><ul><li>마지막으로 사용한 앱에 쉽게 접근할 수 있도록 상태 막대에 단축키 제공</li><li>Apple Music의 ‘지금 재생 중’ 화면에서 ‘다음에 재생할 목록’ 및 현재 재생 중인 노래의 앨범으로 이동</li><li>Apple Music에서 매일 큐레이트된 재생목록과 새로운 음악 카테고리 제공</li></ul><h2 id="기타-기능-향상-및-오류-수정"><a class="header-anchor" href="#기타-기능-향상-및-오류-수정">📎 </a>기타 기능 향상 및 오류 수정</h2><ul><li>한 번의 대여로 사용자의 모든 기기에서 iTunes 동영상 시청 가능</li><li>Apple ID 계정 정보, 설정 및 기기를 통합하여 보여주는 새로운 설정 보기</li><li>지도 앱에 표시된 현재 기온을 3D Touch하여 시간별 날씨 정보 열기</li><li>지도 앱에서 ‘주차 위치’ 찾기 지원</li><li>캘린더 앱에서 원치 않는 초대 삭제 및 정크로 리포트하는 기능 추가</li><li>홈 앱에서 스위치 및 버튼으로 액세서리를 사용하여 모드 실행 지원</li><li>홈 앱에서 액세서리의 배터리 잔량 상태 지원</li><li>Podcast에서 3D Touch 지원 및 오늘 위젯에서 최근 업데이트된 프로그램 바로 듣기</li><li>메시지로 Podcast 프로그램 또는 에피소드 공유 및 전체 재생 가능</li><li>지도 앱에서 위치 및 개인 정보 보호를 재설정한 다음 사용자의 현재 위치가 표시되지 않던 문제 수정</li><li>전화, Safari 및 Mail 앱의 VoiceOver 안정성 향상</li></ul><p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br><a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener">https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      iOS 10.3 Release note
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jekyll on Ubuntu</title>
+    <link href="http://bbon.me/2017/01/25/jekyll-on-ubuntu/"/>
+    <id>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</id>
+    <published>2017-01-24T15:00:00.000Z</published>
+    <updated>2019-01-03T04:33:11.899Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="rvm-small-ruby-version-manager-small-설치"><a class="header-anchor" href="#rvm-small-ruby-version-manager-small-설치">📎 </a><a href="https://rvm.io/" target="_blank" rel="noopener">RVM <small>Ruby Version Manager</small></a> 설치</h2><p>패키지를 갱신합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure><p>RVM을 설치하기 위해 curl을 설치합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install curl</span><br></pre></td></tr></table></figure><p><a href="https://rvm.io/" target="_blank" rel="noopener">RVM</a>을 설치합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \curl -sSL https://get.rvm.io | bash -s stable</span><br></pre></td></tr></table></figure><p>설치후 프로파일 추가사항 적용을 위해 아래 명령을 실행합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure><h2 id="루비-설치"><a class="header-anchor" href="#루비-설치">📎 </a><a href="https://www.ruby-lang.org/ko/" target="_blank" rel="noopener">루비</a> 설치</h2><p>RVM을 사용하여 <a href="https://www.ruby-lang.org/ko/" target="_blank" rel="noopener">루비</a>를 설치합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install ruby-2.4.0</span><br></pre></td></tr></table></figure><p>설치된 루비 버전 확인합니다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br></pre></td></tr></table></figure><h2 id="nodejs-설치"><a class="header-anchor" href="#nodejs-설치">📎 </a><a href="https://nodejs.org/ko/" target="_blank" rel="noopener">Nodejs</a> 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure><h2 id="jekyll-설치"><a class="header-anchor" href="#jekyll-설치">📎 </a><a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install jekyll</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      Jekyll on Ubuntu
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="jekyll" scheme="http://bbon.me/tags/jekyll/"/>
+    
+      <category term="ruby" scheme="http://bbon.me/tags/ruby/"/>
+    
+      <category term="nodejs" scheme="http://bbon.me/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript Web Storage API</title>
+    <link href="http://bbon.me/2016/12/15/web-storage-api/"/>
+    <id>http://bbon.me/2016/12/15/web-storage-api/</id>
+    <published>2016-12-14T15:00:00.000Z</published>
+    <updated>2019-01-03T04:21:40.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>Web Storage API는 브라우저가 쿠키를 사용하는 것보다 훨씬 더 직관적인 방법으로 키-값 쌍을 안전하게 저장할 수 있는 메커니즘을 제공하는 합니다. <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p><p>로컬 저장소는 쿠키보다 저장 용량이 크며, 저장된 데이터를 서버로 전송하지 않습니다.</p><p>Web Storage API의 Storage 인터페이스<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>는 특정 도메인에 대한 세션 저장소 또는 로컬 저장소에 대한 액세스를 제공하며 저장된 데이터 항목을 추가, 수정 또는 삭제할 수 있습니다.</p><p>동일 원본 <small>Origin</small> (도메인 및 프로토콜)에서는 데이터를 저장한 페이지가 달라도 동일한 로컬 저장소에 대해 I/O가 가능합니다.</p><p>Web Storage 인터페이스는 window 객체의 localStorage 와 SessionStorage 속성으로 구현되어 있습니다.</p><p>두 속성의 유일한 차이점은 localStorage에 저장된 데이터에는 만료 시간이 없지만, sessionStorage에 저장된 데이터는 브라우징 세션이 끝나면 (즉, 브라우저가 닫힐 때) 지워집니다.</p><h2 id="storage-interface"><a class="header-anchor" href="#storage-interface">📎 </a>Storage Interface<sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2]</a></sup></h2><p>로컬 저장소에 데이터를 키-값 형태로 저장합니다.</p><p>값은 문자열 형식만을 지원합니다.</p><h3 id="명세-small-specifications-small"><a class="header-anchor" href="#명세-small-specifications-small">📎 </a>명세 <small>Specifications</small></h3><p>Storage Interface 의 명세<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>는 아래와 같습니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface Storage &#123;</span><br><span class="line">  readonly attribute unsigned long length;</span><br><span class="line">  DOMString? key(unsigned long index);</span><br><span class="line">  getter DOMString? getItem(DOMString key);</span><br><span class="line">  setter void setItem(DOMString key, DOMString value);</span><br><span class="line">  deleter void removeItem(DOMString key);</span><br><span class="line">  void clear();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="브라우저-지원-확인-small-check-browser-support-small"><a class="header-anchor" href="#브라우저-지원-확인-small-check-browser-support-small">📎 </a>브라우저 지원 확인 <small>Check Browser support</small></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> Storage !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">    <span class="comment">// 현재 브라우저는 Web Storage API를 지원합니다.</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 현재 브라우저는 Web Storage API를 지원하지 않습니다.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="속성-small-properties-small"><a class="header-anchor" href="#속성-small-properties-small">📎 </a>속성 <small>Properties</small></h3><h4 id="storage-length"><a class="header-anchor" href="#storage-length">📎 </a>Storage.length</h4><p>로컬 저장소에 저장된 데이터의 수를 가져옵니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> countOfKeyValuePairs = storage.length; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure><h3 id="메서드-small-methods-small"><a class="header-anchor" href="#메서드-small-methods-small">📎 </a>메서드 <small>Methods</small></h3><h4 id="storage-key-n"><a class="header-anchor" href="#storage-key-n">📎 </a>Storage.key(n)</h4><p>n 번째 키를 반환합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line"></span><br><span class="line">storage.key(<span class="number">0</span>); <span class="comment">// ==&gt; key1</span></span><br><span class="line">storage.key(<span class="number">1</span>); <span class="comment">// ==&gt; key2</span></span><br><span class="line">storage.key(<span class="number">2</span>); <span class="comment">// ==&gt; key3</span></span><br></pre></td></tr></table></figure><h4 id="storage-setitem-k-v"><a class="header-anchor" href="#storage-setitem-k-v">📎 </a>Storage.setItem(k, v)</h4><p>로컬 저장소에 데이터를 키 <code>k</code>, 값 <code>v</code> 로 저장합니다.</p><p>새로운 키 <code>k</code> 로 데이터를 입력하면 로컬 저장소에 새로운 항목이 저장되고, 존재하는 키 <code>k</code> 를 입력하면 기존 항목의 값이 갱신됩니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>); <span class="comment">// 새로운 항목이 추가됨</span></span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>); <span class="comment">// 새로운 항목이 추가됨</span></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value3"</span>); <span class="comment">// 기존 키 key1 항목의 값이 'value3' 으로 갱신됨</span></span><br></pre></td></tr></table></figure><h4 id="storage-getitem-k"><a class="header-anchor" href="#storage-getitem-k">📎 </a>Storage.getItem(k)</h4><p>로컬 저장소에서 키 <code>k</code>에 해당하는 항목의 값을 반환합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> val1 = storage.getItem(<span class="string">"key1"</span>); <span class="comment">// ==&gt; 'value1'</span></span><br><span class="line"><span class="keyword">var</span> var2 = storage.getItem(<span class="string">"key2"</span>); <span class="comment">// ==&gt; 'value2'</span></span><br><span class="line"><span class="keyword">var</span> var3 = storage.getItem(<span class="string">"key3"</span>); <span class="comment">// ==&gt; undefined</span></span><br></pre></td></tr></table></figure><h4 id="storage-removeitem-k"><a class="header-anchor" href="#storage-removeitem-k">📎 </a>Storage.removeItem(k)</h4><p>로컬 저장소에서 키 <code>k</code>에 해당하는 항목을 제거합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="keyword">var</span> countOfKeyValuePairs = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line"></span><br><span class="line">countOfKeyValuePairs = storage.length; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">storage.removeItem(<span class="string">"key1"</span>);</span><br><span class="line"></span><br><span class="line">countOfKeyValuePairs = storage.length; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure><h4 id="storage-clear"><a class="header-anchor" href="#storage-clear">📎 </a>Storage.clear()</h4><p>로컬 저장소를 초기화합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="keyword">var</span> countOfKeyValuePairs = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">storage.setItem(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line"></span><br><span class="line">countOfKeyValuePairs = storage.length; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">storage.clear();</span><br><span class="line"></span><br><span class="line">countOfKeyValuePairs = storage.length; <span class="comment">// 0</span></span><br></pre></td></tr></table></figure><h3 id="브라우저-호환성-small-browser-compatibility-small"><a class="header-anchor" href="#브라우저-호환성-small-browser-compatibility-small">📎 </a>브라우저 호환성 <small>Browser compatibility</small></h3><p>웹 브라우저마다 로컬 저장소 <small>localStorage, sessionStorage</small> 저장 수준이 다릅니다. Web Storage Support Test<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> 사이트에서 현재 웹 브라우저의 저장 수준을 대략적으로 확인할 수 있습니다.</p><h4 id="데스크톱-small-desktop-small"><a class="header-anchor" href="#데스크톱-small-desktop-small">📎 </a>데스크톱 <small>Desktop</small></h4><table><thead><tr><th style="text-align:left">Feature</th><th style="text-align:center">Chrome</th><th style="text-align:center">Firefox (Gecko)</th><th style="text-align:center">Internet Explorer</th><th style="text-align:center">Opera</th><th style="text-align:center">Safari (WebKit)</th></tr></thead><tbody><tr><td style="text-align:left">localStorage</td><td style="text-align:center">4</td><td style="text-align:center">3.5</td><td style="text-align:center">8</td><td style="text-align:center">10.50</td><td style="text-align:center">4</td></tr><tr><td style="text-align:left">sessionStorage</td><td style="text-align:center">5</td><td style="text-align:center">2</td><td style="text-align:center">8</td><td style="text-align:center">10.50</td><td style="text-align:center">4</td></tr></tbody></table><h4 id="모바일-small-mobile-small"><a class="header-anchor" href="#모바일-small-mobile-small">📎 </a>모바일 <small>Mobile</small></h4><table><thead><tr><th style="text-align:left">Feature</th><th style="text-align:center">Android</th><th style="text-align:center">Firefox Mobile (Gecko)</th><th style="text-align:center">IE Phone</th><th style="text-align:center">Opera Mobile</th><th style="text-align:center">Safari Mobile</th></tr></thead><tbody><tr><td style="text-align:left">Basic support</td><td style="text-align:center">2.1</td><td style="text-align:center">?</td><td style="text-align:center">8</td><td style="text-align:center">11</td><td style="text-align:center">3.2<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup></td></tr></tbody></table><h2 id="window-localstorage"><a class="header-anchor" href="#window-localstorage">📎 </a>window.localStorage <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup></h2><p>만료시간이 없는 데이터를 키-값 형태로 저장합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line"><span class="keyword">var</span> val1 = storage.getItem(<span class="string">"key1"</span>);</span><br></pre></td></tr></table></figure><h2 id="window-sessionstorage"><a class="header-anchor" href="#window-sessionstorage">📎 </a>window.sessionStorage <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup></h2><p>브라우징 세션이 끝나면 초기화되는 데이터를 키-값 형태로 저장합니다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage = <span class="built_in">window</span>.sessionStorage;</span><br><span class="line">storage.setItem(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line"><span class="keyword">var</span> val1 = storage.getItem(<span class="string">"key1"</span>);</span><br></pre></td></tr></table></figure><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API" target="_blank" rel="noopener">MDN: Using the Web Storage API</a> <a href="#fnref1" class="footnote-backref">↩</a></p></li><li id="fn2" class="footnote-item"><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage" target="_blank" rel="noopener">MDN: storage</a> <a href="#fnref2" class="footnote-backref">↩</a> <a href="#fnref2:1" class="footnote-backref">↩</a></p></li><li id="fn3" class="footnote-item"><p><a href="https://html.spec.whatwg.org/multipage/webstorage.html#the-storage-interface" target="_blank" rel="noopener">The Storage Interface</a> <a href="#fnref3" class="footnote-backref">↩</a></p></li><li id="fn4" class="footnote-item"><p><a href="http://dev-test.nemikor.com/web-storage/support-test/" target="_blank" rel="noopener">Web Storage Support Test</a> <a href="#fnref4" class="footnote-backref">↩</a></p></li><li id="fn5" class="footnote-item"><p>iOS 5.1부터 Safari Mobile 은 localStorage 데이터를 캐시 디렉터리에 저장합니다. 캐시 디렉터리는 일반적으로 공간이 부족한 경우 시스템에 의해 정리될 수도 있습니다. <a href="#fnref5" class="footnote-backref">↩</a></p></li><li id="fn6" class="footnote-item"><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noopener">MDN: window.localStorage</a> <a href="#fnref6" class="footnote-backref">↩</a></p></li><li id="fn7" class="footnote-item"><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" target="_blank" rel="noopener">MDN: window.sessionStorage</a> <a href="#fnref7" class="footnote-backref">↩</a></p></li></ol></section>]]></content>
+    
+    <summary type="html">
+    
+      Javascript Web Storage API
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="javascript" scheme="http://bbon.me/tags/javascript/"/>
+    
+      <category term="api" scheme="http://bbon.me/tags/api/"/>
+    
+      <category term="web storage" scheme="http://bbon.me/tags/web-storage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Visual Studio 2017 RC 설치</title>
+    <link href="http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/"/>
+    <id>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</id>
+    <published>2016-12-06T15:00:00.000Z</published>
+    <updated>2019-01-03T04:20:52.547Z</updated>
+    
+    <content type="html"><![CDATA[<p>다운로드 페이지에서 온라인 설치 파일을 내려받습니다.<br><small>이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.</small></p><h2 id="오프라인-설치파일-준비"><a class="header-anchor" href="#오프라인-설치파일-준비">📎 </a>오프라인 설치파일 준비</h2><p>명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 <strong>layout</strong> 옵션을 추가해서 실행합니다.</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure><blockquote><ul><li>layout 옵션의 매개변수인 오프라인 설치파일 다운로드 경로는 상대경로를 지원하지 않습니다. (2016-12-07 현재)</li><li>오프라인 설치본을 만들때, Android SDK 가 포함되지 않습니다. (2016-12-07 현재)</li></ul></blockquote><p>오프라인 설치본에 포함할 언어를 제한하기 위해서 <strong>lang</strong> 옵션을 사용합니다.</p><p>영문만 포함하려면 아래와 같이 --lang en-US 옵션을 추가합니다.</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US</span><br></pre></td></tr></table></figure><p>여러가지 언어를 포함하려면 아래와 같이 --lang 옵션의 매개변수에 포함할 언어의 ISO 코드를 추가합니다.</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US ko-KR ja-JP</span><br></pre></td></tr></table></figure><h2 id="설치"><a class="header-anchor" href="#설치">📎 </a>설치</h2><p>오프라인 설치본이 다운로드된 디렉터리의 내용중 Certificates 디렉터리로 이동합니다.</p><p>디렉터리의 인증서 파일을 모두 설치합니다.<br>(윈도우 탐색기에서 인증서 파일을 선택하고, 마우스 오른쪽 버튼을 클릭하여 메뉴를 열고 설치 항목을 선택합니다.)</p><p>그 후, 오프라인 설치본이 다운로드된 디렉터리의 vs_enterprise.exe 파일을 실행합니다.</p><h2 id="업데이트"><a class="header-anchor" href="#업데이트">📎 </a>업데이트</h2><p>업데이트가 가능한 시점이 되었을 때, 이미 만들어둔 오프라인 설치본이 있는 경로를 대상으로 다시 오프라인 설치본 만들기 명령을 실행합니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure><h2 id="관련-페이지"><a class="header-anchor" href="#관련-페이지">📎 </a>관련 페이지</h2><ul><li><a href="https://docs.microsoft.com/ko-kr/visualstudio/welcome-to-visual-studio" target="_blank" rel="noopener">Visual Studio 문서</a></li><li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/use-command-line-parameters-to-install-visual-studio" target="_blank" rel="noopener">Visual Studio 온라인 설치 파일의 명령 프롬프트 매개변수</a></li><li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/create-an-offline-installation-of-visual-studio" target="_blank" rel="noopener">Visual Studio 오프라인 설치본 만들기</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;다운로드 페이지에서 온라인 설치 파일을 내려받습니다.&lt;br&gt;
+&lt;small&gt;이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.&lt;/small&gt;&lt;/p&gt;
+&lt;h2 id=&quot;오프라인-설치파일-준비&quot;&gt;&lt;a class=&quot;header-anchor&quot; h
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="visual studio" scheme="http://bbon.me/tags/visual-studio/"/>
+    
+      <category term="vs" scheme="http://bbon.me/tags/vs/"/>
+    
+      <category term="ide" scheme="http://bbon.me/tags/ide/"/>
+    
+      <category term="microsoft" scheme="http://bbon.me/tags/microsoft/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 10</title>
+    <link href="http://bbon.me/2016/09/18/ios-10/"/>
+    <id>http://bbon.me/2016/09/18/ios-10/</id>
+    <published>2016-09-17T15:00:00.000Z</published>
+    <updated>2019-01-03T04:34:10.994Z</updated>
+    
+    <content type="html"><![CDATA[<p>iOS 10은 한국시각 2016년 9월 14일 오전 2시 공개되었습니다.</p><p>업데이트 후 버전은 <strong>iOS 10.0.1</strong> 입니다.</p><p><strong>밀어서 잠금해제</strong>가 <strong>홈 버튼 눌러서 잠금해제</strong>로 변경되었습니다.</p><p>꽤 오랜시간 사용했던 경험을 바꿔버려 적응이 필요합니다.</p><p>알림, 제어센터의 모양도 많이 변경되었습니다.</p><p>설치 가능 기기의 목록은 아래와 같습니다.</p><ul><li>iPhone<ul><li>iPhone 7</li><li>iPhone 7 Plus</li><li>iPhone 6s</li><li>iPhone 6s Plus</li><li>iPhone 6</li><li>iPhone 6 Plus</li><li>iPhone SE</li><li>iPhone 5s</li><li>iPhone 5c</li><li>iPhone 5</li></ul></li><li>iPad<ul><li>iPad Pro <small>12.9형</small></li><li>iPad Pro <small>9.7형</small></li><li>iPad Air 2</li><li>iPad Air</li><li>iPad <small>4세대</small></li><li>iPad mini 4</li><li>iPad mini 3</li><li>iPad mini 2</li></ul></li><li>iPod<ul><li>iPod touch <small>6세대</small></li></ul></li></ul><p>설치는 가능하지만, 기기별로 사용할 수 있는 기능이 제한되는 경우도 있습니다.</p><p>예를 들어, iPad 4세대는 설치는 가능하지만, 사진 앱에서 <strong>추억</strong> 기능이 빠져있습니다.</p><p>추가된 기능의 자세한 내용은 아래 업데이트 내용을 참조하세요.</p><h2 id="메시지"><a class="header-anchor" href="#메시지">📎 </a>메시지</h2><ul><li>표현력 풍부한 메시지 주고받기<ul><li>말풍선 효과를 사용하여 메시지를 강하게, 부드럽게, 충격 효과와 함께 보내거나 비밀 잉크로 보내 수 있음</li><li>특별한 순간을 축하하는 효과를 전체 화면으로 제공함</li><li>Tapback을 사용하여 메시지, 링크 및 사진에 빠르게 응답할 수 있음</li><li>마치 종이 위에 잉크로 쓰는 것과 같은 효과를 주는 손글씨 메시지를 제공함</li><li>Digital Touch를 사용하여 스케치, 탭 및 심박을 보낼 수 있음</li><li>한 번의 탭으로 텍스트를 이모티콘으로 변경할 수 있음</li><li>리치 링크를 사용하여 공유하려는 웹 페이지를 미리 볼 수 있음</li></ul></li><li>iMessage 앱<ul><li>iMessage를 위한 새로운 App Store를 제공함</li><li>메시지에서 강력한 앱 기능을 사용하여 친구와 공유하고 함께 작업할 수 있음</li><li>말풍선 또는 사진에 붙이거나 따로 보낼 수도 있는 스티커를 다운로드할 수 있음</li></ul></li></ul><h2 id="siri"><a class="header-anchor" href="#siri">📎 </a>Siri</h2><ul><li>다음과 같은 다양한 종류의 앱에서 Siri 사용 가능<ul><li>메시지 서비스 앱: 메시지 보내기, 메시지 검색하기, 메시지 읽어주기</li><li>VoIP 앱: 전화 걸기</li><li>사진 관련 앱: 이미지 및 사진 검색하기</li><li>차량 공유 앱: 차량 예약하기</li><li>결제 서비스 앱: 돈 송금하기</li><li>피트니스 앱: 운동 시작, 중단, 일시 정지하기</li><li>CarPlay 차량 제조사 앱: 온도, 라디오, 좌석, 개인 설정 조절하기</li></ul></li></ul><h2 id="지도"><a class="header-anchor" href="#지도">📎 </a>지도</h2><ul><li>새로워진 디자인<ul><li>사용자가 일상적으로 가는 장소나 캘린더의 약속을 참고로 다음 장소를 예측하여 제안함</li><li>새로운 설명 풍선 디자인, 검색 결과 그룹별 표시 및 카테고리 필터로 더욱 향상된 검색 기능을 제공함</li><li>집, 직장, 즐겨찾는 위치 및 캘린더의 예정된 이벤트에서 가져온 위치를 지도에 표시함</li><li>CarPlay 또는 Bluetooth를 사용하여 주차 위치를 지도에 표시함</li><li>현재 지도에 표시된 지역의 날씨를 제공함</li></ul></li><li>확장 프로그램<ul><li>제휴되는 예약 서비스 앱에서 제공하는 확장 프로그램을 사용하여 지도에서 식당 예약하기</li><li>제휴되는 차량 공유 앱에서 제공하는 확장 프로그램을 사용하여 지도에서 차량 예약하기</li></ul></li><li>턴 바이 턴 내비게이션 향상<ul><li>내비게이션 사용 중에 주요소, 음식점, 커피숍을 바로 검색할 수 있음</li><li>전방 주시를 위한 방향 자동 조절</li><li>내비게이션 중 지도 이동 및 확대/축소</li><li>경로에서 통행료와 고속도로를 피하는 운전 옵션을 제공함</li></ul></li></ul><h2 id="사진"><a class="header-anchor" href="#사진">📎 </a>사진</h2><ul><li>딥 러닝을 적용한 최신 얼굴 인식 기술을 사용하여 비슷한 얼굴을 자동으로 같은 그룹으로 분류함</li><li>최신 컴퓨터 비전 기술을 사용하여 기기에 있는 보관함을 스캔하고 사진에 포함된 사물과 풍경을 인식하여 지능적으로 사진을 검색함</li><li>사진, 비디오 및 Live Photo 앨범을 지도상에 표시함</li><li>추억<ul><li>잊혀진 이벤트, 여행 및 사람들을 지능적으로 찾아서 아름다운 사진 모음집으로 제공함</li><li>테마 음악과 제목을 포함한 시네마틱한 효과로 사진을 넘겨 보여주는 추억 동영상을 자동으로 편집함</li><li>장소, 시간, 사람들, 풍경 및 사물을 고려하여 제안하는 관련 항목을 통해 관련된 추억 사진을 손쉽게 찾아서 추억 사진 모음에 추가할 수 있음</li></ul></li><li>가족 및 친구와 간편하게 공유할 수 있음</li><li>부분적으로 밝기, 하이라이트, 대비를 조절할 수 있는 휘도 조절 기능을 제공함</li></ul><h2 id="홈"><a class="header-anchor" href="#홈">📎 </a>홈</h2><ul><li>HomeKit 액세서리를 안전하게 관리하고 제어할 수 있는 홈 앱을 새로 추가함</li><li>모드 기능을 통해 단 한 번의 탭으로 액세서리 그룹을 제어할 수 있음</li><li>리치 알림을 통해 액세서리를 빠르게 제어할 수 있음</li><li>홈에 대한 접근을 선택적으로 가족 및 친구와 공유할 수 있음</li><li>Apple TV 또는 iPad를 사용하여 액세서리에 대한 원격 접근 및 자동화 기능을 제공함</li></ul><h2 id="apple-music"><a class="header-anchor" href="#apple-music">📎 </a>Apple Music</h2><ul><li>더욱 명료하고 단순한 사용자 경험을 선사하도록 새로 디자인된 Apple Music</li><li>보관함 탐색하기—음악을 더 쉽게 찾을 수 있도록 메뉴 향상, 오프라인에서 재생할 수 있는 다운로드한 음악 모두 보기 추가</li><li>For You에서 추천 음악 보기—사용자가 좋아하는 음악 및 아티스트를 토대로 믹스, 재생목록, 앨범 및 Connect 게시물 추천</li><li>간편하게 ‘둘러보기’—매주 에디터가 엄선해서 제공하는 단독 출시된 음악을 보고, 큐레이트된 재생목록을 찾고, 가장 핫한 신곡 들어보기</li><li>라디오 더 쉽게 듣기—방송중인 Beats 1 프로그램을 바로 찾아보고, 좋아하는 쇼를 듣고, 어떤 장르의 음악이든 큐레이트된 방송국을 골라서 청취하기</li><li>더욱 향상된 ‘지금 재생 중’—위로 쓸어올려서 가사 보기(사용 가능한 경우), 다음에 재생할 목록을 간편하게 확인하고 편집하기</li></ul><h2 id="apple-news"><a class="header-anchor" href="#apple-news">📎 </a>Apple News</h2><ul><li>For You—볼드체 타이포그래피와 생생한 컬러를 적용하고 쉽게 구별할 수 있도록 섹션을 구분하여 특정 주제의 기사를 쉽게 찾을 수 있음</li><li>Top Stories—에디터가 계속 업데이트해주는 오늘의 주요 뉴스 보기</li><li>Trending Stories—많이 읽히는 뉴스를 기반으로 선별된 현재 가장 인기 있는 기사 보기</li><li>기사를 사용자가 팔로우하거나 읽은 토픽별로 모아서 쉽게 구별되는 섹션으로 제공</li><li>Featured Stories—에디터가 선별한 한 주의 가장 흥미로운 기사 제공</li><li>간편하게 기사 공유—기사에서 아이콘을 탭하면 For You에서 바로 친구에게 기사를 보낼 수 있음</li><li>사용자가 신뢰하는 언론사에서 보낸 속보 알림을 받음</li><li>News 앱에서 자주 보는 잡지와 신문 바로 구독</li><li>사용자가 직접 설정하는 ‘오늘 보기’ 위젯을 사용하여 최신 뉴스를 바로바로 업데이트 받음</li></ul><h2 id="사용자-경험-향상"><a class="header-anchor" href="#사용자-경험-향상">📎 </a>사용자 경험 향상</h2><ul><li>iPhone을 들어 올리면 화면이 자동으로 깨어나는 ‘들어서 깨우기’ 기능 추가</li><li>리치 알림을 통해 실시간 정보, 오디오, 사진 및 비디오를 곧바로 볼 수 있음</li><li>새로 디자인된 ‘오늘 보기’에서 날씨, 다음에 재생할 목록, 지도, 주식 등 다양한 앱의 위젯을 지원함</li><li>제어 센터가 음악 재생 및 홈 카드를 포함하여 더욱 간편한 제어 기능 제공하도록 새로 디자인됨</li></ul><h2 id="3d-touch-기능의-사용-확장"><a class="header-anchor" href="#3d-touch-기능의-사용-확장">📎 </a>3D Touch 기능의 사용 확장</h2><ul><li>잠금 화면의 알림에서 자세히 보기 및 빠른 동작 지원</li><li>날씨, 주식, 미리 알림, 건강, 홈, FaceTime, iCloud Drive 및 설정과 같은 내장 앱을 위한 빠른 동작 추가</li><li>홈 화면에서 위젯 바로 보기</li><li>제어 센터에서 손전등, 타이머, 계산기 및 카메라에 사용할 수 있는 빠른 동작 지원</li><li>알림 센터에서 모두 지우기</li></ul><h2 id="quicktype"><a class="header-anchor" href="#quicktype">📎 </a>QuickType</h2><ul><li>한부모 가족 옵션, 무지개 깃발 등 새로운 이모티콘을 추가하고, 기존 이모티콘 캐릭터에 성별 다양성을 추가하며, 인기 이모티콘의 디자인을 향상함</li><li>딥 뉴럴 네트워크(Deep Neural Network) 기술을 적용하여 현재 위치, 최근 사용한 주소, 연락처 정보 및 일정상 비어있는 시간 등을 고려한 문맥에 맞는 예상 단어를 제안함</li><li>예상 이모티콘을 제안함</li><li>딥 러닝 기술을 사용하여 메일 및 메시지의 대화에서 얻은 정보로 캘린더 이벤트를 지능적으로 생성함</li><li>다국어 입력을 통해 키보드를 전환하지 않고도 동시에 두 가지 언어를 입력할 수 있음</li><li>iPad에서 사용자의 입력 패턴을 지능적으로 적용하여 키보드에 손을 편안하게 올려놓고 타이핑할 수 있음</li><li>딥 뉴럴 네트워크 기술을 사용하여 더 정확한 예상 단어를 추천함</li></ul><h2 id="전화"><a class="header-anchor" href="#전화">📎 </a>전화</h2><ul><li>음성 메시지를 전사할 수 있음(베타)</li><li>스팸 전화 인식 앱을 사용하여 스팸 전화 경고를 제공함</li><li>잠금 화면에서 타사 VoIP 앱의 통화 수신, 통화 대기, 소리 끔, 방해금지 모드를 지원함</li></ul><h2 id="기타-향상된-기능"><a class="header-anchor" href="#기타-향상된-기능">📎 </a>기타 향상된 기능</h2><ul><li>Safari에서 Apple Pay 지원</li><li>iPad의 Safari에서 Split View를 사용하여 동시에 두 개의 페이지를 볼 수 있음</li><li>다른 사람을 초대하여 함께 메모를 편집할 수 있도록 메모 공동 작업 기능을 제공함</li><li>메모 앱에 저장된 PDF 파일, 메시지 앱 및 사진 앱에서 마크업을 사용할 수 있음</li><li>시계 앱의 취침 시간 알람에서 규칙적인 수면 시간을 설정하고 취침 시간이 되면 알림을 받음</li><li>건강 앱에서 건강 기록 및 장기 기증을 지원함(미국 지역만 해당됨)</li><li>Live Photo 촬영 시 손떨림 방지 지원으로 화질을 향상함</li><li>Live Photo를 촬영할 때 필터를 사용할 수 있음</li><li>iCloud Drive에서 macOS의 데스크탑 및 도큐멘트 폴더를 지원함</li><li>Spotlight에서 중국어 및 일본어 검색 결과를 지원함</li><li>Siri 언어 확장—스페인어(칠레), 중국어(광둥어 - 중국), 영어(아일랜드), 영어(남아프리카)</li><li>중국어용 도큐멘트 서체 Ling Wai 및 Kaiti Black을 추가함</li><li>일본어용 서체 Yu Kyokasho 및 Toppan Bunkyu를 추가함</li><li>중국어 번체 및 덴마크어 용어 정의 사전 및 네덜란드어/이탈리아어 2개 국어 사전을 추가함</li><li>스페인어(라틴 아메리카) 키보드를 추가함</li></ul><h2 id="손쉬운-사용"><a class="header-anchor" href="#손쉬운-사용">📎 </a>손쉬운 사용</h2><ul><li>iPhone 또는 iPad의 카메라를 사용하여 디지털 돋보기처럼 사물을 확대하여 볼 수 있는 확대기 기능을 제공함</li><li>여러 유형의 색맹 또는 시각 장애를 지원할 수 있는 다양한 디스플레이 컬러 필터를 제공함</li><li>VoiceOver에서 단어의 발음을 사용자화할 수 있는 발음 편집 기능을 추가하고, 추가 음성을 제공하며, 다수의 오디오 소스를 지원함</li><li>화면 말하기 및 선택 항목 말하기에서 추가적인 텍스트 하이라이트 옵션을 제공하고, 키보드 문자 및 입력 자동 완성 예상 단어 말하기 기능을 추가하여 멀티모달 러닝(Multi-Modal Learning)을 지원함</li><li>스위치 제어 기능을 통해 새로운 기기에서 스위치를 따로 구성할 필요 없이 기존의 iPhone 또는 iPad에서 iOS, macOS 및 tvOS를 모두 제어할 수 있음</li><li>하드웨어 전신 타자기 액세서리를 사용할 필요 없이 소프트웨어 TTY를 사용하여 TTY 통화를 걸고 받을 수 있음</li></ul><p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="http://www.apple.com/kr/ios/feature-availability" target="_blank" rel="noopener">http://www.apple.com/kr/ios/feature-availability</a> 및 <a href="http://www.apple.com/kr/ios/whats-new" target="_blank" rel="noopener">http://www.apple.com/kr/ios/whats-new</a> 이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener">https://support.apple.com/ko-kr/HT201222</a></p><p><a href="http://www.apple.com/kr/ios/ios-10/" target="_blank" rel="noopener">Apple - iOS 10 페이지</a>에 추가된 기능이 알기쉽게 설명되어져 있습니다. 관심있으시면 한번 확인해보세요.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;iOS 10은 한국시각 2016년 9월 14일 오전 2시 공개되었습니다.&lt;/p&gt;
+&lt;p&gt;업데이트 후 버전은 &lt;strong&gt;iOS 10.0.1&lt;/strong&gt; 입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;밀어서 잠금해제&lt;/strong&gt;가 &lt;strong&gt;홈 버
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>어셈블리 바인딩 로깅</title>
+    <link href="http://bbon.me/2016/08/29/enable-assembly-binding-log/"/>
+    <id>http://bbon.me/2016/08/29/enable-assembly-binding-log/</id>
+    <published>2016-08-28T15:00:00.000Z</published>
+    <updated>2019-01-03T04:13:59.593Z</updated>
+    
+    <content type="html"><![CDATA[<p>런타임<small>Runtime</small>에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">이 대화 상자 대신 JIT(Just-in-time) 디버깅을 호출하는</span><br><span class="line">방법에 대한 자세한 내용은 이 메시지의 뒷부분을 참조하십시오.</span><br><span class="line"></span><br><span class="line">************** 예외 텍스트 **************</span><br><span class="line">System.IO.FileNotFoundException: 파일이나 어셈블리 &apos;SampleNamespace, Version=1.0.0.1, Culture=neutral, PublicKeyToken=aaaaaaaaaaaaaaaa&apos; 또는 여기에 종속되어 있는 파일이나 어셈블리 중 하나를 로드할 수 없습니다. 지정된 파일을 찾을 수 없습니다.</span><br><span class="line">파일 이름: &apos;SampleNamespace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=aaaaaaaaaaaaaaaa&apos;</span><br><span class="line">   위치: OtherNamespace.MyClass..ctor()</span><br><span class="line"></span><br><span class="line">경고: 어셈블리 바인딩 로깅이 꺼져 있습니다.</span><br><span class="line">어셈블리 바인딩 오류 로깅 기능을 사용하려면 레지스트리 값 [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD)를 1로 설정하십시오.</span><br><span class="line">참고: 어셈블리 바인딩 오류 로깅 기능을 사용하도록 설정하면 그렇지 않은 경우보다 성능이 약간 떨어집니다.</span><br><span class="line">이 기능을 끄려면 레지스트리 값 [HKLM\Software\Microsoft\Fusion!EnableLog]를 제거하십시오.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">************** 로드된 어셈블리 **************</span><br><span class="line">mscorlib</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34238 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Windows.Forms</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34251 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Drawing</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Configuration</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Xml</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34234 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">OtherNamespace.MyClass</span><br><span class="line">    어셈블리 버전: 1.0.0.0</span><br><span class="line">    Win32 버전: N/A</span><br><span class="line">    코드베이스: http://bbon.me/Apps/OtherNamespace.DLL</span><br><span class="line">----------------------------------------</span><br><span class="line">IFW.Windows.Forms</span><br><span class="line">    어셈블리 버전: 4.0.0.6</span><br><span class="line">    Win32 버전: 4.0.0.6</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/IFW.Windows.Forms/v4.0_4.0.0.6__6b3a265306332740/IFW.Windows.Forms.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">mscorlib.resources</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/mscorlib.resources/v4.0_4.0.0.0_ko_b77a5c561934e089/mscorlib.resources.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Windows.Forms.resources</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms.resources/v4.0_4.0.0.0_ko_b77a5c561934e089/System.Windows.Forms.resources.dll</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">************** JIT 디버깅 **************</span><br><span class="line">JIT(Just In Time) 디버깅을 사용하려면 이 응용 프로그램 또는 컴퓨터의</span><br><span class="line">config 파일(machine.config)의 jitDebugging 값을</span><br><span class="line">system.windows.forms 섹션에 설정해야 합니다.</span><br><span class="line">또한 응용 프로그램은 디버깅할 수 있도록 컴파일되어야</span><br><span class="line">합니다.</span><br><span class="line"></span><br><span class="line">예:</span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.windows.forms jitDebugging=&quot;true&quot; /&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">JIT 디버깅을 사용하면 처리되지 않은 모든 예외는</span><br><span class="line">이 대화 상자에서 처리되지 않고 컴퓨터에 등록된 JIT</span><br><span class="line">디버거에 보내집니다.</span><br></pre></td></tr></table></figure><p>응용 프로그램 런타임에 어셈블리 바인딩 오류 로그를 활성화하여 문제를 추적할 수 있습니다.</p><p>어떤 어셈블리를 바인딩하려다 오류가 발생하는지는 로깅을 활성화하면 확인할 수 있습니다.</p><h2 id="로깅-활성화"><a class="header-anchor" href="#로깅-활성화">📎 </a>로깅 활성화</h2><p>레지스트리 편집기를 실행하고 아래 키로 이동 후 값을 추가합니다.</p><p><code>HKLM\SOFTWARE\Microsoft\Fusion</code></p><table><thead><tr><th style="text-align:left">이름</th><th style="text-align:center">형식</th><th style="text-align:left">값</th></tr></thead><tbody><tr><td style="text-align:left">EnableLog</td><td style="text-align:center">DWORD</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">ForceLog</td><td style="text-align:center">DWORD</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">LogFailures</td><td style="text-align:center">DWORD</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">LogResourceBinds</td><td style="text-align:center">DWORD</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">LogPath</td><td style="text-align:center">STRING</td><td style="text-align:left">PATH TO LOG FILES;e.g.)<code>c:\FusionLog\</code></td></tr></tbody></table><p>아래와 같이 레지스트리 값을 추가하면 로깅이 활성화됩니다.</p><img src="/2016/08/29/enable-assembly-binding-log/regedit-fusion-log.png" title="설정"><h2 id="로그확인"><a class="header-anchor" href="#로그확인">📎 </a>로그확인</h2><p>레지스트리 값 중 <code>LogPath</code>에 설정한 디렉터리에 로그 파일이 만들어집니다.</p><p>탐색기에서 디렉터리로 이동하면 Default, NativeImage 두 개의 하위 디렉터리가 만들어져 있습니다.</p><p>그리고, 각 디렉터리에 실행된 어셈블리 이름 디렉터리가 존재하고, <code>HTML</code> 파일로 내용이 저장되어져 있습니다.</p><p>각 <code>HTML</code>파일을 확인하여 실패 내용을 추적할 수 있습니다.</p><h2 id="어셈블리-바인딩-로깅-활성화-응용-프로그램"><a class="header-anchor" href="#어셈블리-바인딩-로깅-활성화-응용-프로그램">📎 </a>어셈블리 바인딩 로깅 활성화 응용 프로그램</h2><p>프로젝트를 빌드하기 위해서는 아래 요구사항을 만족해야 합니다.</p><ul><li>Visual Studio 2015</li><li>.NET Framework 4.5.2</li></ul><p>Release 파일을 다운로드 받고 실행하면 아래와 같이 간단한 모양으로 실행됩니다.</p><img src="/2016/08/29/enable-assembly-binding-log/fusionlog-01.png"><img src="/2016/08/29/enable-assembly-binding-log/fusionlog-02.png"><p>Check 버튼으로 현재 상태를 확인할 수 있고, Activate, Deactivate 버튼으로 활성, 비활성으로 상태를 변경할 수 있습니다.</p><p>활성은 레지스트리에 값을 추가하고, 비활성은 레지스트리 값을 제거합니다.</p><div id="badge-container-bbonkr-activate-assembly-binding-error-log-bc32982" class="hexo-github" style="width: 100%"></div><script src="/hexo-github/badge.js"></script><script type="text/javascript">  loadStyle("/hexo-github/style.css");  loadStyle("/hexo-github/octicons/octicons.css");  new Badge("#badge-container-bbonkr-activate-assembly-binding-error-log-bc32982", "bbonkr", "activate-assembly-binding-error-log", "bc32982", false);</script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;런타임&lt;small&gt;Runtime&lt;/small&gt;에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다.&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="windows" scheme="http://bbon.me/tags/windows/"/>
+    
+      <category term="github" scheme="http://bbon.me/tags/github/"/>
+    
+      <category term="debug" scheme="http://bbon.me/tags/debug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 9.3</title>
+    <link href="http://bbon.me/2016/03/23/ios-9-3/"/>
+    <id>http://bbon.me/2016/03/23/ios-9-3/</id>
+    <published>2016-03-22T15:00:00.000Z</published>
+    <updated>2019-01-03T04:34:24.078Z</updated>
+    
+    <content type="html"><![CDATA[<p>이 업데이트는 iPhone, iPad 및 iPod touch의 메모, News, 건강, Apple Music의 기능을 향상하고 Night Shift라는 새로운 기능을 추가합니다. Night Shift는 밤에 화면의 색상을 색상 스펙트럼의 가장 따뜻한 색으로 변경하여 수면에 도움을 줍니다. 새로운 기능, 기능 향상 및 오류 수정에 관한 자세한 내용은 다음과 같습니다.</p><h2 id="night-shift"><a class="header-anchor" href="#night-shift">📎 </a>Night Shift</h2><ul><li>Night Shift 기능을 활성화하면 iOS 기기의 시계와 지리적 위치를 사용하여 사용자가 있는 장소의 일몰 시각을 파악한 다음, 화면의 색상을 색상 스펙트럼의 가장 따뜻한 색으로 자동 변경합니다. 이 기능은 수면에 도움을 줄 수 있습니다.</li></ul><h2 id="메모-기능-향상"><a class="header-anchor" href="#메모-기능-향상">📎 </a>메모 기능 향상</h2><ul><li>사용자의 개인적인 데이터가 기재된 메모를 Touch ID 또는 암호로 보호</li><li>알파벳, 생성일, 또는 변경일 순으로 메모 정렬</li><li>스케치를 사용할 때 두 손가락으로 쓸어넘기거나 새로운 스케치 버튼을 탭하여 손쉽게 새로운 캔버스 열기</li><li>새로운 목록을 간편하게 생성할 수 있도록 모든 메모 하단에 새로운 체크 리스트 버튼 추가</li><li>메모의 이미지 또는 첨부 파일을 길게 눌러서 큰 이미지나 첨부 파일 대신 축소판으로 보기</li><li>메모에 있는 사진 및 비디오를 메모에만 저장할지 사진 App에도 추가할지 선택 가능</li><li>Evernote에서 보낸 파일을 길게 눌러서 그 콘텐츠를 메모로 가져오기</li></ul><h2 id="새로운-기능-향상"><a class="header-anchor" href="#새로운-기능-향상">📎 </a>새로운 기능 향상</h2><ul><li>추천 뉴스에서 하루의 가장 중요한 뉴스를 알려주는 인기 기사 섹션 새로 추가</li><li>Apple News 에디터가 엄선한 기사를 에디터 추천에서 탐색하고, 선정된 채널 및 토픽 탐색 가능</li><li>iPhone의 추천 뉴스에서 기사를 왼쪽으로 쓸어넘겨서 간편하게 공유 또는 저장하고 오른쪽으로 쓸어넘겨서 옵션 더 보기</li><li>추천 뉴스에서 기사를 열지 않고도 비디오 기사를 바로 재생</li><li>iPhone에서 가로 화면 방향으로 기사 또는 비디오 보기</li><li>기사를 읽기 편하게 텍스트 크기 변경</li></ul><h2 id="건강-기능-향상"><a class="header-anchor" href="#건강-기능-향상">📎 </a>건강 기능 향상</h2><ul><li>건강 App에 체중, 운동, 수면 등의 데이터 종류와 관련된 타사 App 표시</li><li>건강 대시보드에 Apple Watch의 움직이기, 운동하기, 일어서기 활동 데이터 및 목표 지원 추가</li><li>홈 화면에서 3D Touch 빠른 동작을 사용하여 대시보드 및 의료 정보에 간편하게 접근</li><li>타사 App도 HealthKit을 통해 Apple Watch의 활동 링 및 요약에 접근 가능</li></ul><h2 id="apple-music-기능-향상"><a class="header-anchor" href="#apple-music-기능-향상">📎 </a>Apple Music 기능 향상</h2><ul><li>Apple Music 카탈로그의 노래를 보관함에 추가할 필요 없이 재생목록에 바로 추가</li><li>iPad에서 뮤직 비디오를 전체 화면으로 보기</li><li>라디오를 켜지 않고도 라디오 탭을 통해 Beats 1에서 재생되는 항목 바로 보기</li><li>‘지금 재생 중’에 재생 중인 노래 제목을 탭하여 앨범으로 이동</li><li>Apple Music 카탈로그의 앨범에서 가장 인기 있는 노래 보기</li></ul><h2 id="사진-기능-향상"><a class="header-anchor" href="#사진-기능-향상">📎 </a>사진 기능 향상</h2><ul><li>Live Photo를 스틸 이미지로 변경: Live Photo에서 복제하기를 탭하면 Live Photo로 복제할지 스틸 이미지로 복제할지 선택할 수 있음</li><li>iCloud 사진 보관함에 저장된 원본 사진 또는 비디오를 전체 사이즈로 다운로드할 때의 성능 향상</li><li>AirDrop 및 메시지를 사용하여 iOS와 OS X 간에 Live Photo 공유</li></ul><h2 id="ibooks-기능-향상"><a class="header-anchor" href="#ibooks-기능-향상">📎 </a>iBooks 기능 향상</h2><ul><li>iBooks에서 PDF 파일을 iCloud에 저장하여 모든 기기에서 사용할 수 있는 기능 추가</li><li>이전에 구입한 오디오북을 iBooks Store에서 다운로드하는 기능 추가</li><li>가족 공유를 통해 오디오북 구입 항목을 가족 간에 공유하는 기능 추가</li><li>만화를 볼 때 페이지를 빠르게 넘기고 텍스트 크기를 간편하게 조절하는 새로운 제어 추가</li><li>Apple Pencil로 좋아하는 구문을 하이라이트하고 저장하는 기능 지원</li></ul><h2 id="교육-기능-향상"><a class="header-anchor" href="#교육-기능-향상">📎 </a>교육 기능 향상</h2><ul><li>여러 명의 학생이 한 대의 iPad를 서로 다른 시간에 각자 이용할 수 있는 공유된 iPad 기능 미리 보기 소개</li><li>관리되는 Apple ID로 iCloud에 로그인할 수 있는 지원 추가</li><li>새로운 교실 App과의 호환성 추가</li><li>홈 화면에서 App의 정렬을 제어하는 구성 옵션 새로 제공</li><li>홈 화면에 App을 표시하거나 가릴 수 있는 새로운 제어 추가</li><li>iCloud 사진 보관함 및 Apple Music의 새로운 제한 사항에 대한 지원 추가</li></ul><h2 id="carplay-기능-향상"><a class="header-anchor" href="#carplay-기능-향상">📎 </a>CarPlay 기능 향상</h2><ul><li>Apple Music 구독 멤버의 CarPlay 추천 음악 및 새로운 콘텐츠 사용 지원</li><li>지도에서 주유소, 주차장, 음식점, 커피 및 기타 운행에 도움이 되는 정보를 빨리 찾아볼 수 있는 새로운 주변 검색 화면 추가</li><li>CarPlay에서 Siri를 사용하여 메시지를 읽거나 작성할 때 더 간략한 인터페이스 제공</li><li>CarPlay의 다른 오디오 소스 간에 균등한 사운드 레벨 제공</li></ul><h2 id="dolby-digital-plus"><a class="header-anchor" href="#dolby-digital-plus">📎 </a>Dolby Digital Plus</h2><ul><li>Apple Lightning Digital AV 어댑터를 사용하여 멀티채널 출력 지원과 함께 Dolby Digital Plus 오디오 스트림으로 인코딩한 비디오 재생 지원 추가</li></ul><h2 id="하드웨어-키보드-기능-향상-및-오류-수정"><a class="header-anchor" href="#하드웨어-키보드-기능-향상-및-오류-수정">📎 </a>하드웨어 키보드 기능 향상 및 오류 수정</h2><ul><li>Spotlight, Mail 및 Safari에서 목록을 탐색할 때 화살표 키 사용 가능</li><li>Mail에서 스페이스 바를 사용하여 스크롤 가능</li><li>Safari에서 스페이스 바를 사용하여 스크롤 할 때의 기능 향상</li><li>하드웨어 키보드에 연결되어 있을 때 단축키 막대에서 소프트웨어 키보드를 불러오는 기능 추가</li><li>하드웨어 키보드를 사용하여 iPad를 잠금 해제할 수 없던 오류 수정</li><li>종속적 로그인 페이지에서 하드웨어 키보드가 반응하지 않던 문제 해결</li><li>하드웨어 키보드에 연결되면 단축키 막대 뒤의 메시지 입력 필드가 사라지던 문제 수정</li></ul><h2 id="기타-기능-향상"><a class="header-anchor" href="#기타-기능-향상">📎 </a>기타 기능 향상</h2><ul><li>지도에서 특정 대중교통 라인을 탭하여 목적지 및 정류장을 하이라이트 하여 표시</li><li>지도에서 제안한 각각의 경로에 대해 복수의 대중교통 옵션이 있는지 표시</li><li>Wallet App에서 카드 또는 패스의 아이콘을 탭하여 카드 또는 패스 관련 App을 표시하는 기능 추가</li><li>매장에서 결제할 때 Apple Pay로 매장 포인트 프로그램에 가입할 수 있도록 지원 추가</li><li>Podcast에서 비디오 전체 화면 재생 지원</li><li>활동 App에서 주요 측정치의 월간 요약을 볼 수 있는 새로운 운동 탭 및 운동을 종류별로 필터하는 기능 추가</li><li>사용자가 안드로이드 기기에 설치했던 App을 바탕으로 ‘iOS로 이동’에서 App Store의 App 추천 제안</li><li>iCloud 저장 공간에서 상태 정보 및 App 내 알림을 통해 저장 공간이 부족해지기 전에 사용자에게 통지</li><li>모든 iCloud 계정에서 이중 인증 사용 가능</li><li>스페인어(라틴 아메리카)에 대한 시스템 언어 지원</li><li>핀란드어(핀란드), 히브리어(이스라엘) 및 말레이시아어(말레이시아)에 대한 Siri 언어 지원 추가</li></ul><h2 id="기업용-오류-수정"><a class="header-anchor" href="#기업용-오류-수정">📎 </a>기업용 오류 수정</h2><ul><li>업데이트한 다음 일부 VPP를 통해 구입한 App을 실행할 수 없던 문제 해결</li><li>기기에 할당된 VPP App에 대한 iCloud 백업 지원 추가</li><li>구성 프로파일을 업데이트할 때 인증서가 제대로 설치되지 않던 문제 해결</li><li>VPN 세션이 종료된 다음 인터넷 연결에 문제가 발생하던 일부 IPSec VPN 구성 오류 수정</li><li>iBooks가 관리되지 않는 계정에서 기업용 관리되는 PDF 파일을 이메일하던 문제 해결</li><li>일부 Exchange 사용자의 경우 캘린더가 동일 초대에 응답을 여러 번 보내던 문제 해결</li><li>기기가 OS X 캐싱 서버에 연결할 때의 안정성 향상</li></ul><h2 id="손쉬운-사용-오류-수정"><a class="header-anchor" href="#손쉬운-사용-오류-수정">📎 </a>손쉬운 사용 오류 수정</h2><ul><li>스위치 제어 손쉬운 사용 옵션의 3D Touch 안정성 향상</li><li>받아쓰기를 한 다음 VoiceOver의 말하기에 문제가 생기던 오류 수정</li><li>VoiceOver 사용자가 App Store에 리뷰를 작성할 수 없던 문제 해결</li><li>Bluetooth 헤드셋으로 전화를 받으면 VoiceOver가 반응하지 않던 문제 해결</li><li>미리 알림에서 큰 텍스트가 읽히지 않던 오류 수정</li></ul><h2 id="기타-오류-수정-기능-및-안정성-향상"><a class="header-anchor" href="#기타-오류-수정-기능-및-안정성-향상">📎 </a>기타 오류 수정, 기능 및 안정성 향상</h2><ul><li>수동으로 날짜를 1970년 5월 이전으로 변경하면 iOS 기기가 재시동한 다음 켜지지 않던 문제 해결</li><li>일부 iCloud 백업이 완료되지 않던 오류 수정</li><li>일부 사용자의 경우 iCloud 백업에서 복원할 때 건강 데이터가 온전하지 않던 문제 해결</li><li>일부 배터리 잔량 표시가 정확하지 않던 문제 수정</li><li>일부 사용자의 경우 iMessage 또는 FaceTime을 활성화할 수 없던 문제 해결</li><li>전화를 받는 동안 전화 인터페이스가 표시되지 않던 문제 수정</li><li>제한사항 덮어쓰기가 셀룰러 데이터 토글에 적용되던 오류 수정</li><li>Apple Watch에 설치되지 않은 App에 대한 알림 설정이 Watch App에 표시되는 문제 해결</li><li>키보드에서 3D Touch를 사용할 때의 안정성 향상</li><li>음성 메시지를 설정할 때의 전화 App 안정성 향상</li><li>기기의 저장 공간이 적을 때의 Mail App 안정성 향상</li><li>Mail Drop을 사용하여 대용량 첨부 파일을 보낼 때의 Mail 안정성 향상</li></ul><p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="http://www.apple.com/kr/ios/feature-availability" target="_blank" rel="noopener">http://www.apple.com/kr/ios/feature-availability</a> 및 <a href="http://www.apple.com/kr/ios/updates/" target="_blank" rel="noopener">http://www.apple.com/kr/ios/updates/</a></p><p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p><p><a href="http://support.apple.com/kb/HT1222?viewlocale=ko_KR" target="_blank" rel="noopener">http://support.apple.com/kb/HT1222?viewlocale=ko_KR</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;이 업데이트는 iPhone, iPad 및 iPod touch의 메모, News, 건강, Apple Music의 기능을 향상하고 Night Shift라는 새로운 기능을 추가합니다. Night Shift는 밤에 화면의 색상을 색상 스펙트럼의 가장 따
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL Server JDBC Driver</title>
+    <link href="http://bbon.me/2016/02/16/sql-server-jdbc-driver/"/>
+    <id>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</id>
+    <published>2016-02-15T15:00:00.000Z</published>
+    <updated>2019-01-03T03:59:16.823Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://msdn.microsoft.com/en-us/data/aa937724.aspx" target="_blank" rel="noopener">SQL Server용 Microsoft JDBC 드라이버 홈페이지</a></p><p><a href="https://www.microsoft.com/ko-kr/download/details.aspx?id=11774" target="_blank" rel="noopener">Download: SQL Server용 Microsoft JDBC Driver 4.2, 4.1 및 4.0</a></p><h2 id="드라이버-이름"><a class="header-anchor" href="#드라이버-이름">📎 </a>드라이버 이름</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.microsoft.sqlserver.jdbc.SQLServerDriver</span><br></pre></td></tr></table></figure><h2 id="jdbc-url"><a class="header-anchor" href="#jdbc-url">📎 </a>JDBC URL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:sqlserver://Server:Port;databasename=Database</span><br></pre></td></tr></table></figure><h2 id="지원되는-sql-server-버전"><a class="header-anchor" href="#지원되는-sql-server-버전">📎 </a>지원되는 SQL Server 버전:</h2><ul><li>Microsoft SQL Server 2014</li><li>Microsoft SQL Server 2012</li><li>Microsoft SQL Server 2008 R2</li><li>Microsoft SQL Server 2008</li><li>Microsoft SQL Server 2005 - 버전 4.0에서만 지원</li><li>Microsoft SQL Azure</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/data/aa937724.aspx&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SQL Server용 Microsoft JDBC 드라이버 홈페이지&lt;/a&gt;&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="sql server" scheme="http://bbon.me/tags/sql-server/"/>
+    
+      <category term="jdbc" scheme="http://bbon.me/tags/jdbc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 9.2</title>
+    <link href="http://bbon.me/2015/12/09/ios-9-2/"/>
+    <id>http://bbon.me/2015/12/09/ios-9-2/</id>
+    <published>2015-12-08T15:00:00.000Z</published>
+    <updated>2019-01-03T04:34:30.066Z</updated>
+    
+    <content type="html"><![CDATA[<p>이 업데이트는 다음과 같은 기능 향상 및 오류 수정을 포함합니다.</p><ul><li>Apple Music 향상<ul><li>재생목록에 노래를 추가할 때 새로운 재생목록을 생성할 수 있음</li><li>재생목록에 노래를 추가할 때 최근에 변경한 재생목록이 목록의 가장 위에 위치함</li><li>iCloud 다운로드 버튼을 탭하여 iCloud 음악 보관함에서 앨범 또는 재생목록을 다운로드함</li><li>나의 음악 및 재생목록에 있는 각각의 노래 옆에 새로 표시되는 다운로드 표시기를 통해 어떤 노래가 다운로드됐는지 알 수 있음</li><li>Apple Music 카탈로그에서 클래식 음악을 탐색할 때 작품, 작곡가 및 연주자를 표시함</li></ul></li><li>하루 중 가장 중요한 뉴스를 최신으로 접할 수 있도록 News에서 Top Stories 섹션을 새로 제공(News App은 미국, 영국 및 호주에서 사용 가능함)</li><li>Mail의 Mail Drop으로 대용량 첨부 파일을 보낼 수 있음</li><li>iBooks에서 목차, 메모, 책갈피의 페이지 또는 책 안의 검색 결과 페이지를 Peek 및 Pop 할 수 있도록 3D Touch 제공</li><li>iBooks에서 보관함을 탐색하고, 다른 책을 읽고, iBooks Store를 탐색하는 동안 오디오북을 들을 수 있음</li><li>iPhone에서 사진 및 비디오를 가져오기 위한 USB 카메라 어댑터 지원</li><li>Safari 안정성 향상</li><li>Podcast 안정성 향상</li><li>POP 이메일 계정을 사용하는 일부 사용자들이 메일 첨부 파일에 접근할 수 없던 오류 수정</li><li>일부 사용자들에게 메일에서 첨부 파일이 텍스트와 겹쳐서 보이던 문제 수정</li><li>이전 iCloud 백업을 복원한 후 Live Photo가 꺼지던 문제 해결</li><li>연락처에서 검색 결과에 아무것도 표시되지 않던 오류 수정</li><li>캘린더의 주별 보기에서 요일 일부가 표시되지 않던 문제 해결</li><li>iPad에서 비디오를 촬영하려고 할 때 카메라 화면이 검은색으로 보이던 문제 해결</li><li>서머타임제 변경일을 표시할 때 활동 App이 불안정해지던 문제 해결</li><li>건강 App에서 데이터가 표시되지 않던 오류 수정</li><li>Wallet 업데이트 및 잠금 화면 알림이 표시되지 않던 문제 수정</li><li>iOS를 업데이트하면 알람이 울리지 않던 문제 해결</li><li>일부 사용자들이 나의 iPhone 찾기에 로그인할 수 없던 문제 해결</li><li>일부 iCloud 수동 백업이 완료되지 않던 오류 수정</li><li>iPad 키보드를 사용할 때 예기치 않게 텍스트 선택 모드가 작동하던 문제 수정</li><li>빠른 답장을 사용할 때 키보드 반응 향상</li><li>10-키 중국어(병음 및 자획) 키보드에서 문장 부호 및 개선된 예상 단어를 확장하여 표시함으로써 구두점 입력을 향상함</li><li>LGU+ 네트워크상에서 통화 및 문자에 영향을 미치던 문제 해결</li><li>키릴어 키보드에서 URL 또는 이메일 필드에 입력할 때 caps lock 키가 활성화되던 문제 해결</li><li>손쉬운 사용 향상<ul><li>카메라 얼굴 인식을 사용할 때 발생하던 VoiceOver 관련 문제 수정</li><li>화면을 깨우는 데 VoiceOver 지원 추가</li><li>3D Touch 동작으로 App 전환기를 실행하는 데 VoiceOver 지원 추가</li><li>통화를 종료하려고 할 때 발생하던 사용법 유도 관련 문제 해결</li><li>3D Touch를 사용할 때 스위치 제어 사용자를 위한 기능 향상</li><li>화면 말하기의 말하기 속도와 관련된 문제 수정</li></ul></li><li>Siri의 아랍어(사우디 아라비아, 아랍 에미리트 연합국) 지원</li></ul><p>이 업데이트의 보안 콘텐츠와 관련된 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://support.apple.com/ko-kr/HT201222" target="_blank" rel="noopener">https://support.apple.com/ko-kr/HT201222</a></p>]]></content>
+    
+    <summary type="html">
+    
+      iOS 9.2 Release note
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Install Oracle Instant Client</title>
+    <link href="http://bbon.me/2015/11/02/install-oracle-instant-client/"/>
+    <id>http://bbon.me/2015/11/02/install-oracle-instant-client/</id>
+    <published>2015-11-01T15:00:00.000Z</published>
+    <updated>2019-01-03T03:57:46.996Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="파일-다운로드"><a class="header-anchor" href="#파일-다운로드">📎 </a>파일 다운로드</h2><p><a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener">Oracle Instant Client</a> 페이지에서 설치할 대상 OS 및 아키텍쳐가 기술된 링크를 클릭해서 아래 항목을 다운로드 받습니다.</p><ul><li>Instant Client Package - Basic</li><li>Instant Client Package - SQL*Plus</li></ul><h2 id="설치"><a class="header-anchor" href="#설치">📎 </a>설치</h2><p>다운로드 받은 파일의 압축을 해제한 후 원하는 디렉터리로 복사/이동합니다.</p><p>설명을 위해 <code>D:\Oracle\InstantClient</code> 디렉터리에 압축을 해제한 것으로 합니다.</p><h2 id="설정"><a class="header-anchor" href="#설정">📎 </a>설정</h2><h3 id="시스템-변수"><a class="header-anchor" href="#시스템-변수">📎 </a>시스템 변수</h3><p>시스템 &gt; 고급 시스템 설정 을 클릭하여 시스템 속성창을 실행합니다.</p><p>시스템 속성창의 고급 탭 아래쪽의 환경 변수를 클릭하여 환경 변수창을 실행합니다.</p><p>시스템 변수에 새로 만들기 버튼을 클릭해서 아래 항목을 추가합니다.</p><p>변수 이름: ORACLE_HOME</p><p>변수 값: D:\Oracle\InstantClient</p><p>변수 이름: TNS_ADMIN</p><p>변수 값: D:\Oracle\InstantClient</p><p>변수 이름: NLS_LANG</p><p>변수 값: KOREAN_KOREA.KO16MSWIN949</p><p>시스템 변수 중 이미 존재하는 Path 변수를 선택하고 편집 버튼을 클릭하여 아래 항목을 추가합니다.</p><p>기존 값은 그대로 두고 기존 값 뒤에 추가합니다.</p><p>변수 이름: Path<br>변수 값: &lt;기존값은 유지&gt;;D:\Oracle\InstantClient</p><h3 id="tns-name"><a class="header-anchor" href="#tns-name">📎 </a>TNS Name</h3><p>텍스트 편집기를 실행하고 아래 내용을 입력한 후 파일이름을 tnsnames.ora 로 변경한 후 Instant Client 디렉터리(D:\Oracle\InstantClient\tnsnames.ora)로 저장합니다.</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ALIAS&gt; =</span><br><span class="line"> (DESCRIPTION =</span><br><span class="line">   (ADDRESS = (PROTOCOL = TCP)(HOST = &lt;ServerHostName or Server IP&gt;)(PORT = &lt;Oracle Port Number&gt;))</span><br><span class="line">   (CONNECT_DATA =</span><br><span class="line">     (SERVER = DEDICATED)</span><br><span class="line">     (&lt;SERVICE_NAME or SID&gt; = &lt;Service_Name or sid 실제값&gt;)</span><br><span class="line">   )</span><br><span class="line">)</span><br></pre></td></tr></table></figure><ul><li>ALIAS: 접속시 사용할 별칭입니다.</li><li>ServerHostName or Server IP: Oracle Database 서버 정보와 동일하게 입력합니다.</li><li>Oracle Port Number: Oracle Database Listener 의 대기 포트를 입력합니다. (기본값: 1521)</li><li>SERVICE_NAME orSID: Oracle Database 서버 정보와 동일하게 입력합니다. 서버가 SERVICE_NAME 이면 SERVICE_NAME, 서버가 SID 이면 SID 를 입력합니다.</li><li>Service_Name or sid 실제값: Oracle Database 서버 정보와 동일하게 입력합니다. SERVICE_NAME 혹은 SID 실제 값을 입력합니다.</li></ul><h2 id="확인"><a class="header-anchor" href="#확인">📎 </a>확인</h2><p>시스템 변수 값이 적용될 수 있도록 서버를 재시작합니다.</p><p>D:\Oracle\InstantClient 디렉터리에 Instant Client Package - SQL*Plus 압축 파일의 내용까지 복사/이동한 상태라면 명령 프롬프트(CMD)를 실행하고, Instant Client 가 존재하는 디렉터리로 이동합니다.</p><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">c:\&gt; <span class="title">d</span>:</span></span><br><span class="line"><span class="function"><span class="title">d</span>:\&gt; <span class="title">cd</span> \<span class="title">Oracle</span>\<span class="title">InstantClient</span></span></span><br><span class="line"><span class="function"><span class="title">d</span>:\<span class="title">Oracle</span>\<span class="title">InstantClient</span>\&gt; <span class="title">sqlplus</span> <span class="title">userid</span>/<span class="title">password</span>@<span class="title">sid</span></span></span><br></pre></td></tr></table></figure><p>userid 와 password, sid 부분을 실제 사용하는 값으로 치환하여 sqlplus 로 연결을 시도하면 연결 성공 혹은 실패시 에러 코드를 알 수 있습니다.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;파일-다운로드&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#파일-다운로드&quot;&gt;📎 &lt;/a&gt;파일 다운로드&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.oracle.com/technetwork/database/feature
+      
+    
+    </summary>
+    
+      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
+    
+    
+      <category term="database" scheme="http://bbon.me/tags/database/"/>
+    
+      <category term="oracle" scheme="http://bbon.me/tags/oracle/"/>
+    
+      <category term="dev" scheme="http://bbon.me/tags/dev/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 9.1</title>
+    <link href="http://bbon.me/2015/10/22/ios-9-1/"/>
+    <id>http://bbon.me/2015/10/22/ios-9-1/</id>
+    <published>2015-10-21T15:00:00.000Z</published>
+    <updated>2019-01-03T04:34:32.929Z</updated>
+    
+    <content type="html"><![CDATA[<p>이 릴리즈는 다음과 같은 새로운 기능, 향상된 성능 및 오류 수정을 포함합니다.</p><ul><li>iPhone을 들어 올리거나 내리는 동작을 Live Photo가 지능적으로 감지하여 촬영에서 자동으로 제외함</li><li>유니코드 7.0 및 8.0 이모티콘을 전면 지원하는 150개 이상의 새로운 이모티콘</li><li>CarPlay, 음악, 사진, Safari 및 검색 등의 안정성 향상</li><li>멀티태스킹 UI 사용 중 성능 향상</li><li>캘린더가 월별 보기에서 반응이 없던 오류 수정</li><li>일부 사용자가 Game Center를 실행할 수 없던 문제 수정</li><li>일부 App의 콘텐츠가 확대되던 문제 해결</li><li>POP 메일 계정에서 읽지 않은 메일의 개수가 틀리게 표시되던 문제 해결</li><li>새로운 메일 또는 메시지 작성 시 최근 사용 항목에서 연락처를 제거할 수 없던 문제 수정</li><li>메일 검색 결과에 일부 메시지가 나타나지 않던 오류 수정</li><li>오디오 메시지의 본문에 회색 막대가 남아 있던 문제 해결</li><li>일부 네트워크 사업자에 활성화 오류가 발생하던 문제 해결</li><li>일부 App이 App Store로부터 업데이트되지 않던 오류 수정</li></ul><p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p><p><a href="http://support.apple.com/kb/HT1222?viewlocale=ko_KR" target="_blank" rel="noopener">http://support.apple.com/kb/HT1222?viewlocale=ko_KR</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;이 릴리즈는 다음과 같은 새로운 기능, 향상된 성능 및 오류 수정을 포함합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;iPhone을 들어 올리거나 내리는 동작을 Live Photo가 지능적으로 감지하여 촬영에서 자동으로 제외함&lt;/li&gt;
+&lt;li&gt;유니코드 7.0 
+      
+    
+    </summary>
+    
+      <category term="Mobile" scheme="http://bbon.me/categories/Mobile/"/>
+    
+    
+      <category term="ios" scheme="http://bbon.me/tags/ios/"/>
+    
+      <category term="apple" scheme="http://bbon.me/tags/apple/"/>
+    
+      <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
+    
+      <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
+    
+  </entry>
+  
+</feed>
