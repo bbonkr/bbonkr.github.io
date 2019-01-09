@@ -10,8 +10,6 @@ categories: Computing
 comments: false
 ---
 
-{% githubCard user:bbonkr repo:activate-assembly-binding-error-log %}
-
 런타임<small>Runtime</small>에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다.
 
 ```plaintext
@@ -149,4 +147,4 @@ Check 버튼으로 현재 상태를 확인할 수 있고, Activate, Deactivate �
 
 활성은 레지스트리에 값을 추가하고, 비활성은 레지스트리 값을 제거합니다.
 
-{% github bbonkr activate-assembly-binding-error-log bc32982 %}
+[Github: activate-assembly-binding-error-log](https://github.com/bbonkr/activate-assembly-binding-error-log)

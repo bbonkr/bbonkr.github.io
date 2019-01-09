@@ -13,8 +13,6 @@ tags:
 comments: false
 ---
 
-{% githubCard user:bbonkr repo:Tic-tac-toe %}
-
 Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.
 
 {% asset_img tictactoe.png tic-tac-toe %}
@@ -30,4 +28,4 @@ O 를 선택한 경우 선공입니다. 만약 두명이 번갈아가며 게임�
 
 File > Statistics 메뉴를 선택하면 현재까지 진행한 게임수, 승리 및 비긴 게임의 수를 확인할 수 있습니다.
 
-{% github bbonkr Tic-tac-toe 9852809 %}
+[Github: Tic-tac-toe](https://github.com/bbonkr/Tic-tac-toe)

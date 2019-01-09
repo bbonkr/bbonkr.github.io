@@ -39,7 +39,7 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-    enable: true
+    enable: false
     line_number: true
     auto_detect: false
     tab_replace:
@@ -103,3 +103,10 @@ markdown:
         permalink: true
         permalinkClass: header-anchor
         permalinkSymbol: "📎 "
+
+# hexo-prism-plugin
+prism_plugin:
+    mode: "preprocess" # realtime/preprocess
+    theme: "default"
+    line_number: true # default false
+    custom_css: # optional
