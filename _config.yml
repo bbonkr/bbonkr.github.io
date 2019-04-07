@@ -102,7 +102,7 @@ markdown:
         collisionSuffix: "v"
         permalink: true
         permalinkClass: header-anchor
-        permalinkSymbol: "📎 "
+        permalinkSymbol: " "
 
 # hexo-prism-plugin
 prism_plugin:
