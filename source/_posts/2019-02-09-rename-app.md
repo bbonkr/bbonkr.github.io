@@ -2,7 +2,11 @@
 title: Rename App
 date: 2019-02-09 15:53:37
 categories:
+- computing
 tags:
+- electron
+- javascript
+- js
 intro:
 comments:
 ---
