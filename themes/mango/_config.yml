@@ -10,12 +10,12 @@ excerpt_link: Read More
 fancybox: true
 
 # Sidebar
-sidebar: right
+sidebar: false
 widgets:
 - category
 - tag
 - tagcloud
-- archive
+- archives
 - recent_posts
 
 # display widgets at the bottom of index pages (pagination == 2)
@@ -31,8 +31,8 @@ show_count: false
 # Miscellaneous
 google_analytics:
 gauges_analytics:
-favicon: /favicon.png
-twitter:
+favicon: /favicon.ico
+twitter: bbonkr
 google_plus:
 fb_admins:
 fb_app_id:
