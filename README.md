@@ -18,7 +18,7 @@ $ git remote add themes-mango https://github.com/mango-tree/hexo-theme-mango.git
 $ git add subtree prefix=themes/mango themes-mango master
 $ cd themes/mango
 $ npm install
-$ npm run build
+$ npm run build #run grunt task
 $ cd ../..
 $ npm install
 $ hexo clean
