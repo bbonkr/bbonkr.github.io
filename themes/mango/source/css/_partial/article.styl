@@ -1,6 +1,6 @@
 .article
   margin: block-margin 0
-
+  
 .article-inner
   // @extend $block
   overflow: hidden
@@ -32,6 +32,7 @@
 
 .article-header
   padding: article-padding article-padding 0
+  margin: 0 1.0rem
 
 .article-title
   text-decoration: none
@@ -51,6 +52,8 @@
   color: color-default
   padding: 0 article-padding
   font-weight: 300
+  p
+    padding: 0 0.6em
   p, table
     line-height: line-height
     margin: line-height 0
@@ -100,8 +103,9 @@
   blockquote
     font-family: font-serif
     font-size: 1.4em
-    margin: line-height 20px
-    text-align: center
+    margin: line-height 0
+    text-align: left
+    border-left: 1px solid #C0C5CE
     footer
       font-size: font-size
       margin: line-height 0
@@ -177,6 +181,8 @@
   border-bottom: 1px solid #ddd
   padding-top: line-height
   margin: 0 article-padding calc(1.5rem - 1px)
+  padding-left: 1.0em
+  padding-right: 1.0em
   a
     color: #bbb
     text-decoration: none
