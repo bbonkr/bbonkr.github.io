@@ -36,3 +36,13 @@ $ hexo serve
 ```bash
 $ hexo deploy
 ```
+
+## 글작성
+
+```bash
+$ hexo new [layout=post] <title>
+```
+
+```bash
+$ hexo new post "new title"
+```
