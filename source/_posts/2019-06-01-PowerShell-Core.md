@@ -59,7 +59,7 @@ $ sudo dnf install powershell
 
 ### macOS
 
-GitHub 출시 Release 페이지](https://github.com/PowerShell/PowerShell/releases/latest) 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.
+[GitHub 출시 Release 페이지](https://github.com/PowerShell/PowerShell/releases/latest) 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.
 
 ```bash
 $ brew cask install powershell
