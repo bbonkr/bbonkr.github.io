@@ -23,9 +23,9 @@ comments:
 
 ## 다운로드
 
-@Google Play
+[@Google Play](https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
-@Microsoft Store
+[@Microsoft Store](https://www.microsoft.com/store/apps/9P7VPGXBGPWJ?cid=storebadge&ocid=badge)
 
 ## 사용법
 
