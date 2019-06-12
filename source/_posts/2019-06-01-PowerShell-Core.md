@@ -1,8 +1,13 @@
 ---
 title: PowerShell Core
 date: 2019-06-01 21:17:23
-categories:
-tags:
+categories: [
+    - howto
+]
+tags: [
+    - powershell
+    - microsoft
+]
 intro:
 comments:
 ---
