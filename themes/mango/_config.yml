@@ -2,7 +2,7 @@
 menu:
   Home: /
   Archives: /archives/
-  about: /about/
+  About: /about/
 rss: /atom.xml
 
 # Content
@@ -20,13 +20,13 @@ widgets:
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
-# - category
-# - tagcloud
-# - archive
+- category
+- tagcloud
+- archive
 
 # widget behavior
 archive_type: 'monthly'
-show_count: false
+show_count: true
 
 # Miscellaneous
 google_analytics:
