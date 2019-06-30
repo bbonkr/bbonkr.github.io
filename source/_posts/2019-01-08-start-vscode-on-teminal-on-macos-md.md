@@ -1,7 +1,8 @@
 ---
 title: Start Visual Studio Code on Teminal on Macos
 date: 2019-01-08 18:48:22
-categories: Computing
+categories: 
+    - HowTo
 tags:  
     - macos
     - vscode

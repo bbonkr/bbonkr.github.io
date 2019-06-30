@@ -1,14 +1,15 @@
 ---
-title: "Gulp: 자동화 도구"
+title: 'Gulp: 자동화 도구'
 date: 2018-01-03
-intro: "Gulp Task Automation"
+intro: 'Gulp Task Automation'
+categories:
+    - Computing
 tags:
     - gulp
     - npm
     - nodejs
     - task
     - automation
-categories: Computing
 comments: false
 ---
 
@@ -44,30 +45,30 @@ gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구�
 [gulpjs.com](https://gulpjs.com/) 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.
 
 ```js
-var gulp = require("gulp");
-var pug = require("gulp-pug");
-var less = require("gulp-less");
-var minifycss = reuqire("gulp-csso");
+var gulp = require('gulp');
+var pug = require('gulp-pug');
+var less = require('gulp-less');
+var minifycss = reuqire('gulp-csso');
 
 // html 처리 작업
-gulp.task("html", function() {
+gulp.task('html', function() {
     return gulp
-        .src("client/templates/*.pug")
+        .src('client/templates/*.pug')
         .pipe(pug())
-        .pipe(gulp.dest("build/html"));
+        .pipe(gulp.dest('build/html'));
 });
 
 // css 처리 작업
-gulp.task("css", function() {
+gulp.task('css', function() {
     return gulp
-        .src("client/templates/*.less")
+        .src('client/templates/*.less')
         .pipe(less())
         .pipe(minifycss())
-        .pipe(gulp.dest("build/css"));
+        .pipe(gulp.dest('build/css'));
 });
 
 // 기본 작업으로 html 작업, css 작업을 지정
-gulp.task("default", ["html", "css"]);
+gulp.task('default', ['html', 'css']);
 ```
 
 ### Typescript
@@ -77,41 +78,41 @@ gulp.task("default", ["html", "css"]);
 `[ProjectDir]/Scripts/**/*.ts` 파일을 컴파일해서 `[ProjectDir]/wwwroot/js/**/*.js` 로 출력합니다.
 
 ```js
-const gulp = require("gulp"),
-    rename = require("gulp-rename2"),
-    clean = require("gulp-clean"),
-    uglify = require("gulp-uglify"),
-    ts = require("gulp-typescript");
+const gulp = require('gulp'),
+    rename = require('gulp-rename2'),
+    clean = require('gulp-clean'),
+    uglify = require('gulp-uglify'),
+    ts = require('gulp-typescript');
 
-const wwwroot = "./wwwroot/",
-    sourceroot = "./Scripts/";
+const wwwroot = './wwwroot/',
+    sourceroot = './Scripts/';
 
 const paths = {
-    ts: sourceroot + "**/*.ts",
-    tsDefinitionFiles: "npm_modules/@types/**/*.d.ts",
-    jsDest: `${wwwroot}js/`
+    ts: sourceroot + '**/*.ts',
+    tsDefinitionFiles: 'npm_modules/@types/**/*.d.ts',
+    jsDest: `${wwwroot}js/`,
 };
 
-gulp.task("typescript", () => {
-    var tsProject = ts.createProject("tsconfig.json");
+gulp.task('typescript', () => {
+    var tsProject = ts.createProject('tsconfig.json');
 
     return gulp
-        .src([paths.tsDefinitionFiles, paths.ts, "!" + paths.minJS], {
-            base: "."
+        .src([paths.tsDefinitionFiles, paths.ts, '!' + paths.minJS], {
+            base: '.',
         })
         .pipe(tsProject())
         .pipe(uglify())
         .pipe(
             rename((pathObj, file) => {
                 return pathObj.join(
-                    pathObj.dirname(file).replace(/^Scripts\/?\\?/, ""),
-                    pathObj.basename(file)
+                    pathObj.dirname(file).replace(/^Scripts\/?\\?/, ''),
+                    pathObj.basename(file),
                 );
-            })
+            }),
         )
         .pipe(clean({}))
         .pipe(gulp.dest(paths.jsDest));
 });
 
-gulp.task("default", ["typescript"]);
+gulp.task('default', ['typescript']);
 ```
