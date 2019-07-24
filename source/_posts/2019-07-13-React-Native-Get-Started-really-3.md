@@ -159,7 +159,7 @@ $ npx jetify
 
 다시 link 명령을 실행합니다.
 
-```
+```bash
 $ react-native link react-native-gesture-handler
 ```
 
