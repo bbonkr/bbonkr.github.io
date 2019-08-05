@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>어셈블리 바인딩 로깅 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="런타임Runtime에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767">
+<meta name="keywords" content="github,windows,debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="어셈블리 바인딩 로깅">
+<meta property="og:url" content="http://bbon.me/2016/08/29/enable-assembly-binding-log/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="런타임Runtime에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2016/08/29/enable-assembly-binding-log/regedit-fusion-log.png">
+<meta property="og:image" content="http://bbon.me/2016/08/29/enable-assembly-binding-log/fusionlog-01.png">
+<meta property="og:image" content="http://bbon.me/2016/08/29/enable-assembly-binding-log/fusionlog-02.png">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.759Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="어셈블리 바인딩 로깅">
+<meta name="twitter:description" content="런타임Runtime에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767">
+<meta name="twitter:image" content="http://bbon.me/2016/08/29/enable-assembly-binding-log/regedit-fusion-log.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-enable-assembly-binding-log" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      어셈블리 바인딩 로깅
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>런타임<small>Runtime</small>에 어셈블리 바인딩 오류가 발생하는 경우 아래와 같은 내용을 확인할 수 있습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">이 대화 상자 대신 JIT(Just-in-time) 디버깅을 호출하는</span><br><span class="line">방법에 대한 자세한 내용은 이 메시지의 뒷부분을 참조하십시오.</span><br><span class="line"></span><br><span class="line">************** 예외 텍스트 **************</span><br><span class="line">System.IO.FileNotFoundException: 파일이나 어셈블리 &apos;SampleNamespace, Version=1.0.0.1, Culture=neutral, PublicKeyToken=aaaaaaaaaaaaaaaa&apos; 또는 여기에 종속되어 있는 파일이나 어셈블리 중 하나를 로드할 수 없습니다. 지정된 파일을 찾을 수 없습니다.</span><br><span class="line">파일 이름: &apos;SampleNamespace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=aaaaaaaaaaaaaaaa&apos;</span><br><span class="line">   위치: OtherNamespace.MyClass..ctor()</span><br><span class="line"></span><br><span class="line">경고: 어셈블리 바인딩 로깅이 꺼져 있습니다.</span><br><span class="line">어셈블리 바인딩 오류 로깅 기능을 사용하려면 레지스트리 값 [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD)를 1로 설정하십시오.</span><br><span class="line">참고: 어셈블리 바인딩 오류 로깅 기능을 사용하도록 설정하면 그렇지 않은 경우보다 성능이 약간 떨어집니다.</span><br><span class="line">이 기능을 끄려면 레지스트리 값 [HKLM\Software\Microsoft\Fusion!EnableLog]를 제거하십시오.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">************** 로드된 어셈블리 **************</span><br><span class="line">mscorlib</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/mscorlib.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34238 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Windows.Forms</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34251 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms/v4.0_4.0.0.0__b77a5c561934e089/System.Windows.Forms.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Drawing</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Configuration</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Xml</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34234 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">OtherNamespace.MyClass</span><br><span class="line">    어셈블리 버전: 1.0.0.0</span><br><span class="line">    Win32 버전: N/A</span><br><span class="line">    코드베이스: http://bbon.me/Apps/OtherNamespace.DLL</span><br><span class="line">----------------------------------------</span><br><span class="line">IFW.Windows.Forms</span><br><span class="line">    어셈블리 버전: 4.0.0.6</span><br><span class="line">    Win32 버전: 4.0.0.6</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/IFW.Windows.Forms/v4.0_4.0.0.6__6b3a265306332740/IFW.Windows.Forms.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">mscorlib.resources</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/mscorlib.resources/v4.0_4.0.0.0_ko_b77a5c561934e089/mscorlib.resources.dll</span><br><span class="line">----------------------------------------</span><br><span class="line">System.Windows.Forms.resources</span><br><span class="line">    어셈블리 버전: 4.0.0.0</span><br><span class="line">    Win32 버전: 4.0.30319.34209 built by: FX452RTMGDR</span><br><span class="line">    코드베이스: file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Windows.Forms.resources/v4.0_4.0.0.0_ko_b77a5c561934e089/System.Windows.Forms.resources.dll</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">************** JIT 디버깅 **************</span><br><span class="line">JIT(Just In Time) 디버깅을 사용하려면 이 응용 프로그램 또는 컴퓨터의</span><br><span class="line">config 파일(machine.config)의 jitDebugging 값을</span><br><span class="line">system.windows.forms 섹션에 설정해야 합니다.</span><br><span class="line">또한 응용 프로그램은 디버깅할 수 있도록 컴파일되어야</span><br><span class="line">합니다.</span><br><span class="line"></span><br><span class="line">예:</span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;system.windows.forms jitDebugging=&quot;true&quot; /&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">JIT 디버깅을 사용하면 처리되지 않은 모든 예외는</span><br><span class="line">이 대화 상자에서 처리되지 않고 컴퓨터에 등록된 JIT</span><br><span class="line">디버거에 보내집니다.</span><br></pre></td></tr></table></figure>
+<p>응용 프로그램 런타임에 어셈블리 바인딩 오류 로그를 활성화하여 문제를 추적할 수 있습니다.</p>
+<p>어떤 어셈블리를 바인딩하려다 오류가 발생하는지는 로깅을 활성화하면 확인할 수 있습니다.</p>
+<h2 id="로깅-활성화"><a class="header-anchor" href="#로깅-활성화"> </a>로깅 활성화</h2>
+<p>레지스트리 편집기를 실행하고 아래 키로 이동 후 값을 추가합니다.</p>
+<p><code>HKLM\SOFTWARE\Microsoft\Fusion</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">이름</th>
+<th style="text-align:center">형식</th>
+<th style="text-align:left">값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">EnableLog</td>
+<td style="text-align:center">DWORD</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">ForceLog</td>
+<td style="text-align:center">DWORD</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">LogFailures</td>
+<td style="text-align:center">DWORD</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">LogResourceBinds</td>
+<td style="text-align:center">DWORD</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">LogPath</td>
+<td style="text-align:center">STRING</td>
+<td style="text-align:left">PATH TO LOG FILES;e.g.)<code>c:\FusionLog\</code></td>
+</tr>
+</tbody>
+</table>
+<p>아래와 같이 레지스트리 값을 추가하면 로깅이 활성화됩니다.</p>
+<img src="/2016/08/29/enable-assembly-binding-log/regedit-fusion-log.png" title="설정">
+<h2 id="로그확인"><a class="header-anchor" href="#로그확인"> </a>로그확인</h2>
+<p>레지스트리 값 중 <code>LogPath</code>에 설정한 디렉터리에 로그 파일이 만들어집니다.</p>
+<p>탐색기에서 디렉터리로 이동하면 Default, NativeImage 두 개의 하위 디렉터리가 만들어져 있습니다.</p>
+<p>그리고, 각 디렉터리에 실행된 어셈블리 이름 디렉터리가 존재하고, <code>HTML</code> 파일로 내용이 저장되어져 있습니다.</p>
+<p>각 <code>HTML</code>파일을 확인하여 실패 내용을 추적할 수 있습니다.</p>
+<h2 id="어셈블리-바인딩-로깅-활성화-응용-프로그램"><a class="header-anchor" href="#어셈블리-바인딩-로깅-활성화-응용-프로그램"> </a>어셈블리 바인딩 로깅 활성화 응용 프로그램</h2>
+<p>프로젝트를 빌드하기 위해서는 아래 요구사항을 만족해야 합니다.</p>
+<ul>
+<li>Visual Studio 2015</li>
+<li>.NET Framework 4.5.2</li>
+</ul>
+<p>Release 파일을 다운로드 받고 실행하면 아래와 같이 간단한 모양으로 실행됩니다.</p>
+<img src="/2016/08/29/enable-assembly-binding-log/fusionlog-01.png">
+<img src="/2016/08/29/enable-assembly-binding-log/fusionlog-02.png">
+<p>Check 버튼으로 현재 상태를 확인할 수 있고, Activate, Deactivate 버튼으로 활성, 비활성으로 상태를 변경할 수 있습니다.</p>
+<p>활성은 레지스트리에 값을 추가하고, 비활성은 레지스트리 값을 제거합니다.</p>
+<p><a href="https://github.com/bbonkr/activate-assembly-binding-error-log" target="_blank" rel="noopener">Github: activate-assembly-binding-error-log</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2016/08/29/enable-assembly-binding-log/" data-id="cjyyab45b002k0ch8ji1yhcpn" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/18/ios-10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          iOS 10
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/23/ios-9-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">iOS 9.3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

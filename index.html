@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>{bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{bbon}">
+<meta property="og:url" content="http://bbon.me/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{bbon}">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-how-to-separate-projects-in-asp-net-core-web-application" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Howto/">Howto</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/">How to separate projects in asp net core web application</a>
+    </h1>
+  
+
+        <a href="/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" class="article-date">
+  <time datetime="2019-07-25T12:17:00.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p><a href="http://ASP.NET" target="_blank" rel="noopener">ASP.NET</a> Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오.</p>
+<h2 id="신규-프로젝트-작성"><a class="header-anchor" href="#신규-프로젝트-작성"> </a>신규 프로젝트 작성</h2>
+<p>컨트롤러를 분리할 프로젝트를 작성합니다.</p>
+<blockquote>
+<p>.NET Standard 클래스 라이브러리 템플릿 사용</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir Blog.Backend.Api.Account</span><br><span class="line">$ <span class="built_in">cd</span> Blog.Backend.Api.Account</span><br><span class="line">$ dotnet new classlib</span><br></pre></td></tr></table></figure>
+<p>필요한 Nuget 패키지를 추가합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dotnet add package Microsoft.AspNetCore.Mvc --version 2.2.0</span><br><span class="line">$ dotnet add package Microsoft.Extensions.Logging --version 2.2.0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend.Api.Account/Blog.Backend.Api.Account.csproj#L7" target="_blank" rel="noopener">porject file</a></p>
+</blockquote>
+<p>컨트롤러 클래스를 새로 추가한 프로젝트로 복사하고, 네임스페이스를 조정합니다.</p>
+<p>IServiceCollection 에 확장 메서드를 추가합니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">ServicesConfigureExtesion</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IServiceCollection <span class="title">AddAccountApiController</span>(<span class="params"><span class="keyword">this</span> IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 옮긴 컨트롤러 클래스를 IoC 컨테이너에 등록합니다.</span></span><br><span class="line">        services.AddTransient&lt;UserController&gt;();</span><br><span class="line">        services.AddTransient&lt;AccountController&gt;();</span><br><span class="line">        <span class="keyword">return</span> services;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IMvcBuilder <span class="title">AddAccountApiController</span>(<span class="params"><span class="keyword">this</span> IMvcBuilder builder</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> currentAssembly = <span class="keyword">typeof</span>(ServicesConfigureExtesion).GetTypeInfo().Assembly;</span><br><span class="line"></span><br><span class="line">        builder</span><br><span class="line">            .AddApplicationPart(currentAssembly)</span><br><span class="line">            ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> builder;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend.Api.Account/ServicesConfigureExtesion.cs#L7" target="_blank" rel="noopener">IServiceCollection 확장메서드</a></p>
+</blockquote>
+<h2 id="웹-응용프로그램-코드-변경"><a class="header-anchor" href="#웹-응용프로그램-코드-변경"> </a>웹 응용프로그램 코드 변경</h2>
+<p>다른 프로젝트로 옮긴 컨트롤러 클래스를 웹 응용프로그램에서 사용할 수 있도록 프로젝트 참조를 추가하고, Startup 클래스의 ConfigureServices 메서드에 새로운 프로젝트에서 정의한 IServiceCollection 확장메서드를 사용하는 코드를 추가합니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* 중략 */</span></span><br><span class="line"></span><br><span class="line">    services</span><br><span class="line">        <span class="comment">/* IServiceCollection 확장메서드 */</span></span><br><span class="line">        <span class="comment">/* IoC 컨테이너에 타입을 등록 */</span></span><br><span class="line">        .AddAccountApiController()</span><br><span class="line">        .AddMvc()</span><br><span class="line">        <span class="comment">/* IMvcBuilder 확장메서드 */</span></span><br><span class="line">        <span class="comment">/* 다른 어셈블리의 컨트롤러를 사용하도록 구성 */</span></span><br><span class="line">        .AddAccountApiController()</span><br><span class="line">        .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2)</span><br><span class="line">        .AddControllersAsServices()</span><br><span class="line">        ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 중략 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend/Startup.cs#L98" target="_blank" rel="noopener">Startup.cs 예제</a></p>
+</blockquote>
+<h2 id="추가"><a class="header-anchor" href="#추가"> </a>추가</h2>
+<p>라우트 구성이 변경되어야 하면 Startup 클래스의 Configure 메서드에서 라우트를 추가합니다.</p>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend/Startup.cs#L150" target="_blank" rel="noopener">Startup.cs 예제</a></p>
+</blockquote>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="cjyyab46p005a0ch8bhy6rnwc" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnetcore/">aspnetcore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mvc/">mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapi/">webapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React-Native-Score-Board" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Project/">Project</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/React-Native-Score-Board/">회고 React Native Score Board</a>
+    </h1>
+  
+
+        <a href="/2019/07/23/React-Native-Score-Board/" class="article-date">
+  <time datetime="2019-07-23T13:07:08.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p><a href="https://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native</a>로 자바스크립트와 <a href="https://reactjs.org/" target="_blank" rel="noopener">리액트</a>로 모바일 응용프로그램을 작성할 수 있습니다.</p>
+<p>최근 0.60 버전의 변경점</p>
+<ul>
+<li>AndroidX 지원</li>
+<li>CocoaPods 통합</li>
+<li>패키지의 자동 링크</li>
+</ul>
+<h2 id="개요"><a class="header-anchor" href="#개요"> </a>개요</h2>
+<p>Xamarin 으로 작성했던 <a href="https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard" target="_blank" rel="noopener">너와 나의 점수판 Score Board</a> 모바일 응용프로그램을 React Native 로 다시 작성했습니다.</p>
+<p><a href="https://github.com/bbonkr/scoreboard" target="_blank" rel="noopener">GitHub: scoreboard</a> 저장소에서 코드를 확인할 수 있습니다.</p>
+<p>가상장치에서 실행한 화면을 <a href="https://github.com/bbonkr/scoreboard/blob/master/README.md" target="_blank" rel="noopener">공유</a>합니다.</p>
+<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
+<p>코드를 작성하면서 가장 힘들었던 부분은 npm 패키지 중 플랫폼별 코드가 포함된 패키지의 링크입니다.</p>
+<p>0.60 이후 버전에 추가된 패키지 자동링크 기능이 잘 동작하도록 정리된 패키지는 문제가 없는데, 아직 적용전이거나, 적용중인 패키지는 링크 명령으로 구성 반영이 잘 되지 않아 직접해야 하는 경우가 있습니다.</p>
+<p>다행히 대부분 패키지에서 문서를 잘 제공해줍니다.</p>
+<p>AndroidX 지원 때문인지 링크 명령으로 구성을 적용한 후 마이그레이션을 직접해야 하는 경우도 있습니다.</p>
+<blockquote>
+<p><a href="https://www.npmjs.com/package/jetifier" target="_blank" rel="noopener">npm jetifier</a> 패키지로 편리하게 처리할 수 있습니다.</p>
+</blockquote>
+<p>UI는 리액트로 작성합니다. 매우 빠르게 작성이 가능하지만 flex 로 구성하는 레이아웃은 생각을 많이 해야 합니다.</p>
+<blockquote>
+<p>함수형 컴포넌트, Hooks API를 지원합니다.</p>
+</blockquote>
+<p>Hot Loading은 화면을 작성하면서 바로 확인이 가능해서 매우 편리합니다.</p>
+<blockquote>
+<p>Xamarin 에서 제공될 기능도 매우 기대됩니다.<br>
+<a href="https://devblogs.microsoft.com/xamarin/xaml-hot-reload/" target="_blank" rel="noopener">Announcing XAML Hot Reload for Xamarin.Forms</a></p>
+</blockquote>
+<p>저에게는 React Native 보다 Xamarin.Forms 가 빠르게 원하는 기능 구현이 가능하다고 생각됩니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="cjyyab46o00570ch8vqw2f448" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React-Native-Get-Started-really-3" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/13/React-Native-Get-Started-really-3/">React Native Get Started really #3</a>
+    </h1>
+  
+
+        <a href="/2019/07/13/React-Native-Get-Started-really-3/" class="article-date">
+  <time datetime="2019-07-13T08:47:45.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p><a href="https://facebook.github.io/react-native/docs/getting-started" target="_blank" rel="noopener">React Native Getting Started</a> 페이지의 내용을 따라하면서 발생한 문제들입니다.</p>
+<ul>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-1/">시작하기 정말? #1</a></li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-2/">시작하기 정말? #2</a></li>
+<li>시작하기 정말? #3 👈</li>
+</ul>
+<p>기본적인 설치 및 구성은 페이지를 보며 진행했습니다.</p>
+<p>저의 환경은 macOS 10.14.5 입니다.</p>
+<p>Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습니다.</p>
+<p>Node, XCode, Android Studio 가 설치되어 있습니다.</p>
+<ul>
+<li>Node v11.7.0</li>
+<li>npm v6.5.0</li>
+<li>Xcode v10.2.1 (10E1001), XCode command line tools installed</li>
+<li>Android Studio v3.4, Android SDK installed</li>
+</ul>
+<p>Xamarin 으로 작성된 모바일 응용프로그램을 React Native 로 재작성하기 위해 프로젝트를 만들었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init ScoreBoard</span><br></pre></td></tr></table></figure>
+<p>이제 서랍장 형식으로 동작하는 메뉴를 작성하기 위해 <a href="https://facebook.github.io/react-native/docs/navigation" target="_blank" rel="noopener">네비게이션</a> 관련 패키지 추가하고 실행하니 또 문제가 발생합니다.</p>
+<p><code>react-native-gesture-handler</code> 패키지는 네이티브 코드가 포함되어 있습니다.<br>
+따라서 link 명령으로 해당 내용을 각 플랫폼 프로젝트에 추가되어야 합니다.</p>
+<p><a href="https://facebook.github.io/react-native/docs/navigation" target="_blank" rel="noopener">페이지의 설명</a>대로 아래 명령을 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native link react-native-gesture-handler</span><br></pre></td></tr></table></figure>
+<p>안드로이드 가상장치에서 확인하기 위해 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br><span class="line">react-native run-android</span><br><span class="line">error React Native CLI uses autolinking <span class="keyword">for</span> native dependencies, but the following modules are linked manually:</span><br><span class="line">  - react-native-gesture-handler (to unlink run: <span class="string">"react-native unlink react-native-gesture-handler"</span>)</span><br><span class="line">This is likely happening when upgrading React Native from below 0.60 to 0.60 or above. Going forward, you can unlink this dependency via <span class="string">"react-native unlink &lt;dependency&gt;"</span> and it will be included <span class="keyword">in</span> your app automatically. If a library isn<span class="string">'t compatible with autolinking, disregard this message and notify the library maintainers.</span></span><br><span class="line"><span class="string">Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md</span></span><br><span class="line"><span class="string">info Starting JS server...</span></span><br><span class="line"><span class="string">info Installing the app...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; Task :react-native-gesture-handler:compileDebugJavaWithJavac FAILED</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.</span></span><br><span class="line"><span class="string">Use '</span>--warning-mode all<span class="string">' to show the individual deprecation warnings.</span></span><br><span class="line"><span class="string">See https://docs.gradle.org/5.4.1/userguide/command_line_interface.html#sec:command_line_warnings</span></span><br><span class="line"><span class="string">14 actionable tasks: 2 executed, 12 up-to-date</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerStateChangeEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">Note: /Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.java uses or overrides a deprecated API.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:deprecation for details.</span></span><br><span class="line"><span class="string">Note: Some input files use unchecked or unsafe operations.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:unchecked for details.</span></span><br><span class="line"><span class="string">6 errors</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">FAILURE: Build failed with an exception.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* What went wrong:</span></span><br><span class="line"><span class="string">Execution failed for task '</span>:react-native-gesture-handler:compileDebugJavaWithJavac<span class="string">'.</span></span><br><span class="line"><span class="string">&gt; Compilation failed; see the compiler error output for details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Try:</span></span><br><span class="line"><span class="string">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Get more help at https://help.gradle.org</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">BUILD FAILED in 5s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">error Failed to install the app. Make sure you have the Android development environment set up: https://facebook.github.io/react-native/docs/getting-started.html#android-development-environment. Run CLI with --verbose flag for more details.</span></span><br><span class="line"><span class="string">Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerStateChangeEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">Note: /Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.java uses or overrides a deprecated API.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:deprecation for details.</span></span><br><span class="line"><span class="string">Note: Some input files use unchecked or unsafe operations.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:unchecked for details.</span></span><br><span class="line"><span class="string">6 errors</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">FAILURE: Build failed with an exception.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* What went wrong:</span></span><br><span class="line"><span class="string">Execution failed for task '</span>:react-native-gesture-handler:compileDebugJavaWithJavac<span class="string">'.</span></span><br><span class="line"><span class="string">&gt; Compilation failed; see the compiler error output for details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Try:</span></span><br><span class="line"><span class="string">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Get more help at https://help.gradle.org</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">BUILD FAILED in 5s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at checkExecSyncError (child_process.js:625:11)</span></span><br><span class="line"><span class="string">    at execFileSync (child_process.js:643:13)</span></span><br><span class="line"><span class="string">    at runOnAllDevices (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/runOnAllDevices.js:75:39)</span></span><br><span class="line"><span class="string">    at buildAndRun (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:137:41)</span></span><br><span class="line"><span class="string">    at then.result (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:103:12)</span></span><br><span class="line"><span class="string">    at processTicksAndRejections (internal/process/next_tick.js:81:5)</span></span><br></pre></td></tr></table></figure>
+<p>출력된 에러 메시지 관련 내용으로 검색된 <a href="https://github.com/kmagiera/react-native-gesture-handler/issues/510" target="_blank" rel="noopener">깃허브 이슈</a> 페이지에서 방법을 제시합니다.</p>
+<p><a href="https://www.npmjs.com/package/jetifier" target="_blank" rel="noopener">jetifier 패키지</a>를 설치하고, 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install jetifier</span><br><span class="line">$ npx jetify</span><br></pre></td></tr></table></figure>
+<p>다시 link 명령을 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native link react-native-gesture-handler</span><br></pre></td></tr></table></figure>
+<p>이제 정상적으로 실행됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br></pre></td></tr></table></figure>
+<p>iOS 가상장치에서도 빌드 문제가 발생해서, pod 으로 의존 패키지를 다시 설치하도록 한 후 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ios</span><br><span class="line">$ pod install</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ react-native run-ios</span><br></pre></td></tr></table></figure>
+<p>정상적으로 실행됩니다.</p>
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-001.png">
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-002.png">
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-003.png">
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="cjyyab49800bd0ch8vhpjycyj" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React-Native-Get-Started-really-2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/13/React-Native-Get-Started-really-2/">React Native Get Started really #2</a>
+    </h1>
+  
+
+        <a href="/2019/07/13/React-Native-Get-Started-really-2/" class="article-date">
+  <time datetime="2019-07-13T08:47:19.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p><a href="https://facebook.github.io/react-native/docs/getting-started" target="_blank" rel="noopener">React Native Getting Started</a> 페이지의 내용을 따라하면서 발생한 문제들입니다.</p>
+<ul>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-1/">시작하기 정말? #1</a></li>
+<li>시작하기 정말? #2 👈</li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-3/">시작하기 정말? #3</a></li>
+</ul>
+<p>기본적인 설치 및 구성은 페이지를 보며 진행했습니다.</p>
+<p>저의 환경은 macOS 10.14.5 입니다.</p>
+<p>Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습니다.</p>
+<p>Node, XCode, Android Studio 가 설치되어 있습니다.</p>
+<ul>
+<li>Node v11.7.0</li>
+<li>npm v6.5.0</li>
+<li>Xcode v10.2.1 (10E1001), XCode command line tools installed</li>
+<li>Android Studio v3.4, Android SDK installed</li>
+</ul>
+<p>Xamarin 으로 작성된 모바일 응용프로그램을 React Native 로 재작성하기 위해 프로젝트를 만들었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init ScoreBoard</span><br></pre></td></tr></table></figure>
+<p>보통은 스캐폴딩된 프로젝트가 바로 실행이 가능하니, 바로 실행해 봤습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br><span class="line">info Starting JS server...</span><br><span class="line">info Installing the app...</span><br><span class="line"></span><br><span class="line">&gt; Configure project :app</span><br><span class="line">File /Users/bbon/.android/repositories.cfg could not be loaded.</span><br><span class="line">Checking the license <span class="keyword">for</span> package Android SDK Build-Tools 28.0.3 <span class="keyword">in</span> /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx/licenses</span><br><span class="line">Warning: License <span class="keyword">for</span> package Android SDK Build-Tools 28.0.3 not accepted.</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring project <span class="string">':app'</span>.</span><br><span class="line">&gt; Failed to install the following Android SDK packages as some licences have not been accepted.</span><br><span class="line">     build-tools;28.0.3 Android SDK Build-Tools 28.0.3</span><br><span class="line">  To build this project, accept the SDK license agreements and install the missing components using the Android Studio SDK Manager.</span><br><span class="line">  Alternatively, to transfer the license agreements from one workstation to another, see http://d.android.com/r/studio-ui/<span class="built_in">export</span>-licenses.html</span><br><span class="line"></span><br><span class="line">  Using Android SDK: /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more <span class="built_in">log</span> output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more <span class="built_in">help</span> at https://help.gradle.org</span><br><span class="line"></span><br><span class="line">BUILD FAILED <span class="keyword">in</span> 10s</span><br><span class="line"></span><br><span class="line">error Failed to install the app. Please accept all necessary SDK licenses using SDK Manager: <span class="string">"<span class="variable">$ANDROID_HOME</span>/tools/bin/sdkmanager --licenses"</span>. Run CLI with --verbose flag <span class="keyword">for</span> more details.</span><br><span class="line">Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring project <span class="string">':app'</span>.</span><br><span class="line">&gt; Failed to install the following Android SDK packages as some licences have not been accepted.</span><br><span class="line">     build-tools;28.0.3 Android SDK Build-Tools 28.0.3</span><br><span class="line">  To build this project, accept the SDK license agreements and install the missing components using the Android Studio SDK Manager.</span><br><span class="line">  Alternatively, to transfer the license agreements from one workstation to another, see http://d.android.com/r/studio-ui/<span class="built_in">export</span>-licenses.html</span><br><span class="line"></span><br><span class="line">  Using Android SDK: /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more <span class="built_in">log</span> output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more <span class="built_in">help</span> at https://help.gradle.org</span><br><span class="line"></span><br><span class="line">BUILD FAILED <span class="keyword">in</span> 10s</span><br><span class="line"></span><br><span class="line">    at checkExecSyncError (child_process.js:625:11)</span><br><span class="line">    at execFileSync (child_process.js:643:13)</span><br><span class="line">    at runOnAllDevices (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/runOnAllDevices.js:75:39)</span><br><span class="line">    at buildAndRun (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:137:41)</span><br><span class="line">    at then.result (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:103:12)</span><br><span class="line">    at processTicksAndRejections (internal/process/next_tick.js:81:5)</span><br></pre></td></tr></table></figure>
+<p>Android Studio 를 설치하고 실행하지 않아 안드로이드 SDK 라이선스 사용에 대한 동의를 하지 않아 발생한 문제로 보여집니다.</p>
+<p>아래 명령으로 안드로이드 SDK 라이선스 사용 동의를 진행할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="variable">$ANDROID_HOME</span>/tools/bin/sdkmanager --licenses</span><br></pre></td></tr></table></figure>
+<p>이후 정상적으로 실행이 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="cjyyab46m00520ch8wxfutc36" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React-Native-Get-Started-really-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/13/React-Native-Get-Started-really-1/">React Native Get Started really #1</a>
+    </h1>
+  
+
+        <a href="/2019/07/13/React-Native-Get-Started-really-1/" class="article-date">
+  <time datetime="2019-07-13T08:22:33.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p><a href="https://facebook.github.io/react-native/docs/getting-started" target="_blank" rel="noopener">React Native Getting Started</a> 페이지의 내용을 따라하면서 발생한 문제들입니다.</p>
+<ul>
+<li>시작하기 정말? #1 👈</li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-2/">시작하기 정말? #2</a></li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-3/">시작하기 정말? #3</a></li>
+</ul>
+<p>기본적인 설치 및 구성은 페이지를 보며 진행했습니다.</p>
+<p>저의 환경은 macOS 10.14.5 입니다.</p>
+<p>Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습니다.</p>
+<p>Node, XCode, Android Studio 가 설치되어 있습니다.</p>
+<ul>
+<li>Node v11.7.0</li>
+<li>npm v6.5.0</li>
+<li>Xcode v10.2.1 (10E1001), XCode command line tools installed</li>
+<li>Android Studio v3.4, Android SDK installed</li>
+</ul>
+<p>Xamarin 으로 작성된 모바일 응용프로그램을 React Native 로 재작성하기 위해 프로젝트를 만들었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init ScoreBoard</span><br></pre></td></tr></table></figure>
+<p>보통은 스캐폴딩된 프로젝트가 바로 실행이 가능하니, 바로 실행해 봤습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-ios</span><br><span class="line">info Found Xcode project <span class="string">"ScoreBoard.xcodeproj"</span></span><br><span class="line">info Building (using <span class="string">"xcodebuild -project ScoreBoard.xcodeproj -configuration Debug -scheme ScoreBoard -destination id=83FAF3D3-6BBE-4D55-91BC-EA307C8A7F81 -derivedDataPath build/ScoreBoard"</span>)</span><br><span class="line">.................</span><br><span class="line">error Failed to build iOS project. We ran <span class="string">"xcodebuild"</span> <span class="built_in">command</span> but it exited with error code 65. To debug build logs further, consider building your app with Xcode.app, by opening ScoreBoard.xcodeproj. Run CLI with --verbose flag <span class="keyword">for</span> more details.</span><br><span class="line">User defaults from <span class="built_in">command</span> line:</span><br><span class="line">    IDEDerivedDataPathOverride = /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard</span><br><span class="line"></span><br><span class="line">note: Using new build system</span><br><span class="line">note: Planning build</span><br><span class="line">note: Using build description from disk</span><br><span class="line">PhaseScriptExecution Start\ Packager /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Script-FD10A7F022414F080027D42C.sh (<span class="keyword">in</span> target: ScoreBoard)</span><br><span class="line">    <span class="built_in">cd</span> /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios</span><br><span class="line">    /bin/sh -c /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Script-FD10A7F022414F080027D42C.sh</span><br><span class="line"></span><br><span class="line">CompileC /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/main.o /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler (<span class="keyword">in</span> target: ScoreBoard)</span><br><span class="line">    <span class="built_in">cd</span> /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios</span><br><span class="line">    <span class="built_in">export</span> LANG=en_US.US-ASCII</span><br><span class="line">    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -gmodules -fmodules-cache-path=/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/ModuleCache.noindex -fmodules-prune-interval=86400 -fmodules-prune-after=345600 -fbuild-session-file=/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror=non-modular-include-in-framework-module -Wno-trigraphs -fpascal-strings -O0 -fno-common -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=<span class="built_in">return</span>-type -Wunreachable-code -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -DDEBUG=1 -DOBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.2.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mios-simulator-version-min=9.0 -g -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -fobjc-abi-version=2 -fobjc-legacy-dispatch -index-store-path /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Index/DataStore -iquote /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-generated-files.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-own-target-headers.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-all-target-headers.hmap -iquote /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-project-headers.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Products/Debug-iphonesimulator/include -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources-normal/x86_64 -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources/x86_64 -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources -F/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Products/Debug-iphonesimulator -MMD -MT dependencies -MF /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/main.dia -c /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/main.m -o /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/main.o</span><br><span class="line">In file included from /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/main.m:10:</span><br><span class="line">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/AppDelegate.h:8:9: fatal error:</span><br><span class="line"><span class="string">'React/RCTBridgeDelegate.h'</span> file not found</span><br><span class="line"><span class="comment">#import &lt;React/RCTBridgeDelegate.h&gt;</span></span><br><span class="line"></span><br><span class="line">        ^~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">1</span><br><span class="line"> error generated.</span><br><span class="line"></span><br><span class="line">CompileC /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/AppDelegate.o /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler (<span class="keyword">in</span> target: ScoreBoard)</span><br><span class="line">    <span class="built_in">cd</span> /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios</span><br><span class="line">    <span class="built_in">export</span> LANG=en_US.US-ASCII</span><br><span class="line">    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -gmodules -fmodules-cache-path=/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/ModuleCache.noindex -fmodules-prune-interval=86400 -fmodules-prune-after=345600 -fbuild-session-file=/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror=non-modular-include-in-framework-module -Wno-trigraphs -fpascal-strings -O0 -fno-common -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=<span class="built_in">return</span>-type -Wunreachable-code -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -DDEBUG=1 -DOBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.2.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mios-simulator-version-min=9.0 -g -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -fobjc-abi-version=2 -fobjc-legacy-dispatch -index-store-path /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Index/DataStore -iquote /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-generated-files.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-own-target-headers.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-all-target-headers.hmap -iquote /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/ScoreBoard-project-headers.hmap -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Products/Debug-iphonesimulator/include -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources-normal/x86_64 -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources/x86_64 -I/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/DerivedSources -F/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Products/Debug-iphonesimulator -MMD -MT dependencies -MF /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/AppDelegate.d --serialize-diagnostics /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/AppDelegate.dia -c /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/AppDelegate.m -o /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/AppDelegate.o</span><br><span class="line">In file included from /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/AppDelegate.m:8:</span><br><span class="line">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/AppDelegate.h:8:9: fatal error: <span class="string">'React/RCTBridgeDelegate.h'</span> file not found</span><br><span class="line"><span class="comment">#import &lt;React/RCTBridgeDelegate.h&gt;</span></span><br><span class="line">        ^~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">1 error generated.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">** BUILD FAILED **</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The following build commands failed:</span><br><span class="line">trueCompileC /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/build/ScoreBoard/Build/Intermediates.noindex/ScoreBoard.build/Debug-iphonesimulator/ScoreBoard.build/Objects-normal/x86_64/main.o /Users/bbon/Repos/scoreboard-rn/ScoreBoard/ios/ScoreBoard/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler</span><br><span class="line">(1 failure)</span><br></pre></td></tr></table></figure>
+<p>예상과 다르게 빌드가 실패합니다.</p>
+<p><a href="https://github.com/getsentry/sentry-react-native/issues/395" target="_blank" rel="noopener">iOS 프로젝트의 의존 패키지 설치가 없어서 실패했다는 내용</a>을 확인합니다.</p>
+<p>필요한 <a href="https://cocoapods.org/" target="_blank" rel="noopener">cocoapods</a> 패키지 관리자가 없습니다.</p>
+<p>homebrew 로 cocoapods 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install cocoapods</span><br></pre></td></tr></table></figure>
+<p>iOS 프로젝트 디렉터리로 이동해서 의존 패키지를 내려받아 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ios</span><br><span class="line">$ pod install</span><br></pre></td></tr></table></figure>
+<p>다시 실행하면 정상적으로 실행됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ react-native run-ios</span><br></pre></td></tr></table></figure>
+<img src="/2019/07/13/React-Native-Get-Started-really-1/react-native-ios-2019-07-12-001.png" title="가상장치에서 실행된 앱">
+<h2 id="주의"><a class="header-anchor" href="#주의"> </a>주의</h2>
+<p>문제를 해결하기 위해 참고한 깃허브 이슈 페이지의 내용에는 iOS 프로젝트에서 <code>pod install</code> 명령으로 설치하는 것을 지양해야 한다고 이야기합니다.<br>
+차후 다시 확인해봐야겠습니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-1/" data-id="cjyyab49300ba0ch8whilto0n" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lenovo-ThinkPad-T490" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/13/Lenovo-ThinkPad-T490/">Lenovo ThinkPad T490</a>
+    </h1>
+  
+
+        <a href="/2019/07/13/Lenovo-ThinkPad-T490/" class="article-date">
+  <time datetime="2019-07-13T06:24:42.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>유일한 약점이 커피를 못탄다는 <a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1" target="_blank" rel="noopener">Lenovo ThinkPad T490</a> 을 구매했습니다.</p>
+<img src="/2019/07/13/Lenovo-ThinkPad-T490/lenovo-laptop-thinkpad-t490-hero.png" title="Lenovo T490">
+<blockquote>
+<p><small>제품 사진은 <a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1" target="_blank" rel="noopener">Lenovo T490</a> 페이지에서 가져왔습니다.</small></p>
+</blockquote>
+<h2 id="주문상세"><a class="header-anchor" href="#주문상세"> </a>주문상세</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">상세</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Processor</td>
+<td style="text-align:left">인텔 코어 i7-8565U 프로세서(1.80GHz, Turbo Boost 포함 최대 4.60GHz, 4코어, 8MB 캐시)</td>
+</tr>
+<tr>
+<td style="text-align:left">운영체제(OS)</td>
+<td style="text-align:left">Windows 10 Pro 64</td>
+</tr>
+<tr>
+<td style="text-align:left">Operating System Language</td>
+<td style="text-align:left">Windows 10 Pro 64 한국어/영어</td>
+</tr>
+<tr>
+<td style="text-align:left">Onboard Memory</td>
+<td style="text-align:left">8GB DDR4 2666MHz 온보드</td>
+</tr>
+<tr>
+<td style="text-align:left">Total Memory</td>
+<td style="text-align:left">8GB DDR4 2400MHz 온보드</td>
+</tr>
+<tr>
+<td style="text-align:left">Hard Drive</td>
+<td style="text-align:left">512GB SSD PCIe-NVMe M.2 2280</td>
+</tr>
+<tr>
+<td style="text-align:left">Display</td>
+<td style="text-align:left">35.6cm(14.0형) WQHD(2560x1440), IPS, 500nit, 반사</td>
+</tr>
+<tr>
+<td style="text-align:left">Graphic Card</td>
+<td style="text-align:left">NVIDIA GeForce MX250 GDDR5 2GB</td>
+</tr>
+<tr>
+<td style="text-align:left">Top Cover Material</td>
+<td style="text-align:left">표준 PPSU Poly 덮개</td>
+</tr>
+<tr>
+<td style="text-align:left">Color</td>
+<td style="text-align:left">검은색</td>
+</tr>
+<tr>
+<td style="text-align:left">Keyboard</td>
+<td style="text-align:left">백라이트 키보드 한국어</td>
+</tr>
+<tr>
+<td style="text-align:left">Fingerprint Reader</td>
+<td style="text-align:left">지문 리더기</td>
+</tr>
+<tr>
+<td style="text-align:left">Pointing Device</td>
+<td style="text-align:left">지문 판독기 NFC 없음</td>
+</tr>
+<tr>
+<td style="text-align:left">TPM Setting</td>
+<td style="text-align:left">하드웨어 TPM2.0 사용</td>
+</tr>
+<tr>
+<td style="text-align:left">System Expansion Slots</td>
+<td style="text-align:left">스마트 카드 리더기</td>
+</tr>
+<tr>
+<td style="text-align:left">Battery</td>
+<td style="text-align:left">3셀 리튬 폴리머 내장 배터리, 50Wh</td>
+</tr>
+<tr>
+<td style="text-align:left">Power Cord</td>
+<td style="text-align:left">65W AC 어댑터(3핀) - EU(USB Type C)</td>
+</tr>
+<tr>
+<td style="text-align:left">WLAN Selection</td>
+<td style="text-align:left">WLAN</td>
+</tr>
+<tr>
+<td style="text-align:left">Wireless</td>
+<td style="text-align:left">인텔 무선-AC 9560 2x2 AC, Bluetooth 버전 5.0, 온보드</td>
+</tr>
+<tr>
+<td style="text-align:left">Camera</td>
+<td style="text-align:left">마이크가 포함된 IR 및 720p HD 카메라</td>
+</tr>
+<tr>
+<td style="text-align:left">Display Panel</td>
+<td style="text-align:left">35.6cm(14.0인치) WQHD(2560x1440), IPS, 눈부힘, 비터치식, IR 카메라, 마이크, WWAN 없음, WLAN</td>
+</tr>
+<tr>
+<td style="text-align:left">Package Box</td>
+<td style="text-align:left">표준 패키징</td>
+</tr>
+<tr>
+<td style="text-align:left">Language Pack</td>
+<td style="text-align:left">출판물-한국어/영어</td>
+</tr>
+<tr>
+<td style="text-align:left">Warranty</td>
+<td style="text-align:left">1년 센터 내방 (메인보드 2년)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="이야기"><a class="header-anchor" href="#이야기"> </a>이야기</h2>
+<p>2019-03-31 퇴사하면서 랩탑을 구매하기 위해 2,600,000 원의 예산을 책정했습니다.</p>
+<p>처음 갖고 싶은 모델은 아래와 같습니다.</p>
+<ul>
+<li><a href="https://www.dell.com/ko-kr/shop/dell-%EB%85%B8%ED%8A%B8%EB%B6%81/xps-15/spd/xps-15-7590-laptop" target="_blank" rel="noopener">DELL XPS 15 9570</a></li>
+<li><a href="https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c?activetab=pivot%3aoverviewtab" target="_blank" rel="noopener">Microsoft Surface Book 2</a></li>
+<li><a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-x-series/X1-Carbon-Gen-7/p/22TP2TXX17G" target="_blank" rel="noopener">Lenovo ThinkPad X1 Carbon</a></li>
+<li><a href="https://www.apple.com/kr/shop/buy-mac/macbook-pro/15%ED%98%95" target="_blank" rel="noopener">MacBook Pro</a></li>
+</ul>
+<p>하지만, MacBook Pro, Surface Book 2 는 예산을 초과합니다.</p>
+<p>구매 대상 목록에서 제외했습니다.</p>
+<p>남은 두 모델은 4K의 해상도와 밝고 큰 화면이 매력적으로 느껴졌습니다.</p>
+<p>CPU 는 인델의 문제로 뜨겁고, 성능이 제한될 수 밖에 없는 상황을 알고 있으므로 모델 선택시 크게 신경쓰지 않습니다.</p>
+<p>그런데, 최근 스타트업 팀을 찾고 있는데, 대부분 초기에 급여를 받을 수 없는 조건이라 생활비를 최대한 아껴야 하는 상황이 되었습니다.</p>
+<p>그래서, 랩탑 구매 예산을 삭감하기로 결정하고, 성능을 어느 정도 타협하고 Lenovo T 시리즈로 눈을 돌렸습니다.</p>
+<p>T 시리즈 중 14인치 크기의 화면과 RJ45 단자가 있고 메모리를 추가할 수 있는 모델을 확인해 보니</p>
+<ul>
+<li>T480S</li>
+<li>T490</li>
+</ul>
+<p>두 모델이 보입니다.</p>
+<p>최근 모델이 더 좋겠지라는 생각으로 T490을 선택하고, 모듈들을 변경한 후 장바구니에 담았습니다.</p>
+<p>라이브 챗으로 할인코드를 받을 수 있다고 해서, 시도해보니 정말 코드를 줘서 약 120,000 원을 할인받아 구매했습니다.</p>
+<p>최종 구매가격은 약 1,667,000 원입니다.</p>
+<h2 id="모듈-변경"><a class="header-anchor" href="#모듈-변경"> </a>모듈 변경</h2>
+<p>메모리는 경우 추가 장착이 가능한 모델입니다.<br>
+모듈을 추가하는 것보다 구매 후 직접 설치하는 것이 저렴해서 추가하지 않았습니다.</p>
+<p>저장장치는 직접 구매하는 것보다 모듈을 변경하는 것이 더 저렴해서 512 GB SSD PCIe-NVMe M.2 2280 으로 변경했습니다.</p>
+<p>화면은 가장 중요하게 생각한 모듈이라 가장 밝은 모듈로 변경했습니다.<br>
+해당 화면으로 변경하면 Windows Hello 를 위한 IR 이 포함된 720P 카메라로 고정됩니다.</p>
+<p>NVidia GeForce MX250 을 추가한 이유는 코드를 작성할 때 사용하는 IDE 가 GPU 를 사용하므로, 없는 것보다 나을 것 같아서 추가했습니다.<br>
+외장 그래픽 모듈이 추가되면 전원 어댑터도 65W 로 변경됩니다.</p>
+<p>Windows 10 은 Pro 기능이 필요하므로 Home 에서 Pro 로 변경했습니다.</p>
+<p>지문 판독기는 Windows Hello 인증 테스트시 IR 카메라와 지문 인증을 테스트하기 위해 필요하고, 가격도 11,000 원이라 추가했습니다.</p>
+<h2 id="걱정"><a class="header-anchor" href="#걱정"> </a>걱정</h2>
+<p>Lenovo 제품은 구입 후 회사의 도움을 받는 것을 포기하는게 좋다고 들었는데, 서비스 품질이 좋아졌으면 좋겠습니다.<br>
+그리고, 문제없이 사용가능한 장치를 받았으면 좋겠습니다.</p>
+<h2 id="개봉기"><a class="header-anchor" href="#개봉기"> </a>개봉기</h2>
+<h2 id="사용기"><a class="header-anchor" href="#사용기"> </a>사용기</h2>
+<h2 id="평가"><a class="header-anchor" href="#평가"> </a>평가</h2>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/" data-id="cjyyab46j004u0ch8ofb5t8zj" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laptop/">laptop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lenovo/">lenovo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/t490/">t490</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkpad/">thinkpad</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-update-your-apps-to-be-64-bit-compliant-by-2019-08-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/">Update your apps to be 64-bit compliant by 2019-08-01</a>
+    </h1>
+  
+
+        <a href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" class="article-date">
+  <time datetime="2019-07-10T08:48:22.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<blockquote>
+<p>Google Play Store 에 게시되는 앱은 2019-08-01 까지 64비트 호환으로 업데이트되어야 합니다.</p>
+</blockquote>
+<p>유사한 제목으로 전자우편을 받았습니다.</p>
+<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows&amp;WT.mc_id=docs-forums-jamont" target="_blank" rel="noopener">CPU 아키텍쳐</a> 페이지에서 지원되는 아키텍쳐를 지정하는 방법을 확인할 수 있습니다.</p>
+<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/deploy-test/building-apps/abi-specific-apks" target="_blank" rel="noopener">ABI 관련 APK 빌드</a> 페이지에서 지원 아키텍쳐 별 바이너리를 작성하기 위한 방법을 확인할 수 있습니다.</p>
+<p>2019-08-01 까지 64비트 지원 안드로이드 응용프로그램을 준비하기 위한 방법에 대한 자세한 설명은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지에서 확인할 수 있습니다.</p>
+<p>아래 내용은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지의 내용을 간략하게 소개합니다.</p>
+<h2 id="변경"><a class="header-anchor" href="#변경"> </a>변경</h2>
+<p>Xamarin.Android 는 4가지의 ABI를 지원합니다.</p>
+<p>*[ABI]: Application Binary Interface</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+<li>x86</li>
+<li>x86_64</li>
+</ul>
+<p>Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 빌드 속성을 바꿔야 합니다.</p>
+<h3 id="visual-studio-2019"><a class="header-anchor" href="#visual-studio-2019"> </a>Visual Studio 2019</h3>
+<p>안드로이드 프로젝트의 속성창을 열고, 안드로이드 옵션 탭으로 이동합니다.</p>
+<p>아래쪽의 고급 <small>Advanced</small> 버튼을 클릭하면 고급 설정창이 열립니다.</p>
+<p>지원 아키텍쳐에 아래 두 항목이 선택되어야 합니다.</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+</ul>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019-android-x64.png">
+<h3 id="visual-studio-2019-for-mac"><a class="header-anchor" href="#visual-studio-2019-for-mac"> </a>Visual Studio 2019 for Mac</h3>
+<p>안드로이드 프로젝트 속성창을 열고, 안드로이드 빌드 페이지로 이동합니다.</p>
+<p>고급탭의 지원되는 ABI 목록에서 아래 두 항목이 선택되어야 합니다.</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+</ul>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019forMac-android-x64.png">
+<h2 id="빌드"><a class="header-anchor" href="#빌드"> </a>빌드</h2>
+<p>빌드 구성을 <strong>Release</strong>로 선택하고 빌드한 후 아카이브를 작성합니다.</p>
+<h2 id="확인"><a class="header-anchor" href="#확인"> </a>확인</h2>
+<p>Android Studio 의 APK Analizer 도구를 사용해서 64비트 라이브러리가 포함되어 빌드되었는지 확인할 수 있습니다.</p>
+<blockquote>
+<p><a href="https://developer.android.com/distribute/best-practices/develop/64-bit?hl=ko" target="_blank" rel="noopener">앱에서 64비트 기기를 지원하는지 확인</a> 페이지의 내용을 참조</p>
+</blockquote>
+<p>APK Analyzer 도구를 실행하고 아카이브된 APK 파일을 선택합니다.</p>
+<p>잠시후 아래와 같은 화면을 확인할 수 있습니다.</p>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/scoreboard.png">
+<p>오른쪽 창의 lib 에 arm64-v8a 관련 내용이 보이면 64비트 지원 앱으로 판단하시면 됩니다.</p>
+<h2 id="주의"><a class="header-anchor" href="#주의"> </a>주의</h2>
+<p>프로젝트에서 참조된 외부 라이브러리 관련 내용이 포함되어 있는지 확인해야 합니다.</p>
+<p>필요한 내용이 보이지 않으면 외부 라이브러리가 64비트를 지원하는지 확인하고 지원하지 않으면 해결방안을 찾아야 합니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" data-id="cjyyab46e004l0ch8aa4bbbbr" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-mysqlclient-패키지-설치" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/29/python-mysqlclient-패키지-설치/">Python mysqlclient 패키지 설치 문제</a>
+    </h1>
+  
+
+        <a href="/2019/06/29/python-mysqlclient-패키지-설치/" class="article-date">
+  <time datetime="2019-06-29T08:04:12.000Z" itemprop="datePublished">2019-06-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>Django 프로젝트를 만들고, 데이터베이스 연결 구성을 위해 <code>mysqlclient</code> 패키지를 설치하던 중 문제가 발생했습니다.</p>
+<h2 id="환경"><a class="header-anchor" href="#환경"> </a>환경</h2>
+<ul>
+<li>macOS Mojave 10.14.5</li>
+<li>Python 3.7.3</li>
+<li>pip 19.1.1 (Python 3.7)</li>
+</ul>
+<h2 id="문제"><a class="header-anchor" href="#문제"> </a>문제</h2>
+<p>터미널에서 아래 명령으로 <code>mysqlclient</code> 패키지 설치를 실행하면 에러가 발생합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install mysqlclient</span><br><span class="line">Collecting mysqlclient</span><br><span class="line">  Using cached https://files.pythonhosted.org/packages/f4/f1/3bb6f64ca7a429729413e6556b7ba5976df06019a5245a43d36032f1061e/mysqlclient-1.4.2.post1.tar.gz</span><br><span class="line">    ERROR: Complete output from <span class="built_in">command</span> python setup.py egg_info:</span><br><span class="line">    ERROR: Traceback (most recent call last):</span><br><span class="line">      File <span class="string">"&lt;string&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      File <span class="string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup.py"</span>, line 16, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        metadata, options = get_config()</span><br><span class="line">      File <span class="string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line 53, <span class="keyword">in</span> get_config</span><br><span class="line">        libraries = [dequote(i[2:]) <span class="keyword">for</span> i <span class="keyword">in</span> libs <span class="keyword">if</span> i.startswith(<span class="string">'-l'</span>)]</span><br><span class="line">      File <span class="string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line 53, <span class="keyword">in</span> &lt;listcomp&gt;</span><br><span class="line">        libraries = [dequote(i[2:]) <span class="keyword">for</span> i <span class="keyword">in</span> libs <span class="keyword">if</span> i.startswith(<span class="string">'-l'</span>)]</span><br><span class="line">      File <span class="string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line 12, <span class="keyword">in</span> dequote</span><br><span class="line">        raise Exception(<span class="string">"Wrong MySQL configuration: maybe https://bugs.mysql.com/bug.php?id=86971 ?"</span>)</span><br><span class="line">    Exception: Wrong MySQL configuration: maybe https://bugs.mysql.com/bug.php?id=86971 ?</span><br><span class="line">    ----------------------------------------</span><br><span class="line">ERROR: Command <span class="string">"python setup.py egg_info"</span> failed with error code 1 <span class="keyword">in</span> /private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/</span><br></pre></td></tr></table></figure>
+<h2 id="해결"><a class="header-anchor" href="#해결"> </a>해결</h2>
+<p>먼저 <code>mysqlclient</code> 문서를 확인합니다.</p>
+<p><code>mysqlclient</code> 문서<br>
+: <a href="https://pypi.org/project/mysqlclient/" target="_blank" rel="noopener">mysqlclient - PyPI</a></p>
+<p>필요한 의존 패키지를 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql-connector-c</span><br></pre></td></tr></table></figure>
+<p>앞서 설치한 의존 패키지 MySQL Connector/C 의 기본 구성이 부정확해서 내용을 변경해야 합니다.</p>
+<p>mysql_config 구성을 수정해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> mysql_config                    <span class="comment"># 파일의 위치를 찾습니다.</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/mysql_config</span><br><span class="line">$ sudo nano /usr/<span class="built_in">local</span>/bin/mysql_config <span class="comment"># 편집기로 파일을 수정합니다.</span></span><br></pre></td></tr></table></figure>
+<p>아래 내용을 찾아서 변경합니다.</p>
+<blockquote>
+<p>on macOS, on or about line 112:</p>
+</blockquote>
+<p>원본:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create options</span></span><br><span class="line"><span class="attr">libs</span>=<span class="string">"-L$pkglibdir"</span></span><br><span class="line"><span class="attr">libs</span>=<span class="string">"$libs -l "</span></span><br></pre></td></tr></table></figure>
+<p>변경:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create options</span></span><br><span class="line"><span class="attr">libs</span>=<span class="string">"-L$pkglibdir"</span></span><br><span class="line"><span class="comment"># libs="$libs -l "</span></span><br><span class="line"><span class="attr">libs</span>=<span class="string">"$libs -lmysqlclient -lssl -lcrypto"</span></span><br></pre></td></tr></table></figure>
+<p>SSL 관련 문제가 발생하면 아래 명령으로 정보를 확인해서 문제를 해결해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew info openssl</span><br></pre></td></tr></table></figure>
+<p>이제 mysqlclient 패키지를 문제없이 설치할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install mysqlclient</span><br><span class="line">Collecting mysqlclient</span><br><span class="line">  Using cached https://files.pythonhosted.org/packages/f4/f1/3bb6f64ca7a429729413e6556b7ba5976df06019a5245a43d36032f1061e/mysqlclient-1.4.2.post1.tar.gz</span><br><span class="line">Building wheels <span class="keyword">for</span> collected packages: mysqlclient</span><br><span class="line">  Building wheel <span class="keyword">for</span> mysqlclient (setup.py) ... <span class="keyword">done</span></span><br><span class="line">  Stored <span class="keyword">in</span> directory: /Users/bbon/Library/Caches/pip/wheels/30/91/e0/2ee952bce05b1247807405c6710c6130e49468a5240ae27134</span><br><span class="line">Successfully built mysqlclient</span><br><span class="line">Installing collected packages: mysqlclient</span><br><span class="line">Successfully installed mysqlclient-1.4.2.post1</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/06/29/python-mysqlclient-패키지-설치/" data-id="cjyyab46g004n0ch8cs2cujz7" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Node-Blog-App" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Project/">Project</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/Node-Blog-App/">Node Blog App</a>
+    </h1>
+  
+
+        <a href="/2019/06/28/Node-Blog-App/" class="article-date">
+  <time datetime="2019-06-28T13:15:32.000Z" itemprop="datePublished">2019-06-28</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.</p>
+<h2 id="기술-스택-small-technology-stack-small"><a class="header-anchor" href="#기술-스택-small-technology-stack-small"> </a>기술 스택 <small>Technology stack</small></h2>
+<h3 id="node-js"><a class="header-anchor" href="#node-js"> </a>Node.js</h3>
+<h4 id="express"><a class="header-anchor" href="#express"> </a>Express</h4>
+<p><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다.</p>
+<p>프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.</p>
+<h4 id="passport"><a class="header-anchor" href="#passport"> </a>Passport</h4>
+<p><a href="http://www.passportjs.org/" target="_blank" rel="noopener">Passport</a>는 Node.js에서 사용되는 인증 프레임워크입니다.</p>
+<p>이번 프로젝트에서는 정의된 모델을 사용하는 로컬 인증을 사용합니다.</p>
+<h4 id="sequelize"><a class="header-anchor" href="#sequelize"> </a>Sequelize</h4>
+<p><a href="http://docs.sequelizejs.com/" target="_blank" rel="noopener">Sequelize</a>는 프로미스 기반의 Node.js ORM <small>Object-relational mapping</small> 입니다.</p>
+<p>이번 프로젝트의 데이터베이스관리시스템 <small>DBMS</small>은 MariaDB를 사용합니다.</p>
+<h3 id="react"><a class="header-anchor" href="#react"> </a>React</h3>
+<p><a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>는 <a href="https://www.facebook.com/react" target="_blank" rel="noopener">페이스북</a>에서 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">오픈소스</a>로 개발을 진행중인 사용자 인터페이스 <small>UI, User Interface</small> 작성을 위한 자바스크립트 라이브러리입니다.</p>
+<p>이번 프로젝트에서는 가능하면 컴포넌트를 클래스를 선언하지 않고 함수 컴포넌트만으로 작성하고, 훅 <small>Hook</small>으로 상태 <small>State</small>관리 및 React 기능을 사용하는 것이 목표입니다.</p>
+<h4 id="next-js"><a class="header-anchor" href="#next-js"> </a>Next.js</h4>
+<p><a href="https://nextjs.org" target="_blank" rel="noopener">Next.js</a>는 React 를 사용해서 싱글 페이지 응용프로그램 <small>SPA Single Page Application</small> 을 작성하고, 검색엔진최적화 <small>SEO Search Engine Optimaizaion</small>을 위해 서버 사이드 렌더링 <small>SSR Server Side Rendering</small>과 파일 시스템 기반 라우팅, 자동 코드 스플릿팅 등 많은 기능을 제공해주는 프레임워크입니다.</p>
+<h4 id="react-redux"><a class="header-anchor" href="#react-redux"> </a>React Redux</h4>
+<p><a href="https://react-redux.js.org/" target="_blank" rel="noopener">React Redux</a>는 Redux 저장소의 데이터를 읽고, 저장소의 작업을 보내 데이터를 업데이트하는 형식으로 상태를 관리할 수 있습니다.</p>
+<p>React Hook을 지원해서 (<code>useSelector</code>, <code>useDispatch</code>) 함수형 컴포넌트에서도 문제없이 사용할 수 있습니다.</p>
+<h4 id="redux-saga"><a class="header-anchor" href="#redux-saga"> </a>Redux-Saga</h4>
+<p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga</a>로 Redux 작업을 비동기로 처리합니다.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="noopener">제너레이터 Generator</a>로 비동기 처리를 구현한 것이 매우 흥미롭습니다.</p>
+<h4 id="styled-components"><a class="header-anchor" href="#styled-components"> </a>styled components</h4>
+<p><a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>는 컴포넌트 작성 때 인라인 스타일로 적용하면 코드 가독성이 나빠지고, 속성의 이름을 css와 다르게 작성해야하는 점을 해결해 줍니다.</p>
+<p>컴포넌트 코드 파일에 인라인 스타일을 적용할 수 밖에 없을 때에 사용합니다.</p>
+<h4 id="ant-design"><a class="header-anchor" href="#ant-design"> </a>Ant Design</h4>
+<p>React 로 사용자 인터페이스를 구성하기 위한 컴포넌트 작성시 어떻게 보여줄 것인가를 생각하는 것은 생각보다 시간이 많이 걸립니다.</p>
+<p>작은 프로젝트를 혼자 진행할 때에는 더욱 시간이 많이 걸립니다. 이럴 때 전문가의 도움을 받으면 시간을 많이 절약할 수 있습니다.</p>
+<p>이 프로젝트에서는 전반적으로 Ant Design 팀의 디자인 가이드 라인을 따르며 컴포넌트 디자인을 사용했습니다.</p>
+<h3 id="docker"><a class="header-anchor" href="#docker"> </a>Docker</h3>
+<p>응용프로그램을 게시하기 위해서 도커 이미지를 작성하고, 개인적으로 사용중인 시놀로지 디스크 스테이션에서 도커 컨테이너를 실행하고 있습니다.</p>
+<p><a href="https://sample-sns.bbon.me" target="_blank" rel="noopener">데모 사이트</a>에서 동작을 확인할 수 있습니다.</p>
+<img src="/2019/06/28/Node-Blog-App/001.png">
+<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
+<p>약 한달간 프로젝트를 진행하며 React에 재미를 붙였습니다.</p>
+<p>의존성으로 추가되어 사용중인 패키지는 대부분 사용 방법에 대한 문서가 잘 제공되어 큰 문제없이 진행되었습니다.</p>
+<p>그 중 가장 시간이 많이 걸렸던 부분은 Next.js 구성에 포함된 Webpack 에 대한 부분이었습니다.<br>
+시간이 많이 걸리며 구성을 변경하고, 확인을 진행하다 보니 대부분 Next.js 에서 기본값으로 구성해 놓은 것들이었습니다.<br>
+그래서, 거의 구성 코드가 없습니다.</p>
+<p>ORM 으로 사용된 Sequelize는 기능을 너무 많이 제공해서 어렵게 느껴지는 부분이 많았습니다.</p>
+<p>next.js는 아주 편리한 프레임워크로 생각됩니다.<br>
+그리고, 정적 파일 생성 기능을 제공(<code>next export</code>)해서 간단한 페이지 작성시 자주 사용할 것 같습니다.</p>
+<p>코드는 <a href="https://github.com/bbonkr/nodeblog" target="_blank" rel="noopener">GitHub</a>에서 확인할 수 있습니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="cjyyab46b004d0ch8jqzrd16f" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ant-design/">ant.design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/next-js/">next.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PowerShell-Core" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/howto/">howto</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/01/PowerShell-Core/">PowerShell Core</a>
+    </h1>
+  
+
+        <a href="/2019/06/01/PowerShell-Core/" class="article-date">
+  <time datetime="2019-06-01T12:17:23.000Z" itemprop="datePublished">2019-06-01</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>작업을 시작하기 위해 파워쉘을 열었는데, 평소와는 다른 메시지가 출력됩니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows PowerShell</span><br><span class="line">Copyright (C) Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line"><span class="keyword">Try</span> the new cross-platform PowerShell https://aka.ms/pscore6</span><br></pre></td></tr></table></figure>
+<p>궁금해서 <a href="https://aka.ms/pscore6" target="_blank" rel="noopener">https://aka.ms/pscore6</a> 링크로 이동하니 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell?view=powershell-6#powershell-core" target="_blank" rel="noopener">다양한 버전의 PowerShell 설치 <small>Installing various versions of PowerShell</small></a> 페이지가 열립니다.</p>
+<p>페이지 아래쪽에 PowerShell Core 라는 제목이 보이고 아래와 같은 링크들이 있습니다.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Windows</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Linux</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-macos?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on macOS</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/powershell-core-on-arm?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on ARM</a></li>
+</ul>
+<p>파워쉘은 Windows 에서만 사용할 수 있었는데, 이제 다른 OS에서도 파워쉘을 사용할 수 있습니다.</p>
+<p><a href="https://github.com/powershell/powershell" target="_blank" rel="noopener">GitHub</a> 에서 코드를 공개하고 있습니다.</p>
+<h2 id="설치"><a class="header-anchor" href="#설치"> </a>설치</h2>
+<h3 id="windows-10"><a class="header-anchor" href="#windows-10"> </a>Windows 10</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있습니다.</p>
+<h3 id="linux"><a class="header-anchor" href="#linux"> </a>Linux</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p>
+<p>Ubuntu, Debian 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install powershell</span><br></pre></td></tr></table></figure>
+<p>CentOS, RedHat 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install powershell</span><br></pre></td></tr></table></figure>
+<p>Fedora 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dnf install powershell</span><br></pre></td></tr></table></figure>
+<h3 id="macos"><a class="header-anchor" href="#macos"> </a>macOS</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 Release 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install powershell</span><br></pre></td></tr></table></figure>
+<h3 id="arm"><a class="header-anchor" href="#arm"> </a>ARM</h3>
+<p><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6#deploying-on-windows-iot" target="_blank" rel="noopener">Windows IoT</a> 와 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6#raspbian" target="_blank" rel="noopener">Raspbian</a> 에서 설치하는 방법이 설명되어 있습니다.</p>
+<h2 id="실행"><a class="header-anchor" href="#실행"> </a>실행</h2>
+<p>설치하면서 환경변수 PATH 에 설치되는 위치가 추가되므로 자주 사용하는 터미널 응용프로그램을 열고 <code>PWSH</code> 명령으로 PowerShell Core 를 실행할 수 있습니다.</p>
+<p>시작메뉴에서 검색하면 PowerShell 6 으로 찾을 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-004.png">
+<h2 id="사용"><a class="header-anchor" href="#사용"> </a>사용</h2>
+<p>Windows 10 에서 설치를 진행합니다.</p>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 페이지</a> 에서 PowerShell-6.2.1-win-x64.msi 파일을 다운로드하고 실행하면 간단하게 설치됩니다.</p>
+<p>설치 마법사에서 아래와 같이 환경변수에 설치 경로 추가 등의 항목을 선택하면 간단하게 편리한 환경을 구성할 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-001.png">
+<p>윈도우 파워쉘과 유사한 아이콘이 사용됩니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-002.png">
+<p>터미널을 열고 PWSH 명령으로 PowerShell Core 를 실행하고, PowerShell 명령으로 Windows PowerShell을 실행할 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-003.png">
+<h2 id="visual-studio-code-terminal"><a class="header-anchor" href="#visual-studio-code-terminal"> </a>Visual Studio Code Terminal</h2>
+<p>Visual Studio Code 에서 기본 터미널로 설정하기 위해서 설정창을 열고 <kbd>Ctrl</kbd> + <kbd>,</kbd> 검색창에 terminal 을 입력한 후 <code>Terminal &gt; Integrated &gt; Env:Windows</code> 항목을 찾습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-005.png">
+<p>아래쪽의 Edit in settings.json 링크를 클릭해서 설정 파일을 열고, <code>terminal.integrated.shell.windows</code> 의 값을 PowerShell Core 실행파일의 전체 경로로 변경합니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-006.png">
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe"</span><br></pre></td></tr></table></figure>
+<p>이제 Visual Studio Code 에서 터미널을 열면 <kbd>Ctrl</kbd> + <kbd>`</kbd> 터미널에서 PowerShell Core 가 사용됩니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-007.png">
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="cjyyab46k004z0ch836nop8qr" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powershell/">powershell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">다음 &raquo;</a>
+  </nav>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

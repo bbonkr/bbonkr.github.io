@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Etude Tic tac toe | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.  Tic-tac-toe 게임은 wiki에 소개되어 있는 것과 같이 가로 3, 세로 3개으로 이루어진 칸에 두명이 번갈아 가며 한 칸씩 차지해서 먼저 연속된 3칸을 차지하는 사람이 이기는 게임입니다. 가로, 세로 혹은 대각선으로 연속된 3칸을 차지하면 됩니다. 응용프로그램을 실행하고">
+<meta name="keywords" content="c#,app,.net,windows-forms,github,windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Etude Tic tac toe">
+<meta property="og:url" content="http://bbon.me/2015/01/15/etude0tic-tac-toe/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.  Tic-tac-toe 게임은 wiki에 소개되어 있는 것과 같이 가로 3, 세로 3개으로 이루어진 칸에 두명이 번갈아 가며 한 칸씩 차지해서 먼저 연속된 3칸을 차지하는 사람이 이기는 게임입니다. 가로, 세로 혹은 대각선으로 연속된 3칸을 차지하면 됩니다. 응용프로그램을 실행하고">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2015/01/15/etude0tic-tac-toe/tictactoe.png">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Etude Tic tac toe">
+<meta name="twitter:description" content="Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.  Tic-tac-toe 게임은 wiki에 소개되어 있는 것과 같이 가로 3, 세로 3개으로 이루어진 칸에 두명이 번갈아 가며 한 칸씩 차지해서 먼저 연속된 3칸을 차지하는 사람이 이기는 게임입니다. 가로, 세로 혹은 대각선으로 연속된 3칸을 차지하면 됩니다. 응용프로그램을 실행하고">
+<meta name="twitter:image" content="http://bbon.me/2015/01/15/etude0tic-tac-toe/tictactoe.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-etude0tic-tac-toe" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Repositories/">Repositories</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Etude Tic tac toe
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.</p>
+<img src="/2015/01/15/etude0tic-tac-toe/tictactoe.png" title="tic-tac-toe">
+<p>Tic-tac-toe 게임은 <a href="http://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank" rel="noopener">wiki</a>에 소개되어 있는 것과 같이 가로 3, 세로 3개으로 이루어진 칸에 두명이 번갈아 가며 한 칸씩 차지해서 먼저 연속된 3칸을 차지하는 사람이 이기는 게임입니다.<br>
+가로, 세로 혹은 대각선으로 연속된 3칸을 차지하면 됩니다.</p>
+<p>응용프로그램을 실행하고 내가 사용할 표시를 결정한 후 Start Game 버튼을 클릭하면 게임이 시작됩니다.</p>
+<p>O 를 선택한 경우 선공입니다. 만약 두명이 번갈아가며 게임을 진행하려면 O, X 모두 선택하고 Start Game 버튼을 클릭하면 됩니다.</p>
+<p>먼저 연속된 3칸을 차지하게 되면 게임은 종료됩니다. 혹은 9칸을 모두 사용하였는데 승패를 결정지을 수 없으면 비기는 게임이 됩니다.</p>
+<p>File &gt; Statistics 메뉴를 선택하면 현재까지 진행한 게임수, 승리 및 비긴 게임의 수를 확인할 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/Tic-tac-toe" target="_blank" rel="noopener">Github: Tic-tac-toe</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2015/01/15/etude0tic-tac-toe/" data-id="cjyyab42h00050ch88damvlqj" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net/">.net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/app/">app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-forms/">windows-forms</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/18/naver-works/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Naver Works
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/14/exchange-web-service/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">Exchange Web Service</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

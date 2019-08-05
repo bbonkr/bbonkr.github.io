@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Visual Studio 2017 RC 설치 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="다운로드 페이지에서 온라인 설치 파일을 내려받습니다. 이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.  오프라인 설치파일 준비 명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 layout 옵션을 추가해서 실행합니다. 1PS C:\downloads\&amp;gt; vs_enterprise.exe --layout c:\downloads\vs201">
+<meta name="keywords" content="visual studio,vs,ide,microsoft">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Studio 2017 RC 설치">
+<meta property="og:url" content="http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="다운로드 페이지에서 온라인 설치 파일을 내려받습니다. 이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.  오프라인 설치파일 준비 명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 layout 옵션을 추가해서 실행합니다. 1PS C:\downloads\&amp;gt; vs_enterprise.exe --layout c:\downloads\vs201">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.761Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Visual Studio 2017 RC 설치">
+<meta name="twitter:description" content="다운로드 페이지에서 온라인 설치 파일을 내려받습니다. 이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.  오프라인 설치파일 준비 명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 layout 옵션을 추가해서 실행합니다. 1PS C:\downloads\&amp;gt; vs_enterprise.exe --layout c:\downloads\vs201">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-create-offline-installation-of-visual-studio-2017-rc" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Visual Studio 2017 RC 설치
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>다운로드 페이지에서 온라인 설치 파일을 내려받습니다.<br>
+<small>이 문서에서는 Enterprise 에디션을 내려받아 진행합니다.</small></p>
+<h2 id="오프라인-설치파일-준비"><a class="header-anchor" href="#오프라인-설치파일-준비"> </a>오프라인 설치파일 준비</h2>
+<p>명령 프롬프트를 열고, 온라인 설치 파일을 실행하면서 <strong>layout</strong> 옵션을 추가해서 실행합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>layout 옵션의 매개변수인 오프라인 설치파일 다운로드 경로는 상대경로를 지원하지 않습니다. (2016-12-07 현재)</li>
+<li>오프라인 설치본을 만들때, Android SDK 가 포함되지 않습니다. (2016-12-07 현재)</li>
+</ul>
+</blockquote>
+<p>오프라인 설치본에 포함할 언어를 제한하기 위해서 <strong>lang</strong> 옵션을 사용합니다.</p>
+<p>영문만 포함하려면 아래와 같이 --lang en-US 옵션을 추가합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US</span><br></pre></td></tr></table></figure>
+<p>여러가지 언어를 포함하려면 아래와 같이 --lang 옵션의 매개변수에 포함할 언어의 ISO 코드를 추가합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc --lang en-US ko-KR ja-JP</span><br></pre></td></tr></table></figure>
+<h2 id="설치"><a class="header-anchor" href="#설치"> </a>설치</h2>
+<p>오프라인 설치본이 다운로드된 디렉터리의 내용중 Certificates 디렉터리로 이동합니다.</p>
+<p>디렉터리의 인증서 파일을 모두 설치합니다.<br>
+(윈도우 탐색기에서 인증서 파일을 선택하고, 마우스 오른쪽 버튼을 클릭하여 메뉴를 열고 설치 항목을 선택합니다.)</p>
+<p>그 후, 오프라인 설치본이 다운로드된 디렉터리의 vs_enterprise.exe 파일을 실행합니다.</p>
+<h2 id="업데이트"><a class="header-anchor" href="#업데이트"> </a>업데이트</h2>
+<p>업데이트가 가능한 시점이 되었을 때, 이미 만들어둔 오프라인 설치본이 있는 경로를 대상으로 다시 오프라인 설치본 만들기 명령을 실행합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\downloads\&gt; vs_enterprise.exe --layout c:\downloads\vs2017rc</span><br></pre></td></tr></table></figure>
+<h2 id="관련-페이지"><a class="header-anchor" href="#관련-페이지"> </a>관련 페이지</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/welcome-to-visual-studio" target="_blank" rel="noopener">Visual Studio 문서</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/use-command-line-parameters-to-install-visual-studio" target="_blank" rel="noopener">Visual Studio 온라인 설치 파일의 명령 프롬프트 매개변수</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/visualstudio/install/create-an-offline-installation-of-visual-studio" target="_blank" rel="noopener">Visual Studio 오프라인 설치본 만들기</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/" data-id="cjyyab45h002o0ch8tyubfag3" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">ide</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vs/">vs</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/15/web-storage-api/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Javascript Web Storage API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/18/ios-10/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">iOS 10</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

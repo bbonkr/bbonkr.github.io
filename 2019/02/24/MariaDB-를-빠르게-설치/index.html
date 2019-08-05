@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>MariaDB 를 빠르게 설치 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="도커 Docker Docker는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다. 저는 개발 환경을 준비하기 위해 도커 Docker를 활용하고 있습니다.  도커 설치 설치 파일을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.  이미지 검색 MariaDB 이미지를 검색합니다. 1">
+<meta name="keywords" content="docker,mariadb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MariaDB 를 빠르게 설치">
+<meta property="og:url" content="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="도커 Docker Docker는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다. 저는 개발 환경을 준비하기 위해 도커 Docker를 활용하고 있습니다.  도커 설치 설치 파일을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.  이미지 검색 MariaDB 이미지를 검색합니다. 1">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MariaDB 를 빠르게 설치">
+<meta name="twitter:description" content="도커 Docker Docker는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다. 저는 개발 환경을 준비하기 위해 도커 Docker를 활용하고 있습니다.  도커 설치 설치 파일을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.  이미지 검색 MariaDB 이미지를 검색합니다. 1">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MariaDB-를-빠르게-설치" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/COMPUTING/">COMPUTING</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MariaDB 를 빠르게 설치
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="도커-docker"><a class="header-anchor" href="#도커-docker"> </a>도커 Docker</h2>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a>는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다.</p>
+<p>저는 개발 환경을 준비하기 위해 도커 <small>Docker</small>를 활용하고 있습니다.</p>
+<h2 id="도커-설치"><a class="header-anchor" href="#도커-설치"> </a>도커 설치</h2>
+<p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">설치 파일</a>을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.</p>
+<h2 id="이미지-검색"><a class="header-anchor" href="#이미지-검색"> </a>이미지 검색</h2>
+<p>MariaDB 이미지를 검색합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker search mariadb</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">mariadb                                                   MariaDB is a community-developed fork of MyS…   <span class="number">2596</span>                [OK]</span><br><span class="line">bitnami/mariadb                                           Bitnami MariaDB Docker Image                    <span class="number">86</span>                                      [OK]</span><br><span class="line">linuxserver/mariadb                                       A Mariadb container, brought to you by Linux…   <span class="number">59</span></span><br><span class="line">toughiq/mariadb-cluster                                   Dockerized Automated MariaDB Galera Cluster …   <span class="number">37</span>                                      [OK]</span><br></pre></td></tr></table></figure>
+<h2 id="이미지-다운로드"><a class="header-anchor" href="#이미지-다운로드"> </a>이미지 다운로드</h2>
+<p>공식 이미지를 다운로드합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker pull mariadb</span><br></pre></td></tr></table></figure>
+<h2 id="컨테이너-실행"><a class="header-anchor" href="#컨테이너-실행"> </a>컨테이너 실행</h2>
+<p>다운로드 받은 이미지로 컨테이너를 실행합니다.</p>
+<blockquote>
+<p>컨테이너 실행 인수와 환경변수는 <a href="https://hub.docker.com/_/mariadb" target="_blank" rel="noopener">docker hub mariadb</a>에서 확인할 수 있습니다.</p>
+</blockquote>
+<h2 id="docker-compose"><a class="header-anchor" href="#docker-compose"> </a>docker-compose</h2>
+<p>docker-compose를 사용하면 컨테이너 실행시 복잡하게 입력해야 하는 인수를 미리 준비하고 컨테이너 실행, 중지, 제거 절차를 손쉽게 처리할 수 있습니다.</p>
+<p>적당한 디렉터리에 docker-compose.yml 파일을 아래의 내용으로 작성합니다.</p>
+<p>사용자 프로필 디렉터리에 docker 디렉터리를 만들고 컨테이너 이름에 해당하는 mariadb 디렉터리를 만들었습니다.<br>
+그 안에 config, data 디렉터리를 추가했습니다.<br>
+docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
+<p>사용자 프로필 디렉터리는 윈도우즈 탐색기를 열고 주소창에 %userprofile% 을 입력하면 바로 이동할 수 있습니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; tree .</span><br><span class="line">C:\USERS\&#123;username&#125;\DOCKER</span><br><span class="line">└─mariadb</span><br><span class="line">├─config</span><br><span class="line">└─<span class="keyword">data</span></span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml 파일의 내용입니다.</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">    db:</span></span><br><span class="line"><span class="attr">        container_name:</span> <span class="string">mariadb</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">mariadb:latest</span></span><br><span class="line"><span class="attr">        restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line"><span class="attr">        volumes:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/c/Users/&#123;username&#125;/docker/mariadb/data:/var/lib/mysql</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/c/Users/&#123;username&#125;/docker/mariadb/config:/etc/mysql/conf.d</span></span><br><span class="line"><span class="attr">        environment:</span></span><br><span class="line"><span class="attr">            MYSQL_ROOT_PASSWORD:</span> <span class="string">&#123;</span> <span class="string">password</span> <span class="string">&#125;</span></span><br><span class="line"><span class="attr">            TZ:</span> <span class="string">Asia/Seoul</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>{username}: 윈도우즈 사용자 계정이름으로 변경이 필요합니다.<br>
+{password}: mariadb root 계정의 비밀번호로 변경이 필요합니다. (원하는 값으로 변경합니다.)</p>
+</blockquote>
+<p>mariadb/config 디렉터리에는 미리 구성한 cnf 파일을 추가합니다.</p>
+<p>제가 사용하는 문자셋과 정렬을 구성한 mariadb.cnf 파일의 내용은 아래와 같습니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MariaDB-specific config file.</span></span><br><span class="line"><span class="comment"># Read by /etc/mysql/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># Default is Latin1, if you need UTF-8 set this (also in server section)</span></span><br><span class="line"><span class="comment">#default-character-set = utf8</span></span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># * Character sets</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default is Latin1, if you need UTF-8 set all this (also in client section)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#character-set-server  = utf8</span></span><br><span class="line"><span class="comment">#collation-server      = utf8_general_ci</span></span><br><span class="line"><span class="comment">#character_set_server   = utf8</span></span><br><span class="line"><span class="comment">#collation_server       = utf8_general_ci</span></span><br><span class="line"><span class="comment"># Import all .cnf files from configuration directory</span></span><br><span class="line"><span class="attr">character-set-client-handshake</span> = <span class="literal">FALSE</span></span><br><span class="line"><span class="attr">character-set-server</span> = utf8mb4</span><br><span class="line"><span class="attr">collation-server</span> = utf8mb4_unicode_ci</span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/mariadb.conf.d/</span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml 파일을 작성했으면, 해당 파일이 있는 위치에서 아래 명령으로 컨테이너는 작성하고 실행합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>컨테이너 상태를 확인하려면 ps 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose ps</span><br><span class="line">The system cannot find the path specified.</span><br><span class="line"> Name               Command             State           Ports</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">mariadb   docker-entrypoint.sh mysqld   Up      <span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">3306</span>-&gt;<span class="number">3306</span>/tcp</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 중지하려면 stop 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose stop</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 시작하려면 start 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose start</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 제거하려면 down 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps&gt; docker-compose down</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="cjyyab46a00490ch8c7pj996x" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/07/Microsoft-Store-File-Rename-App/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Microsoft Store File Rename App
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/09/rename-app/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">Rename App</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

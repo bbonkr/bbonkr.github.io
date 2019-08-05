@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>React Native Get Started really #2 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 👈 시작하기 정말? #3  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta name="keywords" content="react-native,rn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native Get Started really #2">
+<meta property="og:url" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 👈 시작하기 정말? #3  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native Get Started really #2">
+<meta name="twitter:description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 👈 시작하기 정말? #3  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-React-Native-Get-Started-really-2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React Native Get Started really #2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://facebook.github.io/react-native/docs/getting-started" target="_blank" rel="noopener">React Native Getting Started</a> 페이지의 내용을 따라하면서 발생한 문제들입니다.</p>
+<ul>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-1/">시작하기 정말? #1</a></li>
+<li>시작하기 정말? #2 👈</li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-3/">시작하기 정말? #3</a></li>
+</ul>
+<p>기본적인 설치 및 구성은 페이지를 보며 진행했습니다.</p>
+<p>저의 환경은 macOS 10.14.5 입니다.</p>
+<p>Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습니다.</p>
+<p>Node, XCode, Android Studio 가 설치되어 있습니다.</p>
+<ul>
+<li>Node v11.7.0</li>
+<li>npm v6.5.0</li>
+<li>Xcode v10.2.1 (10E1001), XCode command line tools installed</li>
+<li>Android Studio v3.4, Android SDK installed</li>
+</ul>
+<p>Xamarin 으로 작성된 모바일 응용프로그램을 React Native 로 재작성하기 위해 프로젝트를 만들었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init ScoreBoard</span><br></pre></td></tr></table></figure>
+<p>보통은 스캐폴딩된 프로젝트가 바로 실행이 가능하니, 바로 실행해 봤습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br><span class="line">info Starting JS server...</span><br><span class="line">info Installing the app...</span><br><span class="line"></span><br><span class="line">&gt; Configure project :app</span><br><span class="line">File /Users/bbon/.android/repositories.cfg could not be loaded.</span><br><span class="line">Checking the license <span class="keyword">for</span> package Android SDK Build-Tools 28.0.3 <span class="keyword">in</span> /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx/licenses</span><br><span class="line">Warning: License <span class="keyword">for</span> package Android SDK Build-Tools 28.0.3 not accepted.</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring project <span class="string">':app'</span>.</span><br><span class="line">&gt; Failed to install the following Android SDK packages as some licences have not been accepted.</span><br><span class="line">     build-tools;28.0.3 Android SDK Build-Tools 28.0.3</span><br><span class="line">  To build this project, accept the SDK license agreements and install the missing components using the Android Studio SDK Manager.</span><br><span class="line">  Alternatively, to transfer the license agreements from one workstation to another, see http://d.android.com/r/studio-ui/<span class="built_in">export</span>-licenses.html</span><br><span class="line"></span><br><span class="line">  Using Android SDK: /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more <span class="built_in">log</span> output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more <span class="built_in">help</span> at https://help.gradle.org</span><br><span class="line"></span><br><span class="line">BUILD FAILED <span class="keyword">in</span> 10s</span><br><span class="line"></span><br><span class="line">error Failed to install the app. Please accept all necessary SDK licenses using SDK Manager: <span class="string">"<span class="variable">$ANDROID_HOME</span>/tools/bin/sdkmanager --licenses"</span>. Run CLI with --verbose flag <span class="keyword">for</span> more details.</span><br><span class="line">Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring project <span class="string">':app'</span>.</span><br><span class="line">&gt; Failed to install the following Android SDK packages as some licences have not been accepted.</span><br><span class="line">     build-tools;28.0.3 Android SDK Build-Tools 28.0.3</span><br><span class="line">  To build this project, accept the SDK license agreements and install the missing components using the Android Studio SDK Manager.</span><br><span class="line">  Alternatively, to transfer the license agreements from one workstation to another, see http://d.android.com/r/studio-ui/<span class="built_in">export</span>-licenses.html</span><br><span class="line"></span><br><span class="line">  Using Android SDK: /Users/bbon/Library/Developer/Xamarin/android-sdk-macosx</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more <span class="built_in">log</span> output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more <span class="built_in">help</span> at https://help.gradle.org</span><br><span class="line"></span><br><span class="line">BUILD FAILED <span class="keyword">in</span> 10s</span><br><span class="line"></span><br><span class="line">    at checkExecSyncError (child_process.js:625:11)</span><br><span class="line">    at execFileSync (child_process.js:643:13)</span><br><span class="line">    at runOnAllDevices (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/runOnAllDevices.js:75:39)</span><br><span class="line">    at buildAndRun (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:137:41)</span><br><span class="line">    at then.result (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:103:12)</span><br><span class="line">    at processTicksAndRejections (internal/process/next_tick.js:81:5)</span><br></pre></td></tr></table></figure>
+<p>Android Studio 를 설치하고 실행하지 않아 안드로이드 SDK 라이선스 사용에 대한 동의를 하지 않아 발생한 문제로 보여집니다.</p>
+<p>아래 명령으로 안드로이드 SDK 라이선스 사용 동의를 진행할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="variable">$ANDROID_HOME</span>/tools/bin/sdkmanager --licenses</span><br></pre></td></tr></table></figure>
+<p>이후 정상적으로 실행이 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="cjyyab46m00520ch8wxfutc36" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/13/React-Native-Get-Started-really-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          React Native Get Started really #3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/13/React-Native-Get-Started-really-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">React Native Get Started really #1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

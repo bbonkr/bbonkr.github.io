@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>React Native Get Started really #3 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 시작하기 정말? #3 👈  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta name="keywords" content="react-native,rn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native Get Started really #3">
+<meta property="og:url" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 시작하기 정말? #3 👈  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-001.png">
+<meta property="og:image" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-002.png">
+<meta property="og:image" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-003.png">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native Get Started really #3">
+<meta name="twitter:description" content="React Native Getting Started 페이지의 내용을 따라하면서 발생한 문제들입니다.  시작하기 정말? #1 시작하기 정말? #2 시작하기 정말? #3 👈  기본적인 설치 및 구성은 페이지를 보며 진행했습니다. 저의 환경은 macOS 10.14.5 입니다. Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습">
+<meta name="twitter:image" content="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-001.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-React-Native-Get-Started-really-3" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React Native Get Started really #3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://facebook.github.io/react-native/docs/getting-started" target="_blank" rel="noopener">React Native Getting Started</a> 페이지의 내용을 따라하면서 발생한 문제들입니다.</p>
+<ul>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-1/">시작하기 정말? #1</a></li>
+<li><a href="/2019/07/13/React-Native-Get-Started-really-2/">시작하기 정말? #2</a></li>
+<li>시작하기 정말? #3 👈</li>
+</ul>
+<p>기본적인 설치 및 구성은 페이지를 보며 진행했습니다.</p>
+<p>저의 환경은 macOS 10.14.5 입니다.</p>
+<p>Expo 는 사용하지 않고, React Native CLI 로 프로젝트를 스캐폴딩했습니다.</p>
+<p>Node, XCode, Android Studio 가 설치되어 있습니다.</p>
+<ul>
+<li>Node v11.7.0</li>
+<li>npm v6.5.0</li>
+<li>Xcode v10.2.1 (10E1001), XCode command line tools installed</li>
+<li>Android Studio v3.4, Android SDK installed</li>
+</ul>
+<p>Xamarin 으로 작성된 모바일 응용프로그램을 React Native 로 재작성하기 위해 프로젝트를 만들었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init ScoreBoard</span><br></pre></td></tr></table></figure>
+<p>이제 서랍장 형식으로 동작하는 메뉴를 작성하기 위해 <a href="https://facebook.github.io/react-native/docs/navigation" target="_blank" rel="noopener">네비게이션</a> 관련 패키지 추가하고 실행하니 또 문제가 발생합니다.</p>
+<p><code>react-native-gesture-handler</code> 패키지는 네이티브 코드가 포함되어 있습니다.<br>
+따라서 link 명령으로 해당 내용을 각 플랫폼 프로젝트에 추가되어야 합니다.</p>
+<p><a href="https://facebook.github.io/react-native/docs/navigation" target="_blank" rel="noopener">페이지의 설명</a>대로 아래 명령을 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native link react-native-gesture-handler</span><br></pre></td></tr></table></figure>
+<p>안드로이드 가상장치에서 확인하기 위해 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br><span class="line">react-native run-android</span><br><span class="line">error React Native CLI uses autolinking <span class="keyword">for</span> native dependencies, but the following modules are linked manually:</span><br><span class="line">  - react-native-gesture-handler (to unlink run: <span class="string">"react-native unlink react-native-gesture-handler"</span>)</span><br><span class="line">This is likely happening when upgrading React Native from below 0.60 to 0.60 or above. Going forward, you can unlink this dependency via <span class="string">"react-native unlink &lt;dependency&gt;"</span> and it will be included <span class="keyword">in</span> your app automatically. If a library isn<span class="string">'t compatible with autolinking, disregard this message and notify the library maintainers.</span></span><br><span class="line"><span class="string">Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md</span></span><br><span class="line"><span class="string">info Starting JS server...</span></span><br><span class="line"><span class="string">info Installing the app...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; Task :react-native-gesture-handler:compileDebugJavaWithJavac FAILED</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.</span></span><br><span class="line"><span class="string">Use '</span>--warning-mode all<span class="string">' to show the individual deprecation warnings.</span></span><br><span class="line"><span class="string">See https://docs.gradle.org/5.4.1/userguide/command_line_interface.html#sec:command_line_warnings</span></span><br><span class="line"><span class="string">14 actionable tasks: 2 executed, 12 up-to-date</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerStateChangeEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">Note: /Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.java uses or overrides a deprecated API.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:deprecation for details.</span></span><br><span class="line"><span class="string">Note: Some input files use unchecked or unsafe operations.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:unchecked for details.</span></span><br><span class="line"><span class="string">6 errors</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">FAILURE: Build failed with an exception.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* What went wrong:</span></span><br><span class="line"><span class="string">Execution failed for task '</span>:react-native-gesture-handler:compileDebugJavaWithJavac<span class="string">'.</span></span><br><span class="line"><span class="string">&gt; Compilation failed; see the compiler error output for details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Try:</span></span><br><span class="line"><span class="string">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Get more help at https://help.gradle.org</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">BUILD FAILED in 5s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">error Failed to install the app. Make sure you have the Android development environment set up: https://facebook.github.io/react-native/docs/getting-started.html#android-development-environment. Run CLI with --verbose flag for more details.</span></span><br><span class="line"><span class="string">Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:3: error: package android.support.v4.util does not exist</span></span><br><span class="line"><span class="string">import android.support.v4.util.Pools;</span></span><br><span class="line"><span class="string">                              ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:19: error: package Pools does not exist</span></span><br><span class="line"><span class="string">  private static final Pools.SynchronizedPool&lt;RNGestureHandlerStateChangeEvent&gt; EVENTS_POOL =</span></span><br><span class="line"><span class="string">                            ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerStateChangeEvent.java:20: error: package Pools does not exist</span></span><br><span class="line"><span class="string">          new Pools.SynchronizedPool&lt;&gt;(TOUCH_EVENTS_POOL_SIZE);</span></span><br><span class="line"><span class="string">                   ^</span></span><br><span class="line"><span class="string">Note: /Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/react/RNGestureHandlerButtonViewManager.java uses or overrides a deprecated API.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:deprecation for details.</span></span><br><span class="line"><span class="string">Note: Some input files use unchecked or unsafe operations.</span></span><br><span class="line"><span class="string">Note: Recompile with -Xlint:unchecked for details.</span></span><br><span class="line"><span class="string">6 errors</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">FAILURE: Build failed with an exception.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* What went wrong:</span></span><br><span class="line"><span class="string">Execution failed for task '</span>:react-native-gesture-handler:compileDebugJavaWithJavac<span class="string">'.</span></span><br><span class="line"><span class="string">&gt; Compilation failed; see the compiler error output for details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Try:</span></span><br><span class="line"><span class="string">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* Get more help at https://help.gradle.org</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">BUILD FAILED in 5s</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at checkExecSyncError (child_process.js:625:11)</span></span><br><span class="line"><span class="string">    at execFileSync (child_process.js:643:13)</span></span><br><span class="line"><span class="string">    at runOnAllDevices (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/runOnAllDevices.js:75:39)</span></span><br><span class="line"><span class="string">    at buildAndRun (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:137:41)</span></span><br><span class="line"><span class="string">    at then.result (/Users/bbon/Repos/scoreboard-rn/ScoreBoard/node_modules/@react-native-community/cli-platform-android/build/commands/runAndroid/index.js:103:12)</span></span><br><span class="line"><span class="string">    at processTicksAndRejections (internal/process/next_tick.js:81:5)</span></span><br></pre></td></tr></table></figure>
+<p>출력된 에러 메시지 관련 내용으로 검색된 <a href="https://github.com/kmagiera/react-native-gesture-handler/issues/510" target="_blank" rel="noopener">깃허브 이슈</a> 페이지에서 방법을 제시합니다.</p>
+<p><a href="https://www.npmjs.com/package/jetifier" target="_blank" rel="noopener">jetifier 패키지</a>를 설치하고, 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install jetifier</span><br><span class="line">$ npx jetify</span><br></pre></td></tr></table></figure>
+<p>다시 link 명령을 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native link react-native-gesture-handler</span><br></pre></td></tr></table></figure>
+<p>이제 정상적으로 실행됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native run-android</span><br></pre></td></tr></table></figure>
+<p>iOS 가상장치에서도 빌드 문제가 발생해서, pod 으로 의존 패키지를 다시 설치하도록 한 후 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ios</span><br><span class="line">$ pod install</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ react-native run-ios</span><br></pre></td></tr></table></figure>
+<p>정상적으로 실행됩니다.</p>
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-001.png">
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-002.png">
+<img src="/2019/07/13/React-Native-Get-Started-really-3/react-native-3-2019-07-12-003.png">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="cjyyab49800bd0ch8vhpjycyj" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/23/React-Native-Score-Board/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          회고 React Native Score Board
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/13/React-Native-Get-Started-really-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">React Native Get Started really #2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

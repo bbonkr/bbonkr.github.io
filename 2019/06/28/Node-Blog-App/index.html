@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Node Blog App | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.  기술 스택 Technology stack  Node.js  Express Express는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다. 프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.  Passport Passport는 No">
+<meta name="keywords" content="node.js,react,next.js,redux,redux-saga,ant.design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node Blog App">
+<meta property="og:url" content="http://bbon.me/2019/06/28/Node-Blog-App/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.  기술 스택 Technology stack  Node.js  Express Express는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다. 프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.  Passport Passport는 No">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2019/06/28/Node-Blog-App/001.png">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.781Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node Blog App">
+<meta name="twitter:description" content="Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.  기술 스택 Technology stack  Node.js  Express Express는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다. 프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.  Passport Passport는 No">
+<meta name="twitter:image" content="http://bbon.me/2019/06/28/Node-Blog-App/001.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Node-Blog-App" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Project/">Project</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node Blog App
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.</p>
+<h2 id="기술-스택-small-technology-stack-small"><a class="header-anchor" href="#기술-스택-small-technology-stack-small"> </a>기술 스택 <small>Technology stack</small></h2>
+<h3 id="node-js"><a class="header-anchor" href="#node-js"> </a>Node.js</h3>
+<h4 id="express"><a class="header-anchor" href="#express"> </a>Express</h4>
+<p><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다.</p>
+<p>프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.</p>
+<h4 id="passport"><a class="header-anchor" href="#passport"> </a>Passport</h4>
+<p><a href="http://www.passportjs.org/" target="_blank" rel="noopener">Passport</a>는 Node.js에서 사용되는 인증 프레임워크입니다.</p>
+<p>이번 프로젝트에서는 정의된 모델을 사용하는 로컬 인증을 사용합니다.</p>
+<h4 id="sequelize"><a class="header-anchor" href="#sequelize"> </a>Sequelize</h4>
+<p><a href="http://docs.sequelizejs.com/" target="_blank" rel="noopener">Sequelize</a>는 프로미스 기반의 Node.js ORM <small>Object-relational mapping</small> 입니다.</p>
+<p>이번 프로젝트의 데이터베이스관리시스템 <small>DBMS</small>은 MariaDB를 사용합니다.</p>
+<h3 id="react"><a class="header-anchor" href="#react"> </a>React</h3>
+<p><a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>는 <a href="https://www.facebook.com/react" target="_blank" rel="noopener">페이스북</a>에서 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">오픈소스</a>로 개발을 진행중인 사용자 인터페이스 <small>UI, User Interface</small> 작성을 위한 자바스크립트 라이브러리입니다.</p>
+<p>이번 프로젝트에서는 가능하면 컴포넌트를 클래스를 선언하지 않고 함수 컴포넌트만으로 작성하고, 훅 <small>Hook</small>으로 상태 <small>State</small>관리 및 React 기능을 사용하는 것이 목표입니다.</p>
+<h4 id="next-js"><a class="header-anchor" href="#next-js"> </a>Next.js</h4>
+<p><a href="https://nextjs.org" target="_blank" rel="noopener">Next.js</a>는 React 를 사용해서 싱글 페이지 응용프로그램 <small>SPA Single Page Application</small> 을 작성하고, 검색엔진최적화 <small>SEO Search Engine Optimaizaion</small>을 위해 서버 사이드 렌더링 <small>SSR Server Side Rendering</small>과 파일 시스템 기반 라우팅, 자동 코드 스플릿팅 등 많은 기능을 제공해주는 프레임워크입니다.</p>
+<h4 id="react-redux"><a class="header-anchor" href="#react-redux"> </a>React Redux</h4>
+<p><a href="https://react-redux.js.org/" target="_blank" rel="noopener">React Redux</a>는 Redux 저장소의 데이터를 읽고, 저장소의 작업을 보내 데이터를 업데이트하는 형식으로 상태를 관리할 수 있습니다.</p>
+<p>React Hook을 지원해서 (<code>useSelector</code>, <code>useDispatch</code>) 함수형 컴포넌트에서도 문제없이 사용할 수 있습니다.</p>
+<h4 id="redux-saga"><a class="header-anchor" href="#redux-saga"> </a>Redux-Saga</h4>
+<p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga</a>로 Redux 작업을 비동기로 처리합니다.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="noopener">제너레이터 Generator</a>로 비동기 처리를 구현한 것이 매우 흥미롭습니다.</p>
+<h4 id="styled-components"><a class="header-anchor" href="#styled-components"> </a>styled components</h4>
+<p><a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>는 컴포넌트 작성 때 인라인 스타일로 적용하면 코드 가독성이 나빠지고, 속성의 이름을 css와 다르게 작성해야하는 점을 해결해 줍니다.</p>
+<p>컴포넌트 코드 파일에 인라인 스타일을 적용할 수 밖에 없을 때에 사용합니다.</p>
+<h4 id="ant-design"><a class="header-anchor" href="#ant-design"> </a>Ant Design</h4>
+<p>React 로 사용자 인터페이스를 구성하기 위한 컴포넌트 작성시 어떻게 보여줄 것인가를 생각하는 것은 생각보다 시간이 많이 걸립니다.</p>
+<p>작은 프로젝트를 혼자 진행할 때에는 더욱 시간이 많이 걸립니다. 이럴 때 전문가의 도움을 받으면 시간을 많이 절약할 수 있습니다.</p>
+<p>이 프로젝트에서는 전반적으로 Ant Design 팀의 디자인 가이드 라인을 따르며 컴포넌트 디자인을 사용했습니다.</p>
+<h3 id="docker"><a class="header-anchor" href="#docker"> </a>Docker</h3>
+<p>응용프로그램을 게시하기 위해서 도커 이미지를 작성하고, 개인적으로 사용중인 시놀로지 디스크 스테이션에서 도커 컨테이너를 실행하고 있습니다.</p>
+<p><a href="https://sample-sns.bbon.me" target="_blank" rel="noopener">데모 사이트</a>에서 동작을 확인할 수 있습니다.</p>
+<img src="/2019/06/28/Node-Blog-App/001.png">
+<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
+<p>약 한달간 프로젝트를 진행하며 React에 재미를 붙였습니다.</p>
+<p>의존성으로 추가되어 사용중인 패키지는 대부분 사용 방법에 대한 문서가 잘 제공되어 큰 문제없이 진행되었습니다.</p>
+<p>그 중 가장 시간이 많이 걸렸던 부분은 Next.js 구성에 포함된 Webpack 에 대한 부분이었습니다.<br>
+시간이 많이 걸리며 구성을 변경하고, 확인을 진행하다 보니 대부분 Next.js 에서 기본값으로 구성해 놓은 것들이었습니다.<br>
+그래서, 거의 구성 코드가 없습니다.</p>
+<p>ORM 으로 사용된 Sequelize는 기능을 너무 많이 제공해서 어렵게 느껴지는 부분이 많았습니다.</p>
+<p>next.js는 아주 편리한 프레임워크로 생각됩니다.<br>
+그리고, 정적 파일 생성 기능을 제공(<code>next export</code>)해서 간단한 페이지 작성시 자주 사용할 것 같습니다.</p>
+<p>코드는 <a href="https://github.com/bbonkr/nodeblog" target="_blank" rel="noopener">GitHub</a>에서 확인할 수 있습니다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="cjyyab46b004d0ch8jqzrd16f" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ant-design/">ant.design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/next-js/">next.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/29/python-mysqlclient-패키지-설치/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Python mysqlclient 패키지 설치 문제
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/01/PowerShell-Core/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">PowerShell Core</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Visual Studio 2017 에서 원격 저장소를 대상으로 push 명령을 실행하면, 아래와 유사한 오류가 발생합니다.  아래와 유사한 내용을 출력창에서 확인할 수 있습니다.  Error encountered while pushing to the remote repository: Git failed with a fatal error. PushComman">
+<meta name="keywords" content=".net,git,troubleshooting,visualstudio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생">
+<meta property="og:url" content="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Visual Studio 2017 에서 원격 저장소를 대상으로 push 명령을 실행하면, 아래와 유사한 오류가 발생합니다.  아래와 유사한 내용을 출력창에서 확인할 수 있습니다.  Error encountered while pushing to the remote repository: Git failed with a fatal error. PushComman">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/error-git-visual-studio-2017-001.png">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생">
+<meta name="twitter:description" content="Visual Studio 2017 에서 원격 저장소를 대상으로 push 명령을 실행하면, 아래와 유사한 오류가 발생합니다.  아래와 유사한 내용을 출력창에서 확인할 수 있습니다.  Error encountered while pushing to the remote repository: Git failed with a fatal error. PushComman">
+<meta name="twitter:image" content="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/error-git-visual-studio-2017-001.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-error-git-on-visual-studio-2017" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Visual Studio 2017 에서 원격 저장소를 대상으로 <strong>push</strong> 명령을 실행하면, 아래와 유사한 오류가 발생합니다.</p>
+<img src="/2017/08/16/error-git-on-visual-studio-2017/error-git-visual-studio-2017-001.png">
+<p>아래와 유사한 내용을 출력창에서 확인할 수 있습니다.</p>
+<blockquote>
+<p><span class="text-danger">Error encountered while pushing to the remote repository: Git failed with a fatal error.</span><br>
+PushCommand.ExecutePushCommand</p>
+</blockquote>
+<p>커뮤니티에서는 Visual Studio 확장 중 Git for Windows 에 포함된 Git core 에 openSSL 관련 파일이 원인으로 추정되고 있습니다.</p>
+<h2 id="해결방법"><a class="header-anchor" href="#해결방법"> </a>해결방법</h2>
+<p>Visual Studio 2017 이 설치된 디렉터리로 이동합니다.</p>
+<p><code>[Visual Studio 2017 디렉터리]\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin</code> 디렉터리에 있는 <strong>libeay32.dll</strong>, <strong>ssleay32.dll</strong> 파일을 <code>[Visual Studio 2017 디렉터리]\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\libexec\git-core</code> 디렉터리로 복사합니다.</p>
+<p>그 후 Visual Studio 2017 에서 커밋을 만들고, 원격 저장소로 전송합니다.</p>
+<h3 id="visual-studio-2017-enterprise-의-경우-예제"><a class="header-anchor" href="#visual-studio-2017-enterprise-의-경우-예제"> </a>Visual Studio 2017 Enterprise 의 경우 예제</h3>
+<ol>
+<li>윈도우 탐색기를 열고, <code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\bin</code> 디렉터리로 이동합니다.</li>
+<li>아래 두 파일을 선택하고 복사합니다.
+<ol>
+<li><strong>libeay32.dll</strong></li>
+<li><strong>ssleay32.dll</strong></li>
+</ol>
+</li>
+<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\mingw32\libexec\git-core</code> 디렉터리로 이동합니다.</li>
+<li>붙여넣기합니다.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/" data-id="cjyyab45r00370ch8mnqe9vjr" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net/">.net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/troubleshooting/">troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visualstudio/">visualstudio</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/19/ios-11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          iOS 11
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/13/function-password-mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">Mysql Password 함수</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

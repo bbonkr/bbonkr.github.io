@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Mysql Password 함수 | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mysql Password 함수">
+<meta name="keywords" content="mysql,password,function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql Password 함수">
+<meta property="og:url" content="http://bbon.me/2017/07/13/function-password-mysql/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Mysql Password 함수">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql Password 함수">
+<meta name="twitter:description" content="Mysql Password 함수">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-function-password-mysql" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mysql Password 함수
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MySql 의 PASSWORD 함수는 해시값을 계산한 문자열을 반환하는 함수입니다.</p>
+<p>비밀번호를 처리할 때 많이 사용됩니다. 실제 서버의 계정 비밀번호도 PASSWORD 함수를 사용해서 처리하게 됩니다.</p>
+<blockquote>
+<p>주의<br>
+해시가 계산된 값이 4.1.0 이전 버전과 4.1.1 이후 버전이 다릅니다.<br>
+<a href="https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html" target="_blank" rel="noopener">Password Hashing in MySQL</a> 페이지 참조하십시오.</p>
+</blockquote>
+<p>4.1.1 이후 버전에서 PASSWORD 함수 결과는 아래와 같습니다.<br>
+결과는 문자열입니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello');</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>결과<br>
+<code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p>
+</blockquote>
+<p>PASSWORD 함수의 동작에 대한 내용을 <a href="https://www.pythian.com/blog/hashing-algorithm-in-mysql-password-2/" target="_blank" rel="noopener">HASHING ALGORITHM IN MYSQL PASSWORD()</a> 페이지에서 찾을 수 있습니다.</p>
+<p>위 링크 페이지의 내용에서는 아래와 같이 동일한 값을 얻을 수 있다고 합니다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello') as result</span><br><span class="line">union all</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'*'</span>, <span class="keyword">convert</span>(<span class="keyword">sha1</span>(<span class="keyword">unhex</span>(<span class="keyword">sha1</span>(<span class="string">'hello'</span>))) <span class="keyword">USING</span> utf8));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code><br>
+<code>*6b4f89a54e2d27ecd7e8da05b4ab8fd9d1d8b119</code></p>
+</blockquote>
+<p>password 함수는 sha1 해시 값을 다시 sha1 해시 값을 계산한 값을 문자열로 표현하고, ‘<code>*</code>’ 을 앞에 붙인 것과 동일합니다.</p>
+<p>기존 시스템이 MySql 로 운영되고 있을 때, 이를 다른 DBMS로 이관을 해야하면 문자열을 그대로 이관하고, PASSWORD 함수와 동일한 동작을 할 수 있는 해시 함수를 작성해서 처리할 수 있습니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">GenerateMySQLHash</span>(<span class="params"><span class="keyword">string</span> key</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] keyArray = Encoding.UTF8.GetBytes(key);</span><br><span class="line">    SHA1Managed enc = <span class="keyword">new</span> SHA1Managed();</span><br><span class="line">    <span class="keyword">byte</span>[] encodedKey = enc.ComputeHash(enc.ComputeHash(keyArray));</span><br><span class="line">    StringBuilder myBuilder = <span class="keyword">new</span> StringBuilder(encodedKey.Length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">byte</span> b <span class="keyword">in</span> encodedKey)</span><br><span class="line">    &#123;</span><br><span class="line">        myBuilder.Append(b.ToString(<span class="string">"X2"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"*"</span> + myBuilder.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GenerateMySQLHash(<span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>결과<br>
+<code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2017/07/13/function-password-mysql/" data-id="cjyyab45p00350ch8hfutzbov" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/password/">password</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/16/error-git-on-visual-studio-2017/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/29/ios-10.3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">iOS 10.3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

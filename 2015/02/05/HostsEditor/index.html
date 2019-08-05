@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>HostsEditor | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="개요 Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다. 메모장(Notepad.exe) 프로그램을 찾아서 관리자 권한으로 실행하고, 파일 메뉴의 열기 명령으로 파일 선택창을 열고 %windir%\system32\drivers\etc\hosts 파일을 선택하는게 귀찮아서 시작된 프로젝트입니다.  시스템 요구사항  Windows OS .Net">
+<meta name="keywords" content="c#,app,csharp,.net,windows-forms,github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HostsEditor">
+<meta property="og:url" content="http://bbon.me/2015/02/05/HostsEditor/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="개요 Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다. 메모장(Notepad.exe) 프로그램을 찾아서 관리자 권한으로 실행하고, 파일 메뉴의 열기 명령으로 파일 선택창을 열고 %windir%\system32\drivers\etc\hosts 파일을 선택하는게 귀찮아서 시작된 프로젝트입니다.  시스템 요구사항  Windows OS .Net">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HostsEditor">
+<meta name="twitter:description" content="개요 Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다. 메모장(Notepad.exe) 프로그램을 찾아서 관리자 권한으로 실행하고, 파일 메뉴의 열기 명령으로 파일 선택창을 열고 %windir%\system32\drivers\etc\hosts 파일을 선택하는게 귀찮아서 시작된 프로젝트입니다.  시스템 요구사항  Windows OS .Net">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-HostsEditor" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Repositories/">Repositories</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HostsEditor
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="개요"><a class="header-anchor" href="#개요"> </a>개요</h2>
+<p>Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다.</p>
+<p>메모장(Notepad.exe) 프로그램을 찾아서 관리자 권한으로 실행하고, 파일 메뉴의 열기 명령으로 파일 선택창을 열고 <code>%windir%\system32\drivers\etc\hosts</code> 파일을 선택하는게 귀찮아서 시작된 프로젝트입니다.</p>
+<h2 id="시스템-요구사항"><a class="header-anchor" href="#시스템-요구사항"> </a>시스템 요구사항</h2>
+<ul>
+<li>Windows OS</li>
+<li>.Net Framework 4.0</li>
+</ul>
+<p>Windows 7인 경우 .Net Framework 4.0설치 필요, Windows 8 이후 OS인 경우 그냥 실행.</p>
+<h2 id="사용법"><a class="header-anchor" href="#사용법"> </a>사용법</h2>
+<p>프로그램을 실행하면 권한 상승을 위해 관리자 권한으로 실행창이 열리고 허용하면 프로그램이 시작됩니다.<br>
+프로그램이 열렸으면 이미 편집하기 위한 Hosts 파일의 내용이 텍스트박스에 보여집니다.</p>
+<p><strong>편집</strong>하고, <strong>저장</strong>! <strong>끝</strong>!</p>
+<p><a href="https://github.com/bbonkr/HostsEditor" target="_blank" rel="noopener">Github: HostsEditor</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2015/02/05/HostsEditor/" data-id="cjyyab42a00010ch8xr4rqx5q" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net/">.net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/app/">app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/csharp/">csharp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-forms/">windows-forms</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/05/lotto-mk-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          Lotto mk 2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/18/naver-works/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">Naver Works</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>회고 React Native Score Board | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="React Native로 자바스크립트와 리액트로 모바일 응용프로그램을 작성할 수 있습니다. 최근 0.60 버전의 변경점  AndroidX 지원 CocoaPods 통합 패키지의 자동 링크   개요 Xamarin 으로 작성했던 너와 나의 점수판 Score Board 모바일 응용프로그램을 React Native 로 다시 작성했습니다. GitHub: scorebo">
+<meta name="keywords" content="ios,android,redux,redux-saga,xamarin,react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="회고 React Native Score Board">
+<meta property="og:url" content="http://bbon.me/2019/07/23/React-Native-Score-Board/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="React Native로 자바스크립트와 리액트로 모바일 응용프로그램을 작성할 수 있습니다. 최근 0.60 버전의 변경점  AndroidX 지원 CocoaPods 통합 패키지의 자동 링크   개요 Xamarin 으로 작성했던 너와 나의 점수판 Score Board 모바일 응용프로그램을 React Native 로 다시 작성했습니다. GitHub: scorebo">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="회고 React Native Score Board">
+<meta name="twitter:description" content="React Native로 자바스크립트와 리액트로 모바일 응용프로그램을 작성할 수 있습니다. 최근 0.60 버전의 변경점  AndroidX 지원 CocoaPods 통합 패키지의 자동 링크   개요 Xamarin 으로 작성했던 너와 나의 점수판 Score Board 모바일 응용프로그램을 React Native 로 다시 작성했습니다. GitHub: scorebo">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-React-Native-Score-Board" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Project/">Project</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      회고 React Native Score Board
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native</a>로 자바스크립트와 <a href="https://reactjs.org/" target="_blank" rel="noopener">리액트</a>로 모바일 응용프로그램을 작성할 수 있습니다.</p>
+<p>최근 0.60 버전의 변경점</p>
+<ul>
+<li>AndroidX 지원</li>
+<li>CocoaPods 통합</li>
+<li>패키지의 자동 링크</li>
+</ul>
+<h2 id="개요"><a class="header-anchor" href="#개요"> </a>개요</h2>
+<p>Xamarin 으로 작성했던 <a href="https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard" target="_blank" rel="noopener">너와 나의 점수판 Score Board</a> 모바일 응용프로그램을 React Native 로 다시 작성했습니다.</p>
+<p><a href="https://github.com/bbonkr/scoreboard" target="_blank" rel="noopener">GitHub: scoreboard</a> 저장소에서 코드를 확인할 수 있습니다.</p>
+<p>가상장치에서 실행한 화면을 <a href="https://github.com/bbonkr/scoreboard/blob/master/README.md" target="_blank" rel="noopener">공유</a>합니다.</p>
+<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
+<p>코드를 작성하면서 가장 힘들었던 부분은 npm 패키지 중 플랫폼별 코드가 포함된 패키지의 링크입니다.</p>
+<p>0.60 이후 버전에 추가된 패키지 자동링크 기능이 잘 동작하도록 정리된 패키지는 문제가 없는데, 아직 적용전이거나, 적용중인 패키지는 링크 명령으로 구성 반영이 잘 되지 않아 직접해야 하는 경우가 있습니다.</p>
+<p>다행히 대부분 패키지에서 문서를 잘 제공해줍니다.</p>
+<p>AndroidX 지원 때문인지 링크 명령으로 구성을 적용한 후 마이그레이션을 직접해야 하는 경우도 있습니다.</p>
+<blockquote>
+<p><a href="https://www.npmjs.com/package/jetifier" target="_blank" rel="noopener">npm jetifier</a> 패키지로 편리하게 처리할 수 있습니다.</p>
+</blockquote>
+<p>UI는 리액트로 작성합니다. 매우 빠르게 작성이 가능하지만 flex 로 구성하는 레이아웃은 생각을 많이 해야 합니다.</p>
+<blockquote>
+<p>함수형 컴포넌트, Hooks API를 지원합니다.</p>
+</blockquote>
+<p>Hot Loading은 화면을 작성하면서 바로 확인이 가능해서 매우 편리합니다.</p>
+<blockquote>
+<p>Xamarin 에서 제공될 기능도 매우 기대됩니다.<br>
+<a href="https://devblogs.microsoft.com/xamarin/xaml-hot-reload/" target="_blank" rel="noopener">Announcing XAML Hot Reload for Xamarin.Forms</a></p>
+</blockquote>
+<p>저에게는 React Native 보다 Xamarin.Forms 가 빠르게 원하는 기능 구현이 가능하다고 생각됩니다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="cjyyab46o00570ch8vqw2f448" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          How to separate projects in asp net core web application
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/13/React-Native-Get-Started-really-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">React Native Get Started really #3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

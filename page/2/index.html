@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>{bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{bbon}">
+<meta property="og:url" content="http://bbon.me/page/2/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{bbon}">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-너와-나의-점수판-Score-Board-App" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/repository/">repository</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/너와-나의-점수판-Score-Board-App/">너와 나의 점수판 Score Board App</a>
+    </h1>
+  
+
+        <a href="/2019/04/24/너와-나의-점수판-Score-Board-App/" class="article-date">
+  <time datetime="2019-04-24T12:04:10.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>경기 점수를 어디에서나 편리하게 기록하는 것을 지원하기 위한 응용프로그램입니다.</p>
+<p>축구 동호회, 탁구 동호회 등 1점씩 득점을 처리하는 경기에 최적화 되어 있습니다.</p>
+<p>모든 기능을 무료로 사용하세요. 😃</p>
+<h2 id="다운로드"><a class="header-anchor" href="#다운로드"> </a>다운로드</h2>
+<p><a href="https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener">@Google Play</a></p>
+<p><a href="https://www.microsoft.com/store/apps/9P7VPGXBGPWJ?cid=storebadge&amp;ocid=badge" target="_blank" rel="noopener">@Microsoft Store</a></p>
+<h2 id="사용법"><a class="header-anchor" href="#사용법"> </a>사용법</h2>
+<h3 id="경기-목록"><a class="header-anchor" href="#경기-목록"> </a>경기 목록</h3>
+<p>지금까지 기록한 경기 목록입니다.</p>
+<img src="/2019/04/24/너와-나의-점수판-Score-Board-App/score-board-app-002.png">
+<h3 id="경기-추가"><a class="header-anchor" href="#경기-추가"> </a>경기 추가</h3>
+<p>오른쪽 위에 있는 ➕ 버튼을 탭하면 경기 정보를 입력해서 항목을 추가할 수 있습니다.</p>
+<img src="/2019/04/24/너와-나의-점수판-Score-Board-App/score-board-app-003.png">
+<h3 id="점수판"><a class="header-anchor" href="#점수판"> </a>점수판</h3>
+<p>팀 별로 ➕ 버튼을 탭하면 점수가 1 증가하고, ➖ 버튼을 탭하면 점수가 1 감소합니다.</p>
+<p>점수의 최소값은 0이며 0보다 작은 점수는 입력할 수 없습니다.</p>
+<img src="/2019/04/24/너와-나의-점수판-Score-Board-App/score-board-app-004.png">
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="cjyyab46800450ch88rqqka6v" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free/">free</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/score-board/">score board</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-10/">windows 10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/점수판/">점수판</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Microsoft-Store-File-Rename-App" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/repository/">repository</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/07/Microsoft-Store-File-Rename-App/">Microsoft Store File Rename App</a>
+    </h1>
+  
+
+        <a href="/2019/04/07/Microsoft-Store-File-Rename-App/" class="article-date">
+  <time datetime="2019-04-07T11:55:14.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>다수의 파일이름을 일괄 변경하기 위해 사용하는 응용프로그램입니다.</p>
+<p>Windows 10 에서만 사용할 수 있습니다.</p>
+<p><a href="https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot%3Aoverviewtab#" target="_blank" rel="noopener">Microsoft Store</a> 에서 응용프로그램을 설치합니다.</p>
+<p>파일이름을 변경하기 위해 네가지 방법을 제공합니다.</p>
+<p>문자열 치환 접두어 추가 접미어 추가 정규식으로 치환</p>
+<p>정규식으로 치환은 <a href="https://docs.microsoft.com/ko-kr/dotnet/standard/base-types/regular-expressions" target="_blank" rel="noopener">.NET 정규식 페이지</a>에서 원하는 규칙을 찾기 위한 패턴의 자세한 정보를 얻을 수 있습니다.</p>
+<p>스토어에서 제공되는 스크린샷 중 다섯번째 이미지와 같이 정규식을 사용해서 원하는 이름으로 변경할 수 있습니다.</p>
+<h2 id="사용방법"><a class="header-anchor" href="#사용방법"> </a>사용방법</h2>
+<p>아래 순서로 파일이름을 일괄변경할 수 있습니다.</p>
+<ol>
+<li>이름을 변경할 파일을 추가합니다.
+<ol>
+<li>파일 추가 버튼을 클릭해서 이름 변경 대상 파일 목록을 추가합니다. 이 때, 목록은 초기화된 후 파일 목록이 추가됩니다.</li>
+<li>윈도우 탐색기에서 파일을 선택한 후 파일 추가 버튼으로 드래그 앤 드롭합니다. 이 때, 목록은 초기화되지 않고 대상파일이 추가됩니다.</li>
+</ol>
+</li>
+<li>파일이름 변경 방법을 선택합니다.</li>
+<li>변경할 조건을 입력합니다.
+<ol>
+<li>문자열 치환 첫번째 입력항목에 찾을 조건을 입력하고, 두번째 입력항목에 변경될 문자열을 입력합니다.</li>
+<li>접두어 추가 입력항목에 추가할 문자열을 입력합니다.</li>
+<li>접미어 추가 입력항목에 추가할 문자열을 입력합니다.</li>
+<li>정규식으로 치환 첫번째 입력항목에 찾을 조건에 해당하는 정규식 패턴을 입력하고, 두번째 입력항목에 변경될 문자열 또는 패턴을 입력합니다.</li>
+</ol>
+</li>
+<li>미리보기 버튼을 클릭해서 원하는 이름으로 변경되는지 확인합니다.</li>
+<li>이름변경 버튼을 클릭해서 이름변경을 실행합니다.</li>
+</ol>
+<h2 id="평가-및-리뷰"><a class="header-anchor" href="#평가-및-리뷰"> </a>평가 및 리뷰</h2>
+<p><a href="https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot%3Aoverviewtab#" target="_blank" rel="noopener">리뷰 페이지</a>에서 평가하거나 리뷰를 남길 수 있습니다.</p>
+<h2 id="주의사항"><a class="header-anchor" href="#주의사항"> </a>주의사항</h2>
+<p>시스템 파일을 이 응용프로그램을 사용해서 이름 변경을 시도하지 마십시오.</p>
+<h2 id="변경사항"><a class="header-anchor" href="#변경사항"> </a>변경사항</h2>
+<h3 id="1-0-2"><a class="header-anchor" href="#1-0-2"> </a>1.0.2</h3>
+<p>정규식으로 치환시 정규식 작성을 위한 문자가 입력되지 않던 문제를 수정했습니다.</p>
+<ul>
+<li>문자열 치환, 접두어 추가, 접미어 추가시에는 Windows 파일시스템에서 파일이름으로 사용 가능한 문자만 입력할 수 있습니다.</li>
+<li>정규식으로 치환시 Windows 파일시스템에서 파일이름으로 사용 불가능한 문자로 치환을 시도하는 경우 파일이름 변경이 실패합니다.</li>
+</ul>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="cjyyab46d004g0ch8gfnr9xox" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-rename-app/">file rename app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freeware/">freeware,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utilities/">utilities</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-store/">windows store</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MariaDB-를-빠르게-설치" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/COMPUTING/">COMPUTING</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/24/MariaDB-를-빠르게-설치/">MariaDB 를 빠르게 설치</a>
+    </h1>
+  
+
+        <a href="/2019/02/24/MariaDB-를-빠르게-설치/" class="article-date">
+  <time datetime="2019-02-24T11:44:52.000Z" itemprop="datePublished">2019-02-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="도커-docker"><a class="header-anchor" href="#도커-docker"> </a>도커 Docker</h2>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a>는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다.</p>
+<p>저는 개발 환경을 준비하기 위해 도커 <small>Docker</small>를 활용하고 있습니다.</p>
+<h2 id="도커-설치"><a class="header-anchor" href="#도커-설치"> </a>도커 설치</h2>
+<p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">설치 파일</a>을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.</p>
+<h2 id="이미지-검색"><a class="header-anchor" href="#이미지-검색"> </a>이미지 검색</h2>
+<p>MariaDB 이미지를 검색합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker search mariadb</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">mariadb                                                   MariaDB is a community-developed fork of MyS…   <span class="number">2596</span>                [OK]</span><br><span class="line">bitnami/mariadb                                           Bitnami MariaDB Docker Image                    <span class="number">86</span>                                      [OK]</span><br><span class="line">linuxserver/mariadb                                       A Mariadb container, brought to you by Linux…   <span class="number">59</span></span><br><span class="line">toughiq/mariadb-cluster                                   Dockerized Automated MariaDB Galera Cluster …   <span class="number">37</span>                                      [OK]</span><br></pre></td></tr></table></figure>
+<h2 id="이미지-다운로드"><a class="header-anchor" href="#이미지-다운로드"> </a>이미지 다운로드</h2>
+<p>공식 이미지를 다운로드합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker pull mariadb</span><br></pre></td></tr></table></figure>
+<h2 id="컨테이너-실행"><a class="header-anchor" href="#컨테이너-실행"> </a>컨테이너 실행</h2>
+<p>다운로드 받은 이미지로 컨테이너를 실행합니다.</p>
+<blockquote>
+<p>컨테이너 실행 인수와 환경변수는 <a href="https://hub.docker.com/_/mariadb" target="_blank" rel="noopener">docker hub mariadb</a>에서 확인할 수 있습니다.</p>
+</blockquote>
+<h2 id="docker-compose"><a class="header-anchor" href="#docker-compose"> </a>docker-compose</h2>
+<p>docker-compose를 사용하면 컨테이너 실행시 복잡하게 입력해야 하는 인수를 미리 준비하고 컨테이너 실행, 중지, 제거 절차를 손쉽게 처리할 수 있습니다.</p>
+<p>적당한 디렉터리에 docker-compose.yml 파일을 아래의 내용으로 작성합니다.</p>
+<p>사용자 프로필 디렉터리에 docker 디렉터리를 만들고 컨테이너 이름에 해당하는 mariadb 디렉터리를 만들었습니다.<br>
+그 안에 config, data 디렉터리를 추가했습니다.<br>
+docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
+<p>사용자 프로필 디렉터리는 윈도우즈 탐색기를 열고 주소창에 %userprofile% 을 입력하면 바로 이동할 수 있습니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; tree .</span><br><span class="line">C:\USERS\&#123;username&#125;\DOCKER</span><br><span class="line">└─mariadb</span><br><span class="line">├─config</span><br><span class="line">└─<span class="keyword">data</span></span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml 파일의 내용입니다.</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">    db:</span></span><br><span class="line"><span class="attr">        container_name:</span> <span class="string">mariadb</span></span><br><span class="line"><span class="attr">        image:</span> <span class="attr">mariadb:latest</span></span><br><span class="line"><span class="attr">        restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line"><span class="attr">        volumes:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/c/Users/&#123;username&#125;/docker/mariadb/data:/var/lib/mysql</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">/c/Users/&#123;username&#125;/docker/mariadb/config:/etc/mysql/conf.d</span></span><br><span class="line"><span class="attr">        environment:</span></span><br><span class="line"><span class="attr">            MYSQL_ROOT_PASSWORD:</span> <span class="string">&#123;</span> <span class="string">password</span> <span class="string">&#125;</span></span><br><span class="line"><span class="attr">            TZ:</span> <span class="string">Asia/Seoul</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>{username}: 윈도우즈 사용자 계정이름으로 변경이 필요합니다.<br>
+{password}: mariadb root 계정의 비밀번호로 변경이 필요합니다. (원하는 값으로 변경합니다.)</p>
+</blockquote>
+<p>mariadb/config 디렉터리에는 미리 구성한 cnf 파일을 추가합니다.</p>
+<p>제가 사용하는 문자셋과 정렬을 구성한 mariadb.cnf 파일의 내용은 아래와 같습니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MariaDB-specific config file.</span></span><br><span class="line"><span class="comment"># Read by /etc/mysql/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># Default is Latin1, if you need UTF-8 set this (also in server section)</span></span><br><span class="line"><span class="comment">#default-character-set = utf8</span></span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span> = utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># * Character sets</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default is Latin1, if you need UTF-8 set all this (also in client section)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#character-set-server  = utf8</span></span><br><span class="line"><span class="comment">#collation-server      = utf8_general_ci</span></span><br><span class="line"><span class="comment">#character_set_server   = utf8</span></span><br><span class="line"><span class="comment">#collation_server       = utf8_general_ci</span></span><br><span class="line"><span class="comment"># Import all .cnf files from configuration directory</span></span><br><span class="line"><span class="attr">character-set-client-handshake</span> = <span class="literal">FALSE</span></span><br><span class="line"><span class="attr">character-set-server</span> = utf8mb4</span><br><span class="line"><span class="attr">collation-server</span> = utf8mb4_unicode_ci</span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/mariadb.conf.d/</span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml 파일을 작성했으면, 해당 파일이 있는 위치에서 아래 명령으로 컨테이너는 작성하고 실행합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>컨테이너 상태를 확인하려면 ps 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose ps</span><br><span class="line">The system cannot find the path specified.</span><br><span class="line"> Name               Command             State           Ports</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">mariadb   docker-entrypoint.sh mysqld   Up      <span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">3306</span>-&gt;<span class="number">3306</span>/tcp</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 중지하려면 stop 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose stop</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 시작하려면 start 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS&gt; docker-compose start</span><br></pre></td></tr></table></figure>
+<p>컨테이너를 제거하려면 down 명령을 사용합니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps&gt; docker-compose down</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="cjyyab46a00490ch8c7pj996x" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-rename-app" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/computing/">computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/09/rename-app/">Rename App</a>
+    </h1>
+  
+
+        <a href="/2019/02/09/rename-app/" class="article-date">
+  <time datetime="2019-02-09T06:53:37.000Z" itemprop="datePublished">2019-02-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.</p>
+<h2 id="변경방법"><a class="header-anchor" href="#변경방법"> </a>변경방법</h2>
+<p>파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.</p>
+<ul>
+<li>입력값으로 치환</li>
+<li>앞에 추가</li>
+<li>뒤에 추가</li>
+<li>정규식으로 치환</li>
+</ul>
+<h3 id="입력값으로-치환"><a class="header-anchor" href="#입력값으로-치환"> </a>입력값으로 치환</h3>
+<p>파일이름에서 찾을 문자열에 입력된 문자열을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
+<h3 id="앞에-추가"><a class="header-anchor" href="#앞에-추가"> </a>앞에 추가</h3>
+<p>파일이름의 앞에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
+<h3 id="뒤에-추가"><a class="header-anchor" href="#뒤에-추가"> </a>뒤에 추가</h3>
+<p>파일이름의 뒤에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
+<h3 id="정규식으로-치환"><a class="header-anchor" href="#정규식으로-치환"> </a>정규식으로 치환</h3>
+<p>파일이름에서 찾는 정규식에 입력된 패턴을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
+<h2 id="사용방법"><a class="header-anchor" href="#사용방법"> </a>사용방법</h2>
+<ol>
+<li>Open files 버튼을 클릭하고 이름을 일괄 변경할 파일들을 선택합니다.</li>
+<li>변경 방법을 선택합니다.</li>
+<li>변경할 문자열 또는 추가할 문자열을 입력합니다.</li>
+<li>Preview 버튼을 클릭해서 미리보기를 확인합니다.</li>
+<li>Rename 버튼을 클릭해서 파일이름을 변경합니다.</li>
+</ol>
+<img src="/2019/02/09/rename-app/rename-app-001.png">
+<img src="/2019/02/09/rename-app/rename-app-002.png">
+<img src="/2019/02/09/rename-app/rename-app-003.png">
+<img src="/2019/02/09/rename-app/rename-app-004.png">
+<blockquote>
+<p>정규식은 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D" target="_blank" rel="noopener">자바스트립트의 정규식 가이드</a>를 참조하십시오.</p>
+</blockquote>
+<h2 id="설치파일"><a class="header-anchor" href="#설치파일"> </a>설치파일</h2>
+<p><a href="https://github.com/bbonkr/renameapp/releases/latest" target="_blank" rel="noopener">Release 페이지</a> 에서 최신 설치파일을 얻을 수 있습니다.</p>
+<p><s>macos 에서 동작 오류를 발견해서 macos 실행파일은 제공하지 않습니다.</s> <a href="https://github.com/bbonkr/renameapp/tree/macos-fix-1" target="_blank" rel="noopener">mac-fix-1 브랜치</a>에서 해결되었습니다.</p>
+<blockquote>
+<p>Macos 에서의 파일이름 처리때문에 발생한 문제이고, 파일이름 문자열을 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize" target="_blank" rel="noopener">String.prototype.normalize()</a> 함수로 해결할 수 있습니다.</p>
+<p>한글로 된 파일이름을 콘솔에 출력하면 macos 에서는 <code>테스트.txt</code> 로 보이지만, 다른 OS에서는 <code>ㅌㅔㅅㅡㅌㅡ.txt</code>와 같이 출력됩니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line">&gt;</span><br><span class="line">&gt; <span class="keyword">let</span> extension = path.extname(somepath);</span><br><span class="line">&gt; <span class="keyword">let</span> filename = path.basename(somepath, extension);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(filename); <span class="comment">// ㅌㅔㅅㅡㅌㅡ</span></span><br><span class="line">&gt; filename = filename.normalize();</span><br><span class="line">&gt; <span class="built_in">console</span>.log(filename); <span class="comment">// 테스트</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>참조 <small>관련된 사항은 아니지만 흥미로운 주제라 링크를 남깁니다</small></p>
+<ul>
+<li><a href="https://mathiasbynens.be/notes/javascript-unicode" target="_blank" rel="noopener">JavaScript has a Unicode problem</a></li>
+<li><a href="https://superuser.com/questions/999232/unicode-filenames-in-windows-vs-mac-os-x" target="_blank" rel="noopener">Unicode filenames in Windows vs. Mac OS X</a></li>
+</ul>
+</blockquote>
+<h2 id="저장소"><a class="header-anchor" href="#저장소"> </a>저장소</h2>
+<p><a href="https://github.com/bbonkr/renameapp" target="_blank" rel="noopener">GitHub: renameapp</a> 사이트에서 전체 내용을 확인할 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/renameapp/issues" target="_blank" rel="noopener">Issue 페이지</a>에서 이슈를 등록하실 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/renameapp/pulls" target="_blank" rel="noopener">PR <small>Pull Request</small></a>은 언제나 환영합니다.</p>
+<h2 id="빌드"><a class="header-anchor" href="#빌드"> </a>빌드</h2>
+<p>Rename app 응용프로그램은 <a href="https://electronjs.org/" target="_blank" rel="noopener">Electron</a>을 기반으로 UI 는 <a href="https://reactjs.org/" target="_blank" rel="noopener">react</a> 와 <a href="https://getbootstrap.com/" target="_blank" rel="noopener">bootstrap</a> 을 사용하여 작성되었습니다.</p>
+<p>직접 빌드해서 사용하시려면 아래와 같이 진행하십시오.</p>
+<h3 id="의존-npm-패키지를-설치"><a class="header-anchor" href="#의존-npm-패키지를-설치"> </a>의존 npm 패키지를 설치</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn</span><br></pre></td></tr></table></figure>
+<h3 id="electron-renderer-빌드"><a class="header-anchor" href="#electron-renderer-빌드"> </a>Electron Renderer 빌드</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build:prod</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn build:prod</span><br></pre></td></tr></table></figure>
+<h3 id="실행"><a class="header-anchor" href="#실행"> </a>실행</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run start</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn start</span><br></pre></td></tr></table></figure>
+<h3 id="실행파일-빌드"><a class="header-anchor" href="#실행파일-빌드"> </a>실행파일 빌드</h3>
+<h4 id="윈도우즈-실행파일"><a class="header-anchor" href="#윈도우즈-실행파일"> </a>윈도우즈 실행파일</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run pack:win</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn pack:win</span><br></pre></td></tr></table></figure>
+<h4 id="맥오에스-실행파일"><a class="header-anchor" href="#맥오에스-실행파일"> </a>맥오에스 실행파일</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run pack:mac</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn pack:mac</span><br></pre></td></tr></table></figure>
+<h3 id="설치파일-빌드"><a class="header-anchor" href="#설치파일-빌드"> </a>설치파일 빌드</h3>
+<h4 id="윈도우즈-설치파일"><a class="header-anchor" href="#윈도우즈-설치파일"> </a>윈도우즈 설치파일</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run installer:win</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn installer:win</span><br></pre></td></tr></table></figure>
+<h4 id="맥오에스-설치파일"><a class="header-anchor" href="#맥오에스-설치파일"> </a>맥오에스 설치파일</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run installer:mac</span><br></pre></td></tr></table></figure>
+<p>또는</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn installer:mac</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="cjyyab46i004s0ch8ihu031p4" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-start-vscode-on-teminal-on-macos-md" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/08/start-vscode-on-teminal-on-macos-md/">Start Visual Studio Code on Teminal on Macos</a>
+    </h1>
+  
+
+        <a href="/2019/01/08/start-vscode-on-teminal-on-macos-md/" class="article-date">
+  <time datetime="2019-01-08T09:48:22.000Z" itemprop="datePublished">2019-01-08</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<img src="/2019/01/08/start-vscode-on-teminal-on-macos-md/001.png">
+<p>명령 파레트를 열고 (<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>), <code>Shell Command: Install 'code' command in PATH</code>를 선택합니다.</p>
+<p>이제 터미널 앱에서 Visual Studio Code를 실행할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ code .</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="cjyyab46700410ch8xsc1ewns" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/">macos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ios-12.1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/31/ios-12.1/">iOS 12.1</a>
+    </h1>
+  
+
+        <a href="/2018/10/31/ios-12.1/" class="article-date">
+  <time datetime="2018-10-30T15:00:00.000Z" itemprop="datePublished">2018-10-31</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>iOS 12.1 업데이트는 그룹 FaceTime을 새로 선보이고, 70개 이상의 새로운 이모티콘을 추가하며, iPhone XS, iPhone XS Max 및 iPhone XR에서 eSIM으로 듀얼 SIM 사용을 지원합니다. 또한, 이 업데이트는 오류 수정 및 기능 향상을 포함합니다.</p>
+<h2 id="그룹-facetime"><a class="header-anchor" href="#그룹-facetime"> </a>그룹 FaceTime</h2>
+<ul>
+<li>최대 32명의 사람과 동시에 영상 및 음성 통화를 할 수 있음</li>
+<li>종단간 암호화로 대화를 비공개로 유지함</li>
+<li>그룹 메시지 대화에서 바로 그룹 FaceTime을 시작하거나, 통화 중인 그룹 통화에도 언제든지 참여할 수 있음</li>
+</ul>
+<h2 id="이모티콘"><a class="header-anchor" href="#이모티콘"> </a>이모티콘</h2>
+<ul>
+<li>빨간 머리, 회색 머리, 곱슬머리를 가진 새로운 캐릭터, 새로운 대머리 이모티콘, 다양한 웃는 얼굴과 동물, 스포츠, 음식을 나타내는 이모티콘 등 70개가 넘는 이모티콘 캐릭터를 추가함</li>
+</ul>
+<h2 id="듀얼-sim-지원"><a class="header-anchor" href="#듀얼-sim-지원"> </a>듀얼 SIM 지원</h2>
+<ul>
+<li>iPhone XS, iPhone XS Max 및 iPhone XR에서 eSIM으로 듀얼 SIM 사용을 지원하여 한 기기에서 두 개의 전화번호를 사용할 수 있음</li>
+</ul>
+<h2 id="기타-기능-향상-및-오류-수정"><a class="header-anchor" href="#기타-기능-향상-및-오류-수정"> </a>기타 기능 향상 및 오류 수정</h2>
+<ul>
+<li>iPhone XS, iPhone XS Max 및 iPhone XR의 카메라 미리보기에 심도 제어를 추가함</li>
+<li>iPhone XS, iPhone XS Max 및 iPhone XR의 셀룰러 연결성을 향상함</li>
+<li>Face ID 또는 Touch ID를 사용하여 자녀의 스크린 타임 암호를 변경하거나 재설정할 수 있음</li>
+<li>iPhone XS, iPhone XS Max 및 iPhone XR의 전면 사진에서 가끔 가장 선명한 참조 프레임이 선택되지 않는 문제를 수정함</li>
+<li>두 명의 사용자가 여러 대의 iPhone에서 동일한 Apple ID로 로그인한 경우 메시지가 하나의 스레드로 병합되는 문제를 고침</li>
+<li>일부 음성 메시지가 전화 앱에 표시되지 않는 오류를 수정함</li>
+<li>전화 앱에서 전화번호가 연락처 이름 없이 표시되는 문제를 해결함</li>
+<li>스크린 타임이 활동 리포트에 특정 웹 사이트에 관한 사항을 리포트하지 않는 문제를 고침</li>
+<li>가족 공유에서 가족 구성원을 추가하거나 삭제할 수 없는 오류를 수정함</li>
+<li>iPhone X, iPhone 8 및 iPhone 8 Plus의 경우 기기가 예기치 않게 종료될 때 이를 방지하는 성능 관리 기능을 추가함. 이 기능은 비활성화할 수도 있음</li>
+<li>‘배터리 성능 상태’에 iPhone XS, iPhone XS Max 및 iPhone XR이 Apple 정품 배터리를 사용하는지 확인할 수 없음을 사용자에게 알리는 기능을 추가함</li>
+<li>카메라, Siri 및 Safari에서 VoiceOver 기능의 안정성을 향상함</li>
+<li>일부 기업용 사용자의 경우 ‘MDM 기기 등록’에서 유효하지 않은 프로파일 오류를 리포트하는 문제를 수정함</li>
+</ul>
+<p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p>
+<p><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="cjyyab462003r0ch8n77jbnyp" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ios-12.0.1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/09/ios-12.0.1/">iOS 12.0.1</a>
+    </h1>
+  
+
+        <a href="/2018/10/09/ios-12.0.1/" class="article-date">
+  <time datetime="2018-10-08T15:00:00.000Z" itemprop="datePublished">2018-10-09</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>iOS 12.0.1 업데이트는 iPhone 또는 iPad의 오류 수정 및 기능 향상을 포함합니다. 이 업데이트의 세부사항은 다음과 같습니다.</p>
+<ul>
+<li>일부 iPhone XS 기기를 Lightning 케이블에 연결했을 때 즉시 충전되지 않는 문제를 수정함</li>
+<li>iPhone XS 기기가 Wi-Fi 네트워크에 다시 연결될 때 5GHz 대신 2.4GHz에 연결되는 문제를 해결함</li>
+<li>iPad 키보드에서 ‘.?123’ 키를 원래 위치로 복원함<br>
+일부 비디오 앱에서 자막이 표시되지 않는 문제를 수정함</li>
+<li>Bluetooth를 사용할 수 없게 되는 문제를 고침</li>
+</ul>
+<p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p>
+<p><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a><br>
+​</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="cjyyab463003u0ch8nybge4rm" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ios-12" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/ios-12/">iOS 12</a>
+    </h1>
+  
+
+        <a href="/2018/09/18/ios-12/" class="article-date">
+  <time datetime="2018-09-17T15:00:00.000Z" itemprop="datePublished">2018-09-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다. 사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다. 애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
+<p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p>
+<p><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>
+<p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다.<br>
+사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다.<br>
+애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
+<p>이 업데이트는 다음과 같은 새로운 기능 및 개선사항을 포함합니다.</p>
+<h2 id="성능"><a class="header-anchor" href="#성능"> </a>성능</h2>
+<ul>
+<li>더 빨라진 iOS의 속도 및 시스템 간의 반응성</li>
+<li>iPhone 5s 및 iPad Air를 포함하여 지원되는 모든 기기의 성능이 향상됨</li>
+<li>카메라가 최대 70% 빠르게 실행되며 키보드가 최대 50% 빠르게 표시되고 입력 반응 속도도 향상됨*</li>
+<li>기기에서 많은 작업을 수행하고 있을 때도 앱이 최대 두 배 빠르게 실행됨</li>
+</ul>
+<h2 id="사진"><a class="header-anchor" href="#사진"> </a>사진</h2>
+<ul>
+<li>추천 사진, 효과 제안 등으로 사용자의 보관함에서 멋진 사진을 발견할 수 있는 새로운 For You 탭</li>
+<li>사진 속의 사람들에게 사진을 공유할 수 있도록 주도적으로 추천해주는 공유 제안</li>
+<li>지능적인 제안과 여러 가지 키워드가 지원되어 사진을 좀 더 손쉽게 찾을 수 있는 검색 개선사항</li>
+<li>사용자가 있던 장소, 상호명, 이벤트 및 촬영한 시간을 기반으로 사진 검색 가능</li>
+<li>더 빨라진 카메라 가져오기 및 새로운 미리보기 크게 보기 모드</li>
+<li>이미지 편집을 위한 RAW 지원</li>
+</ul>
+<h2 id="카메라"><a class="header-anchor" href="#카메라"> </a>카메라</h2>
+<ul>
+<li>인물 사진 모드가 향상되어 무대 조명 및 무대 조명 모노 효과를 사용할 때 물체와 배경 간에 정교한 디테일 보존 가능</li>
+<li>카메라 프레임이 하이라이트되어 스캔하기 더 쉬워진 QR 코드</li>
+</ul>
+<h2 id="메시지"><a class="header-anchor" href="#메시지"> </a>메시지</h2>
+<ul>
+<li>애니모티콘 중에서도 좀 더 사용자화할 수 있고 다양하고 재미있게 개인에게 맞춤화된 캐릭터로 메시지를 좀 더 표현력 있게 바꿀 수 있는 미모티콘</li>
+<li>애니모티콘에 티라노사우루스, 유령, 코알라, 호랑이 포함</li>
+<li>이제 미모티콘 및 애니모티콘으로 윙크와 혀 내밀기 가능</li>
+<li>애니모티콘, 필터, 텍스트 효과, iMessage 스티커 팩, 도형을 메시지에서 찍은 사진 및 비디오로 가져올 수 있는 새로운 카메라 효과</li>
+<li>최대 30초까지 촬영할 수 있는 애니모티콘</li>
+</ul>
+<h2 id="스크린-타임"><a class="header-anchor" href="#스크린-타임"> </a>스크린 타임</h2>
+<ul>
+<li>사용자와 가족 구성원들이 앱과 웹 사이트 이용 시간의 올바른 균형을 유지할 수 있도록 자세한 정보 및 도구를 제공하는 스크린 타임</li>
+<li>앱을 사용하는 시간, 앱 카테고리별 사용 내용, 알림 받는 횟수, 기기를 들어올리는 횟수 보기</li>
+<li>사용자나 사용자의 자녀가 앱 및 웹 사이트를 이용하는 시간을 제한할 수 있는 앱 시간 제한</li>
+<li>자녀용 스크린 타임을 통해 부모의 iOS 기기에서 자녀가 iPhone 및 iPad를 사용하는 시간을 관리할 수 있음</li>
+</ul>
+<h2 id="방해금지-모드"><a class="header-anchor" href="#방해금지-모드"> </a>방해금지 모드</h2>
+<ul>
+<li>설정한 시간, 위치 또는 캘린더 이벤트 이후 방해금지 모드 끄기</li>
+<li>취침 시간 동안 방해금지 모드를 설정하면 잠자기 상태에 있는 동안 잠금 화면에서 모든 알림 가려짐</li>
+</ul>
+<h2 id="알림"><a class="header-anchor" href="#알림"> </a>알림</h2>
+<ul>
+<li>동일한 앱에서 울리는 알림이 자동으로 그룹화되어 알림을 관리하기 쉬워짐</li>
+<li>잠금 화면에서 바로 알림 설정을 제어할 수 있는 인스턴트 튜닝</li>
+<li>사용자를 방해하지 않고 알림 센터에 직접 알림을 조용히 전달하는 새로운 ‘조용히 전달’ 옵션</li>
+</ul>
+<h2 id="siri"><a class="header-anchor" href="#siri"> </a>Siri</h2>
+<ul>
+<li>Siri로 동작하는 앱의 기능을 빠르게 수행할 수 있는 Siri 단축어</li>
+<li>지원되는 앱에서 ‘Siri에 추가’ 버튼을 사용하거나 설정 &gt; Siri 및 검색에서 단축어 추가</li>
+<li>잠금 화면 및 검색에서 Siri가 단축어 제안</li>
+<li>포뮬러 1, Nascar, Indy 500 및 MotoGP의 모터스포츠 결과, 일정, 통계 및 순위 정보 얻기</li>
+<li>사진 앱에서 시간, 장소, 사람, 주제 또는 최근 여행별로 사진을 검색하여 관련 사진 및 추억 찾기</li>
+<li>더 많은 언어 구문 번역, 40개 이상의 언어 지원</li>
+<li>유명 인사의 출생지 같은 정보 확인 및 칼로리, 영양소 정보 등의 음식 관련 질문</li>
+<li>손전등 켜기 또는 끄기</li>
+<li>아일랜드 영어, 남아프리카 영어, 덴마크어, 노르웨이어, 광둥어, 북경어(대만)에 대해 더욱 자연스럽고 표현력 좋은 음성 지원</li>
+</ul>
+<h2 id="증강-현실-augmented-reality"><a class="header-anchor" href="#증강-현실-augmented-reality"> </a>증강 현실(Augmented Reality)</h2>
+<ul>
+<li>ARKit 2에서 공유된 경험을 바탕으로 친구들과 함께 즐길 수 있는 혁신적인 AR 앱을 개발자들이 구현 가능</li>
+<li>지속성을 통해 개발자들이 사용자가 멈춘 곳에서 바로 저장하고 다시 로드할 수 있도록 활성화</li>
+<li>개발자들이 현실 물체를 인식하고 공간을 이동하면서 이미지를 추적할 수 있도록 하는 물체 감지 및 이미지 추적</li>
+<li>AR 훑어보기를 통해 iOS 주변에 AR을 펼쳐 사용자가 News, Safari, 파일과 같은 내장 앱으로 AR 대상체를 보고 iMessage 및 Mail로 친구들과 공유 가능</li>
+</ul>
+<h2 id="측정"><a class="header-anchor" href="#측정"> </a>측정</h2>
+<ul>
+<li>물체 및 공간을 측정할 수 있는 새로운 증강 현실 앱</li>
+<li>표면이나 비어있는 공간을 따라 선을 그어 측정하고, 선의 레이블을 탭하여 추가 정보 확인</li>
+<li>직사각형 물체를 자동으로 측정</li>
+<li>측정한 화면을 캡처, 공유 및 마크업</li>
+</ul>
+<h2 id="개인-정보-보호-및-보안"><a class="header-anchor" href="#개인-정보-보호-및-보안"> </a>개인 정보 보호 및 보안</h2>
+<ul>
+<li>Safari에서 강화된 지능형 추적 방지를 통해 내장된 콘텐츠 및 소셜 미디어 버튼이 사용자의 승인 없이는 사이트 간 브라우징 추적을 하지 않도록 방지</li>
+<li>광고업체가 iOS 기기를 고유하게 식별하는 능력을 억제해 광고 목표 변경을 방지</li>
+<li>대부분의 앱 및 Safari에서 계정을 생성하거나 암호를 변경할 때 강력하고 고유한 암호를 자동으로 제안</li>
+<li>재사용된 암호는 설정 &gt; 암호 및 계정에 깃발 표시</li>
+<li>QuickType 막대에서 제안으로 SMS를 통해 전송한 일회성 코드를 보안 코드 자동 완성에 표시</li>
+<li>설정의 ‘암호 및 계정’에서 AirDrop을 사용하여 연락처에 등록된 사람과 간편하게 암호 공유</li>
+<li>Siri가 인증된 기기에서 빠르게 암호 탐색 지원</li>
+</ul>
+<h2 id="apple-books"><a class="header-anchor" href="#apple-books"> </a>Apple Books</h2>
+<ul>
+<li>책과 오디오북을 더욱 쉽고 재미있게 찾고 즐길 수 있도록 완전히 새로워진 디자인의 도서 앱</li>
+<li>현재 읽고 있는 책으로 간단히 돌아가거나 다음에 읽을만한 책을 추천받을 수 있는 ‘읽고 있는 책’</li>
+<li>새 기능인 ‘읽고 싶은 책’ 모음에 책을 추가하여 다음에 읽고 싶은 책 파악 가능</li>
+<li>사용자를 위해 엄선된 Apple Books 에디터 및 추천에서 신규 및 인기 모음 중 사용자가 다음에 읽고 싶어할 책을 쉽게 찾을 수 있는 북스토어</li>
+<li>좋아하는 저자, 배우 및 유명 인사가 내래이션한 몰입형 스토리 및 유익한 논픽션을 제공하는 새로운 오디오북 스토어</li>
+</ul>
+<h2 id="apple-music"><a class="header-anchor" href="#apple-music"> </a>Apple Music</h2>
+<ul>
+<li>가사 검색이 지원되어 단어만으로도 노래 검색 가능</li>
+<li>아티스트 음악으로 구성된 맞춤형 스테이션과 함께 디자인되어 탐색하기 쉬워진 아티스트 페이지</li>
+<li>친구가 듣고 있는 노래 중 사용자가 좋아할 만한 노래로 만든 새로운 플레이리스트, ‘친구가 즐기는 음악 믹스’</li>
+<li>세계 각국에 걸쳐 오늘의 인기 100곡을 보여주는 새로운 차트</li>
+</ul>
+<h2 id="주식"><a class="header-anchor" href="#주식"> </a>주식</h2>
+<ul>
+<li>iPhone 및 iPad에서 주식 시세, 대화식 차트 및 주요 뉴스를 쉽게 볼 수 있도록 완전히 새로워진 디자인</li>
+<li>색상으로 구분된 스파크라인이 있어 일일 차트를 한눈에 볼 수 있는 관심 종목</li>
+<li>종목 코드를 표시하는 대화식 차트 및 장외 시간 가격, 거래량 등이 표시된 핵심 정보 보기</li>
+</ul>
+<h2 id="음성-메모"><a class="header-anchor" href="#음성-메모"> </a>음성 메모</h2>
+<ul>
+<li>사용성을 향상하여 완전히 새로워진 디자인</li>
+<li>사용자의 녹음 및 편집사항이 사용자의 모든 기기와 동기화되어 iCloud에 유지</li>
+<li>iPad에서 가로 화면 방향 및 세로 화면 방향 모두 지원</li>
+</ul>
+<h2 id="apple-podcasts"><a class="header-anchor" href="#apple-podcasts"> </a>Apple Podcasts</h2>
+<ul>
+<li>여러 개의 장이 포함된 프로그램의 장 지원</li>
+<li>차량이나 헤드폰에 있는 앞으로 및 뒤로 버튼으로 30초 또는 다음 장으로 건너뛰기</li>
+<li>지금 듣기 화면에서 새로운 에피소드 알림을 쉽게 관리 가능</li>
+</ul>
+<h2 id="손쉬운-사용"><a class="header-anchor" href="#손쉬운-사용"> </a>손쉬운 사용</h2>
+<ul>
+<li>이제 ‘실시간 듣기’를 AirPods에서 지원하여 더 선명하게 들을 수 있음</li>
+<li>AT&amp;T의 경우 RTT 전화 통화 가능</li>
+<li>선택 항목 말하기에서 이제 Siri 음성을 사용하여 선택한 텍스트 말하기 지원</li>
+</ul>
+<h2 id="기타-기능-및-향상"><a class="header-anchor" href="#기타-기능-및-향상"> </a>기타 기능 및 향상</h2>
+<ul>
+<li>현실 모습을 변환시킬 수 있는 FaceTime의 카메라 효과</li>
+<li>CarPlay에서 타사 내비게이션 앱 지원</li>
+<li>지원되는 캠퍼스에서 Wallet에 저장된 비접촉식 학생 ID 카드를 사용하여 건물에 출입하고 Apple Pay 결제 가능</li>
+<li>설정 &gt; Safari에서 웹 사이트 아이콘을 활성화하여 iPad 탭에 표시 가능</li>
+<li>지원되는 지역의 경우 날씨 앱에 대기질 지수 표시</li>
+<li>iPad 하단에서 빠르게 쓸어올리면 홈으로 이동</li>
+<li>iPad의 오른쪽 상단에서 쓸어내리면 제어 센터에 접근</li>
+<li>마크업에 색상이 추가된 팔레트 및 각 도구의 선 너비와 불투명도를 변경할 수 있는 옵션 추가</li>
+<li>설정에 배터리 사용량 차트가 추가되어 24시간 또는 10일 동안 사용한 내역을 보고 막대를 탭하여 해당 기간에 사용한 앱 보기 가능</li>
+<li>3D Touch가 지원되지 않는 기기에서 스페이스 바를 길게 터치하여 키보드를 트랙패드로 전환 가능</li>
+<li>중국의 경우 실내에 있을 때 지도 앱에서 공항 및 쇼핑몰의 실내 지도 지원</li>
+<li>새로운 히브리어 정의 사전, 아랍어-영어 사전 및 힌디어-영어 사전</li>
+<li>새로운 영어 유의어 사전</li>
+<li>소프트웨어 업데이트가 밤사이에 자동으로 iOS 업데이트 설치 허용</li>
+<li>본 테스트는 2018년 5월, Apple에서 일반적인 최고 성능, iOS 11.4 체험판 및 iOS 12 체험판을 지원하는 iPhone 6 Plus에서 진행되었습니다. 키보드는 Safari를 사용하여 테스트되었으며 카메라는 잠금 화면에서 쓸어넘겨 테스트되었습니다. 성능은 특정 구성, 콘텐츠, 배터리 성능 상태, 사용 내용, 소프트웨어 버전 및 기타 요인에 따라 달라질 수 있습니다.</li>
+</ul>
+<p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://www.apple.com/kr/ios/feature-availability" target="_blank" rel="noopener">https://www.apple.com/kr/ios/feature-availability</a> 및 <a href="https://www.apple.com/kr/ios/whats-new" target="_blank" rel="noopener">https://www.apple.com/kr/ios/whats-new</a></p>
+<p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br>
+<a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a><br>
+​</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2018/09/18/ios-12/" data-id="cjyyab49100b70ch8gzv9yhj9" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gulp-task-automation" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/gulp-task-automation/">Gulp: 자동화 도구</a>
+    </h1>
+  
+
+        <a href="/2018/01/03/gulp-task-automation/" class="article-date">
+  <time datetime="2018-01-02T15:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="gulp"><a class="header-anchor" href="#gulp"> </a>Gulp</h2>
+<p>Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.</p>
+<p>자세한 내용은 <a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 확인할 수 있습니다.</p>
+<h2 id="시작하기"><a class="header-anchor" href="#시작하기"> </a>시작하기</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-cli -g</span><br><span class="line">$ npm install gulp -D</span><br><span class="line">$ touch gulpfile.js</span><br><span class="line">$ gulp --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 발췌</p>
+</blockquote>
+<p>CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js 파일을 만들어서 시작합니다.</p>
+<h2 id="뭘-할-수-있지"><a class="header-anchor" href="#뭘-할-수-있지"> </a>뭘 할 수 있지?</h2>
+<p>gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구입니다.</p>
+<p>어떻게 활용할 것인지를 생각하고, 하고 싶은 동작을 구현해 놓은 플러그인의 도움을 받으면 대부분의 빌드 작업을 자동화할 수 있습니다.</p>
+<h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2>
+<h3 id="pgu-less"><a class="header-anchor" href="#pgu-less"> </a>PGU &amp; LESS</h3>
+<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> pug = <span class="built_in">require</span>(<span class="string">'gulp-pug'</span>);</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> minifycss = reuqire(<span class="string">'gulp-csso'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// html 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.pug'</span>)</span><br><span class="line">        .pipe(pug())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 작업으로 html 작업, css 작업을 지정</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>]);</span><br></pre></td></tr></table></figure>
+<h3 id="typescript"><a class="header-anchor" href="#typescript"> </a>Typescript</h3>
+<p>타입스크립트를 컴파일해서 필요한 위치에 출력하는 작업을 gulp로 작성한 예제입니다.</p>
+<p><code>[ProjectDir]/Scripts/**/*.ts</code> 파일을 컴파일해서 <code>[ProjectDir]/wwwroot/js/**/*.js</code> 로 출력합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename2'</span>),</span><br><span class="line">    clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">    ts = <span class="built_in">require</span>(<span class="string">'gulp-typescript'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wwwroot = <span class="string">'./wwwroot/'</span>,</span><br><span class="line">    sourceroot = <span class="string">'./Scripts/'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">    ts: sourceroot + <span class="string">'**/*.ts'</span>,</span><br><span class="line">    tsDefinitionFiles: <span class="string">'npm_modules/@types/**/*.d.ts'</span>,</span><br><span class="line">    jsDest: <span class="string">`<span class="subst">$&#123;wwwroot&#125;</span>js/`</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'typescript'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> tsProject = ts.createProject(<span class="string">'tsconfig.json'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src([paths.tsDefinitionFiles, paths.ts, <span class="string">'!'</span> + paths.minJS], &#123;</span><br><span class="line">            base: <span class="string">'.'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        .pipe(tsProject())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(</span><br><span class="line">            rename(<span class="function">(<span class="params">pathObj, file</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> pathObj.join(</span><br><span class="line">                    pathObj.dirname(file).replace(<span class="regexp">/^Scripts\/?\\?/</span>, <span class="string">''</span>),</span><br><span class="line">                    pathObj.basename(file),</span><br><span class="line">                );</span><br><span class="line">            &#125;),</span><br><span class="line">        )</span><br><span class="line">        .pipe(clean(&#123;&#125;))</span><br><span class="line">        .pipe(gulp.dest(paths.jsDest));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'typescript'</span>]);</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2018/01/03/gulp-task-automation/" data-id="cjyyab465003y0ch8gf1xo7pq" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automation/">automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/task/">task</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ios-11.1.2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/19/ios-11.1.2/">iOS 11.1.2</a>
+    </h1>
+  
+
+        <a href="/2017/11/19/ios-11.1.2/" class="article-date">
+  <time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>iOS 11.1.2 includes bug fixes for your iPhone and iPad. This update:</p>
+<ul>
+<li>Fixes an issue where the iPhone X screen becomes temporarily unresponsive to touch after a rapid temperature drop</li>
+<li>Addresses an issue that could cause distortion in Live Photos and videos captured with iPhone X</li>
+</ul>
+<p>For information on the security content of Apple software updates, please visit this website:<a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2017/11/19/ios-11.1.2/" data-id="cjyyab45w003h0ch87ban9i6n" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 이전</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">다음 &raquo;</a>
+  </nav>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

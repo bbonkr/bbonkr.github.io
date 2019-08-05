@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>How to separate projects in asp net core web application | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ASP.NET Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오.  신규 프로젝트 작성 컨트롤러를 분리할 프로젝트를 작성합니다.  .NET Standard 클래스 라이브러리 템플릿 사용  123$ mkdir Blog.Backend.Api.Account$ cd Blog">
+<meta name="keywords" content="aspnetcore,mvc,webapi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to separate projects in asp net core web application">
+<meta property="og:url" content="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="ASP.NET Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오.  신규 프로젝트 작성 컨트롤러를 분리할 프로젝트를 작성합니다.  .NET Standard 클래스 라이브러리 템플릿 사용  123$ mkdir Blog.Backend.Api.Account$ cd Blog">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to separate projects in asp net core web application">
+<meta name="twitter:description" content="ASP.NET Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오.  신규 프로젝트 작성 컨트롤러를 분리할 프로젝트를 작성합니다.  .NET Standard 클래스 라이브러리 템플릿 사용  123$ mkdir Blog.Backend.Api.Account$ cd Blog">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-how-to-separate-projects-in-asp-net-core-web-application" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Howto/">Howto</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to separate projects in asp net core web application
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://ASP.NET" target="_blank" rel="noopener">ASP.NET</a> Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오.</p>
+<h2 id="신규-프로젝트-작성"><a class="header-anchor" href="#신규-프로젝트-작성"> </a>신규 프로젝트 작성</h2>
+<p>컨트롤러를 분리할 프로젝트를 작성합니다.</p>
+<blockquote>
+<p>.NET Standard 클래스 라이브러리 템플릿 사용</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir Blog.Backend.Api.Account</span><br><span class="line">$ <span class="built_in">cd</span> Blog.Backend.Api.Account</span><br><span class="line">$ dotnet new classlib</span><br></pre></td></tr></table></figure>
+<p>필요한 Nuget 패키지를 추가합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dotnet add package Microsoft.AspNetCore.Mvc --version 2.2.0</span><br><span class="line">$ dotnet add package Microsoft.Extensions.Logging --version 2.2.0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend.Api.Account/Blog.Backend.Api.Account.csproj#L7" target="_blank" rel="noopener">porject file</a></p>
+</blockquote>
+<p>컨트롤러 클래스를 새로 추가한 프로젝트로 복사하고, 네임스페이스를 조정합니다.</p>
+<p>IServiceCollection 에 확장 메서드를 추가합니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">ServicesConfigureExtesion</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IServiceCollection <span class="title">AddAccountApiController</span>(<span class="params"><span class="keyword">this</span> IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 옮긴 컨트롤러 클래스를 IoC 컨테이너에 등록합니다.</span></span><br><span class="line">        services.AddTransient&lt;UserController&gt;();</span><br><span class="line">        services.AddTransient&lt;AccountController&gt;();</span><br><span class="line">        <span class="keyword">return</span> services;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IMvcBuilder <span class="title">AddAccountApiController</span>(<span class="params"><span class="keyword">this</span> IMvcBuilder builder</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> currentAssembly = <span class="keyword">typeof</span>(ServicesConfigureExtesion).GetTypeInfo().Assembly;</span><br><span class="line"></span><br><span class="line">        builder</span><br><span class="line">            .AddApplicationPart(currentAssembly)</span><br><span class="line">            ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> builder;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend.Api.Account/ServicesConfigureExtesion.cs#L7" target="_blank" rel="noopener">IServiceCollection 확장메서드</a></p>
+</blockquote>
+<h2 id="웹-응용프로그램-코드-변경"><a class="header-anchor" href="#웹-응용프로그램-코드-변경"> </a>웹 응용프로그램 코드 변경</h2>
+<p>다른 프로젝트로 옮긴 컨트롤러 클래스를 웹 응용프로그램에서 사용할 수 있도록 프로젝트 참조를 추가하고, Startup 클래스의 ConfigureServices 메서드에 새로운 프로젝트에서 정의한 IServiceCollection 확장메서드를 사용하는 코드를 추가합니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* 중략 */</span></span><br><span class="line"></span><br><span class="line">    services</span><br><span class="line">        <span class="comment">/* IServiceCollection 확장메서드 */</span></span><br><span class="line">        <span class="comment">/* IoC 컨테이너에 타입을 등록 */</span></span><br><span class="line">        .AddAccountApiController()</span><br><span class="line">        .AddMvc()</span><br><span class="line">        <span class="comment">/* IMvcBuilder 확장메서드 */</span></span><br><span class="line">        <span class="comment">/* 다른 어셈블리의 컨트롤러를 사용하도록 구성 */</span></span><br><span class="line">        .AddAccountApiController()</span><br><span class="line">        .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2)</span><br><span class="line">        .AddControllersAsServices()</span><br><span class="line">        ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 중략 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend/Startup.cs#L98" target="_blank" rel="noopener">Startup.cs 예제</a></p>
+</blockquote>
+<h2 id="추가"><a class="header-anchor" href="#추가"> </a>추가</h2>
+<p>라우트 구성이 변경되어야 하면 Startup 클래스의 Configure 메서드에서 라우트를 추가합니다.</p>
+<blockquote>
+<p>예제:<br>
+<a href="https://github.com/bbonkr/blog-aspnetcore-backend/blob/304183f7f767fe492ae0278bebd1706ea6550f6e/Blog.Backend/Startup.cs#L150" target="_blank" rel="noopener">Startup.cs 예제</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="cjyyab46p005a0ch8bhy6rnwc" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnetcore/">aspnetcore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mvc/">mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapi/">webapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/23/React-Native-Score-Board/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">회고 React Native Score Board</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Move MySQL DataFiles | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Windows OS에 MySQL 을 설치하고, 데이터 파일을 관리하는 위치를 변경하는 내용입니다.  Stop MySQL Service Services Services.msc 를 실행하고, MySQL 서비스를 찾아서 중지합니다.  Modify ini MySQL 설치 위치의 my.ini 파일을 텍스트 편집기로 열어서 아래와 같이 변경합니다. 아래 내용은 D:\">
+<meta name="keywords" content="mysql,database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Move MySQL DataFiles">
+<meta property="og:url" content="http://bbon.me/2015/09/16/Move-mysql-datafiles/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Windows OS에 MySQL 을 설치하고, 데이터 파일을 관리하는 위치를 변경하는 내용입니다.  Stop MySQL Service Services Services.msc 를 실행하고, MySQL 서비스를 찾아서 중지합니다.  Modify ini MySQL 설치 위치의 my.ini 파일을 텍스트 편집기로 열어서 아래와 같이 변경합니다. 아래 내용은 D:\">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-08-05T09:59:13.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Move MySQL DataFiles">
+<meta name="twitter:description" content="Windows OS에 MySQL 을 설치하고, 데이터 파일을 관리하는 위치를 변경하는 내용입니다.  Stop MySQL Service Services Services.msc 를 실행하고, MySQL 서비스를 찾아서 중지합니다.  Modify ini MySQL 설치 위치의 my.ini 파일을 텍스트 편집기로 열어서 아래와 같이 변경합니다. 아래 내용은 D:\">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Move-mysql-datafiles" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Move MySQL DataFiles
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Windows OS에 MySQL 을 설치하고, 데이터 파일을 관리하는 위치를 변경하는 내용입니다.</p>
+<h2 id="stop-mysql-service"><a class="header-anchor" href="#stop-mysql-service"> </a>Stop MySQL Service</h2>
+<p>Services <small>Services.msc</small> 를 실행하고, MySQL 서비스를 찾아서 중지합니다.</p>
+<h2 id="modify-ini"><a class="header-anchor" href="#modify-ini"> </a>Modify ini</h2>
+<p>MySQL 설치 위치의 my.ini 파일을 텍스트 편집기로 열어서 아래와 같이 변경합니다.<br>
+아래 내용은 D:\Database\MySql\ 디렉터리에 데이터 파일을 관리하려고 하는 경우입니다.</p>
+<p>원본</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">datadir</span>=<span class="string">"C:/ProgramData/MySQL/MySQL Server 5.5/Data/"</span></span><br></pre></td></tr></table></figure>
+<p>변경</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">datadir</span>=<span class="string">"D:/Database/MySql/"</span></span><br></pre></td></tr></table></figure>
+<h2 id="move-data-files"><a class="header-anchor" href="#move-data-files"> </a>Move Data files</h2>
+<p>기본위치 : <code>C:\ProgramData\MySQL\MySQL Server 5.5\Data\</code></p>
+<p>변경할 위치로 데이터 파일을 이동합니다.</p>
+<h2 id="start-mysql-service"><a class="header-anchor" href="#start-mysql-service"> </a>Start MySQL Service</h2>
+<p>Services <small>Services.msc</small>를 실행하고, MySQL 서비스를 찾아서 시작합니다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2015/09/16/Move-mysql-datafiles/" data-id="cjyyab42l00070ch89vibb3y9" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/17/ios-9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">최신</span>
+      <div class="article-nav-title">
+        
+          iOS 9
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/04/windows-10-media-pack/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">Windows 10 사진 앱 실행불가</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
