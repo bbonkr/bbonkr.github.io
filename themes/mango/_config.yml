@@ -29,10 +29,10 @@ archive_type: 'monthly'
 show_count: true
 
 # Miscellaneous
-google_analytics:
+google_analytics: 'UA-64779499-1'
 gauges_analytics:
 favicon: /favicon.ico
 twitter: bbonkr
-google_plus: UA-64779499-1
+google_plus: 
 fb_admins:
 fb_app_id:
