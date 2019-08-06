@@ -110,3 +110,8 @@ prism_plugin:
     theme: "default"
     line_number: true # default false
     custom_css: # optional
+
+# hexo-generator-sitemap
+sitemap:
+    path: sitemap.xml
+    # template: ./sitemap_template.xml
