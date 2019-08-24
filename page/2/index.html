@@ -67,6 +67,97 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-PowerShell-Core" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/howto/">howto</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/01/PowerShell-Core/">PowerShell Core</a>
+    </h1>
+  
+
+        <a href="/2019/06/01/PowerShell-Core/" class="article-date">
+  <time datetime="2019-06-01T12:17:23.000Z" itemprop="datePublished">2019-06-01</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>작업을 시작하기 위해 파워쉘을 열었는데, 평소와는 다른 메시지가 출력됩니다.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows PowerShell</span><br><span class="line">Copyright (C) Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line"><span class="keyword">Try</span> the new cross-platform PowerShell https://aka.ms/pscore6</span><br></pre></td></tr></table></figure>
+<p>궁금해서 <a href="https://aka.ms/pscore6" target="_blank" rel="noopener">https://aka.ms/pscore6</a> 링크로 이동하니 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell?view=powershell-6#powershell-core" target="_blank" rel="noopener">다양한 버전의 PowerShell 설치 <small>Installing various versions of PowerShell</small></a> 페이지가 열립니다.</p>
+<p>페이지 아래쪽에 PowerShell Core 라는 제목이 보이고 아래와 같은 링크들이 있습니다.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Windows</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Linux</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-macos?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on macOS</a></li>
+<li><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/powershell-core-on-arm?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on ARM</a></li>
+</ul>
+<p>파워쉘은 Windows 에서만 사용할 수 있었는데, 이제 다른 OS에서도 파워쉘을 사용할 수 있습니다.</p>
+<p><a href="https://github.com/powershell/powershell" target="_blank" rel="noopener">GitHub</a> 에서 코드를 공개하고 있습니다.</p>
+<h2 id="설치"><a class="header-anchor" href="#설치"> </a>설치</h2>
+<h3 id="windows-10"><a class="header-anchor" href="#windows-10"> </a>Windows 10</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있습니다.</p>
+<h3 id="linux"><a class="header-anchor" href="#linux"> </a>Linux</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p>
+<p>Ubuntu, Debian 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install powershell</span><br></pre></td></tr></table></figure>
+<p>CentOS, RedHat 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install powershell</span><br></pre></td></tr></table></figure>
+<p>Fedora 에서</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dnf install powershell</span><br></pre></td></tr></table></figure>
+<h3 id="macos"><a class="header-anchor" href="#macos"> </a>macOS</h3>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 Release 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install powershell</span><br></pre></td></tr></table></figure>
+<h3 id="arm"><a class="header-anchor" href="#arm"> </a>ARM</h3>
+<p><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6#deploying-on-windows-iot" target="_blank" rel="noopener">Windows IoT</a> 와 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6#raspbian" target="_blank" rel="noopener">Raspbian</a> 에서 설치하는 방법이 설명되어 있습니다.</p>
+<h2 id="실행"><a class="header-anchor" href="#실행"> </a>실행</h2>
+<p>설치하면서 환경변수 PATH 에 설치되는 위치가 추가되므로 자주 사용하는 터미널 응용프로그램을 열고 <code>PWSH</code> 명령으로 PowerShell Core 를 실행할 수 있습니다.</p>
+<p>시작메뉴에서 검색하면 PowerShell 6 으로 찾을 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-004.png">
+<h2 id="사용"><a class="header-anchor" href="#사용"> </a>사용</h2>
+<p>Windows 10 에서 설치를 진행합니다.</p>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 페이지</a> 에서 PowerShell-6.2.1-win-x64.msi 파일을 다운로드하고 실행하면 간단하게 설치됩니다.</p>
+<p>설치 마법사에서 아래와 같이 환경변수에 설치 경로 추가 등의 항목을 선택하면 간단하게 편리한 환경을 구성할 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-001.png">
+<p>윈도우 파워쉘과 유사한 아이콘이 사용됩니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-002.png">
+<p>터미널을 열고 PWSH 명령으로 PowerShell Core 를 실행하고, PowerShell 명령으로 Windows PowerShell을 실행할 수 있습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-003.png">
+<h2 id="visual-studio-code-terminal"><a class="header-anchor" href="#visual-studio-code-terminal"> </a>Visual Studio Code Terminal</h2>
+<p>Visual Studio Code 에서 기본 터미널로 설정하기 위해서 설정창을 열고 <kbd>Ctrl</kbd> + <kbd>,</kbd> 검색창에 terminal 을 입력한 후 <code>Terminal &gt; Integrated &gt; Env:Windows</code> 항목을 찾습니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-005.png">
+<p>아래쪽의 Edit in settings.json 링크를 클릭해서 설정 파일을 열고, <code>terminal.integrated.shell.windows</code> 의 값을 PowerShell Core 실행파일의 전체 경로로 변경합니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-006.png">
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe"</span><br></pre></td></tr></table></figure>
+<p>이제 Visual Studio Code 에서 터미널을 열면 <kbd>Ctrl</kbd> + <kbd>`</kbd> 터미널에서 PowerShell Core 가 사용됩니다.</p>
+<img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-007.png">
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="cjzprayn40045lkh8587vv4ze" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powershell/">powershell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-너와-나의-점수판-Score-Board-App" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -114,7 +205,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="cjyztjt9r002tx8h80xomwbtv" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="cjzpraymk003mlkh8kukyi984" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free/">free</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/score-board/">score board</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-10/">windows 10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/점수판/">점수판</a></li></ul>
@@ -195,7 +286,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="cjyztjt9p002mx8h8jaxd1s8t" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="cjzpraymo003qlkh87cz4gl14" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-rename-app/">file rename app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freeware/">freeware,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utilities/">utilities</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-store/">windows store</a></li></ul>
@@ -280,7 +371,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="cjyztjt9q002px8h8pfrfkd4p" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="cjzpraymt003tlkh8xf2gp008" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li></ul>
@@ -406,7 +497,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="cjyztjt9n002ex8h816pmuqbe" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="cjzprayna004blkh8txqi10wj" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -452,7 +543,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="cjyztjt9o002hx8h8z0ekc6fy" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="cjzprayme003flkh8kde93kcl" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/">macos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
@@ -527,7 +618,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="cjyztjt9m002ax8h8q5gx3bkl" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="cjzpraym60038lkh8o7m3bjig" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -580,7 +671,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="cjyztjt9l0027x8h86g37gpaj" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="cjzpraymh003ilkh8diahol32" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -773,7 +864,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/09/18/ios-12/" data-id="cjyztjtcv00cjx8h8fkpgy3u0" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/09/18/ios-12/" data-id="cjzprayx200c8lkh8zqrr49et" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -835,58 +926,10 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/01/03/gulp-task-automation/" data-id="cjyztjt9k0024x8h8v05jb27n" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/01/03/gulp-task-automation/" data-id="cjzpraymc003dlkh8vy1pt4li" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automation/">automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/task/">task</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ios-11.1.2" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/19/ios-11.1.2/">iOS 11.1.2</a>
-    </h1>
-  
-
-        <a href="/2017/11/19/ios-11.1.2/" class="article-date">
-  <time datetime="2017-11-18T15:00:00.000Z" itemprop="datePublished">2017-11-19</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>iOS 11.1.2 includes bug fixes for your iPhone and iPad. This update:</p>
-<ul>
-<li>Fixes an issue where the iPhone X screen becomes temporarily unresponsive to touch after a rapid temperature drop</li>
-<li>Addresses an issue that could cause distortion in Live Photos and videos captured with iPhone X</li>
-</ul>
-<p>For information on the security content of Apple software updates, please visit this website:<a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/11/19/ios-11.1.2/" data-id="cjyztjt9j0022x8h84momrxdr" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
 
     </footer>
   </div>
@@ -899,7 +942,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 이전</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">다음 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 이전</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">다음 &raquo;</a>
   </nav>
 
 </section>
