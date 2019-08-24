@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/</loc>
+    
+    <lastmod>2019-08-24T16:36:30.996Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2019/06/01/PowerShell-Core/</loc>
+    
+    <lastmod>2019-08-24T16:36:20.995Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/</loc>
     
     <lastmod>2019-08-24T16:32:08.426Z</lastmod>
@@ -16,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/categories/index.html</loc>
+    <loc>http://bbon.me/articles/index.html</loc>
     
     <lastmod>2019-08-05T09:59:13.799Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/articles/index.html</loc>
+    <loc>http://bbon.me/categories/index.html</loc>
     
     <lastmod>2019-08-05T09:59:13.799Z</lastmod>
     
@@ -37,13 +51,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.798Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2019/07/23/React-Native-Score-Board/</loc>
     
     <lastmod>2019-08-05T09:59:13.797Z</lastmod>
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
@@ -100,13 +107,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/06/01/PowerShell-Core/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.777Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
+    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
+    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
@@ -170,13 +170,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/11/19/ios-11.1.2/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2017/11/01/ios-11.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
@@ -191,16 +184,16 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/10/06/ios-11.0.2/</loc>
+    <loc>http://bbon.me/2017/11/19/ios-11.1.2/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
+    <loc>http://bbon.me/2017/10/06/ios-11.0.2/</loc>
     
-    <lastmod>2019-08-05T09:59:13.763Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
   </url>
   
@@ -212,9 +205,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/07/13/function-password-mysql/</loc>
+    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
     
-    <lastmod>2019-08-05T09:59:13.762Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.763Z</lastmod>
     
   </url>
   
@@ -226,14 +219,21 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
+    <loc>http://bbon.me/2017/07/13/function-password-mysql/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
+    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -268,6 +268,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.758Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2015/12/09/ios-9-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.758Z</lastmod>
@@ -282,13 +289,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.758Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
@@ -296,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
+    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
+    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
@@ -331,13 +331,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/16/Move-mysql-datafiles/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.747Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2015/09/17/ios-9/</loc>
     
     <lastmod>2019-08-05T09:59:13.747Z</lastmod>
@@ -345,14 +338,21 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
+    <loc>http://bbon.me/2015/09/16/Move-mysql-datafiles/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.747Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
+    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     
