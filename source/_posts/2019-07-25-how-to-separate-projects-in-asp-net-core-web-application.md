@@ -2,7 +2,7 @@
 title: How to separate projects in asp net core web application
 date: 2019-07-25 21:17:00
 categories:
-- Howto
+- HowTo
 tags:
 - aspnetcore
 - mvc

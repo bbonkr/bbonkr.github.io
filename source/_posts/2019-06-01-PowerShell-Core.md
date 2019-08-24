@@ -2,7 +2,7 @@
 title: PowerShell Core
 date: 2019-06-01 21:17:23
 categories: 
-    - howto
+    - HowTo
 
 tags: 
     - powershell
