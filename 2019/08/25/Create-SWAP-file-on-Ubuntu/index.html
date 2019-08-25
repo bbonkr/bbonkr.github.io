@@ -21,14 +21,14 @@ ga('send', 'pageview');
   <title>Create SWAP file on Ubuntu | {bbon}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="AWS Lightsail 3.5 USD/mo 요금제에 해당하는 작은 서버를 사용하고 있습니다.  AWS Lightsail pricing  사용할 수 있는 자원은 아래와 같습니다.  512MB 메모리 1코어 프로세서 20GB SSD 디스크 1TB 전송  Ubuntu 에서 mariaDB 와 nginx, php7.2 를 기반으로 Wordpress를 실행하고 있습">
-<meta name="keywords" content="ubuntu,linux">
+<meta name="keywords" content="ubuntu,linux,swap-file,aws,aws-lightsail">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Create SWAP file on Ubuntu">
 <meta property="og:url" content="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/index.html">
 <meta property="og:site_name" content="{bbon}">
 <meta property="og:description" content="AWS Lightsail 3.5 USD/mo 요금제에 해당하는 작은 서버를 사용하고 있습니다.  AWS Lightsail pricing  사용할 수 있는 자원은 아래와 같습니다.  512MB 메모리 1코어 프로세서 20GB SSD 디스크 1TB 전송  Ubuntu 에서 mariaDB 와 nginx, php7.2 를 기반으로 Wordpress를 실행하고 있습">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-08-24T16:32:08.426Z">
+<meta property="og:updated_time" content="2019-08-25T06:07:44.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Create SWAP file on Ubuntu">
 <meta name="twitter:description" content="AWS Lightsail 3.5 USD/mo 요금제에 해당하는 작은 서버를 사용하고 있습니다.  AWS Lightsail pricing  사용할 수 있는 자원은 아래와 같습니다.  512MB 메모리 1코어 프로세서 20GB SSD 디스크 1TB 전송  Ubuntu 에서 mariaDB 와 nginx, php7.2 를 기반으로 Wordpress를 실행하고 있습">
@@ -119,9 +119,9 @@ ga('send', 'pageview');
 <p>작성한 파일의 권한을 변경합니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod 600 /var/swapfile</span><br></pre></td></tr></table></figure>
 <p>작성한 파일을 스왑파일로 지정합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap /var/swapfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkswap /var/swapfile</span><br></pre></td></tr></table></figure>
 <p>스왑파일을 활성화합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon /var/swapfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo swapon /var/swapfile</span><br></pre></td></tr></table></figure>
 <h2 id="마치며"><a class="header-anchor" href="#마치며"> </a>마치며</h2>
 <p>결과는 매우 만족스럽습니다.</p>
 <p>항상 <strong>0</strong>에 가까운 수치를 보고하던 메모리 공간이 조금 여유가 생겼습니다.</p>
@@ -133,10 +133,10 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="cjzprnogh003g68h8eiyd45pf" class="article-share-link">공유</a>
+      <a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="cjzqkmzk4003no8h8d7uro0bx" class="article-share-link">공유</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws-lightsail/">aws-lightsail</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swap-file/">swap-file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 
     </footer>
   </div>
