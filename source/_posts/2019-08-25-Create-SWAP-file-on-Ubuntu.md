@@ -6,6 +6,9 @@ categories:
 tags:
 - ubuntu
 - linux
+- swap-file
+- aws
+- aws-lightsail
 intro:
 comments:
 ---
@@ -60,13 +63,13 @@ $ sudo chmod 600 /var/swapfile
 작성한 파일을 스왑파일로 지정합니다.
 
 ```bash
-sudo mkswap /var/swapfile
+$ sudo mkswap /var/swapfile
 ```
 
 스왑파일을 활성화합니다.
 
 ```bash
-sudo swapon /var/swapfile 
+$ sudo swapon /var/swapfile 
 ```
 
 ## 마치며
