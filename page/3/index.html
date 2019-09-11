@@ -67,6 +67,68 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-gulp-task-automation" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/gulp-task-automation/">Gulp: 자동화 도구</a>
+    </h1>
+  
+
+        <a href="/2018/01/03/gulp-task-automation/" class="article-date">
+  <time datetime="2018-01-02T15:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="gulp"><a class="header-anchor" href="#gulp"> </a>Gulp</h2>
+<p>Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.</p>
+<p>자세한 내용은 <a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 확인할 수 있습니다.</p>
+<h2 id="시작하기"><a class="header-anchor" href="#시작하기"> </a>시작하기</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-cli -g</span><br><span class="line">$ npm install gulp -D</span><br><span class="line">$ touch gulpfile.js</span><br><span class="line">$ gulp --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 발췌</p>
+</blockquote>
+<p>CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js 파일을 만들어서 시작합니다.</p>
+<h2 id="뭘-할-수-있지"><a class="header-anchor" href="#뭘-할-수-있지"> </a>뭘 할 수 있지?</h2>
+<p>gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구입니다.</p>
+<p>어떻게 활용할 것인지를 생각하고, 하고 싶은 동작을 구현해 놓은 플러그인의 도움을 받으면 대부분의 빌드 작업을 자동화할 수 있습니다.</p>
+<h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2>
+<h3 id="pgu-less"><a class="header-anchor" href="#pgu-less"> </a>PGU &amp; LESS</h3>
+<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> pug = <span class="built_in">require</span>(<span class="string">'gulp-pug'</span>);</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> minifycss = reuqire(<span class="string">'gulp-csso'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// html 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.pug'</span>)</span><br><span class="line">        .pipe(pug())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 작업으로 html 작업, css 작업을 지정</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>]);</span><br></pre></td></tr></table></figure>
+<h3 id="typescript"><a class="header-anchor" href="#typescript"> </a>Typescript</h3>
+<p>타입스크립트를 컴파일해서 필요한 위치에 출력하는 작업을 gulp로 작성한 예제입니다.</p>
+<p><code>[ProjectDir]/Scripts/**/*.ts</code> 파일을 컴파일해서 <code>[ProjectDir]/wwwroot/js/**/*.js</code> 로 출력합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename2'</span>),</span><br><span class="line">    clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">    ts = <span class="built_in">require</span>(<span class="string">'gulp-typescript'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wwwroot = <span class="string">'./wwwroot/'</span>,</span><br><span class="line">    sourceroot = <span class="string">'./Scripts/'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">    ts: sourceroot + <span class="string">'**/*.ts'</span>,</span><br><span class="line">    tsDefinitionFiles: <span class="string">'npm_modules/@types/**/*.d.ts'</span>,</span><br><span class="line">    jsDest: <span class="string">`<span class="subst">$&#123;wwwroot&#125;</span>js/`</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'typescript'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> tsProject = ts.createProject(<span class="string">'tsconfig.json'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src([paths.tsDefinitionFiles, paths.ts, <span class="string">'!'</span> + paths.minJS], &#123;</span><br><span class="line">            base: <span class="string">'.'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        .pipe(tsProject())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(</span><br><span class="line">            rename(<span class="function">(<span class="params">pathObj, file</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> pathObj.join(</span><br><span class="line">                    pathObj.dirname(file).replace(<span class="regexp">/^Scripts\/?\\?/</span>, <span class="string">''</span>),</span><br><span class="line">                    pathObj.basename(file),</span><br><span class="line">                );</span><br><span class="line">            &#125;),</span><br><span class="line">        )</span><br><span class="line">        .pipe(clean(&#123;&#125;))</span><br><span class="line">        .pipe(gulp.dest(paths.jsDest));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'typescript'</span>]);</span><br></pre></td></tr></table></figure>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2018/01/03/gulp-task-automation/" data-id="ck0f8abdp0028gsh81f0h03oh" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automation/">automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/task/">task</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ios-11.1.2" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -103,7 +165,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/11/19/ios-11.1.2/" data-id="cjzqkmzir001wo8h8da0d41x3" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/11/19/ios-11.1.2/" data-id="ck0f8abdf0021gsh89c15p87b" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -152,7 +214,7 @@ https://support.apple.com/ko-kr/HT201222</a></p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/11/11/iso-11.1.1/" data-id="cjzqkmziq001uo8h8g9al69fh" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/11/11/iso-11.1.1/" data-id="ck0f8abd6001wgsh8b7kkq2b8" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -227,7 +289,7 @@ https://support.apple.com/ko-kr/HT201222</a></p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/11/01/ios-11.1/" data-id="cjzqkmziw0022o8h8rurccmgt" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/11/01/ios-11.1/" data-id="ck0f8abcr001tgsh8ei4881ma" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -277,7 +339,7 @@ https://support.apple.com/ko-kr/HT201222</a></p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/10/06/ios-11.0.2/" data-id="cjzqkmzit001yo8h8odrvy3qh" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/10/06/ios-11.0.2/" data-id="ck0f8abda001ygsh8cpcqak8y" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -322,7 +384,7 @@ https://support.apple.com/ko-kr/HT201222</a></p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/09/27/ios-11.0.1/" data-id="cjzqkmzin001ro8h8e6jtk2e4" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/09/27/ios-11.0.1/" data-id="ck0f8abc7001rgsh8kgca1sly" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -513,7 +575,7 @@ https://support.apple.com/ko-kr/HT201222</a></p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/09/19/ios-11/" data-id="cjzqkmzpq00cko8h8qk5y2y04" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/09/19/ios-11/" data-id="ck0f8abxi00d1gsh8fdvzzk4s" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -579,7 +641,7 @@ PushCommand.ExecutePushCommand</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/" data-id="cjzqkmzic001ho8h8s39t1ial" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/08/16/error-git-on-visual-studio-2017/" data-id="ck0f8abbw001mgsh8coox113i" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net/">.net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/troubleshooting/">troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visualstudio/">visualstudio</a></li></ul>
@@ -650,7 +712,7 @@ PushCommand.ExecutePushCommand</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/07/13/function-password-mysql/" data-id="cjzqkmzii001mo8h8vuv6b9qj" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/07/13/function-password-mysql/" data-id="ck0f8abc1001ogsh8re64yqgr" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/password/">password</a></li></ul>
@@ -727,72 +789,10 @@ PushCommand.ExecutePushCommand</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/03/29/ios-10.3/" data-id="cjzqkmzig001ko8h80as779qr" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/03/29/ios-10.3/" data-id="ck0f8abbr001jgsh8mw31hn08" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jekyll-on-ubuntu" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computing/">Computing</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/25/jekyll-on-ubuntu/">Jekyll on Ubuntu</a>
-    </h1>
-  
-
-        <a href="/2017/01/25/jekyll-on-ubuntu/" class="article-date">
-  <time datetime="2017-01-24T15:00:00.000Z" itemprop="datePublished">2017-01-25</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<h2 id="rvm-small-ruby-version-manager-small-설치"><a class="header-anchor" href="#rvm-small-ruby-version-manager-small-설치"> </a><a href="https://rvm.io/" target="_blank" rel="noopener">RVM <small>Ruby Version Manager</small></a> 설치</h2>
-<p>패키지를 갱신합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-<p>RVM을 설치하기 위해 curl을 설치합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install curl</span><br></pre></td></tr></table></figure>
-<p><a href="https://rvm.io/" target="_blank" rel="noopener">RVM</a>을 설치합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \curl -sSL https://get.rvm.io | bash -s stable</span><br></pre></td></tr></table></figure>
-<p>설치후 프로파일 추가사항 적용을 위해 아래 명령을 실행합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure>
-<h2 id="루비-설치"><a class="header-anchor" href="#루비-설치"> </a><a href="https://www.ruby-lang.org/ko/" target="_blank" rel="noopener">루비</a> 설치</h2>
-<p>RVM을 사용하여 <a href="https://www.ruby-lang.org/ko/" target="_blank" rel="noopener">루비</a>를 설치합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install ruby-2.4.0</span><br></pre></td></tr></table></figure>
-<p>설치된 루비 버전 확인합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br></pre></td></tr></table></figure>
-<h2 id="nodejs-설치"><a class="header-anchor" href="#nodejs-설치"> </a><a href="https://nodejs.org/ko/" target="_blank" rel="noopener">Nodejs</a> 설치</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-<h2 id="jekyll-설치"><a class="header-anchor" href="#jekyll-설치"> </a><a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> 설치</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install jekyll</span><br></pre></td></tr></table></figure>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/01/25/jekyll-on-ubuntu/" data-id="cjzqkmzil001po8h86jb1wytu" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
 
     </footer>
   </div>

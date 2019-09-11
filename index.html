@@ -67,6 +67,75 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-typescript-make-module-definition-file" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/typescript-make-module-definition-file/">타입스크립트 모듈 정의 파일 만들기</a>
+    </h1>
+  
+
+        <a href="/2019/09/11/typescript-make-module-definition-file/" class="article-date">
+  <time datetime="2019-09-11T12:15:33.000Z" itemprop="datePublished">2019-09-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>자바스크립트 <small>Javascript</small>로 작성되어 노드<small>node</small>로 동작하는 웹 응용프로그램을 타입스크립트 <small>Typescript</small>로 재작성하고 있습니다.</p>
+<p>npm 패키지 중 모듈 정의가 없는 패키지가 있습니다.</p>
+<p>타입스크립트 코드를 작성할 때, 정상적으로 사용할 수가 없습니다.</p>
+<p>이 때, 패키지 제작자에게 모듈 정의 파일을 요청하거나, 작성중인 프로젝트에 모듈 정의 파일  <code>.d.ts</code> 파일을 작성해서 문제를 해결할 수 있습니다.</p>
+<h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2>
+<p>예를 들어 <a href="https://www.npmjs.com/package/showdown-xss-filter" target="_blank" rel="noopener">showdown-xss-filter</a> 패키지를 사용중인 코드가 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xssFilter = <span class="built_in">require</span>(<span class="string">'showdown-xss-filter'</span>);</span><br></pre></td></tr></table></figure>
+<p>타입스크립트로 작성중인 코드에서 모듈의 정의를 찾을 수 없다고 합니다.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xssFilter <span class="keyword">from</span> <span class="string">'showdown-xss-filter'</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>에러 메시지:</p>
+<p>Could not find a declaration file for module ‘showdown-xss-filter’. ‘d:/repos/blog-node-backend/node_modules/showdown-xss-filter/showdown-xss-filter.js’ implicitly has an ‘any’ type.\n Try <code>npm install @types/showdown-xss-filter</code> if it exists or add a new declaration (.d.ts) file containing `declare module ‘showdown-xss-filter’;</p>
+</blockquote>
+<p>타입스크립트 컴파일러의 제안을 참고해서 <a href="https://www.npmjs.com/search?q=%40types%2Fshowdown-xss-filter" target="_blank" rel="noopener">@types/showdown-xss-filter 패키지는 검색</a>해도 결과가 없습니다.</p>
+<p>첫번째 제안으로 해결되지 않으니, 두번째로 제안하는 <code>declare module 'showdown-xss-filter'</code>  코드를 포함하는 새 정의 파일을 만들어야 합니다.</p>
+<p>함수의 모양을 확인하기 위해 코드를 보니, <a href="https://www.npmjs.com/package/showdown-xss-filter" target="_blank" rel="noopener">showdown-xss-filter</a> 패키지의 내용은 매우 간략한 <a href="https://github.com/VisionistInc/showdown-xss-filter/blob/e26046384e266be5646ef0eb58816ff4029da565/showdown-xss-filter.js#L15" target="_blank" rel="noopener">코드</a>로 작성되어 있습니다.</p>
+<p>필요한 것은 <code>xssfilter</code> 함수의 정의 <code>식별자 Identifier</code>, <code>인수들 Arguments</code>, <code>반환형 Return type</code> 입니다.</p>
+<p>코드를 확인하고, 아래와 같이 모듈을 정의할 수 있습니다.</p>
+<blockquote>
+<p>다행히 showdonw은 모듈 정의가 존재합니다. ❤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev @types/showdown</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @types/showdown-xss-filter.d.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> 'showdown-xss-filter' &#123;</span><br><span class="line">    <span class="keyword">import</span> Showdown <span class="keyword">from</span> <span class="string">'showdown'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">xssFilter</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        converter?: Showdown.Converter,</span></span></span><br><span class="line"><span class="function"><span class="params">    </span>): <span class="title">Showdown</span>.<span class="title">ShowdownExtension</span>[]</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> xssFilter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>작성한 showdown-xss-filter.d.ts 파일을 typeRoots 로 지정된 디렉터리에 저장합니다.</p>
+<blockquote>
+<p>타입스크립트 프로젝트 tsconfig.json 파일에서 typeRoots 속성을 사용하지 않으면  rootDir 로 지정한 디렉터리에 <code>@types</code> 디렉터리를 만들고 그 안에 저장하면 됩니다.</p>
+</blockquote>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/09/11/typescript-make-module-definition-file/" data-id="ck0f8abhg003qgsh8f76yh6x3" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d-ts/">d.ts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ts/">ts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">typescript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/타입스크립트/">타입스크립트</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Create-SWAP-file-on-Ubuntu" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -133,7 +202,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="cjzqkmzk4003no8h8d7uro0bx" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="ck0f8abh0003ngsh8ni8qjv7k" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws-lightsail/">aws-lightsail</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swap-file/">swap-file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
@@ -208,7 +277,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="cjzqkmzk6003qo8h8n2kkjwjx" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="ck0f8abhm003tgsh8yzsa1429" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnetcore/">aspnetcore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mvc/">mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapi/">webapi</a></li></ul>
@@ -279,7 +348,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="cjzqkmzk0003fo8h81wdyf45y" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="ck0f8abg5003agsh824j529rf" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
@@ -359,7 +428,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="cjzqkmzpv00cqo8h82gvy2d62" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="ck0f8abyk00dagsh8q8lafla0" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -426,7 +495,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="cjzqkmzjw0037o8h8bwy74rko" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="ck0f8abgj003fgsh8jz5wjx2m" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -501,7 +570,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-1/" data-id="cjzqkmzpx00cto8h8wzs3uksz" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-1/" data-id="ck0f8abyf00d7gsh8t7a9yzdf" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -695,7 +764,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/" data-id="cjzqkmzk2003io8h8jp7l5k7k" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/" data-id="ck0f8abfy0037gsh8wxja6fuu" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laptop/">laptop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lenovo/">lenovo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/t490/">t490</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkpad/">thinkpad</a></li></ul>
@@ -786,7 +855,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" data-id="cjzqkmzjn002vo8h8pwtvzbl6" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" data-id="ck0f8abfl0032gsh861lmr242" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
@@ -859,96 +928,10 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/29/python-mysqlclient-패키지-설치/" data-id="cjzqkmzjq0030o8h8570jqh9s" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/06/29/python-mysqlclient-패키지-설치/" data-id="ck0f8abf3002vgsh8fx7o86l6" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Node-Blog-App" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Project/">Project</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/28/Node-Blog-App/">Node Blog App</a>
-    </h1>
-  
-
-        <a href="/2019/06/28/Node-Blog-App/" class="article-date">
-  <time datetime="2019-06-28T13:15:32.000Z" itemprop="datePublished">2019-06-28</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.</p>
-<h2 id="기술-스택-small-technology-stack-small"><a class="header-anchor" href="#기술-스택-small-technology-stack-small"> </a>기술 스택 <small>Technology stack</small></h2>
-<h3 id="node-js"><a class="header-anchor" href="#node-js"> </a>Node.js</h3>
-<h4 id="express"><a class="header-anchor" href="#express"> </a>Express</h4>
-<p><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다.</p>
-<p>프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.</p>
-<h4 id="passport"><a class="header-anchor" href="#passport"> </a>Passport</h4>
-<p><a href="http://www.passportjs.org/" target="_blank" rel="noopener">Passport</a>는 Node.js에서 사용되는 인증 프레임워크입니다.</p>
-<p>이번 프로젝트에서는 정의된 모델을 사용하는 로컬 인증을 사용합니다.</p>
-<h4 id="sequelize"><a class="header-anchor" href="#sequelize"> </a>Sequelize</h4>
-<p><a href="http://docs.sequelizejs.com/" target="_blank" rel="noopener">Sequelize</a>는 프로미스 기반의 Node.js ORM <small>Object-relational mapping</small> 입니다.</p>
-<p>이번 프로젝트의 데이터베이스관리시스템 <small>DBMS</small>은 MariaDB를 사용합니다.</p>
-<h3 id="react"><a class="header-anchor" href="#react"> </a>React</h3>
-<p><a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>는 <a href="https://www.facebook.com/react" target="_blank" rel="noopener">페이스북</a>에서 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">오픈소스</a>로 개발을 진행중인 사용자 인터페이스 <small>UI, User Interface</small> 작성을 위한 자바스크립트 라이브러리입니다.</p>
-<p>이번 프로젝트에서는 가능하면 컴포넌트를 클래스를 선언하지 않고 함수 컴포넌트만으로 작성하고, 훅 <small>Hook</small>으로 상태 <small>State</small>관리 및 React 기능을 사용하는 것이 목표입니다.</p>
-<h4 id="next-js"><a class="header-anchor" href="#next-js"> </a>Next.js</h4>
-<p><a href="https://nextjs.org" target="_blank" rel="noopener">Next.js</a>는 React 를 사용해서 싱글 페이지 응용프로그램 <small>SPA Single Page Application</small> 을 작성하고, 검색엔진최적화 <small>SEO Search Engine Optimaizaion</small>을 위해 서버 사이드 렌더링 <small>SSR Server Side Rendering</small>과 파일 시스템 기반 라우팅, 자동 코드 스플릿팅 등 많은 기능을 제공해주는 프레임워크입니다.</p>
-<h4 id="react-redux"><a class="header-anchor" href="#react-redux"> </a>React Redux</h4>
-<p><a href="https://react-redux.js.org/" target="_blank" rel="noopener">React Redux</a>는 Redux 저장소의 데이터를 읽고, 저장소의 작업을 보내 데이터를 업데이트하는 형식으로 상태를 관리할 수 있습니다.</p>
-<p>React Hook을 지원해서 (<code>useSelector</code>, <code>useDispatch</code>) 함수형 컴포넌트에서도 문제없이 사용할 수 있습니다.</p>
-<h4 id="redux-saga"><a class="header-anchor" href="#redux-saga"> </a>Redux-Saga</h4>
-<p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga</a>로 Redux 작업을 비동기로 처리합니다.</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="noopener">제너레이터 Generator</a>로 비동기 처리를 구현한 것이 매우 흥미롭습니다.</p>
-<h4 id="styled-components"><a class="header-anchor" href="#styled-components"> </a>styled components</h4>
-<p><a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>는 컴포넌트 작성 때 인라인 스타일로 적용하면 코드 가독성이 나빠지고, 속성의 이름을 css와 다르게 작성해야하는 점을 해결해 줍니다.</p>
-<p>컴포넌트 코드 파일에 인라인 스타일을 적용할 수 밖에 없을 때에 사용합니다.</p>
-<h4 id="ant-design"><a class="header-anchor" href="#ant-design"> </a>Ant Design</h4>
-<p>React 로 사용자 인터페이스를 구성하기 위한 컴포넌트 작성시 어떻게 보여줄 것인가를 생각하는 것은 생각보다 시간이 많이 걸립니다.</p>
-<p>작은 프로젝트를 혼자 진행할 때에는 더욱 시간이 많이 걸립니다. 이럴 때 전문가의 도움을 받으면 시간을 많이 절약할 수 있습니다.</p>
-<p>이 프로젝트에서는 전반적으로 Ant Design 팀의 디자인 가이드 라인을 따르며 컴포넌트 디자인을 사용했습니다.</p>
-<h3 id="docker"><a class="header-anchor" href="#docker"> </a>Docker</h3>
-<p>응용프로그램을 게시하기 위해서 도커 이미지를 작성하고, 개인적으로 사용중인 시놀로지 디스크 스테이션에서 도커 컨테이너를 실행하고 있습니다.</p>
-<p><a href="https://sample-sns.bbon.me" target="_blank" rel="noopener">데모 사이트</a>에서 동작을 확인할 수 있습니다.</p>
-<img src="/2019/06/28/Node-Blog-App/001.png">
-<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
-<p>약 한달간 프로젝트를 진행하며 React에 재미를 붙였습니다.</p>
-<p>의존성으로 추가되어 사용중인 패키지는 대부분 사용 방법에 대한 문서가 잘 제공되어 큰 문제없이 진행되었습니다.</p>
-<p>그 중 가장 시간이 많이 걸렸던 부분은 Next.js 구성에 포함된 Webpack 에 대한 부분이었습니다.<br>
-시간이 많이 걸리며 구성을 변경하고, 확인을 진행하다 보니 대부분 Next.js 에서 기본값으로 구성해 놓은 것들이었습니다.<br>
-그래서, 거의 구성 코드가 없습니다.</p>
-<p>ORM 으로 사용된 Sequelize는 기능을 너무 많이 제공해서 어렵게 느껴지는 부분이 많았습니다.</p>
-<p>next.js는 아주 편리한 프레임워크로 생각됩니다.<br>
-그리고, 정적 파일 생성 기능을 제공(<code>next export</code>)해서 간단한 페이지 작성시 자주 사용할 것 같습니다.</p>
-<p>코드는 <a href="https://github.com/bbonkr/nodeblog" target="_blank" rel="noopener">GitHub</a>에서 확인할 수 있습니다.</p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="cjzqkmzjm002to8h8i3nyu03n" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ant-design/">ant.design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/next-js/">next.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li></ul>
 
     </footer>
   </div>

@@ -67,6 +67,92 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Node-Blog-App" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Project/">Project</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/Node-Blog-App/">Node Blog App</a>
+    </h1>
+  
+
+        <a href="/2019/06/28/Node-Blog-App/" class="article-date">
+  <time datetime="2019-06-28T13:15:32.000Z" itemprop="datePublished">2019-06-28</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.</p>
+<h2 id="기술-스택-small-technology-stack-small"><a class="header-anchor" href="#기술-스택-small-technology-stack-small"> </a>기술 스택 <small>Technology stack</small></h2>
+<h3 id="node-js"><a class="header-anchor" href="#node-js"> </a>Node.js</h3>
+<h4 id="express"><a class="header-anchor" href="#express"> </a>Express</h4>
+<p><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다.</p>
+<p>프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.</p>
+<h4 id="passport"><a class="header-anchor" href="#passport"> </a>Passport</h4>
+<p><a href="http://www.passportjs.org/" target="_blank" rel="noopener">Passport</a>는 Node.js에서 사용되는 인증 프레임워크입니다.</p>
+<p>이번 프로젝트에서는 정의된 모델을 사용하는 로컬 인증을 사용합니다.</p>
+<h4 id="sequelize"><a class="header-anchor" href="#sequelize"> </a>Sequelize</h4>
+<p><a href="http://docs.sequelizejs.com/" target="_blank" rel="noopener">Sequelize</a>는 프로미스 기반의 Node.js ORM <small>Object-relational mapping</small> 입니다.</p>
+<p>이번 프로젝트의 데이터베이스관리시스템 <small>DBMS</small>은 MariaDB를 사용합니다.</p>
+<h3 id="react"><a class="header-anchor" href="#react"> </a>React</h3>
+<p><a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>는 <a href="https://www.facebook.com/react" target="_blank" rel="noopener">페이스북</a>에서 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">오픈소스</a>로 개발을 진행중인 사용자 인터페이스 <small>UI, User Interface</small> 작성을 위한 자바스크립트 라이브러리입니다.</p>
+<p>이번 프로젝트에서는 가능하면 컴포넌트를 클래스를 선언하지 않고 함수 컴포넌트만으로 작성하고, 훅 <small>Hook</small>으로 상태 <small>State</small>관리 및 React 기능을 사용하는 것이 목표입니다.</p>
+<h4 id="next-js"><a class="header-anchor" href="#next-js"> </a>Next.js</h4>
+<p><a href="https://nextjs.org" target="_blank" rel="noopener">Next.js</a>는 React 를 사용해서 싱글 페이지 응용프로그램 <small>SPA Single Page Application</small> 을 작성하고, 검색엔진최적화 <small>SEO Search Engine Optimaizaion</small>을 위해 서버 사이드 렌더링 <small>SSR Server Side Rendering</small>과 파일 시스템 기반 라우팅, 자동 코드 스플릿팅 등 많은 기능을 제공해주는 프레임워크입니다.</p>
+<h4 id="react-redux"><a class="header-anchor" href="#react-redux"> </a>React Redux</h4>
+<p><a href="https://react-redux.js.org/" target="_blank" rel="noopener">React Redux</a>는 Redux 저장소의 데이터를 읽고, 저장소의 작업을 보내 데이터를 업데이트하는 형식으로 상태를 관리할 수 있습니다.</p>
+<p>React Hook을 지원해서 (<code>useSelector</code>, <code>useDispatch</code>) 함수형 컴포넌트에서도 문제없이 사용할 수 있습니다.</p>
+<h4 id="redux-saga"><a class="header-anchor" href="#redux-saga"> </a>Redux-Saga</h4>
+<p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga</a>로 Redux 작업을 비동기로 처리합니다.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="noopener">제너레이터 Generator</a>로 비동기 처리를 구현한 것이 매우 흥미롭습니다.</p>
+<h4 id="styled-components"><a class="header-anchor" href="#styled-components"> </a>styled components</h4>
+<p><a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>는 컴포넌트 작성 때 인라인 스타일로 적용하면 코드 가독성이 나빠지고, 속성의 이름을 css와 다르게 작성해야하는 점을 해결해 줍니다.</p>
+<p>컴포넌트 코드 파일에 인라인 스타일을 적용할 수 밖에 없을 때에 사용합니다.</p>
+<h4 id="ant-design"><a class="header-anchor" href="#ant-design"> </a>Ant Design</h4>
+<p>React 로 사용자 인터페이스를 구성하기 위한 컴포넌트 작성시 어떻게 보여줄 것인가를 생각하는 것은 생각보다 시간이 많이 걸립니다.</p>
+<p>작은 프로젝트를 혼자 진행할 때에는 더욱 시간이 많이 걸립니다. 이럴 때 전문가의 도움을 받으면 시간을 많이 절약할 수 있습니다.</p>
+<p>이 프로젝트에서는 전반적으로 Ant Design 팀의 디자인 가이드 라인을 따르며 컴포넌트 디자인을 사용했습니다.</p>
+<h3 id="docker"><a class="header-anchor" href="#docker"> </a>Docker</h3>
+<p>응용프로그램을 게시하기 위해서 도커 이미지를 작성하고, 개인적으로 사용중인 시놀로지 디스크 스테이션에서 도커 컨테이너를 실행하고 있습니다.</p>
+<p><a href="https://sample-sns.bbon.me" target="_blank" rel="noopener">데모 사이트</a>에서 동작을 확인할 수 있습니다.</p>
+<img src="/2019/06/28/Node-Blog-App/001.png">
+<h2 id="회고"><a class="header-anchor" href="#회고"> </a>회고</h2>
+<p>약 한달간 프로젝트를 진행하며 React에 재미를 붙였습니다.</p>
+<p>의존성으로 추가되어 사용중인 패키지는 대부분 사용 방법에 대한 문서가 잘 제공되어 큰 문제없이 진행되었습니다.</p>
+<p>그 중 가장 시간이 많이 걸렸던 부분은 Next.js 구성에 포함된 Webpack 에 대한 부분이었습니다.<br>
+시간이 많이 걸리며 구성을 변경하고, 확인을 진행하다 보니 대부분 Next.js 에서 기본값으로 구성해 놓은 것들이었습니다.<br>
+그래서, 거의 구성 코드가 없습니다.</p>
+<p>ORM 으로 사용된 Sequelize는 기능을 너무 많이 제공해서 어렵게 느껴지는 부분이 많았습니다.</p>
+<p>next.js는 아주 편리한 프레임워크로 생각됩니다.<br>
+그리고, 정적 파일 생성 기능을 제공(<code>next export</code>)해서 간단한 페이지 작성시 자주 사용할 것 같습니다.</p>
+<p>코드는 <a href="https://github.com/bbonkr/nodeblog" target="_blank" rel="noopener">GitHub</a>에서 확인할 수 있습니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="ck0f8abex002rgsh8aui11xfz" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ant-design/">ant.design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/next-js/">next.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-PowerShell-Core" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -146,7 +232,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="cjzqkmzjs0032o8h8jp5jecpn" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="ck0f8abfi0031gsh8t6jlehry" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powershell/">powershell</a></li></ul>
@@ -205,7 +291,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="cjzqkmzjb002go8h8xxj800vu" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="ck0f8abel002ngsh86yld4gr8" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free/">free</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/score-board/">score board</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-10/">windows 10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/점수판/">점수판</a></li></ul>
@@ -286,7 +372,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="cjzqkmzjj002po8h8aud1dnlr" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="ck0f8abes002pgsh8k6t00mij" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-rename-app/">file rename app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freeware/">freeware,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utilities/">utilities</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-store/">windows store</a></li></ul>
@@ -371,7 +457,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="cjzqkmzjh002no8h8x850pkfj" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="ck0f8abee002igsh8iacgz3ix" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li></ul>
@@ -497,7 +583,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="cjzqkmzjx003ao8h842l3g18d" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="ck0f8abf9002xgsh8v1x5nj21" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -543,7 +629,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="cjzqkmzj7002co8h8052wj273" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="ck0f8abe2002fgsh8y8hw7x3h" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/">macos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
@@ -618,7 +704,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="cjzqkmzj00029o8h8gpj2z2h5" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="ck0f8abdk0024gsh8j45ch06t" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -671,7 +757,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="cjzqkmzje002ko8h85mvo2j7i" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="ck0f8abdv002bgsh88ertk9c2" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -864,72 +950,10 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/09/18/ios-12/" data-id="cjzqkmzpt00cno8h8m3ml64zh" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/09/18/ios-12/" data-id="ck0f8abxw00d4gsh82lecchid" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gulp-task-automation" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computing/">Computing</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/gulp-task-automation/">Gulp: 자동화 도구</a>
-    </h1>
-  
-
-        <a href="/2018/01/03/gulp-task-automation/" class="article-date">
-  <time datetime="2018-01-02T15:00:00.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<h2 id="gulp"><a class="header-anchor" href="#gulp"> </a>Gulp</h2>
-<p>Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.</p>
-<p>자세한 내용은 <a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 확인할 수 있습니다.</p>
-<h2 id="시작하기"><a class="header-anchor" href="#시작하기"> </a>시작하기</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-cli -g</span><br><span class="line">$ npm install gulp -D</span><br><span class="line">$ touch gulpfile.js</span><br><span class="line">$ gulp --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 발췌</p>
-</blockquote>
-<p>CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js 파일을 만들어서 시작합니다.</p>
-<h2 id="뭘-할-수-있지"><a class="header-anchor" href="#뭘-할-수-있지"> </a>뭘 할 수 있지?</h2>
-<p>gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구입니다.</p>
-<p>어떻게 활용할 것인지를 생각하고, 하고 싶은 동작을 구현해 놓은 플러그인의 도움을 받으면 대부분의 빌드 작업을 자동화할 수 있습니다.</p>
-<h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2>
-<h3 id="pgu-less"><a class="header-anchor" href="#pgu-less"> </a>PGU &amp; LESS</h3>
-<p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> pug = <span class="built_in">require</span>(<span class="string">'gulp-pug'</span>);</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> minifycss = reuqire(<span class="string">'gulp-csso'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// html 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.pug'</span>)</span><br><span class="line">        .pipe(pug())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 작업으로 html 작업, css 작업을 지정</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>]);</span><br></pre></td></tr></table></figure>
-<h3 id="typescript"><a class="header-anchor" href="#typescript"> </a>Typescript</h3>
-<p>타입스크립트를 컴파일해서 필요한 위치에 출력하는 작업을 gulp로 작성한 예제입니다.</p>
-<p><code>[ProjectDir]/Scripts/**/*.ts</code> 파일을 컴파일해서 <code>[ProjectDir]/wwwroot/js/**/*.js</code> 로 출력합니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename2'</span>),</span><br><span class="line">    clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">    ts = <span class="built_in">require</span>(<span class="string">'gulp-typescript'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wwwroot = <span class="string">'./wwwroot/'</span>,</span><br><span class="line">    sourceroot = <span class="string">'./Scripts/'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">    ts: sourceroot + <span class="string">'**/*.ts'</span>,</span><br><span class="line">    tsDefinitionFiles: <span class="string">'npm_modules/@types/**/*.d.ts'</span>,</span><br><span class="line">    jsDest: <span class="string">`<span class="subst">$&#123;wwwroot&#125;</span>js/`</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'typescript'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> tsProject = ts.createProject(<span class="string">'tsconfig.json'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src([paths.tsDefinitionFiles, paths.ts, <span class="string">'!'</span> + paths.minJS], &#123;</span><br><span class="line">            base: <span class="string">'.'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        .pipe(tsProject())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(</span><br><span class="line">            rename(<span class="function">(<span class="params">pathObj, file</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> pathObj.join(</span><br><span class="line">                    pathObj.dirname(file).replace(<span class="regexp">/^Scripts\/?\\?/</span>, <span class="string">''</span>),</span><br><span class="line">                    pathObj.basename(file),</span><br><span class="line">                );</span><br><span class="line">            &#125;),</span><br><span class="line">        )</span><br><span class="line">        .pipe(clean(&#123;&#125;))</span><br><span class="line">        .pipe(gulp.dest(paths.jsDest));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'typescript'</span>]);</span><br></pre></td></tr></table></figure>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/01/03/gulp-task-automation/" data-id="cjzqkmziy0025o8h8yr3ysv0r" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automation/">automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/task/">task</a></li></ul>
 
     </footer>
   </div>

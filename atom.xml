@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bbon.me/"/>
-  <updated>2019-08-25T06:07:44.039Z</updated>
+  <updated>2019-09-11T12:18:55.531Z</updated>
   <id>http://bbon.me/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>타입스크립트 모듈 정의 파일 만들기</title>
+    <link href="http://bbon.me/2019/09/11/typescript-make-module-definition-file/"/>
+    <id>http://bbon.me/2019/09/11/typescript-make-module-definition-file/</id>
+    <published>2019-09-11T12:15:33.000Z</published>
+    <updated>2019-09-11T12:18:55.531Z</updated>
+    
+    <content type="html"><![CDATA[<p>자바스크립트 <small>Javascript</small>로 작성되어 노드<small>node</small>로 동작하는 웹 응용프로그램을 타입스크립트 <small>Typescript</small>로 재작성하고 있습니다.</p><p>npm 패키지 중 모듈 정의가 없는 패키지가 있습니다.</p><p>타입스크립트 코드를 작성할 때, 정상적으로 사용할 수가 없습니다.</p><p>이 때, 패키지 제작자에게 모듈 정의 파일을 요청하거나, 작성중인 프로젝트에 모듈 정의 파일  <code>.d.ts</code> 파일을 작성해서 문제를 해결할 수 있습니다.</p><h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2><p>예를 들어 <a href="https://www.npmjs.com/package/showdown-xss-filter" target="_blank" rel="noopener">showdown-xss-filter</a> 패키지를 사용중인 코드가 있습니다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xssFilter = <span class="built_in">require</span>(<span class="string">'showdown-xss-filter'</span>);</span><br></pre></td></tr></table></figure><p>타입스크립트로 작성중인 코드에서 모듈의 정의를 찾을 수 없다고 합니다.</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xssFilter <span class="keyword">from</span> <span class="string">'showdown-xss-filter'</span>;</span><br></pre></td></tr></table></figure><blockquote><p>에러 메시지:</p><p>Could not find a declaration file for module ‘showdown-xss-filter’. ‘d:/repos/blog-node-backend/node_modules/showdown-xss-filter/showdown-xss-filter.js’ implicitly has an ‘any’ type.\n Try <code>npm install @types/showdown-xss-filter</code> if it exists or add a new declaration (.d.ts) file containing `declare module ‘showdown-xss-filter’;</p></blockquote><p>타입스크립트 컴파일러의 제안을 참고해서 <a href="https://www.npmjs.com/search?q=%40types%2Fshowdown-xss-filter" target="_blank" rel="noopener">@types/showdown-xss-filter 패키지는 검색</a>해도 결과가 없습니다.</p><p>첫번째 제안으로 해결되지 않으니, 두번째로 제안하는 <code>declare module 'showdown-xss-filter'</code>  코드를 포함하는 새 정의 파일을 만들어야 합니다.</p><p>함수의 모양을 확인하기 위해 코드를 보니, <a href="https://www.npmjs.com/package/showdown-xss-filter" target="_blank" rel="noopener">showdown-xss-filter</a> 패키지의 내용은 매우 간략한 <a href="https://github.com/VisionistInc/showdown-xss-filter/blob/e26046384e266be5646ef0eb58816ff4029da565/showdown-xss-filter.js#L15" target="_blank" rel="noopener">코드</a>로 작성되어 있습니다.</p><p>필요한 것은 <code>xssfilter</code> 함수의 정의 <code>식별자 Identifier</code>, <code>인수들 Arguments</code>, <code>반환형 Return type</code> 입니다.</p><p>코드를 확인하고, 아래와 같이 모듈을 정의할 수 있습니다.</p><blockquote><p>다행히 showdonw은 모듈 정의가 존재합니다. ❤</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev @types/showdown</span><br></pre></td></tr></table></figure></blockquote><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @types/showdown-xss-filter.d.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> 'showdown-xss-filter' &#123;</span><br><span class="line">    <span class="keyword">import</span> Showdown <span class="keyword">from</span> <span class="string">'showdown'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">xssFilter</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        converter?: Showdown.Converter,</span></span></span><br><span class="line"><span class="function"><span class="params">    </span>): <span class="title">Showdown</span>.<span class="title">ShowdownExtension</span>[]</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> xssFilter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>작성한 showdown-xss-filter.d.ts 파일을 typeRoots 로 지정된 디렉터리에 저장합니다.</p><blockquote><p>타입스크립트 프로젝트 tsconfig.json 파일에서 typeRoots 속성을 사용하지 않으면  rootDir 로 지정한 디렉터리에 <code>@types</code> 디렉터리를 만들고 그 안에 저장하면 됩니다.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;자바스크립트 &lt;small&gt;Javascript&lt;/small&gt;로 작성되어 노드&lt;small&gt;node&lt;/small&gt;로 동작하는 웹 응용프로그램을 타입스크립트 &lt;small&gt;Typescript&lt;/small&gt;로 재작성하고 있습니다.&lt;/p&gt;
+&lt;p&gt;npm 패키지
+      
+    
+    </summary>
+    
+      <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+      <category term="nodejs" scheme="http://bbon.me/tags/nodejs/"/>
+    
+      <category term="typescript" scheme="http://bbon.me/tags/typescript/"/>
+    
+      <category term="ts" scheme="http://bbon.me/tags/ts/"/>
+    
+      <category term="d.ts" scheme="http://bbon.me/tags/d-ts/"/>
+    
+      <category term="타입스크립트" scheme="http://bbon.me/tags/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>Create SWAP file on Ubuntu</title>
@@ -612,41 +646,6 @@
       <category term="iphone" scheme="http://bbon.me/tags/iphone/"/>
     
       <category term="ipad" scheme="http://bbon.me/tags/ipad/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gulp: 자동화 도구</title>
-    <link href="http://bbon.me/2018/01/03/gulp-task-automation/"/>
-    <id>http://bbon.me/2018/01/03/gulp-task-automation/</id>
-    <published>2018-01-02T15:00:00.000Z</published>
-    <updated>2019-08-05T09:59:13.765Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="gulp"><a class="header-anchor" href="#gulp"> </a>Gulp</h2><p>Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.</p><p>자세한 내용은 <a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 확인할 수 있습니다.</p><h2 id="시작하기"><a class="header-anchor" href="#시작하기"> </a>시작하기</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install gulp-cli -g</span><br><span class="line">$ npm install gulp -D</span><br><span class="line">$ touch gulpfile.js</span><br><span class="line">$ gulp --<span class="built_in">help</span></span><br></pre></td></tr></table></figure><blockquote><p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 에서 발췌</p></blockquote><p>CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js 파일을 만들어서 시작합니다.</p><h2 id="뭘-할-수-있지"><a class="header-anchor" href="#뭘-할-수-있지"> </a>뭘 할 수 있지?</h2><p>gulp는 작업 흐름을 정의하고, 정의된 작업을 실행하는 도구입니다.</p><p>어떻게 활용할 것인지를 생각하고, 하고 싶은 동작을 구현해 놓은 플러그인의 도움을 받으면 대부분의 빌드 작업을 자동화할 수 있습니다.</p><h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2><h3 id="pgu-less"><a class="header-anchor" href="#pgu-less"> </a>PGU &amp; LESS</h3><p><a href="https://gulpjs.com/" target="_blank" rel="noopener">gulpjs.com</a> 의 gulpfile.js 의 내용과 같이 pug 파일에서 html 을 생성하고, less 파일에서 css 파일을 생성한 후 축소 <small>minify</small>하는 작업을 정의하고 실행할 수 있습니다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> pug = <span class="built_in">require</span>(<span class="string">'gulp-pug'</span>);</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> minifycss = reuqire(<span class="string">'gulp-csso'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// html 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.pug'</span>)</span><br><span class="line">        .pipe(pug())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/html'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 처리 작업</span></span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src(<span class="string">'client/templates/*.less'</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'build/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 작업으로 html 작업, css 작업을 지정</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>]);</span><br></pre></td></tr></table></figure><h3 id="typescript"><a class="header-anchor" href="#typescript"> </a>Typescript</h3><p>타입스크립트를 컴파일해서 필요한 위치에 출력하는 작업을 gulp로 작성한 예제입니다.</p><p><code>[ProjectDir]/Scripts/**/*.ts</code> 파일을 컴파일해서 <code>[ProjectDir]/wwwroot/js/**/*.js</code> 로 출력합니다.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename2'</span>),</span><br><span class="line">    clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">    ts = <span class="built_in">require</span>(<span class="string">'gulp-typescript'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wwwroot = <span class="string">'./wwwroot/'</span>,</span><br><span class="line">    sourceroot = <span class="string">'./Scripts/'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">    ts: sourceroot + <span class="string">'**/*.ts'</span>,</span><br><span class="line">    tsDefinitionFiles: <span class="string">'npm_modules/@types/**/*.d.ts'</span>,</span><br><span class="line">    jsDest: <span class="string">`<span class="subst">$&#123;wwwroot&#125;</span>js/`</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'typescript'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> tsProject = ts.createProject(<span class="string">'tsconfig.json'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gulp</span><br><span class="line">        .src([paths.tsDefinitionFiles, paths.ts, <span class="string">'!'</span> + paths.minJS], &#123;</span><br><span class="line">            base: <span class="string">'.'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        .pipe(tsProject())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(</span><br><span class="line">            rename(<span class="function">(<span class="params">pathObj, file</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> pathObj.join(</span><br><span class="line">                    pathObj.dirname(file).replace(<span class="regexp">/^Scripts\/?\\?/</span>, <span class="string">''</span>),</span><br><span class="line">                    pathObj.basename(file),</span><br><span class="line">                );</span><br><span class="line">            &#125;),</span><br><span class="line">        )</span><br><span class="line">        .pipe(clean(&#123;&#125;))</span><br><span class="line">        .pipe(gulp.dest(paths.jsDest));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'typescript'</span>]);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;gulp&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#gulp&quot;&gt; &lt;/a&gt;Gulp&lt;/h2&gt;
-&lt;p&gt;Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다.&lt;/p&gt;
-&lt;p&gt;자세한 내용은 &lt;a href=&quot;https
-      
-    
-    </summary>
-    
-      <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
-    
-    
-      <category term="nodejs" scheme="http://bbon.me/tags/nodejs/"/>
-    
-      <category term="gulp" scheme="http://bbon.me/tags/gulp/"/>
-    
-      <category term="npm" scheme="http://bbon.me/tags/npm/"/>
-    
-      <category term="task" scheme="http://bbon.me/tags/task/"/>
-    
-      <category term="automation" scheme="http://bbon.me/tags/automation/"/>
     
   </entry>
   
