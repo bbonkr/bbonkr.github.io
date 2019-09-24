@@ -59,7 +59,8 @@ import xssFilter from 'showdown-xss-filter';
 코드를 확인하고, 아래와 같이 모듈을 정의할 수 있습니다.
 
 > 다행히 showdonw은 모듈 정의가 존재합니다. ❤ 
-> ```bash
+
+```bash
 $ npm install --save-dev @types/showdown
 ```
 
