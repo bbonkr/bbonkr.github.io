@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-64779499-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Visual Studio Item Template | {bbon}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Visual Studio Item Template Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다. 이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다. 예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일">
+<meta name="keywords" content="visual studio,item template">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Studio Item Template">
+<meta property="og:url" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/index.html">
+<meta property="og:site_name" content="{bbon}">
+<meta property="og:description" content="Visual Studio Item Template Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다. 이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다. 예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png">
+<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template-wizard.png">
+<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png">
+<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png">
+<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-add-new-item.png">
+<meta property="og:updated_time" content="2019-09-29T08:25:45.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Visual Studio Item Template">
+<meta name="twitter:description" content="Visual Studio Item Template Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다. 이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다. 예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일">
+<meta name="twitter:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png">
+<meta name="twitter:creator" content="@bbonkr">
+  
+    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Visual-Studio-Item-Template" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Visual Studio Item Template
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1>Visual Studio Item Template</h1>
+<p>Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다.</p>
+<p>이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다.</p>
+<p>예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일 때, Page 와 ViewModel 을 반복적으로 추가하고, 작성합니다.</p>
+<p>Page의 예 .xaml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">core:AppContentPage</span> <span class="attr">xmlns</span>=<span class="string">"http://xamarin.com/schemas/2014/forms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2009/xaml"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:d</span>=<span class="string">"http://xamarin.com/schemas/2014/forms/design"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:mc</span>=<span class="string">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:local</span>=<span class="string">"clr-namespace:Kr.Bbon.Product"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:core</span>=<span class="string">"clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:behaviors</span>=<span class="string">"clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:converter</span>=<span class="string">"clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:viewmodel</span>=<span class="string">"clr-namespace:Kr.Bbon.Product.ViewModels"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:fa</span>=<span class="string">"clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:buttons</span>=<span class="string">"clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:inputLayout</span>=<span class="string">"clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">mc:Ignorable</span>=<span class="string">"d"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:Class</span>=<span class="string">"Kr.Bbon.Product.Pages.SignUpPage"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:TypeArguments</span>=<span class="string">"viewmodel:SignUpViewModel"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Title</span>=<span class="string">"&#123;Binding Title&#125;"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Shell.NavBarIsVisible</span>=<span class="string">"False"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">NavigationPage.HasNavigationBar</span>=<span class="string">"False"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:FirstValidationErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">"firstValidationErrorCoverter"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:ValidationResultHasErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">"validationResultHasErrorConverter"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 화면을 작성 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">core:AppContentPage</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Page 코드의 예 .xaml.cs</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Product.ViewModels;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms.Xaml;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Kr.Bbon.Product.Pages</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XamlCompilation(XamlCompilationOptions.Compile)</span>]</span><br><span class="line">    [<span class="meta">Route(RouteUri.SignUp)</span>]</span><br><span class="line">    public partial class SignUpPage : AppContentPage&lt;SignUpViewModel&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SignUpPage</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">            : <span class="title">base</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ViewModel 코드의 예 .cs</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Core.Validations;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Input;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Kr.Bbon.Product.ViewModels</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SignUpViewModel</span> : <span class="title">ViewModelBase</span></span><br><span class="line">    &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="title">SignUpViewModel</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function">                        : <span class="title">base</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>                &#123;</span><br><span class="line">                &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>새 페이지 작업 순서</p>
+<ol>
+<li>클래스 파일을 추가합니다.</li>
+<li>ViewModel 클래스에 반복되는 코드를 작성합니다.</li>
+<li>컨텐트 페이지 파일을 추가합니다.</li>
+<li>XML 네임스페이스를 추가하고, 필요한 내용을 추가합니다.</li>
+<li>ViewModel 클래스를 구현합니다.</li>
+<li>Page 를 구현합니다.</li>
+</ol>
+<p>반복되는 내용을 작성하고 있으면 매우 피곤합니다.</p>
+<p>복사하고 붙여넣기를 반복하는 작업</p>
+<p>반복되는 작업을 줄이기 위해 아이템 템플릿을 만들어서 사용할 수 있습니다.</p>
+<p>Visual Studio 의 프로젝트 메뉴에서 템플릿 내보내기가 가능합니다.</p>
+<img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png">
+<p>템플릿 내보내기 메뉴를 사용하면 마법사 형식으로 프로젝트를 템플릿으로 만들 것인지, 항목을 아이템 템플릿을 만들 것인지 선택이 가능합니다.</p>
+<img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template-wizard.png">
+<p>이렇게 아이템 템플릿을 내보내면 아이템 템플릿 디렉터리에 <code>.zip</code> 파일이 추가되어져 있습니다.</p>
+<p>👉 아이템 템플릿 디렉터리는 Visual Studio 옵션에서 확인할 수 있어요.</p>
+<p><img src="vs-item-template-options.png" alt="Visual Studio 옵션"></p>
+<img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png">
+<p><code>.zip</code> 파일은 아래 항목을 포함하고 있습니다.</p>
+<ul>
+<li>__PreviewImage.png<br>
+아이템 템플릿 마법사에서 지정한 미리보기 이미지 파일</li>
+<li>__TemplateIocn.png<br>
+아이템 템플릿 마법사에서 지정한 아이콘 이미지 파일</li>
+<li>MyTemplate.vstemplate</li>
+<li>그리고, 아이템 템플릿으로 내보내기한 파일</li>
+</ul>
+<p>👉 <code>.vstemplate</code> 파일의 정보는 <a href="https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates" target="_blank" rel="noopener">방법: 항목 템플릿 만들기</a> 페이지의 링크들에서 확인할 수 있어요.</p>
+<h2 id="mytemplate-vstemplate-파일"><a class="header-anchor" href="#mytemplate-vstemplate-파일"> </a>MyTemplate.vstemplate 파일</h2>
+<p>편집기로 MyTemplate.vstemplate 파일을 열어보면 요소 이름으로 어떤 내용인지 알 수 있습니다.</p>
+<p>TemplateData 요소와 TemplateContent 요소로 구성되어져 있습니다.</p>
+<h3 id="templatedata"><a class="header-anchor" href="#templatedata"> </a>TemplateData</h3>
+<p>템플릿 정보입니다.</p>
+<h3 id="templatecontent"><a class="header-anchor" href="#templatecontent"> </a>TemplateContent</h3>
+<p>새 항목을 추가할 때 프로젝트에 추가될 파일들의 목록입니다.</p>
+<h2 id="나만의-템플릿으로-변경"><a class="header-anchor" href="#나만의-템플릿으로-변경"> </a>나만의 템플릿으로 변경</h2>
+<p>여기서는 Page 와 ViewModel 을 동시에 포함하는 아이템 템플릿을 작성하는 것을 목적으로 합니다.</p>
+<p>제약사항:</p>
+<ul>
+<li>Page 와 ViewModel을 프로젝트에 포함시키기 위해 프로젝트 루트에서 항목을 추가해야 합니다.<br>
+템플릿에서 사용되는 템플릿 매개변수 <code>$rootnamespace$</code> 가 현재 항목을 추가하는 위치를 참조합니다.</li>
+<li>파일의 이름은 Page, ViewModel 접미어를 제외한 이름만 입력합니다.</li>
+<li>파일이름은 클래스 이름으로 사용가능한 영문자 또는 _ 로 시작하고 문자, 숫자, _ 만으로 입력합니다.</li>
+</ul>
+<p>권장사항:</p>
+<ul>
+<li>아이템 템플릿으로 항목을 추가한 후 Page 파일은 Pages 디렉터리로, ViewModel 파일은 ViewModels 디렉터리로 이동해야 합니다.</li>
+</ul>
+<p>MyTemplate.vstemplate 파일의 내용</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VSTemplate</span> <span class="attr">Version</span>=<span class="string">"3.0.0"</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/developer/vstemplate/2005"</span> <span class="attr">Type</span>=<span class="string">"Item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TemplateData</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DefaultName</span>&gt;</span>Only name of page without postfix.xaml<span class="tag">&lt;/<span class="name">DefaultName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Name</span>&gt;</span>Kr.Bbon.Product Xamarin Page with ViewModel<span class="tag">&lt;/<span class="name">Name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Description</span>&gt;</span>Page and ViewModels Template with SyncFusion: Create on PROJECT ROOT then move Pages and ViewModels directory.<span class="tag">&lt;/<span class="name">Description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectType</span>&gt;</span>CSharp<span class="tag">&lt;/<span class="name">ProjectType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SortOrder</span>&gt;</span>10<span class="tag">&lt;/<span class="name">SortOrder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Icon</span>&gt;</span>__TemplateIcon.png<span class="tag">&lt;/<span class="name">Icon</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreviewImage</span>&gt;</span>__PreviewImage.png<span class="tag">&lt;/<span class="name">PreviewImage</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TemplateData</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TemplateContent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">References</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">"Designer"</span> <span class="attr">TargetFileName</span>=<span class="string">"$fileinputname$Page.xaml"</span> <span class="attr">ReplaceParameters</span>=<span class="string">"true"</span>&gt;</span>Page.xaml<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">"Code"</span> <span class="attr">TargetFileName</span>=<span class="string">"$fileinputname$Page.xaml.cs"</span> <span class="attr">ReplaceParameters</span>=<span class="string">"true"</span>&gt;</span>Page.xaml.cs<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">"Code"</span> <span class="attr">TargetFileName</span>=<span class="string">"$fileinputname$ViewModel.xaml.cs"</span> <span class="attr">ReplaceParameters</span>=<span class="string">"true"</span>&gt;</span>ViewModel.cs<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TemplateContent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VSTemplate</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Page.xaml 파일의 내용</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">core:AppContentPage</span> <span class="attr">xmlns</span>=<span class="string">"http://xamarin.com/schemas/2014/forms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:x</span>=<span class="string">"http://schemas.microsoft.com/winfx/2009/xaml"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:d</span>=<span class="string">"http://xamarin.com/schemas/2014/forms/design"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:mc</span>=<span class="string">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:local</span>=<span class="string">"clr-namespace:$rootnamespace$"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:core</span>=<span class="string">"clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:behaviors</span>=<span class="string">"clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:converter</span>=<span class="string">"clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:viewmodel</span>=<span class="string">"clr-namespace:$rootnamespace$.ViewModels"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:fa</span>=<span class="string">"clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:buttons</span>=<span class="string">"clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:inputLayout</span>=<span class="string">"clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">mc:Ignorable</span>=<span class="string">"d"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:Class</span>=<span class="string">"$rootnamespace$.Pages.$fileinputname$Page"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:TypeArguments</span>=<span class="string">"viewmodel:$fileinputname$ViewModel"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Title</span>=<span class="string">"&#123;Binding Title&#125;"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Shell.NavBarIsVisible</span>=<span class="string">"False"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">NavigationPage.HasNavigationBar</span>=<span class="string">"False"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:FirstValidationErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">"firstValidationErrorCoverter"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:ValidationResultHasErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">"validationResultHasErrorConverter"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">AbsoluteLayout</span> <span class="attr">HorizontalOptions</span>=<span class="string">"FillAndExpand"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">VerticalOptions</span>=<span class="string">"FillAndExpand"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Padding</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ScrollView</span> <span class="attr">Orientation</span>=<span class="string">"Vertical"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">AbsoluteLayout.LayoutBounds</span>=<span class="string">"1.0, 1.0, 1.0, 1.0"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">AbsoluteLayout.LayoutFlags</span>=<span class="string">"All"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">HorizontalOptions</span>=<span class="string">"FillAndExpand"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Padding</span>=<span class="string">"0, 0, 0, 0"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">StackLayout</span> <span class="attr">Orientation</span>=<span class="string">"Vertical"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">&lt;!-- Content here!! --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Label</span> <span class="attr">Text</span>=<span class="string">"Hello Xamarin"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;/<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">StackLayout</span> <span class="attr">IsVisible</span>=<span class="string">"&#123;Binding IsBusy&#125;"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">AbsoluteLayout.LayoutBounds</span>=<span class="string">"1.0, 1.0, 1.0, 1.0"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">AbsoluteLayout.LayoutFlags</span>=<span class="string">"All"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">HorizontalOptions</span>=<span class="string">"FillAndExpand"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">VerticalOptions</span>=<span class="string">"FillAndExpand"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">Orientation</span>=<span class="string">"Vertical"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">BackgroundColor</span>=<span class="string">"#50000000"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ActivityIndicator</span> <span class="attr">HorizontalOptions</span>=<span class="string">"Fill"</span></span></span><br><span class="line"><span class="tag">                                    <span class="attr">VerticalOptions</span>=<span class="string">"CenterAndExpand"</span></span></span><br><span class="line"><span class="tag">                                    <span class="attr">IsRunning</span>=<span class="string">"True"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">AbsoluteLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">core:AppContentPage</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Page.xaml.cs 파일의 내용</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> $rootnamespace$.ViewModels;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms.Xaml;</span><br><span class="line"></span><br><span class="line">namespace $rootnamespace$.Pages</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XamlCompilation(XamlCompilationOptions.Compile)</span>]</span><br><span class="line">    [<span class="meta">Route(RouteUri.$fileinputname$)</span>]</span><br><span class="line">    public partial class $fileinputname$Page : AppContentPage&lt;$fileinputname$ViewModel&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> $fileinputname$Page()</span><br><span class="line">            : <span class="keyword">base</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ViewModel.cs 파일의 내용</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Core.Validations;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Input;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"></span><br><span class="line">namespace $rootnamespace$.ViewModels</span><br><span class="line">&#123;</span><br><span class="line">    public class $fileinputname$ViewModel : ViewModelBase</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> CONSTANTS</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Constructors</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> $fileinputname$ViewModel()</span><br><span class="line">            : <span class="keyword">base</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            Title = <span class="string">"Title Here"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Commands</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Properties</span></span><br><span class="line">        </span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">InitializeCommands</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// Initialize Commands</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">base</span>.InitializeCommands();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">AddValidations</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">base</span>.AddValidations();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Add properties validation rule  </span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Methods</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Properties private fields </span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">        </span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> local variables</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>해당 파일을 하나의 <code>.zip</code> 파일로 내보내기 합니다.</p>
+<p><code>.zip</code> 파일은 아래와 같이 모든 파일을 포함하고 있어야 합니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyXamarin.PageWithViewMode.zip</span><br><span class="line">- __PreviewImage.png</span><br><span class="line">- __TemplateIcon.png</span><br><span class="line">- MyTemplate.vstemplate</span><br><span class="line">- Page.xaml</span><br><span class="line">- Page.xaml.cs</span><br><span class="line">- ViewModel.cs</span><br></pre></td></tr></table></figure>
+<p>아이템 템플릿 <code>.zip</code> 파일을 아이템 템플릿 디렉터리에 복사합니다.</p>
+<p>Visual Studio 가 실행중이면 재시작해야 추가된 아이템 템플릿을 읽어 들입니다.</p>
+<p>솔루션 탐색기 혹은 파일 메뉴에서 새 항목 추가 메뉴를 시작하면 추가한 아이템 템플릿을 선택할 수 있습니다.</p>
+<img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-add-new-item.png">
+<p>제약조건에 맞게 올바른 이름을 입력하고 추가하면 프로젝트 루트 디렉터리에 파일이 추가됩니다.</p>
+<p>이름을 Hello 라고 입력하면, 아래와 같이 파일이 만들어 집니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- HelloPage.xaml</span><br><span class="line">- HelloPage.xaml.cs</span><br><span class="line">- HelloViewModel.cs</span><br></pre></td></tr></table></figure>
+<p>저는 이제 Page 는 Pages 디렉터리에 ViewModel 은 ViewModels 디렉터리에서 관리하므로 각 디렉터리로 이동 후 구현을 시작하면 됩니다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/" data-id="ck14pxcr200cdb0h8l8uprzr9" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/item-template/">item template</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/11/typescript-make-module-definition-file/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">이전</span>
+      <div class="article-nav-title">타입스크립트 모듈 정의 파일 만들기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 bbon<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
