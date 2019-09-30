@@ -192,7 +192,7 @@ MyTemplate.vstemplate 파일의 내용
     <References />
     <ProjectItem SubType="Designer" TargetFileName="$fileinputname$Page.xaml" ReplaceParameters="true">Page.xaml</ProjectItem>
     <ProjectItem SubType="Code" TargetFileName="$fileinputname$Page.xaml.cs" ReplaceParameters="true">Page.xaml.cs</ProjectItem>
-    <ProjectItem SubType="Code" TargetFileName="$fileinputname$ViewModel.xaml.cs" ReplaceParameters="true">ViewModel.cs</ProjectItem>
+    <ProjectItem SubType="Code" TargetFileName="$fileinputname$ViewModel.cs" ReplaceParameters="true">ViewModel.cs</ProjectItem>
     </TemplateContent>
 </VSTemplate>
 ```
