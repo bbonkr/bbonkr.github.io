@@ -67,6 +67,141 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Postman-Variables-usages" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/Postman-Variables-usages/">Postman: Variables usages</a>
+    </h1>
+  
+
+        <a href="/2019/11/01/Postman-Variables-usages/" class="article-date">
+  <time datetime="2019-11-01T06:38:22.000Z" itemprop="datePublished">2019-11-01</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>HTTP API  웹 응용프로그램을 작성할 때,  <a href="https://www.getpostman.com/" target="_blank" rel="noopener">Postman</a> 을 많이 사용합니다.</p>
+<p>작성한 API 가 잘 동작하는지 클라이언트에서 사용하는 것과 동일한 요청을 GUI를 통해 실행할 수 있어 매우 편리합니다.</p>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-001.png">
+<p><a href="https://www.getpostman.com/pricing" target="_blank" rel="noopener">무료 요금제</a> 를 사용해도 매우 많은 기능을 제공합니다.</p>
+<p>많은 기능 중 반복되는 값 - 예를 들면 기본 주소 -을 처리하기 위한 변수 기능을 좋아합니다.</p>
+<h2 id="변수-small-variable-small"><a class="header-anchor" href="#변수-small-variable-small"> </a>변수 <small>Variable</small></h2>
+<h3 id="종류"><a class="header-anchor" href="#종류"> </a>종류</h3>
+<p>변수는 글로벌, 콜렉션, 환경, 데이터, 로컬 단위로 관리가 가능합니다.</p>
+<blockquote>
+<ul>
+<li><a href="https://learning.getpostman.com/docs/postman/environments-and-globals/variables/#variable-scopes" target="_blank" rel="noopener">Variables scopes</a></li>
+</ul>
+</blockquote>
+<p>전역 변수와 환경 변수는 오른쪽 위 버튼을 클릭하면 관리 화면을 찾을 수 있습니다.</p>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-002.png">
+<blockquote>
+<ul>
+<li><a href="https://learning.getpostman.com/docs/postman/environments-and-globals/manage-globals/" target="_blank" rel="noopener">Managing global variables</a></li>
+</ul>
+</blockquote>
+<p>콜렉션 변수는 콜렉션 편집 화면에서 찾을 수 있습니다.</p>
+<blockquote>
+<ul>
+<li><a href="https://learning.getpostman.com/docs/postman/collections/managing-collections/#edit-and-view-collection-details" target="_blank" rel="noopener">Edit and view collection detail</a></li>
+</ul>
+</blockquote>
+<h3 id="사용"><a class="header-anchor" href="#사용"> </a>사용</h3>
+<p>HTTP API 는 기본적으로 하나의 기능이 하나의 URI를 갖습니다.</p>
+<p>인증처리를 하는 URI</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST https://your-service.com/api/signin</span><br><span class="line">&#123;</span><br><span class="line">    "username": "&lt;your username&gt;",</span><br><span class="line">    "password": "&lt;your password&gt;"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>매장 정보를 요청하는 URI</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET https://your-service.com/api/stores</span><br><span class="line">Authorization Bearer &lt;your token&gt;</span><br></pre></td></tr></table></figure>
+<p>Postman 을 사용하면 보통 한번만 작성한 후 저장하면, 다시 불러서 사용할 수 있습니다.</p>
+<p>그런데, 동일한 API를 테스트 서버 대상, 스테이징 서버 대상, 프로덕션 서버 대상으로 테스트를 진행하려고 하면 주소 앞부분만 다르고 나머지 부분이 동일할 수 있습니다.</p>
+<blockquote>
+<p>해당 시나리오는 환경 변수를 사용하는 것이 더 좋겠습니다.</p>
+</blockquote>
+<p>예제 URI 의 <code>https://your-service.com</code> 부분이 다를 것입니다.</p>
+<p>콜렉션 편집 화면을 열고 변수 탭에서 아래 이미지와 같이 변수를 추가합니다.</p>
+<blockquote>
+<p>기본주소를 <code>http://localhost:3000</code> 으로 설정합니다.</p>
+</blockquote>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-003.png">
+<h2 id="예제"><a class="header-anchor" href="#예제"> </a>예제</h2>
+<p>테스트 대상 웹 응용프로그램의 기본주소는 <code>http://localhost:3000</code> 입니다.</p>
+<p><code>/api/signin</code> 끝점으로 POST 요청을 하면 token 데이터를 얻을 수 있습니다.</p>
+<p><code>/api/stores</code> 끝점으로 요청 헤더에 Bearer 인증을 추가해서 GET 요청을 하면 사용자의 매장 정보를 얻을 수 있습니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /api/signin</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">username,</span></span><br><span class="line">    password</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /api/stores</span><br><span class="line">Authorization Bearer</span><br></pre></td></tr></table></figure>
+<p>Postman 컬렉션 편집 윈도우를 열고, 아래 변수 항목을 추가합니다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">이름</th>
+<th style="text-align:left">초기값</th>
+<th style="text-align:left">현재값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">baseurl</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td style="text-align:left">token</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>Postman 의 현재 컬렉션에 signin 요청을 추가합니다.</p>
+<p>요청 URL은 <code>/api/signin</code> 을 입력합니다.</p>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-004.png">
+<p>응답에서 token 변수의 값을 설정하기 위해 Tests 탭으로 이동합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonData = <span class="built_in">JSON</span>.parse(responseBody);</span><br><span class="line"><span class="keyword">if</span>(jsonData)&#123;</span><br><span class="line">    <span class="keyword">if</span>(jsonData.success)&#123;</span><br><span class="line">        <span class="keyword">if</span>(jsonData.data)&#123;</span><br><span class="line">            <span class="keyword">const</span> token = jsonData.data.token;</span><br><span class="line">            pm.environment.set(<span class="string">"token"</span>, token); <span class="comment">// token 변수의 값을 설정</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-005.png">
+<blockquote>
+<p>Test 탭의 오른쪽에 코드 조각이 제공됩니다.</p>
+</blockquote>
+<p>이제 <code>/api/signin</code> 끝점으로 요청을 보내면 응답 데이터에서 token 을 찾을 수 있으면 토큰 변수의 값이 설정됩니다.</p>
+<p>Postman 의 현재 컬렉션에 get stores 요청을 추가합니다.</p>
+<p>요청 URL은 <code>/api/stores</code> 를 입력합니다.</p>
+<p>Authorization 탭에서 인증 형식을 Bearer Token 으로 선택하고 토큰의 값은 변수를 사용할 것이므로 <code></code> 을 입력합니다.</p>
+<img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-006.png">
+<p>준비를 마쳤습니다.</p>
+<p>Signin 요청을 먼저 실행해서 토큰을 얻고, Get stores 요청을 실행하면 이전 Signin 요청에서 얻은 토큰을 요청 헤더 인증 값으로 사용됩니다.</p>
+<p>그리고, 테스트 서버의 기본 주소가 변경되면 컬렉션 변수의 값만 변경하면 해당 컬렉션 내의 요청이 변경된 기본주소를 참조할 것 입니다.</p>
+<h2 id="참조"><a class="header-anchor" href="#참조"> </a>참조</h2>
+<ul>
+<li><a href="https://learning.getpostman.com/" target="_blank" rel="noopener">Postman: Learning Center</a></li>
+<li><a href="https://blog.getpostman.com/2014/01/27/extracting-data-from-responses-and-chaining-requests/" target="_blank" rel="noopener">Extracting data from response and chaning requests</a></li>
+</ul>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/11/01/Postman-Variables-usages/" data-id="ck2frttkt003vxgh839n0gmry" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-api/">http api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful-api/">restful api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Visual-Studio-Item-Template" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -176,7 +311,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/" data-id="ck16bgg3n00dbk0h8y4c7db6f" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/" data-id="ck2frttqy00d9xgh8t7nsp1xs" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/item-template/">item template</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li></ul>
@@ -245,7 +380,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/09/11/typescript-make-module-definition-file/" data-id="ck16bgfwl003nk0h8xa234nnr" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/09/11/typescript-make-module-definition-file/" data-id="ck2frttkn003kxgh8t84ce40b" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d-ts/">d.ts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ts/">ts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">typescript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/타입스크립트/">타입스크립트</a></li></ul>
@@ -323,7 +458,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="ck16bgfwn003qk0h81qwihxf4" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/08/25/Create-SWAP-file-on-Ubuntu/" data-id="ck2frttkl003gxgh8y9plx4d9" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws-lightsail/">aws-lightsail</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swap-file/">swap-file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
@@ -398,7 +533,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="ck16bgfwk003jk0h8l43gszxh" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/" data-id="ck2frttkj003dxgh8mm2gg8mq" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aspnetcore/">aspnetcore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mvc/">mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapi/">webapi</a></li></ul>
@@ -469,7 +604,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="ck16bgfwi003fk0h8yui8008a" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/23/React-Native-Score-Board/" data-id="ck2frttkd0034xgh8n4vv63mt" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
@@ -549,7 +684,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="ck16bgg3k00d5k0h86nz6t58r" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/" data-id="ck2frttqx00d6xgh8pqj2bf74" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -616,7 +751,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="ck16bgfwg003bk0h88rgz0ib4" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/" data-id="ck2frttkp003oxgh8doc0xfzt" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -691,7 +826,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-1/" data-id="ck16bgg3m00d8k0h81ki5rr9w" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/React-Native-Get-Started-really-1/" data-id="ck2frttr100dcxgh8lhrqklv7" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rn/">rn</a></li></ul>
@@ -885,101 +1020,10 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/" data-id="ck16bgfwe0037k0h8yicknld3" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/" data-id="ck2frttkh003axgh8a63rw6qb" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laptop/">laptop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lenovo/">lenovo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/t490/">t490</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkpad/">thinkpad</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-update-your-apps-to-be-64-bit-compliant-by-2019-08-01" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/">Update your apps to be 64-bit compliant by 2019-08-01</a>
-    </h1>
-  
-
-        <a href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" class="article-date">
-  <time datetime="2019-07-10T08:48:22.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<blockquote>
-<p>Google Play Store 에 게시되는 앱은 2019-08-01 까지 64비트 호환으로 업데이트되어야 합니다.</p>
-</blockquote>
-<p>유사한 제목으로 전자우편을 받았습니다.</p>
-<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows&amp;WT.mc_id=docs-forums-jamont" target="_blank" rel="noopener">CPU 아키텍쳐</a> 페이지에서 지원되는 아키텍쳐를 지정하는 방법을 확인할 수 있습니다.</p>
-<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/deploy-test/building-apps/abi-specific-apks" target="_blank" rel="noopener">ABI 관련 APK 빌드</a> 페이지에서 지원 아키텍쳐 별 바이너리를 작성하기 위한 방법을 확인할 수 있습니다.</p>
-<p>2019-08-01 까지 64비트 지원 안드로이드 응용프로그램을 준비하기 위한 방법에 대한 자세한 설명은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지에서 확인할 수 있습니다.</p>
-<p>아래 내용은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지의 내용을 간략하게 소개합니다.</p>
-<h2 id="변경"><a class="header-anchor" href="#변경"> </a>변경</h2>
-<p>Xamarin.Android 는 4가지의 ABI를 지원합니다.</p>
-<p>*[ABI]: Application Binary Interface</p>
-<ul>
-<li>armeabi-v7a</li>
-<li>arm64-v8a</li>
-<li>x86</li>
-<li>x86_64</li>
-</ul>
-<p>Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 빌드 속성을 바꿔야 합니다.</p>
-<h3 id="visual-studio-2019"><a class="header-anchor" href="#visual-studio-2019"> </a>Visual Studio 2019</h3>
-<p>안드로이드 프로젝트의 속성창을 열고, 안드로이드 옵션 탭으로 이동합니다.</p>
-<p>아래쪽의 고급 <small>Advanced</small> 버튼을 클릭하면 고급 설정창이 열립니다.</p>
-<p>지원 아키텍쳐에 아래 두 항목이 선택되어야 합니다.</p>
-<ul>
-<li>armeabi-v7a</li>
-<li>arm64-v8a</li>
-</ul>
-<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019-android-x64.png">
-<h3 id="visual-studio-2019-for-mac"><a class="header-anchor" href="#visual-studio-2019-for-mac"> </a>Visual Studio 2019 for Mac</h3>
-<p>안드로이드 프로젝트 속성창을 열고, 안드로이드 빌드 페이지로 이동합니다.</p>
-<p>고급탭의 지원되는 ABI 목록에서 아래 두 항목이 선택되어야 합니다.</p>
-<ul>
-<li>armeabi-v7a</li>
-<li>arm64-v8a</li>
-</ul>
-<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019forMac-android-x64.png">
-<h2 id="빌드"><a class="header-anchor" href="#빌드"> </a>빌드</h2>
-<p>빌드 구성을 <strong>Release</strong>로 선택하고 빌드한 후 아카이브를 작성합니다.</p>
-<h2 id="확인"><a class="header-anchor" href="#확인"> </a>확인</h2>
-<p>Android Studio 의 APK Analizer 도구를 사용해서 64비트 라이브러리가 포함되어 빌드되었는지 확인할 수 있습니다.</p>
-<blockquote>
-<p><a href="https://developer.android.com/distribute/best-practices/develop/64-bit?hl=ko" target="_blank" rel="noopener">앱에서 64비트 기기를 지원하는지 확인</a> 페이지의 내용을 참조</p>
-</blockquote>
-<p>APK Analyzer 도구를 실행하고 아카이브된 APK 파일을 선택합니다.</p>
-<p>잠시후 아래와 같은 화면을 확인할 수 있습니다.</p>
-<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/scoreboard.png">
-<p>오른쪽 창의 lib 에 arm64-v8a 관련 내용이 보이면 64비트 지원 앱으로 판단하시면 됩니다.</p>
-<h2 id="주의"><a class="header-anchor" href="#주의"> </a>주의</h2>
-<p>프로젝트에서 참조된 외부 라이브러리 관련 내용이 포함되어 있는지 확인해야 합니다.</p>
-<p>필요한 내용이 보이지 않으면 외부 라이브러리가 64비트를 지원하는지 확인하고 지원하지 않으면 해결방안을 찾아야 합니다.</p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" data-id="ck16bgfwc0033k0h8ktqc6rp9" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
 
     </footer>
   </div>

@@ -67,6 +67,97 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-update-your-apps-to-be-64-bit-compliant-by-2019-08-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HowTo/">HowTo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/">Update your apps to be 64-bit compliant by 2019-08-01</a>
+    </h1>
+  
+
+        <a href="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" class="article-date">
+  <time datetime="2019-07-10T08:48:22.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<blockquote>
+<p>Google Play Store 에 게시되는 앱은 2019-08-01 까지 64비트 호환으로 업데이트되어야 합니다.</p>
+</blockquote>
+<p>유사한 제목으로 전자우편을 받았습니다.</p>
+<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows&amp;WT.mc_id=docs-forums-jamont" target="_blank" rel="noopener">CPU 아키텍쳐</a> 페이지에서 지원되는 아키텍쳐를 지정하는 방법을 확인할 수 있습니다.</p>
+<p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/deploy-test/building-apps/abi-specific-apks" target="_blank" rel="noopener">ABI 관련 APK 빌드</a> 페이지에서 지원 아키텍쳐 별 바이너리를 작성하기 위한 방법을 확인할 수 있습니다.</p>
+<p>2019-08-01 까지 64비트 지원 안드로이드 응용프로그램을 준비하기 위한 방법에 대한 자세한 설명은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지에서 확인할 수 있습니다.</p>
+<p>아래 내용은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지의 내용을 간략하게 소개합니다.</p>
+<h2 id="변경"><a class="header-anchor" href="#변경"> </a>변경</h2>
+<p>Xamarin.Android 는 4가지의 ABI를 지원합니다.</p>
+<p>*[ABI]: Application Binary Interface</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+<li>x86</li>
+<li>x86_64</li>
+</ul>
+<p>Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 빌드 속성을 바꿔야 합니다.</p>
+<h3 id="visual-studio-2019"><a class="header-anchor" href="#visual-studio-2019"> </a>Visual Studio 2019</h3>
+<p>안드로이드 프로젝트의 속성창을 열고, 안드로이드 옵션 탭으로 이동합니다.</p>
+<p>아래쪽의 고급 <small>Advanced</small> 버튼을 클릭하면 고급 설정창이 열립니다.</p>
+<p>지원 아키텍쳐에 아래 두 항목이 선택되어야 합니다.</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+</ul>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019-android-x64.png">
+<h3 id="visual-studio-2019-for-mac"><a class="header-anchor" href="#visual-studio-2019-for-mac"> </a>Visual Studio 2019 for Mac</h3>
+<p>안드로이드 프로젝트 속성창을 열고, 안드로이드 빌드 페이지로 이동합니다.</p>
+<p>고급탭의 지원되는 ABI 목록에서 아래 두 항목이 선택되어야 합니다.</p>
+<ul>
+<li>armeabi-v7a</li>
+<li>arm64-v8a</li>
+</ul>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019forMac-android-x64.png">
+<h2 id="빌드"><a class="header-anchor" href="#빌드"> </a>빌드</h2>
+<p>빌드 구성을 <strong>Release</strong>로 선택하고 빌드한 후 아카이브를 작성합니다.</p>
+<h2 id="확인"><a class="header-anchor" href="#확인"> </a>확인</h2>
+<p>Android Studio 의 APK Analizer 도구를 사용해서 64비트 라이브러리가 포함되어 빌드되었는지 확인할 수 있습니다.</p>
+<blockquote>
+<p><a href="https://developer.android.com/distribute/best-practices/develop/64-bit?hl=ko" target="_blank" rel="noopener">앱에서 64비트 기기를 지원하는지 확인</a> 페이지의 내용을 참조</p>
+</blockquote>
+<p>APK Analyzer 도구를 실행하고 아카이브된 APK 파일을 선택합니다.</p>
+<p>잠시후 아래와 같은 화면을 확인할 수 있습니다.</p>
+<img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/scoreboard.png">
+<p>오른쪽 창의 lib 에 arm64-v8a 관련 내용이 보이면 64비트 지원 앱으로 판단하시면 됩니다.</p>
+<h2 id="주의"><a class="header-anchor" href="#주의"> </a>주의</h2>
+<p>프로젝트에서 참조된 외부 라이브러리 관련 내용이 포함되어 있는지 확인해야 합니다.</p>
+<p>필요한 내용이 보이지 않으면 외부 라이브러리가 64비트를 지원하는지 확인하고 지원하지 않으면 해결방안을 찾아야 합니다.</p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/" data-id="ck2frttkb0031xgh8ecpjmrz2" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xamarin/">xamarin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-python-mysqlclient-패키지-설치" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -128,7 +219,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/29/python-mysqlclient-패키지-설치/" data-id="ck16bgfwa0031k0h8rnmpc5ox" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/06/29/python-mysqlclient-패키지-설치/" data-id="ck2frttk7002vxgh8pip8f96b" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -214,7 +305,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="ck16bgfw8002wk0h8eta200pi" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/06/28/Node-Blog-App/" data-id="ck2frttk9002yxgh81ug7bbmj" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ant-design/">ant.design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/next-js/">next.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-saga/">redux-saga</a></li></ul>
@@ -305,7 +396,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="ck16bgfw9002yk0h8o3t2v1u2" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/06/01/PowerShell-Core/" data-id="ck2frttkf0037xgh8aa4my1y9" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powershell/">powershell</a></li></ul>
@@ -364,7 +455,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="ck16bgfw3002ok0h8jjuvo09x" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/" data-id="ck2frttk1002kxgh8fn6bzkhp" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free/">free</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-play/">google play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/score-board/">score board</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-10/">windows 10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/점수판/">점수판</a></li></ul>
@@ -445,7 +536,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="ck16bgfw6002tk0h86d568fwc" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/" data-id="ck2frttk3002nxgh8g6o8cjrg" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-rename-app/">file rename app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freeware/">freeware,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft-store/">microsoft store</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utilities/">utilities</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-store/">windows store</a></li></ul>
@@ -530,7 +621,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="ck16bgfw5002qk0h83rd07hze" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/24/MariaDB-를-빠르게-설치/" data-id="ck2frttk5002rxgh8ym6qz15m" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mariadb/">mariadb</a></li></ul>
@@ -656,7 +747,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="ck16bgfvz002hk0h8xbjjoig4" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/02/09/rename-app/" data-id="ck2frttkr003rxgh82w21of5c" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -702,7 +793,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="ck16bgfw1002kk0h8lpyqmd3o" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2019/01/08/start-vscode-on-teminal-on-macos-md/" data-id="ck2frttju0025xgh8ydm53l32" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/">macos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
@@ -777,60 +868,7 @@ docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="ck16bgfvv002ak0h8wg9ufw2m" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ios-12.0.1" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mobile/">Mobile</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/09/ios-12.0.1/">iOS 12.0.1</a>
-    </h1>
-  
-
-        <a href="/2018/10/09/ios-12.0.1/" class="article-date">
-  <time datetime="2018-10-08T15:00:00.000Z" itemprop="datePublished">2018-10-09</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>iOS 12.0.1 업데이트는 iPhone 또는 iPad의 오류 수정 및 기능 향상을 포함합니다. 이 업데이트의 세부사항은 다음과 같습니다.</p>
-<ul>
-<li>일부 iPhone XS 기기를 Lightning 케이블에 연결했을 때 즉시 충전되지 않는 문제를 수정함</li>
-<li>iPhone XS 기기가 Wi-Fi 네트워크에 다시 연결될 때 5GHz 대신 2.4GHz에 연결되는 문제를 해결함</li>
-<li>iPad 키보드에서 ‘.?123’ 키를 원래 위치로 복원함<br>
-일부 비디오 앱에서 자막이 표시되지 않는 문제를 수정함</li>
-<li>Bluetooth를 사용할 수 없게 되는 문제를 고침</li>
-</ul>
-<p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p>
-<p><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a><br>
-​</p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2018/10/09/ios-12.0.1/" data-id="ck16bgfvx002dk0h8lsfl2eq0" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2018/10/31/ios-12.1/" data-id="ck2frttjw0029xgh8q35ae4sn" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>

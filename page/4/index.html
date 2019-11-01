@@ -67,6 +67,77 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-function-password-mysql" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computing/">Computing</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/13/function-password-mysql/">Mysql Password 함수</a>
+    </h1>
+  
+
+        <a href="/2017/07/13/function-password-mysql/" class="article-date">
+  <time datetime="2017-07-12T15:00:00.000Z" itemprop="datePublished">2017-07-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>MySql 의 PASSWORD 함수는 해시값을 계산한 문자열을 반환하는 함수입니다.</p>
+<p>비밀번호를 처리할 때 많이 사용됩니다. 실제 서버의 계정 비밀번호도 PASSWORD 함수를 사용해서 처리하게 됩니다.</p>
+<blockquote>
+<p>주의<br>
+해시가 계산된 값이 4.1.0 이전 버전과 4.1.1 이후 버전이 다릅니다.<br>
+<a href="https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html" target="_blank" rel="noopener">Password Hashing in MySQL</a> 페이지 참조하십시오.</p>
+</blockquote>
+<p>4.1.1 이후 버전에서 PASSWORD 함수 결과는 아래와 같습니다.<br>
+결과는 문자열입니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello');</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>결과<br>
+<code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p>
+</blockquote>
+<p>PASSWORD 함수의 동작에 대한 내용을 <a href="https://www.pythian.com/blog/hashing-algorithm-in-mysql-password-2/" target="_blank" rel="noopener">HASHING ALGORITHM IN MYSQL PASSWORD()</a> 페이지에서 찾을 수 있습니다.</p>
+<p>위 링크 페이지의 내용에서는 아래와 같이 동일한 값을 얻을 수 있다고 합니다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MYSQL&gt; select password('hello') as result</span><br><span class="line">union all</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'*'</span>, <span class="keyword">convert</span>(<span class="keyword">sha1</span>(<span class="keyword">unhex</span>(<span class="keyword">sha1</span>(<span class="string">'hello'</span>))) <span class="keyword">USING</span> utf8));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code><br>
+<code>*6b4f89a54e2d27ecd7e8da05b4ab8fd9d1d8b119</code></p>
+</blockquote>
+<p>password 함수는 sha1 해시 값을 다시 sha1 해시 값을 계산한 값을 문자열로 표현하고, ‘<code>*</code>’ 을 앞에 붙인 것과 동일합니다.</p>
+<p>기존 시스템이 MySql 로 운영되고 있을 때, 이를 다른 DBMS로 이관을 해야하면 문자열을 그대로 이관하고, PASSWORD 함수와 동일한 동작을 할 수 있는 해시 함수를 작성해서 처리할 수 있습니다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">GenerateMySQLHash</span>(<span class="params"><span class="keyword">string</span> key</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] keyArray = Encoding.UTF8.GetBytes(key);</span><br><span class="line">    SHA1Managed enc = <span class="keyword">new</span> SHA1Managed();</span><br><span class="line">    <span class="keyword">byte</span>[] encodedKey = enc.ComputeHash(enc.ComputeHash(keyArray));</span><br><span class="line">    StringBuilder myBuilder = <span class="keyword">new</span> StringBuilder(encodedKey.Length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">byte</span> b <span class="keyword">in</span> encodedKey)</span><br><span class="line">    &#123;</span><br><span class="line">        myBuilder.Append(b.ToString(<span class="string">"X2"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"*"</span> + myBuilder.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GenerateMySQLHash(<span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>결과<br>
+<code>*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119</code></p>
+</blockquote>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://bbon.me/2017/07/13/function-password-mysql/" data-id="ck2frttjo001uxgh8jmjgs4f8" class="article-share-link">공유</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/password/">password</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ios-10.3" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     
@@ -132,7 +203,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/03/29/ios-10.3/" data-id="ck16bgfvd001gk0h8kvxnuyfp" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/03/29/ios-10.3/" data-id="ck2frttjj001mxgh81t5jeugi" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -194,7 +265,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2017/01/25/jekyll-on-ubuntu/" data-id="ck16bgfvg001lk0h8bcwp93qw" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2017/01/25/jekyll-on-ubuntu/" data-id="ck2frttjh001kxgh8a4hf7v0q" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
@@ -352,7 +423,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/12/15/web-storage-api/" data-id="ck16bgfvh001nk0h8knfnh6q1" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/12/15/web-storage-api/" data-id="ck2frttj90017xgh8fa07czb5" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li></ul>
@@ -424,7 +495,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/" data-id="ck16bgfvb001ck0h8m2o1aui9" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/" data-id="ck2frttjc001bxgh85qyzb5z9" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ide/">ide</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microsoft/">microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vs/">vs</a></li></ul>
@@ -673,7 +744,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/09/18/ios-10/" data-id="ck16bgg3e00cxk0h8kii516ia" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/09/18/ios-10/" data-id="ck2frttqs00cyxgh87if4yus0" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -777,7 +848,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/08/29/enable-assembly-binding-log/" data-id="ck16bgfva0019k0h85ypaaute" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/08/29/enable-assembly-binding-log/" data-id="ck2frttj50010xgh897s2nhy3" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
@@ -952,7 +1023,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/03/23/ios-9-3/" data-id="ck16bgg3d00cvk0h885ypj9vc" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/03/23/ios-9-3/" data-id="ck2frttqq00cwxgh83npv3v5q" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
@@ -1009,7 +1080,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2016/02/16/sql-server-jdbc-driver/" data-id="ck16bgfv3000vk0h8ucuy69rm" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2016/02/16/sql-server-jdbc-driver/" data-id="ck2frttj70014xgh8dtw1bagn" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdbc/">jdbc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql-server/">sql server</a></li></ul>
@@ -1099,91 +1170,10 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2015/12/09/ios-9-2/" data-id="ck16bgfv4000xk0h8fodxr6pj" class="article-share-link">공유</a>-->
+      <!--<a data-url="http://bbon.me/2015/12/09/ios-9-2/" data-id="ck2frttje001fxgh81wmhvtmb" class="article-share-link">공유</a>-->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apple/">apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ipad/">ipad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iphone/">iphone</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-oracle-instant-client" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computing/">Computing</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/02/install-oracle-instant-client/">Install Oracle Instant Client</a>
-    </h1>
-  
-
-        <a href="/2015/11/02/install-oracle-instant-client/" class="article-date">
-  <time datetime="2015-11-01T15:00:00.000Z" itemprop="datePublished">2015-11-02</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<h2 id="파일-다운로드"><a class="header-anchor" href="#파일-다운로드"> </a>파일 다운로드</h2>
-<p><a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener">Oracle Instant Client</a> 페이지에서 설치할 대상 OS 및 아키텍쳐가 기술된 링크를 클릭해서 아래 항목을 다운로드 받습니다.</p>
-<ul>
-<li>Instant Client Package - Basic</li>
-<li>Instant Client Package - SQL*Plus</li>
-</ul>
-<h2 id="설치"><a class="header-anchor" href="#설치"> </a>설치</h2>
-<p>다운로드 받은 파일의 압축을 해제한 후 원하는 디렉터리로 복사/이동합니다.</p>
-<p>설명을 위해 <code>D:\Oracle\InstantClient</code> 디렉터리에 압축을 해제한 것으로 합니다.</p>
-<h2 id="설정"><a class="header-anchor" href="#설정"> </a>설정</h2>
-<h3 id="시스템-변수"><a class="header-anchor" href="#시스템-변수"> </a>시스템 변수</h3>
-<p>시스템 &gt; 고급 시스템 설정 을 클릭하여 시스템 속성창을 실행합니다.</p>
-<p>시스템 속성창의 고급 탭 아래쪽의 환경 변수를 클릭하여 환경 변수창을 실행합니다.</p>
-<p>시스템 변수에 새로 만들기 버튼을 클릭해서 아래 항목을 추가합니다.</p>
-<p>변수 이름: ORACLE_HOME</p>
-<p>변수 값: D:\Oracle\InstantClient</p>
-<p>변수 이름: TNS_ADMIN</p>
-<p>변수 값: D:\Oracle\InstantClient</p>
-<p>변수 이름: NLS_LANG</p>
-<p>변수 값: KOREAN_KOREA.KO16MSWIN949</p>
-<p>시스템 변수 중 이미 존재하는 Path 변수를 선택하고 편집 버튼을 클릭하여 아래 항목을 추가합니다.</p>
-<p>기존 값은 그대로 두고 기존 값 뒤에 추가합니다.</p>
-<p>변수 이름: Path<br>
-변수 값: &lt;기존값은 유지&gt;;D:\Oracle\InstantClient</p>
-<h3 id="tns-name"><a class="header-anchor" href="#tns-name"> </a>TNS Name</h3>
-<p>텍스트 편집기를 실행하고 아래 내용을 입력한 후 파일이름을 tnsnames.ora 로 변경한 후 Instant Client 디렉터리(D:\Oracle\InstantClient\tnsnames.ora)로 저장합니다.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ALIAS&gt; =</span><br><span class="line"> (DESCRIPTION =</span><br><span class="line">   (ADDRESS = (PROTOCOL = TCP)(HOST = &lt;ServerHostName or Server IP&gt;)(PORT = &lt;Oracle Port Number&gt;))</span><br><span class="line">   (CONNECT_DATA =</span><br><span class="line">     (SERVER = DEDICATED)</span><br><span class="line">     (&lt;SERVICE_NAME or SID&gt; = &lt;Service_Name or sid 실제값&gt;)</span><br><span class="line">   )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>ALIAS: 접속시 사용할 별칭입니다.</li>
-<li>ServerHostName or Server IP: Oracle Database 서버 정보와 동일하게 입력합니다.</li>
-<li>Oracle Port Number: Oracle Database Listener 의 대기 포트를 입력합니다. (기본값: 1521)</li>
-<li>SERVICE_NAME orSID: Oracle Database 서버 정보와 동일하게 입력합니다. 서버가 SERVICE_NAME 이면 SERVICE_NAME, 서버가 SID 이면 SID 를 입력합니다.</li>
-<li>Service_Name or sid 실제값: Oracle Database 서버 정보와 동일하게 입력합니다. SERVICE_NAME 혹은 SID 실제 값을 입력합니다.</li>
-</ul>
-<h2 id="확인"><a class="header-anchor" href="#확인"> </a>확인</h2>
-<p>시스템 변수 값이 적용될 수 있도록 서버를 재시작합니다.</p>
-<p>D:\Oracle\InstantClient 디렉터리에 Instant Client Package - SQL*Plus 압축 파일의 내용까지 복사/이동한 상태라면 명령 프롬프트(CMD)를 실행하고, Instant Client 가 존재하는 디렉터리로 이동합니다.</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">c:\&gt; <span class="title">d</span>:</span></span><br><span class="line"><span class="function"><span class="title">d</span>:\&gt; <span class="title">cd</span> \<span class="title">Oracle</span>\<span class="title">InstantClient</span></span></span><br><span class="line"><span class="function"><span class="title">d</span>:\<span class="title">Oracle</span>\<span class="title">InstantClient</span>\&gt; <span class="title">sqlplus</span> <span class="title">userid</span>/<span class="title">password</span>@<span class="title">sid</span></span></span><br></pre></td></tr></table></figure>
-<p>userid 와 password, sid 부분을 실제 사용하는 값으로 치환하여 sqlplus 로 연결을 시도하면 연결 성공 혹은 실패시 에러 코드를 알 수 있습니다.</p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://bbon.me/2015/11/02/install-oracle-instant-client/" data-id="ck16bgfv70012k0h8292jxbj9" class="article-share-link">공유</a>-->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/">dev</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/">oracle</a></li></ul>
 
     </footer>
   </div>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://bbon.me/about/index.html</loc>
+    
+    <lastmod>2019-11-01T07:41:38.566Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2019/11/01/Postman-Variables-usages/</loc>
+    
+    <lastmod>2019-11-01T06:45:28.458Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2019/09/29/Visual-Studio-Item-Template/</loc>
     
     <lastmod>2019-09-30T11:12:52.620Z</lastmod>
@@ -44,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/categories/index.html</loc>
-    
-    <lastmod>2019-08-05T09:59:13.799Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/articles/index.html</loc>
     
     <lastmod>2019-08-05T09:59:13.799Z</lastmod>
@@ -58,9 +65,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/about/index.html</loc>
+    <loc>http://bbon.me/categories/index.html</loc>
     
-    <lastmod>2019-08-05T09:59:13.798Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.799Z</lastmod>
     
   </url>
   
@@ -121,14 +128,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
+    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
+    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
+    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
+    <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
     
@@ -184,6 +191,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/2017/11/01/ios-11.1/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2017/10/06/ios-11.0.2/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
@@ -199,13 +213,6 @@
   
   <url>
     <loc>http://bbon.me/2017/11/19/ios-11.1.2/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/2017/11/01/ios-11.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
@@ -240,14 +247,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
+    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -261,7 +261,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
+    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -303,7 +310,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
+    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
@@ -317,7 +324,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
+    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
+    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
+    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     
