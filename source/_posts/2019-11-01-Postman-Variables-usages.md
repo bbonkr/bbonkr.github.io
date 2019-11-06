@@ -116,15 +116,17 @@ Postman 의 현재 컬렉션에 signin 요청을 추가합니다.
 응답에서 token 변수의 값을 설정하기 위해 Tests 탭으로 이동합니다.
 
 ```js
-var jsonData = JSON.parse(responseBody);
-if(jsonData){
-    if(jsonData.success){
-        if(jsonData.data){
-            const token = jsonData.data.token;
-            pm.environment.set("token", token); // token 변수의 값을 설정
+pm.test('call', ()=> {
+    var jsonData = JSON.parse(responseBody);
+    if(jsonData){
+        if(jsonData.success){
+            if(jsonData.data){
+                const token = jsonData.data.token;
+                pm.environment.set("token", token); // token 변수의 값을 설정
+            }
         }
     }
-}
+});
 ```
 
 {% asset_img postman-variable-usage-005.png %}
@@ -146,6 +148,24 @@ Authorization 탭에서 인증 형식을 Bearer Token 으로 선택하고 토큰
 Signin 요청을 먼저 실행해서 토큰을 얻고, Get stores 요청을 실행하면 이전 Signin 요청에서 얻은 토큰을 요청 헤더 인증 값으로 사용됩니다.
 
 그리고, 테스트 서버의 기본 주소가 변경되면 컬렉션 변수의 값만 변경하면 해당 컬렉션 내의 요청이 변경된 기본주소를 참조할 것 입니다.
+
+## 오류 정정
+
+2019-11-03 현재 컬렉션 변수는 스크립트 환경 <small>Pre-request Script, Tests</small> 에서 쓰기를 지원하지 않습니다.
+
+스크립트로 변수 값 쓰기를 하려면 전역 변수 또는 환경 변수를 사용해야 합니다.
+
+전역변수 쓰기
+
+```js
+pm.globals.set("token", token);
+```
+
+환경변수 쓰기
+
+```js
+pm.environment.set("token", token);
+```
 
 ## 참조
 
