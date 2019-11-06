@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/articles/index.html</loc>
+    <loc>http://bbon.me/categories/index.html</loc>
     
     <lastmod>2019-08-05T09:59:13.799Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/categories/index.html</loc>
+    <loc>http://bbon.me/articles/index.html</loc>
     
     <lastmod>2019-08-05T09:59:13.799Z</lastmod>
     
@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
@@ -163,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
+    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
+    <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
     
@@ -191,14 +191,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/11/01/ios-11.1/</loc>
+    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
+    <loc>http://bbon.me/2017/11/01/ios-11.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
@@ -247,7 +247,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
+    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -268,7 +268,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
+    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -310,6 +310,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.757Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
@@ -324,23 +331,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/01/ios-9-0-2/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.757Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2015/09/24/ios-9-0-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.756Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/2015/09/21/paddle-the-creatable-freebie-bundle/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.748Z</lastmod>
     
   </url>
   
@@ -352,14 +345,21 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/16/Move-mysql-datafiles/</loc>
+    <loc>http://bbon.me/2015/09/21/paddle-the-creatable-freebie-bundle/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.748Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2015/09/17/ios-9/</loc>
     
     <lastmod>2019-08-05T09:59:13.747Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/17/ios-9/</loc>
+    <loc>http://bbon.me/2015/09/16/Move-mysql-datafiles/</loc>
     
     <lastmod>2019-08-05T09:59:13.747Z</lastmod>
     
@@ -394,14 +394,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/01/15/etude0tic-tac-toe/</loc>
+    <loc>http://bbon.me/2015/01/14/exchange-web-service/</loc>
     
     <lastmod>2019-08-05T09:59:13.741Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/01/14/exchange-web-service/</loc>
+    <loc>http://bbon.me/2015/01/15/etude0tic-tac-toe/</loc>
     
     <lastmod>2019-08-05T09:59:13.741Z</lastmod>
     
