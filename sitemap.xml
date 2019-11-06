@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://bbon.me/about/index.html</loc>
+    <loc>http://bbon.me/2019/11/01/Postman-Variables-usages/</loc>
     
-    <lastmod>2019-11-01T07:41:38.566Z</lastmod>
+    <lastmod>2019-11-06T07:12:10.951Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/11/01/Postman-Variables-usages/</loc>
+    <loc>http://bbon.me/about/index.html</loc>
     
-    <lastmod>2019-11-01T06:45:28.458Z</lastmod>
+    <lastmod>2019-11-01T07:41:38.566Z</lastmod>
     
   </url>
   
@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
+    <loc>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
@@ -142,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</loc>
+    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
     
     <lastmod>2019-08-05T09:59:13.774Z</lastmod>
     
@@ -163,13 +163,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.766Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
@@ -177,14 +170,21 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/01/03/gulp-task-automation/</loc>
+    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.766Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
     
     <lastmod>2019-08-05T09:59:13.765Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
+    <loc>http://bbon.me/2018/01/03/gulp-task-automation/</loc>
     
     <lastmod>2019-08-05T09:59:13.765Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/10/06/ios-11.0.2/</loc>
+    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
+    <loc>http://bbon.me/2017/10/06/ios-11.0.2/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
     
@@ -247,14 +247,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
+    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -268,7 +261,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
+    <loc>http://bbon.me/2017/01/25/jekyll-on-ubuntu/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -310,14 +310,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
+    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
+    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
@@ -338,13 +338,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/20/install-jekyll/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.748Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2015/09/21/paddle-the-creatable-freebie-bundle/</loc>
     
     <lastmod>2019-08-05T09:59:13.748Z</lastmod>
@@ -352,9 +345,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/17/ios-9/</loc>
+    <loc>http://bbon.me/2015/09/20/install-jekyll/</loc>
     
-    <lastmod>2019-08-05T09:59:13.747Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.748Z</lastmod>
     
   </url>
   
@@ -366,14 +359,21 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
+    <loc>http://bbon.me/2015/09/17/ios-9/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.747Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/04/windows-10-media-pack/</loc>
+    <loc>http://bbon.me/2015/07/05/lotto-mk-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.745Z</lastmod>
     

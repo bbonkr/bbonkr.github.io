@@ -20,6 +20,7 @@ ga('send', 'pageview');
   
   <title>Postman: Variables usages | {bbon}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="naver-site-verification" content="35daa3826c39b4bbbf28d745a664a43fcf1ffe93">
   <meta name="description" content="HTTP API  웹 응용프로그램을 작성할 때,  Postman 을 많이 사용합니다. 작성한 API 가 잘 동작하는지 클라이언트에서 사용하는 것과 동일한 요청을 GUI를 통해 실행할 수 있어 매우 편리합니다.  무료 요금제 를 사용해도 매우 많은 기능을 제공합니다. 많은 기능 중 반복되는 값 - 예를 들면 기본 주소 -을 처리하기 위한 변수 기능을 좋아합니">
 <meta name="keywords" content="api,tools,postman,test,http api,restful api">
 <meta property="og:type" content="article">
@@ -34,7 +35,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://bbon.me/2019/11/01/Postman-Variables-usages/postman-variable-usage-004.png">
 <meta property="og:image" content="http://bbon.me/2019/11/01/Postman-Variables-usages/postman-variable-usage-005.png">
 <meta property="og:image" content="http://bbon.me/2019/11/01/Postman-Variables-usages/postman-variable-usage-006.png">
-<meta property="og:updated_time" content="2019-11-01T06:45:28.458Z">
+<meta property="og:updated_time" content="2019-11-06T07:12:10.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Postman: Variables usages">
 <meta name="twitter:description" content="HTTP API  웹 응용프로그램을 작성할 때,  Postman 을 많이 사용합니다. 작성한 API 가 잘 동작하는지 클라이언트에서 사용하는 것과 동일한 요청을 GUI를 통해 실행할 수 있어 매우 편리합니다.  무료 요금제 를 사용해도 매우 많은 기능을 제공합니다. 많은 기능 중 반복되는 값 - 예를 들면 기본 주소 -을 처리하기 위한 변수 기능을 좋아합니">
@@ -175,7 +176,7 @@ ga('send', 'pageview');
 <p>요청 URL은 <code>/api/signin</code> 을 입력합니다.</p>
 <img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-004.png">
 <p>응답에서 token 변수의 값을 설정하기 위해 Tests 탭으로 이동합니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonData = <span class="built_in">JSON</span>.parse(responseBody);</span><br><span class="line"><span class="keyword">if</span>(jsonData)&#123;</span><br><span class="line">    <span class="keyword">if</span>(jsonData.success)&#123;</span><br><span class="line">        <span class="keyword">if</span>(jsonData.data)&#123;</span><br><span class="line">            <span class="keyword">const</span> token = jsonData.data.token;</span><br><span class="line">            pm.environment.set(<span class="string">"token"</span>, token); <span class="comment">// token 변수의 값을 설정</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pm.test(<span class="string">'call'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonData = <span class="built_in">JSON</span>.parse(responseBody);</span><br><span class="line">    <span class="keyword">if</span>(jsonData)&#123;</span><br><span class="line">        <span class="keyword">if</span>(jsonData.success)&#123;</span><br><span class="line">            <span class="keyword">if</span>(jsonData.data)&#123;</span><br><span class="line">                <span class="keyword">const</span> token = jsonData.data.token;</span><br><span class="line">                pm.environment.set(<span class="string">"token"</span>, token); <span class="comment">// token 변수의 값을 설정</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <img src="/2019/11/01/Postman-Variables-usages/postman-variable-usage-005.png">
 <blockquote>
 <p>Test 탭의 오른쪽에 코드 조각이 제공됩니다.</p>
@@ -188,6 +189,13 @@ ga('send', 'pageview');
 <p>준비를 마쳤습니다.</p>
 <p>Signin 요청을 먼저 실행해서 토큰을 얻고, Get stores 요청을 실행하면 이전 Signin 요청에서 얻은 토큰을 요청 헤더 인증 값으로 사용됩니다.</p>
 <p>그리고, 테스트 서버의 기본 주소가 변경되면 컬렉션 변수의 값만 변경하면 해당 컬렉션 내의 요청이 변경된 기본주소를 참조할 것 입니다.</p>
+<h2 id="오류-정정"><a class="header-anchor" href="#오류-정정"> </a>오류 정정</h2>
+<p>2019-11-03 현재 컬렉션 변수는 스크립트 환경 <small>Pre-request Script, Tests</small> 에서 쓰기를 지원하지 않습니다.</p>
+<p>스크립트로 변수 값 쓰기를 하려면 전역 변수 또는 환경 변수를 사용해야 합니다.</p>
+<p>전역변수 쓰기</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm.globals.set(<span class="string">"token"</span>, token);</span><br></pre></td></tr></table></figure>
+<p>환경변수 쓰기</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm.environment.set(<span class="string">"token"</span>, token);</span><br></pre></td></tr></table></figure>
 <h2 id="참조"><a class="header-anchor" href="#참조"> </a>참조</h2>
 <ul>
 <li><a href="https://learning.getpostman.com/" target="_blank" rel="noopener">Postman: Learning Center</a></li>
@@ -197,7 +205,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bbon.me/2019/11/01/Postman-Variables-usages/" data-id="ck2frttkt003vxgh839n0gmry" class="article-share-link">공유</a>
+      <a data-url="http://bbon.me/2019/11/01/Postman-Variables-usages/" data-id="ck2mycnbg003szkh83dtukmaj" class="article-share-link">공유</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-api/">http api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful-api/">restful api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
