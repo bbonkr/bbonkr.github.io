@@ -29,9 +29,11 @@ A responsive, clean and simple [Hexo](http://hexo.io) theme for a personal websi
 - Projects list
 - I18n support
 - Disqus integration
+- Utterances integration
 - Google analytics / Baidu Tongji
 - Font Awesome icons
 - Simplicity
+- Supports device's Dark Mode!
 
 ## Install
 1. In the `root` directory:
@@ -93,15 +95,11 @@ This will override the default black colorscheme in `themes/cactus/_config.yml`.
 
 ### Color scheme
 
-Currently, this theme is delivered with four color schemes: [dark](https://probberechts.github.io/hexo-theme-cactus/cactus-dark/public/), [light](https://probberechts.github.io/hexo-theme-cactus/cactus-light/public/),
-[white](https://probberechts.github.io/hexo-theme-cactus/cactus-white/public/) and [classic](https://probberechts.github.io/hexo-theme-cactus/cactus-classic/public/). Set your preferred color scheme in the `_config.yml` file.
+Currently, this theme is delivered with two color schemes: [dark](https://probberechts.github.io/hexo-theme-cactus/cactus-dark/public/), [light](https://probberechts.github.io/hexo-theme-cactus/cactus-light/public/), though you don't need to provide any color scheme since this theme automatically reads system's dark mode value and applies appropriate theme.
 
-```yml
-colorscheme: light
-```
 
 Alternatively, you can easily create your own color scheme by creating a new
-file in `source/css/_colors`.
+file in `source/css/_colors.styl`.
 
 
 ### Navigation
@@ -236,7 +234,7 @@ baidu_analytics:
 
 
 ### Comments
-
+#### Disqus
 First, create a site on Disqus: [https://disqus.com/admin/create/](http://disqus.com/admin/create/).
 
 Next, update the `_config.yml` file:
@@ -248,7 +246,17 @@ disqus:
 ```
 
 where `SITENAME` is the name you gave your site on Disqus.
+#### Utterances
+First, install [Utterances App](https://github.com/apps/utterances) on your repo.
+Next, update the `_config.yml` file:
 
+```yml
+utterances:
+  repo: REPOPATH
+  theme: github-light
+```
+
+where `REPOPATH` is the repo you've installed Utterances app.
 
 ### Code Highlighting
 
