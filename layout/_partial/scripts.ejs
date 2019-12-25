@@ -109,10 +109,10 @@
           async>
   </script>
   <script type="text/javascript">
-    const iframeLoad = (prevIframeOnLoad) => { 
+    const iframeLoad = (prevIframeOnLoad, frame) => { 
       return function() {
         if (prevIframeOnLoad) prevIframeOnLoad()
-        iframe.contentWindow.postMessage({
+        frame.contentWindow.postMessage({
           type: 'set-theme',
           theme: 'github-dark-orange' // 'github-light', etc.. 
         }, 'https://utteranc.es')
@@ -124,9 +124,9 @@
       if (prevOnLoad) prevOnLoad()
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         const interval = setInterval(() => {
-          const iframe = document.querySelector('.utterances-frame')
+          const iFrame = document.querySelector('.utterances-frame')
           if (iFrame) {
-            iframe.onload = iframeLoad(iFrame.onload)
+            iframe.onload = iframeLoad(iFrame.onload, iFrame)
             clearInterval(interval)
           }
         }, 200)
