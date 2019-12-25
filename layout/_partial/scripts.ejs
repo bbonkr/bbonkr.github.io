@@ -99,38 +99,25 @@
         }());
     </script>
 <% } %>
-<% if (page.comments && config.utterances_repo) { %>
-  <script src="https://utteranc.es/client.js"
-          repo="<%= config.utterances_repo %>"
-          issue-term="pathname"
-          label="💬 Comment "
-          theme="github-light"
-          crossorigin="anonymous"
-          async>
-  </script>
-  <script type="text/javascript">
-    const iframeLoad = (prevIframeOnLoad, frame) => { 
-      return function() {
-        if (prevIframeOnLoad) prevIframeOnLoad()
-        frame.contentWindow.postMessage({
-          type: 'set-theme',
-          theme: 'github-dark-orange' // 'github-light', etc.. 
-        }, 'https://utteranc.es')
-      }
-    }
-
-    const prevOnLoad = window.onload
-    window.onload = () => {
-      if (prevOnLoad) prevOnLoad()
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        const interval = setInterval(() => {
-          const iFrame = document.querySelector('.utterances-frame')
-          if (iFrame) {
-            iFrame.onload = iframeLoad(iFrame.onload, iFrame)
-            clearInterval(interval)
-          }
-        }, 200)
-      }
-    }
-  </script>
+<% if (page.comments && config.utterances) { %>
+  <% if (config.utterances.theme && config.utterances.darkTheme) { %>
+    <script src="<%= config.utterances.src %>"
+            repo="<%= config.utterances.repo %>"
+            issue-term="pathname"
+            label="💬 Comment "
+            theme="<%= config.utterances.theme || 'github-light' %>"
+            dark-theme="<%= config.utterances.darkTheme || 'github-dark-orange' %>"
+            crossorigin="anonymous"
+            async>
+    </script>
+  <% } else { %>
+    <script src="<%= config.utterances.src %>"
+            repo="<%= config.utterances.repo %>"
+            issue-term="pathname"
+            label="💬 Comment "
+            theme="<%= config.utterances.theme || 'github-light' %>"
+            crossorigin="anonymous"
+            async>
+    </script>
+  <% } %>
 <% } %>
