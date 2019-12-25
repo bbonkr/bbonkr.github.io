@@ -126,7 +126,7 @@
         const interval = setInterval(() => {
           const iFrame = document.querySelector('.utterances-frame')
           if (iFrame) {
-            iframe.onload = iframeLoad(iFrame.onload, iFrame)
+            iFrame.onload = iframeLoad(iFrame.onload, iFrame)
             clearInterval(interval)
           }
         }, 200)
