@@ -99,3 +99,21 @@
         }());
     </script>
 <% } %>
+<% if (page.comments && config.utterances_repo) { %>
+  <script type="text/javascript">
+
+    (function(){
+        var utterances = document.createElement('script')
+        utterances.type = 'text/javascript'
+        utterances.async = true
+        utterances.repo = '<%= config.utterances_repo %>'
+        utterances['issue-term'] = 'pathname'
+        utterances.label = 'Comment:'
+        utterances.crossOrigin = 'anonymous'
+        utterances.theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'github-dark-orange' : 'github-light'
+        utterances.src = 'https://utteranc.es/client.js'
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(utterances)
+    }());
+</script>
+<% } %>
