@@ -100,14 +100,26 @@
     </script>
 <% } %>
 <% if (page.comments && config.utterances_repo) { %>
+  <script src="https://utteranc.es/client.js"
+          repo="<%= config.utterances_repo %>"
+          issue-term="pathname"
+          label="💬 Comment "
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
   <script type="text/javascript">
-
-    (function(){
-        const repo = '<%= config.utterances_repo %>'
-        const theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'github-dark-orange' : 'github-light'
-        const html = '<script src="https://utteranc.es/client.js" type="text/javascript" issue-term="pathname" label="Comment:" crossorigin="anonymous" ' + 
-                     'repo="' + repo + '" theme="' + theme + '" />'
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).insertAdjacentHTML('beforeend', html)
-    }());
-</script>
+    const prevOnLoad = window.onload
+    window.onload = () => {
+      if (prevOnLoad) prevOnLoad()
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        const message = {
+          type: 'set-theme',
+          theme: 'github-dark-orange' // 'github-light', etc.. 
+        }
+        const iframe = document.querySelector('.utterances-frame')
+        iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+      }
+    }
+  </script>
 <% } %>
