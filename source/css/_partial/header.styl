@@ -105,3 +105,21 @@
       padding-top: 1rem
       padding-left: $logo-width + 20px
       font-size: 1rem
+
+@media (prefers-color-scheme: dark)
+  #header
+    h1, .h1
+      color: $color-text-dark
+
+    #nav
+      color: $color-accent-1-dark
+
+      ul
+        a
+          color: $color-accent-1-dark
+
+        a:hover
+          underline(5px, $color-accent-1-dark)
+
+        li
+          border-color: $color-accent-1-dark

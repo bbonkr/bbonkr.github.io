@@ -199,3 +199,51 @@
         float: left
         margin-right: 2rem
         font-style: italic
+@media (prefers-color-scheme: dark)
+  #header-post
+    a.icon
+      &:hover
+        color: $color-link-dark
+
+    #menu-icon
+      &:hover
+        color: $color-accent-1
+
+    #menu-icon-tablet
+      &:hover
+        color: $color-accent-1-dark
+
+    #top-icon-tablet
+      &:hover
+        color: $color-accent-1-dark
+
+    .active
+      color: $color-accent-1-dark
+
+    #nav
+      color: $color-accent-1-dark
+      ul
+        a
+          color: $color-accent-1-dark
+
+        a:hover
+          underline(5px, $color-accent-1-dark)
+
+        li
+          border-right: 1px dotted $color-accent-1-dark
+
+    #toc
+      a:hover
+        color: $color-link-dark
+
+      .toc-level-2
+        color: $color-text-dark
+
+        &:before
+          color: $color-accent-1-dark
+
+      .toc-level-3
+        color: $color-meta-dark
+
+      .toc-level-4
+        color: darken($color-meta-dark, 20%)

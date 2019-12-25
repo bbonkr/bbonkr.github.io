@@ -81,6 +81,22 @@ body
     a:hover
       underline(6px, $color-link)
 
+  @media (prefers-color-scheme: dark)
+    a
+      color: $color-text-dark
+
+      underline(5px, $color-text-dark)
+
+      &:hover
+        background-image: linear-gradient(transparent, transparent 4px, $color-link-dark 4px, $color-link-dark)
+
+    h1 a:hover, .h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover
+      underline(6px, $color-link-dark)
+
+    h6
+      a:hover
+        underline(6px, $color-link-dark)
+
 @media (min-width: 540px)
   .image-wrap
     flex-direction: row
@@ -109,6 +125,13 @@ body
 @media (min-width: 480px)
   p
     text-align: justify
+
+@media (prefers-color-scheme: dark)
+  html
+    border-top: 2px solid $color-text-dark
+  body
+    background-color: $color-background-dark
+    color: $color-text-dark
 
 @import "_partial/header"
 @import "_partial/post/actions_desktop"
@@ -209,3 +232,29 @@ code
 
   .line
     height: 22px
+
+@media (prefers-color-scheme: dark)
+  background: $color-background-code-dark-dark
+  pre
+    border: 1px dotted $color-border-dark
+
+  code
+    border: 1px dotted $color-border-dark
+
+  .highlight
+    background: $color-background-code-dark
+
+    figcaption
+      color: $color-meta-code-dark
+
+      a
+        color: $color-meta-code-dark
+
+        underline(10px, $color-link-dark)
+
+      a:hover
+        color: lighten($color-meta-code-dark, 20%)
+
+    .btn-copy
+      &:hover
+        color: $color-accent-1-dark

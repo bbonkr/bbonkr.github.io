@@ -135,3 +135,35 @@ article
 
     &:before
       content: "|"
+
+@media (prefers-color-scheme: dark)
+  article
+    header
+      .meta *
+        color: $color-accent-3-dark
+    .content
+      h2:before
+        color: $color-accent-1-dark
+      blockquote
+        color: $color-quote-dark
+        &:before
+          color: $color-quote-dark
+        footer
+          color: $color-meta-dark
+
+          a
+            color: $color-meta-dark
+
+          a:hover
+            color: lighten($color-meta-dark, 20%)
+
+      .caption
+        color: $color-meta-dark
+
+  .article-tag
+    .tag-link
+      underline(10px, $color-link-dark)
+
+  .article-category
+    .category-link
+      underline(10px, $color-link-dark)

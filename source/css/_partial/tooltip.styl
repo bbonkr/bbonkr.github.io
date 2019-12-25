@@ -76,3 +76,19 @@
 // Move the tooltip body to the center of the object.
 .tooltipped-s::after
   transform: translateX(50%)
+
+@media (prefers-color-scheme: dark)
+  // This is the tooltip bubble
+  .tooltipped::after
+    color: $color-background-dark
+    background: $color-text-dark
+    
+  // This is the tooltip arrow
+  .tooltipped::before
+    color: $color-text-dark
+
+  // Tooltipped south
+  .tooltipped-s,
+  .tooltipped-sw
+    &::before
+      border-bottom-color: $color-text-dark

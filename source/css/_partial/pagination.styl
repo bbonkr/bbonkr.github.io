@@ -21,3 +21,14 @@
 
   a:hover:not(.active)
     color: $color-accent-2
+
+@media (prefers-color-scheme: dark)
+  .pagination
+    .page-number
+      color: $color-text-dark
+
+    a
+      color: $color-text-dark
+
+    a:hover:not(.active)
+      color: $color-accent-2-dark

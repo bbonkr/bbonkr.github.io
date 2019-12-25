@@ -44,3 +44,21 @@
   display: none
   padding-bottom: .5em
   color: $color-text
+
+@media (prefers-color-scheme: dark)
+  .search-input
+    border: solid 1px $color-accent-3-dark
+    background-color: $color-background-dark
+    color: $color-text-dark
+    &:focus
+      border: solid 1px $color-accent-1-dark
+
+  #search-result
+    a.search-result-title
+      color: $color-text-dark
+    em.search-keyword
+      border-bottom: 1px dashed $color-link-dark
+      color: $color-link-dark
+
+  .search-no-result
+    color: $color-text-dark

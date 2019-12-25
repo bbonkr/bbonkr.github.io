@@ -129,3 +129,44 @@
 @media screen and (min-width: 500px)
   #footer-post-container
     display: none
+
+@media (prefers-color-scheme: dark)
+  #footer-post
+    border-top: 1px solid $color-border-dark
+    background: $color-footer-mobile-1-dark
+
+    a.icon
+      &:hover
+        color: $color-link-dark
+
+    #nav-footer
+      background: $color-footer-mobile-2-dark
+
+      a
+        color: $color-accent-1-dark
+
+      a:hover
+        underline(5px, $color-accent-1-dark)
+
+    #actions-footer
+      a
+        color: $color-accent-1-dark
+
+    #share-footer
+      background: $color-footer-mobile-2-dark
+
+    #toc-footer
+      background: $color-footer-mobile-2-dark
+
+
+      a:hover
+        color: $color-link-dark
+
+      .toc-level-2
+        color: $color-text-dark
+
+        &:before
+          color: $color-accent-1-dark
+
+      .toc-level-3
+        color: $color-meta-dark

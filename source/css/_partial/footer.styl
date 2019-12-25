@@ -58,3 +58,15 @@
 
     .footer-right
       align-self: flex-end
+
+@media (prefers-color-scheme: dark)
+  #footer
+    color: $color-meta-dark
+    li
+      border-color: $color-border-dark
+
+    a
+      color: $color-meta-dark
+
+    a:hover
+      color: lighten($color-meta-dark, 20%)
