@@ -109,16 +109,27 @@
           async>
   </script>
   <script type="text/javascript">
+    const iframeLoad = (prevIframeOnLoad) => { 
+      return function() {
+        if (prevIframeOnLoad) prevIframeOnLoad()
+        iframe.contentWindow.postMessage({
+          type: 'set-theme',
+          theme: 'github-dark-orange' // 'github-light', etc.. 
+        }, 'https://utteranc.es')
+      }
+    }
+
     const prevOnLoad = window.onload
     window.onload = () => {
       if (prevOnLoad) prevOnLoad()
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        const message = {
-          type: 'set-theme',
-          theme: 'github-dark-orange' // 'github-light', etc.. 
-        }
-        const iframe = document.querySelector('.utterances-frame')
-        iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+        const interval = setInterval(() => {
+          const iframe = document.querySelector('.utterances-frame')
+          if (iFrame) {
+            iframe.onload = iframeLoad(iFrame.onload)
+            clearInterval(interval)
+          }
+        }, 200)
       }
     }
   </script>
