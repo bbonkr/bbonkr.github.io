@@ -105,17 +105,10 @@
     (function(){
         const repo = '<%= config.utterances_repo %>'
         const theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'github-dark-orange' : 'github-light'
-        const html = `
-          <script 
-            src="https://utteranc.es/client.js" 
-            type="text/javascript" 
-            repo="${repo}" 
-            issue-term="pathname" 
-            label="Comment:"
-            crossorigin="anonymous"
-            theme=${theme}
-        `
-
+        const html = '<script src="https://utteranc.es/client.js" type="text/javascript" issue-term="pathname" label="Comment:" crossorigin="anonymous" ' + 
+                     'repo="${REPO}" theme="${THEME}" />'
+                     .replace('${REPO}', repo)
+                     .replace('${THEME}', theme)
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).insertAdjacentHTML('beforeend', html)
     }());
 </script>
