@@ -16,6 +16,8 @@ $ git submodule update
 ```bash
 $ git remote add theme-cactus git@github.com:kyujin-cho/hexo-theme-cactus.git
 $ git subtree add --prefix=themes/cactus theme-cactus master
+$ cd themes/cactus
+$ npm i
 ```
 
 ## mango 테마 사용

@@ -34,6 +34,7 @@
     "nunjucks": "^3.1.6"
   },
   "dependencies": {
+    "hexo-generator-search": "^2.4.0",
     "hexo-generator-sitemap": "^1.2.0"
   }
 }
