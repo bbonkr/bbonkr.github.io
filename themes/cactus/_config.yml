@@ -16,11 +16,11 @@ direction: ltr
 nav:
   home: /
   About: /about/
-  Projects: http://github.com/bbonkr
   Writing: /archives/
   Tags: /tags/
   Categories: /categories/
   Search: /search/
+  Projects: http://github.com/bbonkr
 
 # Links to your social media accounts.
 # The keys should correspond to Fontawesome icon names
