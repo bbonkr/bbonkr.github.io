@@ -2,14 +2,14 @@
 title: HostsEditor
 date: 2015-02-05 09:00:00
 intro: HostsEditor
-categories: Repositories
+categories: Repository
 tags:
-    - c#
-    - app
-    - csharp
-    - .net
-    - windows-forms
-    - github
+  - c#
+  - app
+  - csharp
+  - .net
+  - windows-forms
+  - github
 comments: false
 ---
 
@@ -21,8 +21,8 @@ Windows 의 Hosts 파일을 편집하는 응용 프로그램입니다.
 
 ## 시스템 요구사항
 
--   Windows OS
--   .Net Framework 4.0
+- Windows OS
+- .Net Framework 4.0
 
 Windows 7인 경우 .Net Framework 4.0설치 필요, Windows 8 이후 OS인 경우 그냥 실행.
 

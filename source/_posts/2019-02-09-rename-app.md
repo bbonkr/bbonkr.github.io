@@ -2,11 +2,11 @@
 title: Rename App
 date: 2019-02-09 15:53:37
 categories:
-- computing
+  - Computing
 tags:
-- electron
-- javascript
-- js
+  - electron
+  - javascript
+  - js
 intro:
 comments:
 ---
@@ -17,10 +17,10 @@ comments:
 
 파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.
 
--   입력값으로 치환
--   앞에 추가
--   뒤에 추가
--   정규식으로 치환
+- 입력값으로 치환
+- 앞에 추가
+- 뒤에 추가
+- 정규식으로 치환
 
 ### 입력값으로 치환
 
@@ -67,7 +67,7 @@ comments:
 > 한글로 된 파일이름을 콘솔에 출력하면 macos 에서는 `테스트.txt` 로 보이지만, 다른 OS에서는 `ㅌㅔㅅㅡㅌㅡ.txt`와 같이 출력됩니다.
 >
 > ```js
-> const path = require('path');
+> const path = require("path");
 >
 > let extension = path.extname(somepath);
 > let filename = path.basename(somepath, extension);
@@ -78,8 +78,8 @@ comments:
 >
 > 참조 <small>관련된 사항은 아니지만 흥미로운 주제라 링크를 남깁니다</small>
 >
-> -   [JavaScript has a Unicode problem](https://mathiasbynens.be/notes/javascript-unicode)
-> -   [Unicode filenames in Windows vs. Mac OS X](https://superuser.com/questions/999232/unicode-filenames-in-windows-vs-mac-os-x)
+> - [JavaScript has a Unicode problem](https://mathiasbynens.be/notes/javascript-unicode)
+> - [Unicode filenames in Windows vs. Mac OS X](https://superuser.com/questions/999232/unicode-filenames-in-windows-vs-mac-os-x)
 
 ## 저장소
 
