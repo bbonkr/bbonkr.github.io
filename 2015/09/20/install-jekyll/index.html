@@ -1,28 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-64779499-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-  
-  <title>Install Jekyll | {bbon}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="naver-site-verification" content="35daa3826c39b4bbbf28d745a664a43fcf1ffe93">
-  <meta name="msvalidate.01" content="FACC56286E0795BB311EA3F439B36D02">
-  <meta name="description" content="Install Xcode Command Line Tools 1$ xcode-select --install  Use Gem 1$ gem install jekyll">
+<html lang=ko>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Install Xcode Command Line Tools 1$ xcode-select --install  Use Gem 1$ gem install jekyll">
 <meta name="keywords" content="jekyll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install Jekyll">
@@ -34,141 +18,454 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install Jekyll">
 <meta name="twitter:description" content="Install Xcode Command Line Tools 1$ xcode-select --install  Use Gem 1$ gem install jekyll">
-<meta name="twitter:creator" content="@bbonkr">
-  
-    <link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Install Jekyll</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 <link rel="stylesheet" href="/css/prism.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <!--<div id="banner"></div>-->
-  <div id="header-outer" class="outer">
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        <a href="/" id="main-nav-title" class="main-nav-link">{bbon}</a>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a
+    id="top-icon-tablet"
+    href="#"
+    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+    style="display:none;"
+    ><i class="fas fa-chevron-up fa-lg"></i
+  ></a>
+  <span id="menu">
+    <!-- <span id="nav">
+      <ul>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li>
+          <a href="/"
+            >Home</a
+          >
+        </li>
         
-          <a class="main-nav-link" href="/archives/">Archives</a>
+        <li>
+          <a href="/about/"
+            >About</a
+          >
+        </li>
         
-          <a class="main-nav-link" href="/about/">About</a>
+        <li>
+          <a href="/archives/"
+            >Writing</a
+          >
+        </li>
         
-      </nav>
+        <li>
+          <a href="/tags/"
+            >Tags</a
+          >
+        </li>
+        
+        <li>
+          <a href="/categories/"
+            >Categories</a
+          >
+        </li>
+        
+        <li>
+          <a href="/search/"
+            >Search</a
+          >
+        </li>
+        
+        <li>
+          <a href="http://github.com/bbonkr"
+            >Projects</a
+          >
+        </li>
+        
+      </ul>
+    </span> -->
+
+    <br />
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href="/2015/09/21/paddle-the-creatable-freebie-bundle/"
+            ><i
+              class="fas fa-chevron-left"
+              aria-hidden="true"
+              onmouseover="$('#i-prev').toggle();"
+              onmouseout="$('#i-prev').toggle();"
+            ></i
+          ></a>
+        </li>
+         
+        <li>
+          <a class="icon" href="/2015/09/17/ios-9/"
+            ><i
+              class="fas fa-chevron-right"
+              aria-hidden="true"
+              onmouseover="$('#i-next').toggle();"
+              onmouseout="$('#i-next').toggle();"
+            ></i
+          ></a>
+        </li>
+        
+        <li>
+          <a
+            class="icon"
+            href="#"
+            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+            ><i
+              class="fas fa-chevron-up"
+              aria-hidden="true"
+              onmouseover="$('#i-top').toggle();"
+              onmouseout="$('#i-top').toggle();"
+            ></i
+          ></a>
+        </li>
+        <li>
+          <a class="icon" href="#"
+            ><i
+              class="fas fa-share-alt"
+              aria-hidden="true"
+              onmouseover="$('#i-share').toggle();"
+              onmouseout="$('#i-share').toggle();"
+              onclick="$('#share').toggle();return false;"
+            ></i
+          ></a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;"
+        >Previous post</span
+      >
+      <span id="i-next" class="info" style="display:none;"
+        >Next post</span
+      >
+      <span id="i-top" class="info" style="display:none;"
+        >Back to top</span
+      >
+      <span id="i-share" class="info" style="display:none;"
+        >Share post</span
+      >
+    </span>
+    <br />
+    <div id="share" style="display: none">
+      <ul class="inline-list">
+  <li>
+    <a
+      class="icon"
+      href="http://www.facebook.com/sharer.php?u=http://bbon.me/2015/09/20/install-jekyll/"
+      ><i class="fab fa-facebook " aria-hidden="true"></i
+    ></a>
+  </li>
+  <li>
+    <a
+      class="icon"
+      href="https://twitter.com/share?url=http://bbon.me/2015/09/20/install-jekyll/&text=Install Jekyll"
+      ><i class="fab fa-twitter " aria-hidden="true"></i
+    ></a>
+  </li>
+  <!-- <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li> -->
+  <li>
+    <a
+      class="icon"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2015/09/20/install-jekyll/&is_video=false&description=Install Jekyll"
+      ><i class="fab fa-pinterest " aria-hidden="true"></i
+    ></a>
+  </li>
+  <li>
+    <a
+      class="icon"
+      href="mailto:?subject=Install Jekyll&body=Check out this article: http://bbon.me/2015/09/20/install-jekyll/"
+      ><i class="fas fa-envelope " aria-hidden="true"></i
+    ></a>
+  </li>
+  <!-- <li><a class="icon" href="https://getpocket.com/save?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://reddit.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-reddit " aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://digg.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-digg " aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://bbon.me/2015/09/20/install-jekyll/&name=Install Jekyll&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2015/09/20/install-jekyll/&t=Install Jekyll"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li> -->
+</ul>
+
     </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install-xcode-command-line-tools"><span class="toc-number">1.</span> <span class="toc-text"> Install Xcode Command Line Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use-gem"><span class="toc-number">2.</span> <span class="toc-text"> Use Gem</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        <!--  -->
+        <header id="header">
+  <a href="/">
+  
+    
+      <div id="logo" style="background-image: url(/images/me-300x300.png);"></div>
+    
+  
+    <div id="title">
+      <h1>{bbon}</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+       
+        <li><a href="/tags/">Tags</a></li>
+       
+        <li><a href="/categories/">Categories</a></li>
+       
+        <li><a href="/search/">Search</a></li>
+       
+        <li><a href="http://github.com/bbonkr">Projects</a></li>
+      
+    </ul>
   </div>
 </header>
-
-      <div class="outer">
-        <section id="main"><article id="post-install-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computing/">Computing</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      Install Jekyll
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Install Jekyll
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">{bbon}</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2015-09-19T15:00:00.000Z" itemprop="datePublished">2015-09-20</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Computing/">Computing</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jekyll/">jekyll</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="install-xcode-command-line-tools"><a class="header-anchor" href="#install-xcode-command-line-tools"> </a>Install Xcode Command Line Tools</h2>
+  <div class="content" itemprop="articleBody">
+    <h2 id="install-xcode-command-line-tools"><a class="header-anchor" href="#install-xcode-command-line-tools"> </a>Install Xcode Command Line Tools</h2>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br></pre></td></tr></table></figure>
 <h2 id="use-gem"><a class="header-anchor" href="#use-gem"> </a>Use Gem</h2>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install jekyll</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://bbon.me/2015/09/20/install-jekyll/" data-id="ck85izejx000oa8h8b7gj84vh" class="article-share-link">공유</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li></ul>
-
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/09/21/paddle-the-creatable-freebie-bundle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-caption">최신</span>
-      <div class="article-nav-title">
-        
-          The Creatable Freebie Bundle!
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/09/17/ios-9/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-caption">이전</span>
-      <div class="article-nav-title">iOS 9</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-</section>
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 bbon<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
-      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="http://github.com/bbonkr">Projects</a></li>
+        
+      </ul>
     </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install-xcode-command-line-tools"><span class="toc-number">1.</span> <span class="toc-text"> Install Xcode Command Line Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use-gem"><span class="toc-number">2.</span> <span class="toc-text"> Use Gem</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul class="inline-list">
+  <li>
+    <a
+      class="icon"
+      href="http://www.facebook.com/sharer.php?u=http://bbon.me/2015/09/20/install-jekyll/"
+      ><i class="fab fa-facebook fa-lg" aria-hidden="true"></i
+    ></a>
+  </li>
+  <li>
+    <a
+      class="icon"
+      href="https://twitter.com/share?url=http://bbon.me/2015/09/20/install-jekyll/&text=Install Jekyll"
+      ><i class="fab fa-twitter fa-lg" aria-hidden="true"></i
+    ></a>
+  </li>
+  <!-- <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li> -->
+  <li>
+    <a
+      class="icon"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2015/09/20/install-jekyll/&is_video=false&description=Install Jekyll"
+      ><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i
+    ></a>
+  </li>
+  <li>
+    <a
+      class="icon"
+      href="mailto:?subject=Install Jekyll&body=Check out this article: http://bbon.me/2015/09/20/install-jekyll/"
+      ><i class="fas fa-envelope fa-lg" aria-hidden="true"></i
+    ></a>
+  </li>
+  <!-- <li><a class="icon" href="https://getpocket.com/save?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://reddit.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://digg.com/submit?url=http://bbon.me/2015/09/20/install-jekyll/&title=Install Jekyll"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://bbon.me/2015/09/20/install-jekyll/&name=Install Jekyll&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li> -->
+  <!-- <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2015/09/20/install-jekyll/&t=Install Jekyll"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li> -->
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 bbon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="http://github.com/bbonkr">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives/" class="mobile-nav-link">Archives</a>
-  
-    <a href="/about/" class="mobile-nav-link">About</a>
-  
-</nav>
-    
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-64779499-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
 </body>
 </html>
