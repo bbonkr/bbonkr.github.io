@@ -2,15 +2,15 @@
 title: 너와 나의 점수판 Score Board App
 date: 2019-04-24 21:04:10
 categories:
-    - repository
+  - Repository
 tags:
-    - android
-    - free
-    - "google play"
-    - "microsoft store"
-    - "score board"
-    - "windows 10"
-    - 점수판
+  - android
+  - free
+  - "google play"
+  - "microsoft store"
+  - "score board"
+  - "windows 10"
+  - 점수판
 intro:
 comments:
 ---

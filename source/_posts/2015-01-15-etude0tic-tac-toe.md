@@ -2,14 +2,14 @@
 title: "Etude Tic tac toe"
 date: 2015-01-15 09:00:00
 intro: "Etude Tic tac toe"
-categories: Repositories
+categories: Repository
 tags:
-    - .net
-    - app
-    - c#
-    - windows
-    - windows-forms
-    - github
+  - .net
+  - app
+  - c#
+  - windows
+  - windows-forms
+  - github
 comments: false
 ---
 

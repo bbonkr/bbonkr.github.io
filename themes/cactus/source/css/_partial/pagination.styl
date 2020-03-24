@@ -1,0 +1,34 @@
+.pagination
+  display: inline-block
+  margin-top: 2rem
+  width: 100%
+  text-align: center
+
+  .page-number
+    color: $color-text
+    font-size: .8rem
+
+  a
+    padding: 4px 6px
+    border-radius: 5px
+    // background-color: $color-accent-1
+    background-image: none
+    color: $color-text
+    text-decoration: none
+
+  a:hover
+    background-image: none
+
+  a:hover:not(.active)
+    color: $color-accent-2
+
+@media (prefers-color-scheme: dark)
+  .pagination
+    .page-number
+      color: $color-text-dark
+
+    a
+      color: $color-text-dark
+
+    a:hover:not(.active)
+      color: $color-accent-2-dark
