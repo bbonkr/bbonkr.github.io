@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://bbon.me/search/index.html</loc>
+    <loc>http://bbon.me/about/index.html</loc>
     
-    <lastmod>2020-03-24T06:44:12.923Z</lastmod>
+    <lastmod>2020-04-07T14:48:57.992Z</lastmod>
     
   </url>
   
@@ -16,9 +16,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/articles/index.html</loc>
+    <loc>http://bbon.me/search/index.html</loc>
     
-    <lastmod>2020-03-24T06:44:12.918Z</lastmod>
+    <lastmod>2020-03-24T06:44:12.923Z</lastmod>
     
   </url>
   
@@ -30,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/12/31/Review-2019/</loc>
+    <loc>http://bbon.me/articles/index.html</loc>
     
-    <lastmod>2020-03-24T06:44:12.917Z</lastmod>
+    <lastmod>2020-03-24T06:44:12.918Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/about/index.html</loc>
+    <loc>http://bbon.me/2019/12/31/Review-2019/</loc>
     
     <lastmod>2020-03-24T06:44:12.917Z</lastmod>
     
@@ -149,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-3/</loc>
+    <loc>http://bbon.me/2019/07/13/React-Native-Get-Started-really-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.793Z</lastmod>
     
@@ -219,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/01/03/gulp-task-automation/</loc>
+    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
     
     <lastmod>2019-08-05T09:59:13.765Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
+    <loc>http://bbon.me/2018/01/03/gulp-task-automation/</loc>
     
     <lastmod>2019-08-05T09:59:13.765Z</lastmod>
     
@@ -261,14 +261,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/09/19/ios-11/</loc>
+    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.763Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
+    <loc>http://bbon.me/2017/09/19/ios-11/</loc>
     
     <lastmod>2019-08-05T09:59:13.763Z</lastmod>
     
@@ -289,7 +289,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
+    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -303,7 +303,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
+    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -331,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
+    <loc>http://bbon.me/2015/12/09/ios-9-2/</loc>
     
     <lastmod>2019-08-05T09:59:13.758Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/12/09/ios-9-2/</loc>
+    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
     
     <lastmod>2019-08-05T09:59:13.758Z</lastmod>
     
@@ -359,14 +359,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
+    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
+    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
@@ -380,14 +380,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/21/paddle-the-creatable-freebie-bundle/</loc>
+    <loc>http://bbon.me/2015/09/20/install-jekyll/</loc>
     
     <lastmod>2019-08-05T09:59:13.748Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/09/20/install-jekyll/</loc>
+    <loc>http://bbon.me/2015/09/21/paddle-the-creatable-freebie-bundle/</loc>
     
     <lastmod>2019-08-05T09:59:13.748Z</lastmod>
     
