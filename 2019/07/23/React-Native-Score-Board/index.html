@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="React Native로 자바스크립트와 리액트로 모바일 응용프로그램을 작성할 수 있습니다. 최근 0.60 버전의 변경점  AndroidX 지원 CocoaPods 통합 패키지의 자동 링크   개요 Xamarin 으로 작성했던 너와 나의 점수판 Score Board 모바일 응용프로그램을 React Native 로 다시 작성했습니다. GitHub: scorebo">
-<meta name="keywords" content="ios,android,redux,redux-saga,xamarin,react-native">
+<meta name="keywords" content="ios,redux,redux-saga,android,xamarin,react-native">
 <meta property="og:type" content="article">
 <meta property="og:title" content="회고 React Native Score Board">
 <meta property="og:url" content="http://bbon.me/2019/07/23/React-Native-Score-Board/index.html">
@@ -456,7 +456,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -467,7 +467,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
       e.clearSelection();
     })
   })

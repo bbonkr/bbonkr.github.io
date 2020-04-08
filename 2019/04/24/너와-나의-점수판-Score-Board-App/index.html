@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="경기 점수를 어디에서나 편리하게 기록하는 것을 지원하기 위한 응용프로그램입니다. 축구 동호회, 탁구 동호회 등 1점씩 득점을 처리하는 경기에 최적화 되어 있습니다. 모든 기능을 무료로 사용하세요. 😃  다운로드 @Google Play @Microsoft Store  사용법  경기 목록 지금까지 기록한 경기 목록입니다.   경기 추가 오른쪽 위에 있는 ➕">
-<meta name="keywords" content="windows 10,free,android,google play,microsoft store,score board,점수판">
+<meta name="keywords" content="windows 10,free,microsoft store,android,google play,score board,점수판">
 <meta property="og:type" content="article">
 <meta property="og:title" content="너와 나의 점수판 Score Board App">
 <meta property="og:url" content="http://bbon.me/2019/04/24/너와-나의-점수판-Score-Board-App/index.html">
@@ -448,7 +448,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -459,7 +459,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
       e.clearSelection();
     })
   })

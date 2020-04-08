@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="다수의 파일이름을 일괄 변경하기 위해 사용하는 응용프로그램입니다. Windows 10 에서만 사용할 수 있습니다. Microsoft Store 에서 응용프로그램을 설치합니다. 파일이름을 변경하기 위해 네가지 방법을 제공합니다. 문자열 치환 접두어 추가 접미어 추가 정규식으로 치환 정규식으로 치환은 .NET 정규식 페이지에서 원하는 규칙을 찾기 위한 패턴의">
-<meta name="keywords" content="microsoft store,file rename app,freeware,,tools,utilities,windows store">
+<meta name="keywords" content="file rename app,freeware,,microsoft store,tools,utilities,windows store">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Microsoft Store File Rename App">
 <meta property="og:url" content="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/index.html">
@@ -466,7 +466,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -477,7 +477,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
       e.clearSelection();
     })
   })

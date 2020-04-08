@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://bbon.me/resume/index.html</loc>
+    
+    <lastmod>2020-04-08T15:23:03.831Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/about/index.html</loc>
     
     <lastmod>2020-04-07T14:48:57.992Z</lastmod>
@@ -9,14 +16,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/tags/index.html</loc>
+    <loc>http://bbon.me/search/index.html</loc>
     
     <lastmod>2020-03-24T06:44:12.923Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/search/index.html</loc>
+    <loc>http://bbon.me/tags/index.html</loc>
     
     <lastmod>2020-03-24T06:44:12.923Z</lastmod>
     
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</loc>
+    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
     
     <lastmod>2020-03-24T06:44:12.916Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</loc>
+    <loc>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</loc>
     
     <lastmod>2020-03-24T06:44:12.916Z</lastmod>
     
@@ -205,13 +212,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.766Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://bbon.me/2018/10/31/ios-12.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.766Z</lastmod>
@@ -219,9 +219,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
+    <loc>http://bbon.me/2018/10/09/ios-12.0.1/</loc>
     
-    <lastmod>2019-08-05T09:59:13.765Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.766Z</lastmod>
     
   </url>
   
@@ -233,9 +233,9 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
+    <loc>http://bbon.me/2018/09/18/ios-12/</loc>
     
-    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
+    <lastmod>2019-08-05T09:59:13.765Z</lastmod>
     
   </url>
   
@@ -254,6 +254,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/2017/11/11/iso-11.1.1/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.764Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bbon.me/2017/11/19/ios-11.1.2/</loc>
     
     <lastmod>2019-08-05T09:59:13.764Z</lastmod>
@@ -261,14 +268,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
+    <loc>http://bbon.me/2017/09/19/ios-11/</loc>
     
     <lastmod>2019-08-05T09:59:13.763Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2017/09/19/ios-11/</loc>
+    <loc>http://bbon.me/2017/09/27/ios-11.0.1/</loc>
     
     <lastmod>2019-08-05T09:59:13.763Z</lastmod>
     
@@ -289,7 +296,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
+    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
+    
+    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -303,14 +317,7 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/12/07/create-offline-installation-of-visual-studio-2017-rc/</loc>
-    
-    <lastmod>2019-08-05T09:59:13.761Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/2017/03/29/ios-10.3/</loc>
+    <loc>http://bbon.me/2016/12/15/web-storage-api/</loc>
     
     <lastmod>2019-08-05T09:59:13.761Z</lastmod>
     
@@ -338,14 +345,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
+    <loc>http://bbon.me/2016/03/23/ios-9-3/</loc>
     
     <lastmod>2019-08-05T09:59:13.758Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2016/03/23/ios-9-3/</loc>
+    <loc>http://bbon.me/2016/02/16/sql-server-jdbc-driver/</loc>
     
     <lastmod>2019-08-05T09:59:13.758Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
+    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2015/10/22/ios-9-1/</loc>
+    <loc>http://bbon.me/2015/11/02/install-oracle-instant-client/</loc>
     
     <lastmod>2019-08-05T09:59:13.757Z</lastmod>
     
