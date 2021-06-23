@@ -7,6 +7,8 @@ $color-white-400: #ddd !global;
 $color-blue: #4f88ea !global;
 $color-pink: #ce1458 !global;
 $color-orange: #ffaa00 !global;
+$logo-drop-shadow: drop-shadow(4px 6px 16px $color-black) !global;
+$drop-shadow: drop-shadow(1px 2px 4px $color-black) !global;
 
 
 ::selection {

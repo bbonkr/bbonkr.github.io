@@ -56,14 +56,45 @@ nav.navi-post {
     }
 
     .post-info-home {
+
+        display: flex;
+        justify-content: space-between;
+        flex: 1;
+
+
+
         .post-categories {
+            flex: 1;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+
+            a {
+                margin-bottom: 0.5rem;
+            }
+
             span {
                 font-size: 15px;
                 padding: 4px 7px 4px 8px;
                 margin-left: 1px;
                 margin-right: 10px;
-                background-color: #4f88ea;
-                color: #ffffff;
+                border-radius: 0.5rem;
+                background-color: $color-blue;
+                color: $color-white;
+                filter: $drop-shadow;
+            }
+        }
+
+        .post-date {
+            span {
+                font-size: 1rem;
+                padding: 4px 7px 4px 8px;
+                margin-left: 1px;
+                margin-right: 10px;
+                border-radius: 0.5rem;
+                background-color: $color-blue;
+                color: $color-white;
+                filter: $drop-shadow;
             }
         }
     }
@@ -106,7 +137,7 @@ nav.navi-post {
 }
 
 .post-title {
-    filter: drop-shadow(2px 4px 3px $color-black);
+    filter: $drop-shadow;
 }
 
 .post-content {

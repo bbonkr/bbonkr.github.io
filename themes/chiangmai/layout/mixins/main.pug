@@ -6,6 +6,9 @@ mixin postInfo(item)
                     each category in item.categories.data
                         a(href=url_for('/categories/' + category.name) target="_self")
                             span!= category.name.toUpperCase()
+            .post-date 
+                span!= full_date(item.date, 'll')
+                            
 
 mixin posts
     ul.home.post-list

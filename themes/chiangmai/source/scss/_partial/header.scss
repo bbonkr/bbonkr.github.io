@@ -7,16 +7,15 @@ header {
     }
 
     a.logo-link img {
-        filter: drop-shadow(2px 4px 10px black);
+        filter: $logo-drop-shadow;
+    }
+
+    a.logo-link:hover img {
+        filter: blur(0.3rem);
     }
 
     a.logo-link:active img {
-        filter: blur(0.3);
-    }
-
-    a.logo-link:active img {
-        filter: blur(0.3);
-        filter: drop-shadow(2px 4px 4px black);
+        filter: $logo-drop-shadow blur(0.3rem);
     }
 
     .nav-list-item {
@@ -26,7 +25,7 @@ header {
 
         a:before {
             content: "#";
-            color: #ce1458;
+            color: $color-pink;
             position: absolute;
             left: 0.05em;
             top: 0.14em;
