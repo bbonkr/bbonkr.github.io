@@ -47,6 +47,11 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace: true
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: true
+  tab_replace: true 
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -113,34 +118,35 @@ deploy:
   branch:
   message:
 
-markdown:
-  preset: 'default'
-  render:
-    html: true
-    xhtmlOut: false
-    breaks: true
-    linkify: true
-    typographer: true
-    quotes: "“”‘’"
-  plugins:
-    - markdown-it-abbr
-    - markdown-it-footnote
-    - markdown-it-ins
-    - markdown-it-sub
-    - markdown-it-sup
-  anchors:
-    level: 2
-    collisionSuffix: "v"
-    permalink: true
-    permalinkClass: header-anchor
-    permalinkSymbol: " "
+marked:
+  gfm: true
+  pedantic: false
+  breaks: true
+  smartLists: true
+  smartypants: true
+  quotes: '“”‘’'
+  modifyAnchors: 0
+  anchorAlias: false
+  autolink: true
+  mangle: true
+  sanitizeUrl: false
+  headerIds: true
+  lazyload: false
+  prependRoot: false
+  postAsset: false
+  external_link:
+    enable: true
+    exclude: []
+    nofollow: false
+  disableNunjucks: false
+  descriptionLists: true
 
 # hexo-prism-plugin
-prism_plugin:
-  mode: "preprocess" # realtime/preprocess
-  theme: "okaidia"
-  line_number: true # default false
-  custom_css: # optional
+# prism_plugin:
+#   mode: "preprocess" # realtime/preprocess
+#   theme: "okaidia"
+#   line_number: true # default false
+#   custom_css: # optional
 
 
 

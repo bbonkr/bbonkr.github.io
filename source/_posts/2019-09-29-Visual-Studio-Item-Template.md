@@ -20,7 +20,7 @@ Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추�
 
 Page의 예 .xaml
 
-```xml
+``` xml
 <core:AppContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
