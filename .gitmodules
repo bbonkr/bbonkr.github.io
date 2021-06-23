@@ -1,9 +1,0 @@
-[submodule "themes/haker"]
-	path = themes/haker
-	url = https://github.com/bbonkr/Hacker.git
-[submodule "themes/tranquilpeak"]
-	path = themes/tranquilpeak
-	url = https://github.com/bbonkr/hexo-theme-tranquilpeak.git
-[submodule "themes/flexy"]
-	path = themes/flexy
-	url = https://github.com/bbonkr/flexy.git
