@@ -1,0 +1,353 @@
+main.post {
+    margin: 5px 10px 46px;
+}
+
+nav.navi-post {
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    padding: 16px 0px 6px 0px;
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+
+    .fa-home {
+        transform: scale(1.9, 1.9);
+    }
+    .fa-arrow-left {
+        transform: scale(1.7, 1.7); 
+    }
+    .navi-post-back {
+        float: left;      
+        width: 40px;
+        height: 40px;
+        padding-left: 5px;
+    }
+    .navi-post-home {
+        float: center;      
+        width: 40px;
+        height: 40px;
+        margin-right: 30px;
+    }
+}
+
+.post-title {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+}
+
+.post-info {
+    display: -webkit-flex;
+    display: flex;
+    .post-info-profile {
+        margin-right: 12px;
+        a img {
+            width: 77px;
+            height: 77px;
+            border: 1px solid #ffffff;
+            border-radius: 50%;
+            box-sizing: border-box;
+            cursor: zoom-in;
+        }
+    }
+
+    .post-info-home {
+        .post-categories {
+            span {
+                font-size: 15px;
+                padding: 4px 7px 4px 8px;
+                margin-left: 1px;
+                margin-right: 10px;
+                background-color: #4f88ea;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .post-info-details {
+        padding: 5px;
+        position: relative;
+        -webkit-flex: 1;
+                flex: 1;
+        .post-categories {
+            position: absolute;
+            top: 5px;
+            span {
+                font-size: 15px;
+                padding: 4px 8px 4px;
+                margin-right: 10px;
+                background-color: #4f88ea;
+                color: #ffffff;
+            }
+        }
+        .post-date {
+            position: absolute;
+            bottom: 5px;
+            color: #7f8c8d;
+        }
+    }
+}
+
+.post-share {
+    text-align: right;
+    margin-bottom: 35px;
+    div {
+        margin-left: 10px;
+    }
+}
+
+.post-content {
+    h2, h3 {
+        position: relative;
+        margin: 35px 0 0 0;
+        a:before {
+            content: "#";
+            color: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            left: -0.8em;
+            top: -0.1em;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    }
+
+    h4, h5, h6 {
+        position: relative;
+        margin: 25px 0 0 0;
+    }
+
+    h2, h3 {
+        font-size: 26px;
+    }
+
+    h4, h5, h6 {
+        font-size: 18px;
+    }
+
+    a {
+        color: #4f80e0;
+        word-break: break-all;
+    }
+
+    a:hover {
+        color: #2d4f89;
+    }
+
+    blockquote {
+        margin: 1em 0;
+        padding-left: 18px;
+        border-left: 4px solid #8e8e8d;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 1.5em auto;
+    }
+
+    & > table,
+    & > figure.highlight {
+        box-shadow: 0 1px 2px rgba(0,0,0,0.125);
+    }
+
+    .tip {
+        position: relative;
+        margin: 2em 0;
+        padding: 12px 24px 12px 30px;
+        border-left: 4px solid #f66;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        background-color: #f8f8f8;
+        br {
+            display: none;
+        }
+    }
+
+    .tip:before {
+        position: absolute;
+        top: 14px;
+        left: -12px;
+        content: "!";
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        color: #fff;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #f66;
+        font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+    }
+}
+
+#mask {
+    position: fixed;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    padding: 1em 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    #mask-image {
+        max-width: 95%;
+    }
+}
+
+code,
+pre {
+    font-size: 0.8em;
+    background-color: #f8f8f8;
+    font-family: 'Roboto Mono', Monaco, courier, monospace;
+}
+
+.highlight {
+    position: relative;
+    margin: 1em 0;
+    border-radius: 2px;
+    line-height: 1.1em;
+    background-color: #f8f8f8;
+    overflow-x: auto;
+    table, tr, td {
+        width: 100%;
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+    }
+
+    .gutter {
+        display: none;
+    }
+
+    .code pre {
+        padding: 1.2em 1.4em;
+        line-height: 1.5em;
+        margin: 0;
+        .line {
+            width: auto;
+            height: 18px;
+        }
+    }
+}
+
+%code-base {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ccc;
+    text-align: right;
+    font-size: 0.75em;
+    padding: 5px 10px 0;
+    line-height: 15px;
+    height: 15px;
+    font-weight: 600;
+}
+
+@mixin code-signs($keys) {
+    @each $key in $keys {
+        .highlight.#{$key} .code:after {
+            content: to-upper-case($key);
+            @extend %code-base;
+        }
+    }
+}
+
+$signs: ("html", "js", "bash", "css", "scss","diff", "java", "xml", "python", "json", "swift", "ruby", "perl", "php", "c", "java", "cpp", "ts");
+@include code-signs($signs);
+
+.highlight.cpp .code:after {
+    content: 'C++';
+}
+
+pre {
+    color: #525252;
+    .function .keyword,
+    .constant {
+       color: #0092db;
+    }
+
+    .keyword,
+    .attribute {
+        color: #e96900;
+    }
+
+    .number,
+    .literal {
+        color: #ae81ff;
+    }
+
+    .tag,
+    .tag .title,
+    .change,
+    .winutils,
+    .flow,
+    .lisp .title,
+    .clojure .built_in,
+    .nginx .title,
+    .tex .special {
+        color: #2973b7;
+    }
+
+    .symbol,
+    .symbol .string,
+    .value,
+    .regexp {
+        color: #42b983;
+    }
+
+    .title {
+        color: #83B917;
+    }
+
+    .tag .value,
+    .string,
+    .subst,
+    .haskell .type,
+    .preprocessor,
+    .ruby .class .parent,
+    .built_in,
+    .sql .aggregate,
+    .django .template_tag,
+    .django .variable,
+    .smalltalk .class,
+    .javadoc,
+    .django .filter .argument,
+    .smalltalk .localvars,
+    .smalltalk .array,
+    .attr_selector,
+    .pseudo,
+    .addition,
+    .stream,
+    .envvar,
+    .apache .tag,
+    .apache .cbracket,
+    .tex .command,
+    .prompt {
+        color: #4f88ea;
+    }
+
+    .comment,
+    .java .annotation,
+    .python .decorator,
+    .template_comment,
+    .pi,
+    .doctype,
+    .shebang,
+    .apache .sqbracket,
+    .tex .formula {
+        color: #b3b3b3;
+    }
+
+    .deletion {
+        color: #BA4545;
+    }
+
+    .coffeescript .javascript,
+    .javascript .xml,
+    .tex .formula,
+    .xml .javascript,
+    .xml .vbscript,
+    .xml .css,
+    .xml .cdata {
+        opacity: 0.5;
+    }
+}

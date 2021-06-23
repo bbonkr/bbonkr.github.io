@@ -1,0 +1,24 @@
+mixin home
+    - var prev = page.prev_link
+    - var next = page.next_link
+    .paginator
+        if page.prev
+            a.prev(href=url_for(prev))
+                i(class="fa fa-arrow-left", aria-hidden="true")
+        if page.next
+            a.next(href=url_for(next))
+                i(class="fa fa-arrow-right", aria-hidden="true")
+
+mixin post
+    - var prevPage = page.prev;
+    - var nextPage = page.next;
+    - var prevPath = nextPage ? nextPage.path : false;
+    - var nextPath = prevPage ? prevPage.path : false;
+    .paginator
+        if prevPath
+            a.prev(href=url_for(prevPath))
+                i(class="fa fa-arrow-left", aria-hidden="true")
+        if nextPath
+            a.next(href=url_for(nextPath))
+                i(class="fa fa-arrow-right", aria-hidden="true")
+            

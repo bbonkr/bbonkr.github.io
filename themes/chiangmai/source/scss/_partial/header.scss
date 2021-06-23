@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+
+    .nav {
+        float: none;
+        display: block;
+    }
+
+    .nav-list-item {
+        display: inline-block;
+        position: relative;
+        padding: 2px 15px;
+
+        a:before {
+            content: "#";
+            color: #ce1458;
+            position: absolute;
+            left: 0.05em;
+            top: 0.14em;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        a {
+            font-size: 18px;
+            line-height: 1.3;
+        }
+    }
+}

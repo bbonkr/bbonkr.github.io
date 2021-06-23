@@ -1,0 +1,28 @@
+footer {
+    padding-bottom: 1px;
+    .paginator {
+        margin-bottom: 25px;
+        text-align: center;
+        .prev, .next {
+            display: inline-block;
+            margin: 0 4px;
+            padding: 4px 12px;
+        }
+        .fa {
+            transform: scale(1.9, 1.9);
+        }
+    }
+    .copyright {
+        margin: 4em 0;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        p, a {
+            color: #aaa;
+            font-size: 14px;
+            font-weight: 100;
+        }
+        a:hover {
+            color: #888;
+        }
+    }
+}

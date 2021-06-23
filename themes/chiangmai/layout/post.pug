@@ -1,0 +1,44 @@
+extends partial/layout_post.pug
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - var secureImageRegex = /^(https):\/\/*/gi;
+    - var desc = page.desc || config.description;
+    - var postURL = config.url + "/" + page.path;
+    - var defaultImageURL = theme.cover_image_url;
+    - var imageURL = page.image || defaultImageURL;
+    meta(name="description", content=desc)
+    meta(name="og:title", content=page.title)
+    meta(name="og:type", content="website")
+    meta(name="og:url", content=postURL)
+    if secureImageRegex.test(imageURL)
+        meta(name="og:image", content=imageURL)
+        meta(name="og:image:secure_url" , content=imageURL)
+    else
+        meta(name="og:image", content=defaultImageURL)
+    meta(name="og:description", content=desc)
+
+block header
+    nav.navi-post
+        a.navi-post-back(href="javascript:history.back()")
+            i(class="fa fa-arrow-left", aria-hidden="true")
+        a.navi-post-home(href=url_for())
+            i(class="fa fa-home", aria-hidden="true")
+
+block container
+    include mixins/post.pug
+    +post(page)
+
+block pagination
+    include mixins/paginator.pug
+    +post
+    include mixins/adsense.pug
+    +post_bottom
+
+block comment
+    include partial/comment.pug
+
+block copyright
+    include partial/copyright.pug
