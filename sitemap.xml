@@ -37,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/search/index.html</loc>
+    <loc>http://bbon.me/tags/index.html</loc>
     
     <lastmod>2020-03-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/tags/index.html</loc>
+    <loc>http://bbon.me/search/index.html</loc>
     
     <lastmod>2020-03-24</lastmod>
     
@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
+    <loc>http://bbon.me/2019/02/09/rename-app/</loc>
     
     <lastmod>2020-03-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bbon.me/2019/02/09/rename-app/</loc>
+    <loc>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</loc>
     
     <lastmod>2020-03-24</lastmod>
     
@@ -515,6 +515,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/tags/sqlite/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://bbon.me/tags/naver/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
@@ -530,13 +537,6 @@
   
   <url>
     <loc>http://bbon.me/tags/domain/</loc>
-    <lastmod>2021-06-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/tags/sqlite/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -823,20 +823,6 @@
   </url>
   
   <url>
-    <loc>http://bbon.me/tags/docker/</loc>
-    <lastmod>2021-06-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/tags/mariadb/</loc>
-    <lastmod>2021-06-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://bbon.me/tags/electron/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
@@ -845,6 +831,20 @@
   
   <url>
     <loc>http://bbon.me/tags/js/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/tags/docker/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://bbon.me/tags/mariadb/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1131,6 +1131,13 @@
   </url>
   
   <url>
+    <loc>http://bbon.me/tags/review/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://bbon.me/tags/postman/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
@@ -1153,13 +1160,6 @@
   
   <url>
     <loc>http://bbon.me/tags/restful-api/</loc>
-    <lastmod>2021-06-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://bbon.me/tags/review/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
