@@ -2,20 +2,41 @@
     .post-list-item {
         padding: 0 0 32px 0;
         border-bottom: 1px solid #ddd;
+
         &:last-child {
             border-bottom: 0px;
         }
+
+        .post-block {
+            .post-title {
+                a {
+                    .post-title-link {
+                        .post-title {
+                            filter: drop-shadow(2px 4px 3px $color-black);
+                        }
+                    }
+                }
+            }
+        }
     }
-    .post-content{
-        h2, h3, h4, h5, h6 {
+
+    .post-content {
+
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             &:before {
                 content: '';
             }
         }
-        & > ul {
+
+        &>ul {
             list-style: initial;
         }
     }
+
     .read-more {
         color: rgba(0, 0, 0, 0.44);
     }

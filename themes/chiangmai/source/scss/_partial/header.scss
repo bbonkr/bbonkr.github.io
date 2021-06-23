@@ -6,6 +6,19 @@ header {
         display: block;
     }
 
+    a.logo-link img {
+        filter: drop-shadow(2px 4px 10px black);
+    }
+
+    a.logo-link:active img {
+        filter: blur(0.3);
+    }
+
+    a.logo-link:active img {
+        filter: blur(0.3);
+        filter: drop-shadow(2px 4px 4px black);
+    }
+
     .nav-list-item {
         display: inline-block;
         position: relative;

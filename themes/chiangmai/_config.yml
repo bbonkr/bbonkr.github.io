@@ -1,22 +1,23 @@
 # Top navigation menus
+author: bbon
 menu:
-    소개: /introduce/
+    소개: /about/
     블로그: /archives/
-    JOIN: https://github.com/stunstunstun/awesome-wiki/blob/master/README.md
+
 # Site Images
 favicon: /favicon.ico
-logo: /logo.png
+logo: /images/logo-192.png
 cover_image_url: http://image.toast.com/aaaaahq/hola_cover.JPG
 # Profiles
-profile: /image/profile.jpg
-profile_url: https://github.com/stunstunstun
+profile: /images/me.png
+profile_url: https://github.com/bbonkr
 # Google Analytics
-ga: UA-97419941-1
+ga: UA-64779499-1
 # Facebook App
-fb:
-  app_id: 1258629384258634
-  page: https://www.facebook.com/holaxprogramming/
+#fb:
+#  app_id: ''
+#  page: ''
 # Google AdSense
-adsense: ca-pub-6188640546219653
+#adsense: aaa
 # Copyright Infomation
-startyear: 2012
+startyear: 2019
