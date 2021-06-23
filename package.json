@@ -10,12 +10,25 @@
     "generate": "npx hexo generate",
     "g": "npx hexo generate",
     "deploy": "npx hexo deploy",
-    "d": "npx hexo deploy"
+    "d": "npx hexo deploy",
+    "build:theme:chiangmai": "gulp --gulpfile themes/chiangmai/gulpfile.js sassTask"
   },
   "hexo": {
     "version": "5.4.0"
   },
+  "dependencies": {
+    "hexo-browsersync": "^0.3.0",
+    "hexo-generator-search": "^2.4.3",
+    "hexo-generator-sitemap": "^2.1.0",
+    "hexo-render-pug": "^2.1.4"
+  },
   "devDependencies": {
+    "eslint": "^7.29.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-pug": "^5.0.0",
+    "gulp-sass": "^4.1.0",
     "hexo": "^5.4.0",
     "hexo-cli": "^4.3.0",
     "hexo-deployer-git": "^3.0.0",
@@ -33,11 +46,5 @@
     "hexo-server": "^2.0.0",
     "node-sass": "^6.0.0",
     "nunjucks": "^3.2.3"
-  },
-  "dependencies": {
-    "hexo-browsersync": "^0.3.0",
-    "hexo-generator-search": "^2.4.3",
-    "hexo-generator-sitemap": "^2.1.0",
-    "hexo-render-pug": "^2.1.4"
   }
 }

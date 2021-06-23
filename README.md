@@ -4,34 +4,19 @@
 $ npm install hexo-cli -g
 ```
 
-## 사용하지 않습니다.
+## Themes
+
+### Chianmai
+
+[stunstunstun/hexo-theme-chiangmai](https://github.com/stunstunstun/hexo-theme-chiangmai) 테마로 변경합니다.
+
+Fork 된 저장소 [bbonkr/hexo-theme-chiangmai](https://github.com/bbonkr/hexo-theme-chiangmai)를 사용합니다.
 
 ```bash
-$ git submodule init
-$ git submodule update
-```
-
-## cactus 테마 사용
-
-```bash
-$ git remote add theme-cactus git@github.com:kyujin-cho/hexo-theme-cactus.git
-$ git subtree add --prefix=themes/cactus theme-cactus master
-$ cd themes/cactus
-$ npm i
-```
-
-## mango 테마 사용
-
-```bash
-$ git remote add themes-mango https://github.com/mango-tree/hexo-theme-mango.git
-$ git subtree add --prefix=themes/mango themes-mango master
-$ cd themes/mango
-$ npm install
-$ npm run build #run grunt task
-$ cd ../..
-$ npm install
-$ hexo clean
-$ hexo generate
+# // 원격 테마 저장소를 추가합니다.
+$ git remote add theme.chiangmai https://github.com/bbonkr/hexo-theme-chiangmai.git
+# // 서브 트리를 추가합니다.
+$ git subtree add --prefix themes/chiangmai theme.chiangmai master
 ```
 
 ## 확인
