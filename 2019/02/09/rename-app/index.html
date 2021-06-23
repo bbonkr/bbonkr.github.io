@@ -1,573 +1,90 @@
-<!DOCTYPE html>
-<html lang=ko>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.  변경방법 파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.  입력값으로 치환 앞에 추가 뒤에 추가 정규식으로 치환   입력값으로 치환 파일이름에서 찾을 문자열에 입력된 문자열을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.  앞에 추가 파일이름의 앞에 추가할">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Rename App">
-<meta property="og:url" content="http://bbon.me/2019/02/09/rename-app/index.html">
-<meta property="og:site_name" content="{bbon}">
-<meta property="og:description" content="일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.  변경방법 파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.  입력값으로 치환 앞에 추가 뒤에 추가 정규식으로 치환   입력값으로 치환 파일이름에서 찾을 문자열에 입력된 문자열을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.  앞에 추가 파일이름의 앞에 추가할">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://bbon.me/2019/02/09/rename-app/rename-app-001.png">
-<meta property="og:image" content="http://bbon.me/2019/02/09/rename-app/rename-app-002.png">
-<meta property="og:image" content="http://bbon.me/2019/02/09/rename-app/rename-app-003.png">
-<meta property="og:image" content="http://bbon.me/2019/02/09/rename-app/rename-app-004.png">
-<meta property="article:published_time" content="2019-02-09T06:53:37.000Z">
-<meta property="article:modified_time" content="2020-03-24T06:44:12.915Z">
-<meta property="article:author" content="bbon">
-<meta property="article:tag" content="javascript">
-<meta property="article:tag" content="electron">
-<meta property="article:tag" content="js">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://bbon.me/2019/02/09/rename-app/rename-app-001.png">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Rename App</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
-    <!-- rss -->
-    
-    
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a
-    id="top-icon-tablet"
-    href="#"
-    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-    style="display:none;"
-    ><i class="fas fa-chevron-up fa-lg"></i
-  ></a>
-  <span id="menu">
-    <!-- <span id="nav">
-      <ul>
-        
-        <li>
-          <a href="/"
-            >Home</a
-          >
-        </li>
-        
-        <li>
-          <a href="/about/"
-            >About</a
-          >
-        </li>
-        
-        <li>
-          <a href="/archives/"
-            >Writing</a
-          >
-        </li>
-        
-        <li>
-          <a href="/tags/"
-            >Tags</a
-          >
-        </li>
-        
-        <li>
-          <a href="/categories/"
-            >Categories</a
-          >
-        </li>
-        
-        <li>
-          <a href="/search/"
-            >Search</a
-          >
-        </li>
-        
-        <li>
-          <a target="_blank" rel="noopener" href="http://github.com/bbonkr"
-            >Projects</a
-          >
-        </li>
-        
-      </ul>
-    </span> -->
-
-    <br />
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href="/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/"
-            ><i
-              class="fas fa-chevron-left"
-              aria-hidden="true"
-              onmouseover="$('#i-prev').toggle();"
-              onmouseout="$('#i-prev').toggle();"
-            ></i
-          ></a>
-        </li>
-         
-        <li>
-          <a class="icon" href="/2019/01/08/start-vscode-on-teminal-on-macos-md/"
-            ><i
-              class="fas fa-chevron-right"
-              aria-hidden="true"
-              onmouseover="$('#i-next').toggle();"
-              onmouseout="$('#i-next').toggle();"
-            ></i
-          ></a>
-        </li>
-        
-        <li>
-          <a
-            class="icon"
-            href="#"
-            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-            ><i
-              class="fas fa-chevron-up"
-              aria-hidden="true"
-              onmouseover="$('#i-top').toggle();"
-              onmouseout="$('#i-top').toggle();"
-            ></i
-          ></a>
-        </li>
-        <li>
-          <a class="icon" href="#"
-            ><i
-              class="fas fa-share-alt"
-              aria-hidden="true"
-              onmouseover="$('#i-share').toggle();"
-              onmouseout="$('#i-share').toggle();"
-              onclick="$('#share').toggle();return false;"
-            ></i
-          ></a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;"
-        >Previous post</span
-      >
-      <span id="i-next" class="info" style="display:none;"
-        >Next post</span
-      >
-      <span id="i-top" class="info" style="display:none;"
-        >Back to top</span
-      >
-      <span id="i-share" class="info" style="display:none;"
-        >Share post</span
-      >
-    </span>
-    <br />
-    <div id="share" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2019/02/09/rename-app/"
-      ><i class="fab fa-facebook " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2019/02/09/rename-app/&text=Rename App"
-      ><i class="fab fa-twitter " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2019/02/09/rename-app/&is_video=false&description=Rename App"
-      ><i class="fab fa-pinterest " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=Rename App&body=Check out this article: http://bbon.me/2019/02/09/rename-app/"
-      ><i class="fas fa-envelope " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-reddit " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-digg " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2019/02/09/rename-app/&name=Rename App&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2019/02/09/rename-app/&t=Rename App"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95"><span class="toc-number">1.</span> <span class="toc-text">변경방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%85%EB%A0%A5%EA%B0%92%EC%9C%BC%EB%A1%9C-%EC%B9%98%ED%99%98"><span class="toc-number">1.1.</span> <span class="toc-text">입력값으로 치환</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%9E%EC%97%90-%EC%B6%94%EA%B0%80"><span class="toc-number">1.2.</span> <span class="toc-text">앞에 추가</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%92%A4%EC%97%90-%EC%B6%94%EA%B0%80"><span class="toc-number">1.3.</span> <span class="toc-text">뒤에 추가</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%B9%98%ED%99%98"><span class="toc-number">1.4.</span> <span class="toc-text">정규식으로 치환</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95"><span class="toc-number">2.</span> <span class="toc-text">사용방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">3.</span> <span class="toc-text">설치파일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%80%EC%9E%A5%EC%86%8C"><span class="toc-number">4.</span> <span class="toc-text">저장소</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B9%8C%EB%93%9C"><span class="toc-number">5.</span> <span class="toc-text">빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%98%EC%A1%B4-npm-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%EC%84%A4%EC%B9%98"><span class="toc-number">5.1.</span> <span class="toc-text">의존 npm 패키지를 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-Renderer-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.2.</span> <span class="toc-text">Electron Renderer 빌드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89"><span class="toc-number">5.3.</span> <span class="toc-text">실행</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.4.</span> <span class="toc-text">실행파일 빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0%EC%A6%88-%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.4.1.</span> <span class="toc-text">윈도우즈 실행파일</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%A7%A5%EC%98%A4%EC%97%90%EC%8A%A4-%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.4.2.</span> <span class="toc-text">맥오에스 실행파일</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.5.</span> <span class="toc-text">설치파일 빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0%EC%A6%88-%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.5.1.</span> <span class="toc-text">윈도우즈 설치파일</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%A7%A5%EC%98%A4%EC%97%90%EC%8A%A4-%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.5.2.</span> <span class="toc-text">맥오에스 설치파일</span></a></li></ol></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        <!--  -->
-        <header id="header">
-  <a href="/">
-  
-    
-      <div id="logo" style="background-image: url(/images/me-300x300.png);"></div>
-    
-  
-    <div id="title">
-      <h1>{bbon}</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/about/">About</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="/tags/">Tags</a></li>
-       
-        <li><a href="/categories/">Categories</a></li>
-       
-        <li><a href="/search/">Search</a></li>
-       
-        <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-      
-    </ul>
-  </div>
-</header>
-  
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        Rename App
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">{bbon}</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-02-09T06:53:37.000Z" itemprop="datePublished">2019-02-09</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/Computing/">Computing</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/electron/" rel="tag">electron</a>, <a class="tag-link-link" href="/tags/javascript/" rel="tag">javascript</a>, <a class="tag-link-link" href="/tags/js/" rel="tag">js</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content" itemprop="articleBody">
-    <p>일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.</p>
-<h2 id="변경방법"><a class="header-anchor" href="#변경방법"> </a>변경방법</h2>
-<p>파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.</p>
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Rename App · {bbon}</title><meta name="description"><meta name="og:title" content="Rename App"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2019/02/09/rename-app/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">Rename App</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/Computing" target="_self"><span>COMPUTING</span></a></div><div class="post-date">2019년 2월 9일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2019/02/09/rename-app/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2019/02/09/rename-app/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><p>일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.</p>
+<h2 id="변경방법"><a href="#변경방법" class="headerlink" title="변경방법"></a>변경방법</h2><p>파일 이름 일괄변경에 지원되는 방법은 아래와 같습니다.</p>
 <ul>
 <li>입력값으로 치환</li>
 <li>앞에 추가</li>
 <li>뒤에 추가</li>
 <li>정규식으로 치환</li>
 </ul>
-<h3 id="입력값으로-치환"><a class="header-anchor" href="#입력값으로-치환"> </a>입력값으로 치환</h3>
-<p>파일이름에서 찾을 문자열에 입력된 문자열을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
-<h3 id="앞에-추가"><a class="header-anchor" href="#앞에-추가"> </a>앞에 추가</h3>
-<p>파일이름의 앞에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
-<h3 id="뒤에-추가"><a class="header-anchor" href="#뒤에-추가"> </a>뒤에 추가</h3>
-<p>파일이름의 뒤에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
-<h3 id="정규식으로-치환"><a class="header-anchor" href="#정규식으로-치환"> </a>정규식으로 치환</h3>
-<p>파일이름에서 찾는 정규식에 입력된 패턴을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
-<h2 id="사용방법"><a class="header-anchor" href="#사용방법"> </a>사용방법</h2>
-<ol>
-<li>Open files 버튼을 클릭하고 이름을 일괄 변경할 파일들을 선택합니다.</li>
-<li>변경 방법을 선택합니다.</li>
-<li>변경할 문자열 또는 추가할 문자열을 입력합니다.</li>
-<li>Preview 버튼을 클릭해서 미리보기를 확인합니다.</li>
-<li>Rename 버튼을 클릭해서 파일이름을 변경합니다.</li>
+<h3 id="입력값으로-치환"><a href="#입력값으로-치환" class="headerlink" title="입력값으로 치환"></a>입력값으로 치환</h3><p>파일이름에서 찾을 문자열에 입력된 문자열을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
+<h3 id="앞에-추가"><a href="#앞에-추가" class="headerlink" title="앞에 추가"></a>앞에 추가</h3><p>파일이름의 앞에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
+<h3 id="뒤에-추가"><a href="#뒤에-추가" class="headerlink" title="뒤에 추가"></a>뒤에 추가</h3><p>파일이름의 뒤에 추가할 문자열에 입력된 문자열을 삽입합니다.</p>
+<h3 id="정규식으로-치환"><a href="#정규식으로-치환" class="headerlink" title="정규식으로 치환"></a>정규식으로 치환</h3><p>파일이름에서 찾는 정규식에 입력된 패턴을 찾아서 변경할 문자열에 입력된 문자열로 치환합니다.</p>
+<h2 id="사용방법"><a href="#사용방법" class="headerlink" title="사용방법"></a>사용방법</h2><ol>
+<li> Open files 버튼을 클릭하고 이름을 일괄 변경할 파일들을 선택합니다.</li>
+<li> 변경 방법을 선택합니다.</li>
+<li> 변경할 문자열 또는 추가할 문자열을 입력합니다.</li>
+<li> Preview 버튼을 클릭해서 미리보기를 확인합니다.</li>
+<li> Rename 버튼을 클릭해서 파일이름을 변경합니다.</li>
 </ol>
 <img src="/2019/02/09/rename-app/rename-app-001.png" class="">
+
 <img src="/2019/02/09/rename-app/rename-app-002.png" class="">
+
 <img src="/2019/02/09/rename-app/rename-app-003.png" class="">
+
 <img src="/2019/02/09/rename-app/rename-app-004.png" class="">
+
 <blockquote>
-<p>정규식은 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D">자바스트립트의 정규식 가이드</a>를 참조하십시오.</p>
+<p>정규식은 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D" target="_blank" rel="noopener">자바스트립트의 정규식 가이드</a>를 참조하십시오.</p>
 </blockquote>
-<h2 id="설치파일"><a class="header-anchor" href="#설치파일"> </a>설치파일</h2>
-<p><a target="_blank" rel="noopener" href="https://github.com/bbonkr/renameapp/releases/latest">Release 페이지</a> 에서 최신 설치파일을 얻을 수 있습니다.</p>
-<p><s>macos 에서 동작 오류를 발견해서 macos 실행파일은 제공하지 않습니다.</s> <a target="_blank" rel="noopener" href="https://github.com/bbonkr/renameapp/tree/macos-fix-1">mac-fix-1 브랜치</a>에서 해결되었습니다.</p>
+<h2 id="설치파일"><a href="#설치파일" class="headerlink" title="설치파일"></a>설치파일</h2><p><a href="https://github.com/bbonkr/renameapp/releases/latest" target="_blank" rel="noopener">Release 페이지</a> 에서 최신 설치파일을 얻을 수 있습니다.</p>
+<p><del>macos 에서 동작 오류를 발견해서 macos 실행파일은 제공하지 않습니다.</del> <a href="https://github.com/bbonkr/renameapp/tree/macos-fix-1" target="_blank" rel="noopener">mac-fix-1 브랜치</a>에서 해결되었습니다.</p>
 <blockquote>
-<p>Macos 에서의 파일이름 처리때문에 발생한 문제이고, 파일이름 문자열을 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize">String.prototype.normalize()</a> 함수로 해결할 수 있습니다.</p>
+<p>Macos 에서의 파일이름 처리때문에 발생한 문제이고, 파일이름 문자열을 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize" target="_blank" rel="noopener">String.prototype.normalize()</a> 함수로 해결할 수 있습니다.</p>
 <p>한글로 된 파일이름을 콘솔에 출력하면 macos 에서는 <code>테스트.txt</code> 로 보이지만, 다른 OS에서는 <code>ㅌㅔㅅㅡㅌㅡ.txt</code>와 같이 출력됩니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> extension = path.extname(somepath);</span><br><span class="line"><span class="keyword">let</span> filename = path.basename(somepath, extension);</span><br><span class="line"><span class="built_in">console</span>.log(filename); <span class="comment">// ㅌㅔㅅㅡㅌㅡ</span></span><br><span class="line">filename = filename.normalize();</span><br><span class="line"><span class="built_in">console</span>.log(filename); <span class="comment">// 테스트</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> extension <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">extname</span><span class="token punctuation">(</span>somepath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> filename <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">basename</span><span class="token punctuation">(</span>somepath<span class="token punctuation">,</span> extension<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ㅌㅔㅅㅡㅌㅡ</span>
+filename <span class="token operator">=</span> filename<span class="token punctuation">.</span><span class="token function">normalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 테스트</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>참조 <small>관련된 사항은 아니지만 흥미로운 주제라 링크를 남깁니다</small></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://mathiasbynens.be/notes/javascript-unicode">JavaScript has a Unicode problem</a></li>
-<li><a target="_blank" rel="noopener" href="https://superuser.com/questions/999232/unicode-filenames-in-windows-vs-mac-os-x">Unicode filenames in Windows vs. Mac OS X</a></li>
+<li><a href="https://mathiasbynens.be/notes/javascript-unicode" target="_blank" rel="noopener">JavaScript has a Unicode problem</a></li>
+<li><a href="https://superuser.com/questions/999232/unicode-filenames-in-windows-vs-mac-os-x" target="_blank" rel="noopener">Unicode filenames in Windows vs. Mac OS X</a></li>
 </ul>
 </blockquote>
-<h2 id="저장소"><a class="header-anchor" href="#저장소"> </a>저장소</h2>
-<p><a target="_blank" rel="noopener" href="https://github.com/bbonkr/renameapp">GitHub: renameapp</a> 사이트에서 전체 내용을 확인할 수 있습니다.</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/bbonkr/renameapp/issues">Issue 페이지</a>에서 이슈를 등록하실 수 있습니다.</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/bbonkr/renameapp/pulls">PR <small>Pull Request</small></a>은 언제나 환영합니다.</p>
-<h2 id="빌드"><a class="header-anchor" href="#빌드"> </a>빌드</h2>
-<p>Rename app 응용프로그램은 <a target="_blank" rel="noopener" href="https://electronjs.org/">Electron</a>을 기반으로 UI 는 <a target="_blank" rel="noopener" href="https://reactjs.org/">react</a> 와 <a target="_blank" rel="noopener" href="https://getbootstrap.com/">bootstrap</a> 을 사용하여 작성되었습니다.</p>
+<h2 id="저장소"><a href="#저장소" class="headerlink" title="저장소"></a>저장소</h2><p><a href="https://github.com/bbonkr/renameapp" target="_blank" rel="noopener">GitHub: renameapp</a> 사이트에서 전체 내용을 확인할 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/renameapp/issues" target="_blank" rel="noopener">Issue 페이지</a>에서 이슈를 등록하실 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/renameapp/pulls" target="_blank" rel="noopener">PR <small>Pull Request</small></a>은 언제나 환영합니다.</p>
+<h2 id="빌드"><a href="#빌드" class="headerlink" title="빌드"></a>빌드</h2><p>Rename app 응용프로그램은 <a href="https://electronjs.org/" target="_blank" rel="noopener">Electron</a>을 기반으로 UI 는 <a href="https://reactjs.org/" target="_blank" rel="noopener">react</a> 와 <a href="https://getbootstrap.com/" target="_blank" rel="noopener">bootstrap</a> 을 사용하여 작성되었습니다.</p>
 <p>직접 빌드해서 사용하시려면 아래와 같이 진행하십시오.</p>
-<h3 id="의존-npm-패키지를-설치"><a class="header-anchor" href="#의존-npm-패키지를-설치"> </a>의존 npm 패키지를 설치</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h3 id="의존-npm-패키지를-설치"><a href="#의존-npm-패키지를-설치" class="headerlink" title="의존 npm 패키지를 설치"></a>의존 npm 패키지를 설치</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn</span><br></pre></td></tr></table></figure>
-<h3 id="Electron-Renderer-빌드"><a class="header-anchor" href="#Electron-Renderer-빌드"> </a>Electron Renderer 빌드</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build:prod</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Electron-Renderer-빌드"><a href="#Electron-Renderer-빌드" class="headerlink" title="Electron Renderer 빌드"></a>Electron Renderer 빌드</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run build:prod<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn build:prod</span><br></pre></td></tr></table></figure>
-<h3 id="실행"><a class="header-anchor" href="#실행"> </a>실행</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run start</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> build:prod<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn start</span><br></pre></td></tr></table></figure>
-<h3 id="실행파일-빌드"><a class="header-anchor" href="#실행파일-빌드"> </a>실행파일 빌드</h3>
-<h4 id="윈도우즈-실행파일"><a class="header-anchor" href="#윈도우즈-실행파일"> </a>윈도우즈 실행파일</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run pack:win</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="실행파일-빌드"><a href="#실행파일-빌드" class="headerlink" title="실행파일 빌드"></a>실행파일 빌드</h3><h4 id="윈도우즈-실행파일"><a href="#윈도우즈-실행파일" class="headerlink" title="윈도우즈 실행파일"></a>윈도우즈 실행파일</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run pack:win<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn pack:win</span><br></pre></td></tr></table></figure>
-<h4 id="맥오에스-실행파일"><a class="header-anchor" href="#맥오에스-실행파일"> </a>맥오에스 실행파일</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run pack:mac</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> pack:win<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="맥오에스-실행파일"><a href="#맥오에스-실행파일" class="headerlink" title="맥오에스 실행파일"></a>맥오에스 실행파일</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run pack:mac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn pack:mac</span><br></pre></td></tr></table></figure>
-<h3 id="설치파일-빌드"><a class="header-anchor" href="#설치파일-빌드"> </a>설치파일 빌드</h3>
-<h4 id="윈도우즈-설치파일"><a class="header-anchor" href="#윈도우즈-설치파일"> </a>윈도우즈 설치파일</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run installer:win</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> pack:mac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="설치파일-빌드"><a href="#설치파일-빌드" class="headerlink" title="설치파일 빌드"></a>설치파일 빌드</h3><h4 id="윈도우즈-설치파일"><a href="#윈도우즈-설치파일" class="headerlink" title="윈도우즈 설치파일"></a>윈도우즈 설치파일</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run installer:win<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn installer:win</span><br></pre></td></tr></table></figure>
-<h4 id="맥오에스-설치파일"><a class="header-anchor" href="#맥오에스-설치파일"> </a>맥오에스 설치파일</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run installer:mac</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> installer:win<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="맥오에스-설치파일"><a href="#맥오에스-설치파일" class="headerlink" title="맥오에스 설치파일"></a>맥오에스 설치파일</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> run installer:mac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>또는</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn installer:mac</span><br></pre></td></tr></table></figure>
-
-  </div>
-</article>
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95"><span class="toc-number">1.</span> <span class="toc-text">변경방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%85%EB%A0%A5%EA%B0%92%EC%9C%BC%EB%A1%9C-%EC%B9%98%ED%99%98"><span class="toc-number">1.1.</span> <span class="toc-text">입력값으로 치환</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%9E%EC%97%90-%EC%B6%94%EA%B0%80"><span class="toc-number">1.2.</span> <span class="toc-text">앞에 추가</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%92%A4%EC%97%90-%EC%B6%94%EA%B0%80"><span class="toc-number">1.3.</span> <span class="toc-text">뒤에 추가</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%95%EA%B7%9C%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EC%B9%98%ED%99%98"><span class="toc-number">1.4.</span> <span class="toc-text">정규식으로 치환</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95"><span class="toc-number">2.</span> <span class="toc-text">사용방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">3.</span> <span class="toc-text">설치파일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A0%80%EC%9E%A5%EC%86%8C"><span class="toc-number">4.</span> <span class="toc-text">저장소</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B9%8C%EB%93%9C"><span class="toc-number">5.</span> <span class="toc-text">빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%98%EC%A1%B4-npm-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%EC%84%A4%EC%B9%98"><span class="toc-number">5.1.</span> <span class="toc-text">의존 npm 패키지를 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-Renderer-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.2.</span> <span class="toc-text">Electron Renderer 빌드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89"><span class="toc-number">5.3.</span> <span class="toc-text">실행</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.4.</span> <span class="toc-text">실행파일 빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0%EC%A6%88-%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.4.1.</span> <span class="toc-text">윈도우즈 실행파일</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%A7%A5%EC%98%A4%EC%97%90%EC%8A%A4-%EC%8B%A4%ED%96%89%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.4.2.</span> <span class="toc-text">맥오에스 실행파일</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C"><span class="toc-number">5.5.</span> <span class="toc-text">설치파일 빌드</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0%EC%A6%88-%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.5.1.</span> <span class="toc-text">윈도우즈 설치파일</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%A7%A5%EC%98%A4%EC%97%90%EC%8A%A4-%EC%84%A4%EC%B9%98%ED%8C%8C%EC%9D%BC"><span class="toc-number">5.5.2.</span> <span class="toc-text">맥오에스 설치파일</span></a></li></ol></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2019/02/09/rename-app/"
-      ><i class="fab fa-facebook fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2019/02/09/rename-app/&text=Rename App"
-      ><i class="fab fa-twitter fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2019/02/09/rename-app/&is_video=false&description=Rename App"
-      ><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=Rename App&body=Check out this article: http://bbon.me/2019/02/09/rename-app/"
-      ><i class="fas fa-envelope fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2019/02/09/rename-app/&title=Rename App"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2019/02/09/rename-app/&name=Rename App&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2019/02/09/rename-app/&t=Rename App"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2020 bbon
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
-
-
-    <!-- jquery -->
-
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-
-<!-- clipboard -->
-
-  
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Google Analytics -->
-
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-64779499-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-<!-- Baidu Analytics -->
-
-<!-- Disqus Comments -->
-
-
-</body>
-</html>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> installer:mac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2019/01/08/start-vscode-on-teminal-on-macos-md/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>

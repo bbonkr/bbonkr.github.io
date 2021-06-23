@@ -1,638 +1,131 @@
-<!DOCTYPE html>
-<html lang=ko>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다. 사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다. 애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iOS 12">
-<meta property="og:url" content="http://bbon.me/2018/09/18/ios-12/index.html">
-<meta property="og:site_name" content="{bbon}">
-<meta property="og:description" content="iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다. 사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다. 애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는">
-<meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2018-09-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2019-08-05T09:59:13.765Z">
-<meta property="article:author" content="bbon">
-<meta property="article:tag" content="ios">
-<meta property="article:tag" content="apple">
-<meta property="article:tag" content="iphone">
-<meta property="article:tag" content="ipad">
-<meta name="twitter:card" content="summary">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>iOS 12</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
-    <!-- rss -->
-    
-    
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a
-    id="top-icon-tablet"
-    href="#"
-    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-    style="display:none;"
-    ><i class="fas fa-chevron-up fa-lg"></i
-  ></a>
-  <span id="menu">
-    <!-- <span id="nav">
-      <ul>
-        
-        <li>
-          <a href="/"
-            >Home</a
-          >
-        </li>
-        
-        <li>
-          <a href="/about/"
-            >About</a
-          >
-        </li>
-        
-        <li>
-          <a href="/archives/"
-            >Writing</a
-          >
-        </li>
-        
-        <li>
-          <a href="/tags/"
-            >Tags</a
-          >
-        </li>
-        
-        <li>
-          <a href="/categories/"
-            >Categories</a
-          >
-        </li>
-        
-        <li>
-          <a href="/search/"
-            >Search</a
-          >
-        </li>
-        
-        <li>
-          <a target="_blank" rel="noopener" href="http://github.com/bbonkr"
-            >Projects</a
-          >
-        </li>
-        
-      </ul>
-    </span> -->
-
-    <br />
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href="/2018/10/09/ios-12.0.1/"
-            ><i
-              class="fas fa-chevron-left"
-              aria-hidden="true"
-              onmouseover="$('#i-prev').toggle();"
-              onmouseout="$('#i-prev').toggle();"
-            ></i
-          ></a>
-        </li>
-         
-        <li>
-          <a class="icon" href="/2018/01/03/gulp-task-automation/"
-            ><i
-              class="fas fa-chevron-right"
-              aria-hidden="true"
-              onmouseover="$('#i-next').toggle();"
-              onmouseout="$('#i-next').toggle();"
-            ></i
-          ></a>
-        </li>
-        
-        <li>
-          <a
-            class="icon"
-            href="#"
-            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-            ><i
-              class="fas fa-chevron-up"
-              aria-hidden="true"
-              onmouseover="$('#i-top').toggle();"
-              onmouseout="$('#i-top').toggle();"
-            ></i
-          ></a>
-        </li>
-        <li>
-          <a class="icon" href="#"
-            ><i
-              class="fas fa-share-alt"
-              aria-hidden="true"
-              onmouseover="$('#i-share').toggle();"
-              onmouseout="$('#i-share').toggle();"
-              onclick="$('#share').toggle();return false;"
-            ></i
-          ></a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;"
-        >Previous post</span
-      >
-      <span id="i-next" class="info" style="display:none;"
-        >Next post</span
-      >
-      <span id="i-top" class="info" style="display:none;"
-        >Back to top</span
-      >
-      <span id="i-share" class="info" style="display:none;"
-        >Share post</span
-      >
-    </span>
-    <br />
-    <div id="share" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2018/09/18/ios-12/"
-      ><i class="fab fa-facebook " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2018/09/18/ios-12/&text=iOS 12"
-      ><i class="fab fa-twitter " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2018/09/18/ios-12/&is_video=false&description=iOS 12"
-      ><i class="fab fa-pinterest " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=iOS 12&body=Check out this article: http://bbon.me/2018/09/18/ios-12/"
-      ><i class="fas fa-envelope " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-reddit " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-digg " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2018/09/18/ios-12/&name=iOS 12&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2018/09/18/ios-12/&t=iOS 12"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%B1%EB%8A%A5"><span class="toc-number">1.</span> <span class="toc-text">성능</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%A7%84"><span class="toc-number">2.</span> <span class="toc-text">사진</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B9%B4%EB%A9%94%EB%9D%BC"><span class="toc-number">3.</span> <span class="toc-text">카메라</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A9%94%EC%8B%9C%EC%A7%80"><span class="toc-number">4.</span> <span class="toc-text">메시지</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0-%ED%83%80%EC%9E%84"><span class="toc-number">5.</span> <span class="toc-text">스크린 타임</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%A9%ED%95%B4%EA%B8%88%EC%A7%80-%EB%AA%A8%EB%93%9C"><span class="toc-number">6.</span> <span class="toc-text">방해금지 모드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%95%8C%EB%A6%BC"><span class="toc-number">7.</span> <span class="toc-text">알림</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Siri"><span class="toc-number">8.</span> <span class="toc-text">Siri</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A6%9D%EA%B0%95-%ED%98%84%EC%8B%A4-Augmented-Reality"><span class="toc-number">9.</span> <span class="toc-text">증강 현실(Augmented Reality)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B8%A1%EC%A0%95"><span class="toc-number">10.</span> <span class="toc-text">측정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B0%9C%EC%9D%B8-%EC%A0%95%EB%B3%B4-%EB%B3%B4%ED%98%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">개인 정보 보호 및 보안</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Books"><span class="toc-number">12.</span> <span class="toc-text">Apple Books</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Music"><span class="toc-number">13.</span> <span class="toc-text">Apple Music</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A3%BC%EC%8B%9D"><span class="toc-number">14.</span> <span class="toc-text">주식</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9D%8C%EC%84%B1-%EB%A9%94%EB%AA%A8"><span class="toc-number">15.</span> <span class="toc-text">음성 메모</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Podcasts"><span class="toc-number">16.</span> <span class="toc-text">Apple Podcasts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%86%90%EC%89%AC%EC%9A%B4-%EC%82%AC%EC%9A%A9"><span class="toc-number">17.</span> <span class="toc-text">손쉬운 사용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-%EA%B8%B0%EB%8A%A5-%EB%B0%8F-%ED%96%A5%EC%83%81"><span class="toc-number">18.</span> <span class="toc-text">기타 기능 및 향상</span></a></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        <!--  -->
-        <header id="header">
-  <a href="/">
-  
-    
-      <div id="logo" style="background-image: url(/images/me-300x300.png);"></div>
-    
-  
-    <div id="title">
-      <h1>{bbon}</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/about/">About</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="/tags/">Tags</a></li>
-       
-        <li><a href="/categories/">Categories</a></li>
-       
-        <li><a href="/search/">Search</a></li>
-       
-        <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-      
-    </ul>
-  </div>
-</header>
-  
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        iOS 12
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">{bbon}</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2018-09-17T15:00:00.000Z" itemprop="datePublished">2018-09-18</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/Mobile/">Mobile</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/apple/" rel="tag">apple</a>, <a class="tag-link-link" href="/tags/ios/" rel="tag">ios</a>, <a class="tag-link-link" href="/tags/ipad/" rel="tag">ipad</a>, <a class="tag-link-link" href="/tags/iphone/" rel="tag">iphone</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content" itemprop="articleBody">
-    <p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다. 사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다. 애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>iOS 12 · {bbon}</title><meta name="description"><meta name="og:title" content="iOS 12"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2018/09/18/ios-12/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">iOS 12</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/Mobile" target="_self"><span>MOBILE</span></a></div><div class="post-date">2018년 9월 18일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2018/09/18/ios-12/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2018/09/18/ios-12/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다. 사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다. 애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
 <p>Apple 소프트웨어 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.</p>
-<p><a target="_blank" rel="noopener" href="https://support.apple.com/kb/HT201222">https://support.apple.com/kb/HT201222</a></p>
-<p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다.<br>
-사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다.<br>
-애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
+<p><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a></p>
+<p>iOS 12 업데이트는 iPhone 및 iPad의 성능을 개선하고 멋진 새 기능을 추가합니다.<br>사진 앱은 보관함의 사진을 재발견하고 공유할 수 있는 새로운 기능을 제공합니다.<br>애니모티콘 중에서도 좀 더 사용자화할 수 있는 새로운 미모티콘으로 메시지를 좀 더 표현력있고 재미있게 바꿀 수 있으며, 스크린 타임을 사용하여 사용자와 가족 구성원들이 기기를 사용하는 시간을 파악하여 최대한 활용할 수 있게 하고, Siri로 동작하는 앱의 기능을 Siri 단축어를 통해 좀 더 빠르게 수행하며, 증강 현실을 통해 개발자들이 좀 더 손쉽게 공유 AR 경험을 구현할 수 있도록 하며, 새로운 개인 정보 보호 기능으로 사용자가 웹에서 추적되지 않도록 보호받을 수 있습니다.</p>
 <p>이 업데이트는 다음과 같은 새로운 기능 및 개선사항을 포함합니다.</p>
-<h2 id="성능"><a class="header-anchor" href="#성능"> </a>성능</h2>
-<ul>
-<li>더 빨라진 iOS의 속도 및 시스템 간의 반응성</li>
-<li>iPhone 5s 및 iPad Air를 포함하여 지원되는 모든 기기의 성능이 향상됨</li>
-<li>카메라가 최대 70% 빠르게 실행되며 키보드가 최대 50% 빠르게 표시되고 입력 반응 속도도 향상됨*</li>
-<li>기기에서 많은 작업을 수행하고 있을 때도 앱이 최대 두 배 빠르게 실행됨</li>
+<h2 id="성능"><a href="#성능" class="headerlink" title="성능"></a>성능</h2><ul>
+<li>  더 빨라진 iOS의 속도 및 시스템 간의 반응성</li>
+<li>  iPhone 5s 및 iPad Air를 포함하여 지원되는 모든 기기의 성능이 향상됨</li>
+<li>  카메라가 최대 70% 빠르게 실행되며 키보드가 최대 50% 빠르게 표시되고 입력 반응 속도도 향상됨*</li>
+<li>  기기에서 많은 작업을 수행하고 있을 때도 앱이 최대 두 배 빠르게 실행됨</li>
 </ul>
-<h2 id="사진"><a class="header-anchor" href="#사진"> </a>사진</h2>
-<ul>
-<li>추천 사진, 효과 제안 등으로 사용자의 보관함에서 멋진 사진을 발견할 수 있는 새로운 For You 탭</li>
-<li>사진 속의 사람들에게 사진을 공유할 수 있도록 주도적으로 추천해주는 공유 제안</li>
-<li>지능적인 제안과 여러 가지 키워드가 지원되어 사진을 좀 더 손쉽게 찾을 수 있는 검색 개선사항</li>
-<li>사용자가 있던 장소, 상호명, 이벤트 및 촬영한 시간을 기반으로 사진 검색 가능</li>
-<li>더 빨라진 카메라 가져오기 및 새로운 미리보기 크게 보기 모드</li>
-<li>이미지 편집을 위한 RAW 지원</li>
+<h2 id="사진"><a href="#사진" class="headerlink" title="사진"></a>사진</h2><ul>
+<li>  추천 사진, 효과 제안 등으로 사용자의 보관함에서 멋진 사진을 발견할 수 있는 새로운 For You 탭</li>
+<li>  사진 속의 사람들에게 사진을 공유할 수 있도록 주도적으로 추천해주는 공유 제안</li>
+<li>  지능적인 제안과 여러 가지 키워드가 지원되어 사진을 좀 더 손쉽게 찾을 수 있는 검색 개선사항</li>
+<li>  사용자가 있던 장소, 상호명, 이벤트 및 촬영한 시간을 기반으로 사진 검색 가능</li>
+<li>  더 빨라진 카메라 가져오기 및 새로운 미리보기 크게 보기 모드</li>
+<li>  이미지 편집을 위한 RAW 지원</li>
 </ul>
-<h2 id="카메라"><a class="header-anchor" href="#카메라"> </a>카메라</h2>
-<ul>
-<li>인물 사진 모드가 향상되어 무대 조명 및 무대 조명 모노 효과를 사용할 때 물체와 배경 간에 정교한 디테일 보존 가능</li>
-<li>카메라 프레임이 하이라이트되어 스캔하기 더 쉬워진 QR 코드</li>
+<h2 id="카메라"><a href="#카메라" class="headerlink" title="카메라"></a>카메라</h2><ul>
+<li>  인물 사진 모드가 향상되어 무대 조명 및 무대 조명 모노 효과를 사용할 때 물체와 배경 간에 정교한 디테일 보존 가능</li>
+<li>  카메라 프레임이 하이라이트되어 스캔하기 더 쉬워진 QR 코드</li>
 </ul>
-<h2 id="메시지"><a class="header-anchor" href="#메시지"> </a>메시지</h2>
-<ul>
-<li>애니모티콘 중에서도 좀 더 사용자화할 수 있고 다양하고 재미있게 개인에게 맞춤화된 캐릭터로 메시지를 좀 더 표현력 있게 바꿀 수 있는 미모티콘</li>
-<li>애니모티콘에 티라노사우루스, 유령, 코알라, 호랑이 포함</li>
-<li>이제 미모티콘 및 애니모티콘으로 윙크와 혀 내밀기 가능</li>
-<li>애니모티콘, 필터, 텍스트 효과, iMessage 스티커 팩, 도형을 메시지에서 찍은 사진 및 비디오로 가져올 수 있는 새로운 카메라 효과</li>
-<li>최대 30초까지 촬영할 수 있는 애니모티콘</li>
+<h2 id="메시지"><a href="#메시지" class="headerlink" title="메시지"></a>메시지</h2><ul>
+<li>  애니모티콘 중에서도 좀 더 사용자화할 수 있고 다양하고 재미있게 개인에게 맞춤화된 캐릭터로 메시지를 좀 더 표현력 있게 바꿀 수 있는 미모티콘</li>
+<li>  애니모티콘에 티라노사우루스, 유령, 코알라, 호랑이 포함</li>
+<li>  이제 미모티콘 및 애니모티콘으로 윙크와 혀 내밀기 가능</li>
+<li>  애니모티콘, 필터, 텍스트 효과, iMessage 스티커 팩, 도형을 메시지에서 찍은 사진 및 비디오로 가져올 수 있는 새로운 카메라 효과</li>
+<li>  최대 30초까지 촬영할 수 있는 애니모티콘</li>
 </ul>
-<h2 id="스크린-타임"><a class="header-anchor" href="#스크린-타임"> </a>스크린 타임</h2>
-<ul>
-<li>사용자와 가족 구성원들이 앱과 웹 사이트 이용 시간의 올바른 균형을 유지할 수 있도록 자세한 정보 및 도구를 제공하는 스크린 타임</li>
-<li>앱을 사용하는 시간, 앱 카테고리별 사용 내용, 알림 받는 횟수, 기기를 들어올리는 횟수 보기</li>
-<li>사용자나 사용자의 자녀가 앱 및 웹 사이트를 이용하는 시간을 제한할 수 있는 앱 시간 제한</li>
-<li>자녀용 스크린 타임을 통해 부모의 iOS 기기에서 자녀가 iPhone 및 iPad를 사용하는 시간을 관리할 수 있음</li>
+<h2 id="스크린-타임"><a href="#스크린-타임" class="headerlink" title="스크린 타임"></a>스크린 타임</h2><ul>
+<li>  사용자와 가족 구성원들이 앱과 웹 사이트 이용 시간의 올바른 균형을 유지할 수 있도록 자세한 정보 및 도구를 제공하는 스크린 타임</li>
+<li>  앱을 사용하는 시간, 앱 카테고리별 사용 내용, 알림 받는 횟수, 기기를 들어올리는 횟수 보기</li>
+<li>  사용자나 사용자의 자녀가 앱 및 웹 사이트를 이용하는 시간을 제한할 수 있는 앱 시간 제한</li>
+<li>  자녀용 스크린 타임을 통해 부모의 iOS 기기에서 자녀가 iPhone 및 iPad를 사용하는 시간을 관리할 수 있음</li>
 </ul>
-<h2 id="방해금지-모드"><a class="header-anchor" href="#방해금지-모드"> </a>방해금지 모드</h2>
-<ul>
-<li>설정한 시간, 위치 또는 캘린더 이벤트 이후 방해금지 모드 끄기</li>
-<li>취침 시간 동안 방해금지 모드를 설정하면 잠자기 상태에 있는 동안 잠금 화면에서 모든 알림 가려짐</li>
+<h2 id="방해금지-모드"><a href="#방해금지-모드" class="headerlink" title="방해금지 모드"></a>방해금지 모드</h2><ul>
+<li>  설정한 시간, 위치 또는 캘린더 이벤트 이후 방해금지 모드 끄기</li>
+<li>  취침 시간 동안 방해금지 모드를 설정하면 잠자기 상태에 있는 동안 잠금 화면에서 모든 알림 가려짐</li>
 </ul>
-<h2 id="알림"><a class="header-anchor" href="#알림"> </a>알림</h2>
-<ul>
-<li>동일한 앱에서 울리는 알림이 자동으로 그룹화되어 알림을 관리하기 쉬워짐</li>
-<li>잠금 화면에서 바로 알림 설정을 제어할 수 있는 인스턴트 튜닝</li>
-<li>사용자를 방해하지 않고 알림 센터에 직접 알림을 조용히 전달하는 새로운 ‘조용히 전달’ 옵션</li>
+<h2 id="알림"><a href="#알림" class="headerlink" title="알림"></a>알림</h2><ul>
+<li>  동일한 앱에서 울리는 알림이 자동으로 그룹화되어 알림을 관리하기 쉬워짐</li>
+<li>  잠금 화면에서 바로 알림 설정을 제어할 수 있는 인스턴트 튜닝</li>
+<li>  사용자를 방해하지 않고 알림 센터에 직접 알림을 조용히 전달하는 새로운 ‘조용히 전달’ 옵션</li>
 </ul>
-<h2 id="Siri"><a class="header-anchor" href="#Siri"> </a>Siri</h2>
-<ul>
-<li>Siri로 동작하는 앱의 기능을 빠르게 수행할 수 있는 Siri 단축어</li>
-<li>지원되는 앱에서 ‘Siri에 추가’ 버튼을 사용하거나 설정 &gt; Siri 및 검색에서 단축어 추가</li>
-<li>잠금 화면 및 검색에서 Siri가 단축어 제안</li>
-<li>포뮬러 1, Nascar, Indy 500 및 MotoGP의 모터스포츠 결과, 일정, 통계 및 순위 정보 얻기</li>
-<li>사진 앱에서 시간, 장소, 사람, 주제 또는 최근 여행별로 사진을 검색하여 관련 사진 및 추억 찾기</li>
-<li>더 많은 언어 구문 번역, 40개 이상의 언어 지원</li>
-<li>유명 인사의 출생지 같은 정보 확인 및 칼로리, 영양소 정보 등의 음식 관련 질문</li>
-<li>손전등 켜기 또는 끄기</li>
-<li>아일랜드 영어, 남아프리카 영어, 덴마크어, 노르웨이어, 광둥어, 북경어(대만)에 대해 더욱 자연스럽고 표현력 좋은 음성 지원</li>
+<h2 id="Siri"><a href="#Siri" class="headerlink" title="Siri"></a>Siri</h2><ul>
+<li>  Siri로 동작하는 앱의 기능을 빠르게 수행할 수 있는 Siri 단축어</li>
+<li>  지원되는 앱에서 ‘Siri에 추가’ 버튼을 사용하거나 설정 &gt; Siri 및 검색에서 단축어 추가</li>
+<li>  잠금 화면 및 검색에서 Siri가 단축어 제안</li>
+<li>  포뮬러 1, Nascar, Indy 500 및 MotoGP의 모터스포츠 결과, 일정, 통계 및 순위 정보 얻기</li>
+<li>  사진 앱에서 시간, 장소, 사람, 주제 또는 최근 여행별로 사진을 검색하여 관련 사진 및 추억 찾기</li>
+<li>  더 많은 언어 구문 번역, 40개 이상의 언어 지원</li>
+<li>  유명 인사의 출생지 같은 정보 확인 및 칼로리, 영양소 정보 등의 음식 관련 질문</li>
+<li>  손전등 켜기 또는 끄기</li>
+<li>  아일랜드 영어, 남아프리카 영어, 덴마크어, 노르웨이어, 광둥어, 북경어(대만)에 대해 더욱 자연스럽고 표현력 좋은 음성 지원</li>
 </ul>
-<h2 id="증강-현실-Augmented-Reality"><a class="header-anchor" href="#증강-현실-Augmented-Reality"> </a>증강 현실(Augmented Reality)</h2>
-<ul>
-<li>ARKit 2에서 공유된 경험을 바탕으로 친구들과 함께 즐길 수 있는 혁신적인 AR 앱을 개발자들이 구현 가능</li>
-<li>지속성을 통해 개발자들이 사용자가 멈춘 곳에서 바로 저장하고 다시 로드할 수 있도록 활성화</li>
-<li>개발자들이 현실 물체를 인식하고 공간을 이동하면서 이미지를 추적할 수 있도록 하는 물체 감지 및 이미지 추적</li>
-<li>AR 훑어보기를 통해 iOS 주변에 AR을 펼쳐 사용자가 News, Safari, 파일과 같은 내장 앱으로 AR 대상체를 보고 iMessage 및 Mail로 친구들과 공유 가능</li>
+<h2 id="증강-현실-Augmented-Reality"><a href="#증강-현실-Augmented-Reality" class="headerlink" title="증강 현실(Augmented Reality)"></a>증강 현실(Augmented Reality)</h2><ul>
+<li>  ARKit 2에서 공유된 경험을 바탕으로 친구들과 함께 즐길 수 있는 혁신적인 AR 앱을 개발자들이 구현 가능</li>
+<li>  지속성을 통해 개발자들이 사용자가 멈춘 곳에서 바로 저장하고 다시 로드할 수 있도록 활성화</li>
+<li>  개발자들이 현실 물체를 인식하고 공간을 이동하면서 이미지를 추적할 수 있도록 하는 물체 감지 및 이미지 추적</li>
+<li>  AR 훑어보기를 통해 iOS 주변에 AR을 펼쳐 사용자가 News, Safari, 파일과 같은 내장 앱으로 AR 대상체를 보고 iMessage 및 Mail로 친구들과 공유 가능</li>
 </ul>
-<h2 id="측정"><a class="header-anchor" href="#측정"> </a>측정</h2>
-<ul>
-<li>물체 및 공간을 측정할 수 있는 새로운 증강 현실 앱</li>
-<li>표면이나 비어있는 공간을 따라 선을 그어 측정하고, 선의 레이블을 탭하여 추가 정보 확인</li>
-<li>직사각형 물체를 자동으로 측정</li>
-<li>측정한 화면을 캡처, 공유 및 마크업</li>
+<h2 id="측정"><a href="#측정" class="headerlink" title="측정"></a>측정</h2><ul>
+<li>  물체 및 공간을 측정할 수 있는 새로운 증강 현실 앱</li>
+<li>  표면이나 비어있는 공간을 따라 선을 그어 측정하고, 선의 레이블을 탭하여 추가 정보 확인</li>
+<li>  직사각형 물체를 자동으로 측정</li>
+<li>  측정한 화면을 캡처, 공유 및 마크업</li>
 </ul>
-<h2 id="개인-정보-보호-및-보안"><a class="header-anchor" href="#개인-정보-보호-및-보안"> </a>개인 정보 보호 및 보안</h2>
-<ul>
-<li>Safari에서 강화된 지능형 추적 방지를 통해 내장된 콘텐츠 및 소셜 미디어 버튼이 사용자의 승인 없이는 사이트 간 브라우징 추적을 하지 않도록 방지</li>
-<li>광고업체가 iOS 기기를 고유하게 식별하는 능력을 억제해 광고 목표 변경을 방지</li>
-<li>대부분의 앱 및 Safari에서 계정을 생성하거나 암호를 변경할 때 강력하고 고유한 암호를 자동으로 제안</li>
-<li>재사용된 암호는 설정 &gt; 암호 및 계정에 깃발 표시</li>
-<li>QuickType 막대에서 제안으로 SMS를 통해 전송한 일회성 코드를 보안 코드 자동 완성에 표시</li>
-<li>설정의 ‘암호 및 계정’에서 AirDrop을 사용하여 연락처에 등록된 사람과 간편하게 암호 공유</li>
-<li>Siri가 인증된 기기에서 빠르게 암호 탐색 지원</li>
+<h2 id="개인-정보-보호-및-보안"><a href="#개인-정보-보호-및-보안" class="headerlink" title="개인 정보 보호 및 보안"></a>개인 정보 보호 및 보안</h2><ul>
+<li>  Safari에서 강화된 지능형 추적 방지를 통해 내장된 콘텐츠 및 소셜 미디어 버튼이 사용자의 승인 없이는 사이트 간 브라우징 추적을 하지 않도록 방지</li>
+<li>  광고업체가 iOS 기기를 고유하게 식별하는 능력을 억제해 광고 목표 변경을 방지</li>
+<li>  대부분의 앱 및 Safari에서 계정을 생성하거나 암호를 변경할 때 강력하고 고유한 암호를 자동으로 제안</li>
+<li>  재사용된 암호는 설정 &gt; 암호 및 계정에 깃발 표시</li>
+<li>  QuickType 막대에서 제안으로 SMS를 통해 전송한 일회성 코드를 보안 코드 자동 완성에 표시</li>
+<li>  설정의 ‘암호 및 계정’에서 AirDrop을 사용하여 연락처에 등록된 사람과 간편하게 암호 공유</li>
+<li>  Siri가 인증된 기기에서 빠르게 암호 탐색 지원</li>
 </ul>
-<h2 id="Apple-Books"><a class="header-anchor" href="#Apple-Books"> </a>Apple Books</h2>
-<ul>
-<li>책과 오디오북을 더욱 쉽고 재미있게 찾고 즐길 수 있도록 완전히 새로워진 디자인의 도서 앱</li>
-<li>현재 읽고 있는 책으로 간단히 돌아가거나 다음에 읽을만한 책을 추천받을 수 있는 ‘읽고 있는 책’</li>
-<li>새 기능인 ‘읽고 싶은 책’ 모음에 책을 추가하여 다음에 읽고 싶은 책 파악 가능</li>
-<li>사용자를 위해 엄선된 Apple Books 에디터 및 추천에서 신규 및 인기 모음 중 사용자가 다음에 읽고 싶어할 책을 쉽게 찾을 수 있는 북스토어</li>
-<li>좋아하는 저자, 배우 및 유명 인사가 내래이션한 몰입형 스토리 및 유익한 논픽션을 제공하는 새로운 오디오북 스토어</li>
+<h2 id="Apple-Books"><a href="#Apple-Books" class="headerlink" title="Apple Books"></a>Apple Books</h2><ul>
+<li>  책과 오디오북을 더욱 쉽고 재미있게 찾고 즐길 수 있도록 완전히 새로워진 디자인의 도서 앱</li>
+<li>  현재 읽고 있는 책으로 간단히 돌아가거나 다음에 읽을만한 책을 추천받을 수 있는 ‘읽고 있는 책’</li>
+<li>  새 기능인 ‘읽고 싶은 책’ 모음에 책을 추가하여 다음에 읽고 싶은 책 파악 가능</li>
+<li>  사용자를 위해 엄선된 Apple Books 에디터 및 추천에서 신규 및 인기 모음 중 사용자가 다음에 읽고 싶어할 책을 쉽게 찾을 수 있는 북스토어</li>
+<li>  좋아하는 저자, 배우 및 유명 인사가 내래이션한 몰입형 스토리 및 유익한 논픽션을 제공하는 새로운 오디오북 스토어</li>
 </ul>
-<h2 id="Apple-Music"><a class="header-anchor" href="#Apple-Music"> </a>Apple Music</h2>
-<ul>
-<li>가사 검색이 지원되어 단어만으로도 노래 검색 가능</li>
-<li>아티스트 음악으로 구성된 맞춤형 스테이션과 함께 디자인되어 탐색하기 쉬워진 아티스트 페이지</li>
-<li>친구가 듣고 있는 노래 중 사용자가 좋아할 만한 노래로 만든 새로운 플레이리스트, ‘친구가 즐기는 음악 믹스’</li>
-<li>세계 각국에 걸쳐 오늘의 인기 100곡을 보여주는 새로운 차트</li>
+<h2 id="Apple-Music"><a href="#Apple-Music" class="headerlink" title="Apple Music"></a>Apple Music</h2><ul>
+<li>  가사 검색이 지원되어 단어만으로도 노래 검색 가능</li>
+<li>  아티스트 음악으로 구성된 맞춤형 스테이션과 함께 디자인되어 탐색하기 쉬워진 아티스트 페이지</li>
+<li>  친구가 듣고 있는 노래 중 사용자가 좋아할 만한 노래로 만든 새로운 플레이리스트, ‘친구가 즐기는 음악 믹스’</li>
+<li>  세계 각국에 걸쳐 오늘의 인기 100곡을 보여주는 새로운 차트</li>
 </ul>
-<h2 id="주식"><a class="header-anchor" href="#주식"> </a>주식</h2>
-<ul>
-<li>iPhone 및 iPad에서 주식 시세, 대화식 차트 및 주요 뉴스를 쉽게 볼 수 있도록 완전히 새로워진 디자인</li>
-<li>색상으로 구분된 스파크라인이 있어 일일 차트를 한눈에 볼 수 있는 관심 종목</li>
-<li>종목 코드를 표시하는 대화식 차트 및 장외 시간 가격, 거래량 등이 표시된 핵심 정보 보기</li>
+<h2 id="주식"><a href="#주식" class="headerlink" title="주식"></a>주식</h2><ul>
+<li>  iPhone 및 iPad에서 주식 시세, 대화식 차트 및 주요 뉴스를 쉽게 볼 수 있도록 완전히 새로워진 디자인</li>
+<li>  색상으로 구분된 스파크라인이 있어 일일 차트를 한눈에 볼 수 있는 관심 종목</li>
+<li>  종목 코드를 표시하는 대화식 차트 및 장외 시간 가격, 거래량 등이 표시된 핵심 정보 보기</li>
 </ul>
-<h2 id="음성-메모"><a class="header-anchor" href="#음성-메모"> </a>음성 메모</h2>
-<ul>
-<li>사용성을 향상하여 완전히 새로워진 디자인</li>
-<li>사용자의 녹음 및 편집사항이 사용자의 모든 기기와 동기화되어 iCloud에 유지</li>
-<li>iPad에서 가로 화면 방향 및 세로 화면 방향 모두 지원</li>
+<h2 id="음성-메모"><a href="#음성-메모" class="headerlink" title="음성 메모"></a>음성 메모</h2><ul>
+<li>  사용성을 향상하여 완전히 새로워진 디자인</li>
+<li>  사용자의 녹음 및 편집사항이 사용자의 모든 기기와 동기화되어 iCloud에 유지</li>
+<li>  iPad에서 가로 화면 방향 및 세로 화면 방향 모두 지원</li>
 </ul>
-<h2 id="Apple-Podcasts"><a class="header-anchor" href="#Apple-Podcasts"> </a>Apple Podcasts</h2>
-<ul>
-<li>여러 개의 장이 포함된 프로그램의 장 지원</li>
-<li>차량이나 헤드폰에 있는 앞으로 및 뒤로 버튼으로 30초 또는 다음 장으로 건너뛰기</li>
-<li>지금 듣기 화면에서 새로운 에피소드 알림을 쉽게 관리 가능</li>
+<h2 id="Apple-Podcasts"><a href="#Apple-Podcasts" class="headerlink" title="Apple Podcasts"></a>Apple Podcasts</h2><ul>
+<li>  여러 개의 장이 포함된 프로그램의 장 지원</li>
+<li>  차량이나 헤드폰에 있는 앞으로 및 뒤로 버튼으로 30초 또는 다음 장으로 건너뛰기</li>
+<li>  지금 듣기 화면에서 새로운 에피소드 알림을 쉽게 관리 가능</li>
 </ul>
-<h2 id="손쉬운-사용"><a class="header-anchor" href="#손쉬운-사용"> </a>손쉬운 사용</h2>
-<ul>
-<li>이제 ‘실시간 듣기’를 AirPods에서 지원하여 더 선명하게 들을 수 있음</li>
-<li>AT&amp;T의 경우 RTT 전화 통화 가능</li>
-<li>선택 항목 말하기에서 이제 Siri 음성을 사용하여 선택한 텍스트 말하기 지원</li>
+<h2 id="손쉬운-사용"><a href="#손쉬운-사용" class="headerlink" title="손쉬운 사용"></a>손쉬운 사용</h2><ul>
+<li>  이제 ‘실시간 듣기’를 AirPods에서 지원하여 더 선명하게 들을 수 있음</li>
+<li>  AT&amp;T의 경우 RTT 전화 통화 가능</li>
+<li>  선택 항목 말하기에서 이제 Siri 음성을 사용하여 선택한 텍스트 말하기 지원</li>
 </ul>
-<h2 id="기타-기능-및-향상"><a class="header-anchor" href="#기타-기능-및-향상"> </a>기타 기능 및 향상</h2>
-<ul>
-<li>현실 모습을 변환시킬 수 있는 FaceTime의 카메라 효과</li>
-<li>CarPlay에서 타사 내비게이션 앱 지원</li>
-<li>지원되는 캠퍼스에서 Wallet에 저장된 비접촉식 학생 ID 카드를 사용하여 건물에 출입하고 Apple Pay 결제 가능</li>
-<li>설정 &gt; Safari에서 웹 사이트 아이콘을 활성화하여 iPad 탭에 표시 가능</li>
-<li>지원되는 지역의 경우 날씨 앱에 대기질 지수 표시</li>
-<li>iPad 하단에서 빠르게 쓸어올리면 홈으로 이동</li>
-<li>iPad의 오른쪽 상단에서 쓸어내리면 제어 센터에 접근</li>
-<li>마크업에 색상이 추가된 팔레트 및 각 도구의 선 너비와 불투명도를 변경할 수 있는 옵션 추가</li>
-<li>설정에 배터리 사용량 차트가 추가되어 24시간 또는 10일 동안 사용한 내역을 보고 막대를 탭하여 해당 기간에 사용한 앱 보기 가능</li>
-<li>3D Touch가 지원되지 않는 기기에서 스페이스 바를 길게 터치하여 키보드를 트랙패드로 전환 가능</li>
-<li>중국의 경우 실내에 있을 때 지도 앱에서 공항 및 쇼핑몰의 실내 지도 지원</li>
-<li>새로운 히브리어 정의 사전, 아랍어-영어 사전 및 힌디어-영어 사전</li>
-<li>새로운 영어 유의어 사전</li>
-<li>소프트웨어 업데이트가 밤사이에 자동으로 iOS 업데이트 설치 허용</li>
-<li>본 테스트는 2018년 5월, Apple에서 일반적인 최고 성능, iOS 11.4 체험판 및 iOS 12 체험판을 지원하는 iPhone 6 Plus에서 진행되었습니다. 키보드는 Safari를 사용하여 테스트되었으며 카메라는 잠금 화면에서 쓸어넘겨 테스트되었습니다. 성능은 특정 구성, 콘텐츠, 배터리 성능 상태, 사용 내용, 소프트웨어 버전 및 기타 요인에 따라 달라질 수 있습니다.</li>
+<h2 id="기타-기능-및-향상"><a href="#기타-기능-및-향상" class="headerlink" title="기타 기능 및 향상"></a>기타 기능 및 향상</h2><ul>
+<li>  현실 모습을 변환시킬 수 있는 FaceTime의 카메라 효과</li>
+<li>  CarPlay에서 타사 내비게이션 앱 지원</li>
+<li>  지원되는 캠퍼스에서 Wallet에 저장된 비접촉식 학생 ID 카드를 사용하여 건물에 출입하고 Apple Pay 결제 가능</li>
+<li>  설정 &gt; Safari에서 웹 사이트 아이콘을 활성화하여 iPad 탭에 표시 가능</li>
+<li>  지원되는 지역의 경우 날씨 앱에 대기질 지수 표시</li>
+<li>  iPad 하단에서 빠르게 쓸어올리면 홈으로 이동</li>
+<li>  iPad의 오른쪽 상단에서 쓸어내리면 제어 센터에 접근</li>
+<li>  마크업에 색상이 추가된 팔레트 및 각 도구의 선 너비와 불투명도를 변경할 수 있는 옵션 추가</li>
+<li>  설정에 배터리 사용량 차트가 추가되어 24시간 또는 10일 동안 사용한 내역을 보고 막대를 탭하여 해당 기간에 사용한 앱 보기 가능</li>
+<li>  3D Touch가 지원되지 않는 기기에서 스페이스 바를 길게 터치하여 키보드를 트랙패드로 전환 가능</li>
+<li>  중국의 경우 실내에 있을 때 지도 앱에서 공항 및 쇼핑몰의 실내 지도 지원</li>
+<li>  새로운 히브리어 정의 사전, 아랍어-영어 사전 및 힌디어-영어 사전</li>
+<li>  새로운 영어 유의어 사전</li>
+<li>  소프트웨어 업데이트가 밤사이에 자동으로 iOS 업데이트 설치 허용</li>
+<li>  본 테스트는 2018년 5월, Apple에서 일반적인 최고 성능, iOS 11.4 체험판 및 iOS 12 체험판을 지원하는 iPhone 6 Plus에서 진행되었습니다. 키보드는 Safari를 사용하여 테스트되었으며 카메라는 잠금 화면에서 쓸어넘겨 테스트되었습니다. 성능은 특정 구성, 콘텐츠, 배터리 성능 상태, 사용 내용, 소프트웨어 버전 및 기타 요인에 따라 달라질 수 있습니다.</li>
 </ul>
-<p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a target="_blank" rel="noopener" href="https://www.apple.com/kr/ios/feature-availability">https://www.apple.com/kr/ios/feature-availability</a> 및 <a target="_blank" rel="noopener" href="https://www.apple.com/kr/ios/whats-new">https://www.apple.com/kr/ios/whats-new</a></p>
-<p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br>
-<a target="_blank" rel="noopener" href="https://support.apple.com/kb/HT201222">https://support.apple.com/kb/HT201222</a><br>
-​</p>
-
-  </div>
-</article>
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%B1%EB%8A%A5"><span class="toc-number">1.</span> <span class="toc-text">성능</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%A7%84"><span class="toc-number">2.</span> <span class="toc-text">사진</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B9%B4%EB%A9%94%EB%9D%BC"><span class="toc-number">3.</span> <span class="toc-text">카메라</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A9%94%EC%8B%9C%EC%A7%80"><span class="toc-number">4.</span> <span class="toc-text">메시지</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0-%ED%83%80%EC%9E%84"><span class="toc-number">5.</span> <span class="toc-text">스크린 타임</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%A9%ED%95%B4%EA%B8%88%EC%A7%80-%EB%AA%A8%EB%93%9C"><span class="toc-number">6.</span> <span class="toc-text">방해금지 모드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%95%8C%EB%A6%BC"><span class="toc-number">7.</span> <span class="toc-text">알림</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Siri"><span class="toc-number">8.</span> <span class="toc-text">Siri</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A6%9D%EA%B0%95-%ED%98%84%EC%8B%A4-Augmented-Reality"><span class="toc-number">9.</span> <span class="toc-text">증강 현실(Augmented Reality)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B8%A1%EC%A0%95"><span class="toc-number">10.</span> <span class="toc-text">측정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B0%9C%EC%9D%B8-%EC%A0%95%EB%B3%B4-%EB%B3%B4%ED%98%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88"><span class="toc-number">11.</span> <span class="toc-text">개인 정보 보호 및 보안</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Books"><span class="toc-number">12.</span> <span class="toc-text">Apple Books</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Music"><span class="toc-number">13.</span> <span class="toc-text">Apple Music</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A3%BC%EC%8B%9D"><span class="toc-number">14.</span> <span class="toc-text">주식</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9D%8C%EC%84%B1-%EB%A9%94%EB%AA%A8"><span class="toc-number">15.</span> <span class="toc-text">음성 메모</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Podcasts"><span class="toc-number">16.</span> <span class="toc-text">Apple Podcasts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%86%90%EC%89%AC%EC%9A%B4-%EC%82%AC%EC%9A%A9"><span class="toc-number">17.</span> <span class="toc-text">손쉬운 사용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-%EA%B8%B0%EB%8A%A5-%EB%B0%8F-%ED%96%A5%EC%83%81"><span class="toc-number">18.</span> <span class="toc-text">기타 기능 및 향상</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2018/09/18/ios-12/"
-      ><i class="fab fa-facebook fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2018/09/18/ios-12/&text=iOS 12"
-      ><i class="fab fa-twitter fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2018/09/18/ios-12/&is_video=false&description=iOS 12"
-      ><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=iOS 12&body=Check out this article: http://bbon.me/2018/09/18/ios-12/"
-      ><i class="fas fa-envelope fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2018/09/18/ios-12/&title=iOS 12"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2018/09/18/ios-12/&name=iOS 12&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2018/09/18/ios-12/&t=iOS 12"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2020 bbon
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
-
-
-    <!-- jquery -->
-
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-
-<!-- clipboard -->
-
-  
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Google Analytics -->
-
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-64779499-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-<!-- Baidu Analytics -->
-
-<!-- Disqus Comments -->
-
-
-</body>
-</html>
+<p>일부 기능은 일부 국가 또는 지역에서만 사용할 수 있습니다. 자세한 정보는 다음 웹 사이트를 참조하십시오. <a href="https://www.apple.com/kr/ios/feature-availability" target="_blank" rel="noopener">https://www.apple.com/kr/ios/feature-availability</a> 및 <a href="https://www.apple.com/kr/ios/whats-new" target="_blank" rel="noopener">https://www.apple.com/kr/ios/whats-new</a></p>
+<p>이 업데이트의 보안 콘텐츠에 관한 자세한 정보는 다음 웹 사이트를 참조하십시오.<br><a href="https://support.apple.com/kb/HT201222" target="_blank" rel="noopener">https://support.apple.com/kb/HT201222</a><br>​</p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2018/01/03/gulp-task-automation/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2018/10/09/ios-12.0.1/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>

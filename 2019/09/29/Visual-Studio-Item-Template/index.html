@@ -1,328 +1,83 @@
-<!DOCTYPE html>
-<html lang=ko>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Visual Studio Item Template Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다. 이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다. 예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Visual Studio Item Template">
-<meta property="og:url" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/index.html">
-<meta property="og:site_name" content="{bbon}">
-<meta property="og:description" content="Visual Studio Item Template Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다. 이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다. 예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png">
-<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template-wizard.png">
-<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png">
-<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png">
-<meta property="og:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-add-new-item.png">
-<meta property="article:published_time" content="2019-09-29T08:21:32.000Z">
-<meta property="article:modified_time" content="2019-09-30T11:12:52.620Z">
-<meta property="article:author" content="bbon">
-<meta property="article:tag" content="visual studio">
-<meta property="article:tag" content="item template">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Visual Studio Item Template</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
-    <!-- rss -->
-    
-    
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a
-    id="top-icon-tablet"
-    href="#"
-    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-    style="display:none;"
-    ><i class="fas fa-chevron-up fa-lg"></i
-  ></a>
-  <span id="menu">
-    <!-- <span id="nav">
-      <ul>
-        
-        <li>
-          <a href="/"
-            >Home</a
-          >
-        </li>
-        
-        <li>
-          <a href="/about/"
-            >About</a
-          >
-        </li>
-        
-        <li>
-          <a href="/archives/"
-            >Writing</a
-          >
-        </li>
-        
-        <li>
-          <a href="/tags/"
-            >Tags</a
-          >
-        </li>
-        
-        <li>
-          <a href="/categories/"
-            >Categories</a
-          >
-        </li>
-        
-        <li>
-          <a href="/search/"
-            >Search</a
-          >
-        </li>
-        
-        <li>
-          <a target="_blank" rel="noopener" href="http://github.com/bbonkr"
-            >Projects</a
-          >
-        </li>
-        
-      </ul>
-    </span> -->
-
-    <br />
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href="/2019/11/01/Postman-Variables-usages/"
-            ><i
-              class="fas fa-chevron-left"
-              aria-hidden="true"
-              onmouseover="$('#i-prev').toggle();"
-              onmouseout="$('#i-prev').toggle();"
-            ></i
-          ></a>
-        </li>
-         
-        <li>
-          <a class="icon" href="/2019/09/11/typescript-make-module-definition-file/"
-            ><i
-              class="fas fa-chevron-right"
-              aria-hidden="true"
-              onmouseover="$('#i-next').toggle();"
-              onmouseout="$('#i-next').toggle();"
-            ></i
-          ></a>
-        </li>
-        
-        <li>
-          <a
-            class="icon"
-            href="#"
-            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
-            ><i
-              class="fas fa-chevron-up"
-              aria-hidden="true"
-              onmouseover="$('#i-top').toggle();"
-              onmouseout="$('#i-top').toggle();"
-            ></i
-          ></a>
-        </li>
-        <li>
-          <a class="icon" href="#"
-            ><i
-              class="fas fa-share-alt"
-              aria-hidden="true"
-              onmouseover="$('#i-share').toggle();"
-              onmouseout="$('#i-share').toggle();"
-              onclick="$('#share').toggle();return false;"
-            ></i
-          ></a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;"
-        >Previous post</span
-      >
-      <span id="i-next" class="info" style="display:none;"
-        >Next post</span
-      >
-      <span id="i-top" class="info" style="display:none;"
-        >Back to top</span
-      >
-      <span id="i-share" class="info" style="display:none;"
-        >Share post</span
-      >
-    </span>
-    <br />
-    <div id="share" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/"
-      ><i class="fab fa-facebook " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&text=Visual Studio Item Template"
-      ><i class="fab fa-twitter " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&is_video=false&description=Visual Studio Item Template"
-      ><i class="fab fa-pinterest " aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=Visual Studio Item Template&body=Check out this article: http://bbon.me/2019/09/29/Visual-Studio-Item-Template/"
-      ><i class="fas fa-envelope " aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-reddit " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-digg " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&name=Visual Studio Item Template&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&t=Visual Studio Item Template"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Visual Studio Item Template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MyTemplate-vstemplate-%ED%8C%8C%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">MyTemplate.vstemplate 파일</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TemplateData"><span class="toc-number">1.1.1.</span> <span class="toc-text">TemplateData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TemplateContent"><span class="toc-number">1.1.2.</span> <span class="toc-text">TemplateContent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%98%EB%A7%8C%EC%9D%98-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD"><span class="toc-number">1.2.</span> <span class="toc-text">나만의 템플릿으로 변경</span></a></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        <!--  -->
-        <header id="header">
-  <a href="/">
-  
-    
-      <div id="logo" style="background-image: url(/images/me-300x300.png);"></div>
-    
-  
-    <div id="title">
-      <h1>{bbon}</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-       
-        <li><a href="/">Home</a></li>
-       
-        <li><a href="/about/">About</a></li>
-       
-        <li><a href="/archives/">Writing</a></li>
-       
-        <li><a href="/tags/">Tags</a></li>
-       
-        <li><a href="/categories/">Categories</a></li>
-       
-        <li><a href="/search/">Search</a></li>
-       
-        <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-      
-    </ul>
-  </div>
-</header>
-  
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        Visual Studio Item Template
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">{bbon}</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-09-29T08:21:32.000Z" itemprop="datePublished">2019-09-29</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/HowTo/">HowTo</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/item-template/" rel="tag">item template</a>, <a class="tag-link-link" href="/tags/visual-studio/" rel="tag">visual studio</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content" itemprop="articleBody">
-    <h1>Visual Studio Item Template</h1>
-<p>Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다.</p>
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Visual Studio Item Template · {bbon}</title><meta name="description"><meta name="og:title" content="Visual Studio Item Template"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">Visual Studio Item Template</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/HowTo" target="_self"><span>HOWTO</span></a></div><div class="post-date">2019년 9월 29일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2019/09/29/Visual-Studio-Item-Template/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><h1 id="Visual-Studio-Item-Template"><a href="#Visual-Studio-Item-Template" class="headerlink" title="Visual Studio Item Template"></a>Visual Studio Item Template</h1><p>Visual Studio 에서 코드를 작성할 때, 프로젝트에 새 항목을 추가하고, 구현을 시작합니다.</p>
 <p>이 때, 깨끗하게 비워져 있는 코드 파일이 좋을 때도 있지만, 반복적으로 작성하는 코드가 포함되는 경우도 있습니다.</p>
 <p>예를 들어, Xamarin Forms 로 모바일 응용프로그램을 작성하는 프로젝트를 작업중일 때, Page 와 ViewModel 을 반복적으로 추가하고, 작성합니다.</p>
 <p>Page의 예 .xaml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">core:AppContentPage</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://xamarin.com/schemas/2014/forms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:x</span>=<span class="string">&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:d</span>=<span class="string">&quot;http://xamarin.com/schemas/2014/forms/design&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:mc</span>=<span class="string">&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:local</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Product&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:core</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:behaviors</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:converter</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:viewmodel</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Product.ViewModels&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:fa</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:buttons</span>=<span class="string">&quot;clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:inputLayout</span>=<span class="string">&quot;clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">mc:Ignorable</span>=<span class="string">&quot;d&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:Class</span>=<span class="string">&quot;Kr.Bbon.Product.Pages.SignUpPage&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:TypeArguments</span>=<span class="string">&quot;viewmodel:SignUpViewModel&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Title</span>=<span class="string">&quot;&#123;Binding Title&#125;&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Shell.NavBarIsVisible</span>=<span class="string">&quot;False&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">NavigationPage.HasNavigationBar</span>=<span class="string">&quot;False&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:FirstValidationErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">&quot;firstValidationErrorCoverter&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:ValidationResultHasErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">&quot;validationResultHasErrorConverter&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 화면을 작성 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">core:AppContentPage</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">core:</span>AppContentPage</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xamarin.com/schemas/2014/forms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.microsoft.com/winfx/2009/xaml<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xamarin.com/schemas/2014/forms/design<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>mc</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.openxmlformats.org/markup-compatibility/2006<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>local</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Product<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>core</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>behaviors</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>converter</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>viewmodel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Product.ViewModels<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>fa</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>buttons</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>inputLayout</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">mc:</span>Ignorable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">x:</span>Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Kr.Bbon.Product.Pages.SignUpPage<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">x:</span>TypeArguments</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewmodel:SignUpViewModel<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;Binding Title&#125;<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Shell.NavBarIsVisible</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>False<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">NavigationPage.HasNavigationBar</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>False<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContentPage.Resources</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">converter:</span>FirstValidationErrorConverter</span> <span class="token attr-name"><span class="token namespace">x:</span>Key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>firstValidationErrorCoverter<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">converter:</span>ValidationResultHasErrorConverter</span> <span class="token attr-name"><span class="token namespace">x:</span>Key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>validationResultHasErrorConverter<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContentPage.Resources</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContentPage.Content</span><span class="token punctuation">></span></span>
+                <span class="token comment">&lt;!-- 화면을 작성 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContentPage.Content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">core:</span>AppContentPage</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>Page 코드의 예 .xaml.cs</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Product.ViewModels;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms.Xaml;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Kr.Bbon.Product.Pages</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XamlCompilation(XamlCompilationOptions.Compile)</span>]</span><br><span class="line">    [<span class="meta">Route(RouteUri.SignUp)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">SignUpPage</span> : <span class="title">AppContentPage</span>&lt;<span class="title">SignUpViewModel</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SignUpPage</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">            : <span class="title">base</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Product<span class="token punctuation">.</span>ViewModels</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Linq</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Threading<span class="token punctuation">.</span>Tasks</span><span class="token punctuation">;</span>
+
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms<span class="token punctuation">.</span>Xaml</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Product<span class="token punctuation">.</span>Pages</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">XamlCompilation</span><span class="token attribute-arguments"><span class="token punctuation">(</span>XamlCompilationOptions<span class="token punctuation">.</span>Compile<span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Route</span><span class="token attribute-arguments"><span class="token punctuation">(</span>RouteUri<span class="token punctuation">.</span>SignUp<span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword">public</span> <span class="token keyword">partial</span> <span class="token keyword">class</span> <span class="token class-name">SignUpPage</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">AppContentPage<span class="token punctuation">&lt;</span>SignUpViewModel<span class="token punctuation">></span></span></span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">public</span> <span class="token function">SignUpPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">InitializeComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>ViewModel 코드의 예 .cs</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Core.Validations;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Input;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Kr.Bbon.Product.ViewModels</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SignUpViewModel</span> : <span class="title">ViewModelBase</span></span><br><span class="line">    &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="title">SignUpViewModel</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function">                        : <span class="title">base</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>                &#123;</span><br><span class="line">                &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Core</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Core<span class="token punctuation">.</span>Validations</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Linq</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Threading<span class="token punctuation">.</span>Tasks</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Windows<span class="token punctuation">.</span>Input</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Product<span class="token punctuation">.</span>ViewModels</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SignUpViewModel</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ViewModelBase</span></span>
+    <span class="token punctuation">&#123;</span>
+                <span class="token keyword">public</span> <span class="token function">SignUpViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+                        <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+                <span class="token punctuation">&#123;</span>
+                <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>새 페이지 작업 순서</p>
 <ol>
 <li>클래스 파일을 추가합니다.</li>
@@ -337,35 +92,32 @@
 <p>반복되는 작업을 줄이기 위해 아이템 템플릿을 만들어서 사용할 수 있습니다.</p>
 <p>Visual Studio 의 프로젝트 메뉴에서 템플릿 내보내기가 가능합니다.</p>
 <img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template.png" class="">
+
 <p>템플릿 내보내기 메뉴를 사용하면 마법사 형식으로 프로젝트를 템플릿으로 만들 것인지, 항목을 아이템 템플릿을 만들 것인지 선택이 가능합니다.</p>
 <img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-export-template-wizard.png" class="">
+
+
 <p>이렇게 아이템 템플릿을 내보내면 아이템 템플릿 디렉터리에 <code>.zip</code> 파일이 추가되어져 있습니다.</p>
 <p>👉 아이템 템플릿 디렉터리는 Visual Studio 옵션에서 확인할 수 있어요.</p>
 <p><img src="vs-item-template-options.png" alt="Visual Studio 옵션"></p>
 <img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-options.png" class="">
+
 <p><code>.zip</code> 파일은 아래 항목을 포함하고 있습니다.</p>
 <ul>
-<li>__PreviewImage.png<br>
-아이템 템플릿 마법사에서 지정한 미리보기 이미지 파일</li>
-<li>__TemplateIocn.png<br>
-아이템 템플릿 마법사에서 지정한 아이콘 이미지 파일</li>
+<li>__PreviewImage.png<br>아이템 템플릿 마법사에서 지정한 미리보기 이미지 파일</li>
+<li>__TemplateIocn.png<br>아이템 템플릿 마법사에서 지정한 아이콘 이미지 파일</li>
 <li>MyTemplate.vstemplate</li>
 <li>그리고, 아이템 템플릿으로 내보내기한 파일</li>
 </ul>
-<p>👉 <code>.vstemplate</code> 파일의 정보는 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates">방법: 항목 템플릿 만들기</a> 페이지의 링크들에서 확인할 수 있어요.</p>
-<h2 id="MyTemplate-vstemplate-파일"><a class="header-anchor" href="#MyTemplate-vstemplate-파일"> </a>MyTemplate.vstemplate 파일</h2>
-<p>편집기로 MyTemplate.vstemplate 파일을 열어보면 요소 이름으로 어떤 내용인지 알 수 있습니다.</p>
+<p>👉 <code>.vstemplate</code> 파일의 정보는 <a href="https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates" target="_blank" rel="noopener">방법: 항목 템플릿 만들기</a> 페이지의 링크들에서 확인할 수 있어요.</p>
+<h2 id="MyTemplate-vstemplate-파일"><a href="#MyTemplate-vstemplate-파일" class="headerlink" title="MyTemplate.vstemplate 파일"></a>MyTemplate.vstemplate 파일</h2><p>편집기로 MyTemplate.vstemplate 파일을 열어보면 요소 이름으로 어떤 내용인지 알 수 있습니다. </p>
 <p>TemplateData 요소와 TemplateContent 요소로 구성되어져 있습니다.</p>
-<h3 id="TemplateData"><a class="header-anchor" href="#TemplateData"> </a>TemplateData</h3>
-<p>템플릿 정보입니다.</p>
-<h3 id="TemplateContent"><a class="header-anchor" href="#TemplateContent"> </a>TemplateContent</h3>
-<p>새 항목을 추가할 때 프로젝트에 추가될 파일들의 목록입니다.</p>
-<h2 id="나만의-템플릿으로-변경"><a class="header-anchor" href="#나만의-템플릿으로-변경"> </a>나만의 템플릿으로 변경</h2>
-<p>여기서는 Page 와 ViewModel 을 동시에 포함하는 아이템 템플릿을 작성하는 것을 목적으로 합니다.</p>
+<h3 id="TemplateData"><a href="#TemplateData" class="headerlink" title="TemplateData"></a>TemplateData</h3><p>템플릿 정보입니다.</p>
+<h3 id="TemplateContent"><a href="#TemplateContent" class="headerlink" title="TemplateContent"></a>TemplateContent</h3><p>새 항목을 추가할 때 프로젝트에 추가될 파일들의 목록입니다.</p>
+<h2 id="나만의-템플릿으로-변경"><a href="#나만의-템플릿으로-변경" class="headerlink" title="나만의 템플릿으로 변경"></a>나만의 템플릿으로 변경</h2><p>여기서는 Page 와 ViewModel 을 동시에 포함하는 아이템 템플릿을 작성하는 것을 목적으로 합니다.</p>
 <p>제약사항:</p>
 <ul>
-<li>Page 와 ViewModel을 프로젝트에 포함시키기 위해 프로젝트 루트에서 항목을 추가해야 합니다.<br>
-템플릿에서 사용되는 템플릿 매개변수 <code>$rootnamespace$</code> 가 현재 항목을 추가하는 위치를 참조합니다.</li>
+<li>Page 와 ViewModel을 프로젝트에 포함시키기 위해 프로젝트 루트에서 항목을 추가해야 합니다.<br>템플릿에서 사용되는 템플릿 매개변수 <code>$rootnamespace$</code> 가 현재 항목을 추가하는 위치를 참조합니다.</li>
 <li>파일의 이름은 Page, ViewModel 접미어를 제외한 이름만 입력합니다.</li>
 <li>파일이름은 클래스 이름으로 사용가능한 영문자 또는 _ 로 시작하고 문자, 숫자, _ 만으로 입력합니다.</li>
 </ul>
@@ -374,197 +126,190 @@
 <li>아이템 템플릿으로 항목을 추가한 후 Page 파일은 Pages 디렉터리로, ViewModel 파일은 ViewModels 디렉터리로 이동해야 합니다.</li>
 </ul>
 <p>MyTemplate.vstemplate 파일의 내용</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VSTemplate</span> <span class="attr">Version</span>=<span class="string">&quot;3.0.0&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.microsoft.com/developer/vstemplate/2005&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;Item&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TemplateData</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DefaultName</span>&gt;</span>Only name of page without postfix.xaml<span class="tag">&lt;/<span class="name">DefaultName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Name</span>&gt;</span>Kr.Bbon.Product Xamarin Page with ViewModel<span class="tag">&lt;/<span class="name">Name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Description</span>&gt;</span>Page and ViewModels Template with SyncFusion: Create on PROJECT ROOT then move Pages and ViewModels directory.<span class="tag">&lt;/<span class="name">Description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectType</span>&gt;</span>CSharp<span class="tag">&lt;/<span class="name">ProjectType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SortOrder</span>&gt;</span>10<span class="tag">&lt;/<span class="name">SortOrder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Icon</span>&gt;</span>__TemplateIcon.png<span class="tag">&lt;/<span class="name">Icon</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreviewImage</span>&gt;</span>__PreviewImage.png<span class="tag">&lt;/<span class="name">PreviewImage</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TemplateData</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TemplateContent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">References</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">&quot;Designer&quot;</span> <span class="attr">TargetFileName</span>=<span class="string">&quot;$fileinputname$Page.xaml&quot;</span> <span class="attr">ReplaceParameters</span>=<span class="string">&quot;true&quot;</span>&gt;</span>Page.xaml<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">&quot;Code&quot;</span> <span class="attr">TargetFileName</span>=<span class="string">&quot;$fileinputname$Page.xaml.cs&quot;</span> <span class="attr">ReplaceParameters</span>=<span class="string">&quot;true&quot;</span>&gt;</span>Page.xaml.cs<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectItem</span> <span class="attr">SubType</span>=<span class="string">&quot;Code&quot;</span> <span class="attr">TargetFileName</span>=<span class="string">&quot;$fileinputname$ViewModel.cs&quot;</span> <span class="attr">ReplaceParameters</span>=<span class="string">&quot;true&quot;</span>&gt;</span>ViewModel.cs<span class="tag">&lt;/<span class="name">ProjectItem</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TemplateContent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VSTemplate</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VSTemplate</span> <span class="token attr-name">Version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3.0.0<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.microsoft.com/developer/vstemplate/2005<span class="token punctuation">"</span></span> <span class="token attr-name">Type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TemplateData</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DefaultName</span><span class="token punctuation">></span></span>Only name of page without postfix.xaml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DefaultName</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Name</span><span class="token punctuation">></span></span>Kr.Bbon.Product Xamarin Page with ViewModel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Description</span><span class="token punctuation">></span></span>Page and ViewModels Template with SyncFusion: Create on PROJECT ROOT then move Pages and ViewModels directory.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ProjectType</span><span class="token punctuation">></span></span>CSharp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ProjectType</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SortOrder</span><span class="token punctuation">></span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SortOrder</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Icon</span><span class="token punctuation">></span></span>__TemplateIcon.png<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Icon</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PreviewImage</span><span class="token punctuation">></span></span>__PreviewImage.png<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PreviewImage</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TemplateData</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TemplateContent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>References</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ProjectItem</span> <span class="token attr-name">SubType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Designer<span class="token punctuation">"</span></span> <span class="token attr-name">TargetFileName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$fileinputname$Page.xaml<span class="token punctuation">"</span></span> <span class="token attr-name">ReplaceParameters</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Page.xaml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ProjectItem</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ProjectItem</span> <span class="token attr-name">SubType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Code<span class="token punctuation">"</span></span> <span class="token attr-name">TargetFileName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$fileinputname$Page.xaml.cs<span class="token punctuation">"</span></span> <span class="token attr-name">ReplaceParameters</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Page.xaml.cs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ProjectItem</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ProjectItem</span> <span class="token attr-name">SubType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Code<span class="token punctuation">"</span></span> <span class="token attr-name">TargetFileName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$fileinputname$ViewModel.cs<span class="token punctuation">"</span></span> <span class="token attr-name">ReplaceParameters</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>ViewModel.cs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ProjectItem</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TemplateContent</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VSTemplate</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>Page.xaml 파일의 내용</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">core:AppContentPage</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://xamarin.com/schemas/2014/forms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:x</span>=<span class="string">&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:d</span>=<span class="string">&quot;http://xamarin.com/schemas/2014/forms/design&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:mc</span>=<span class="string">&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:local</span>=<span class="string">&quot;clr-namespace:$rootnamespace$&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:core</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:behaviors</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:converter</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:viewmodel</span>=<span class="string">&quot;clr-namespace:$rootnamespace$.ViewModels&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:fa</span>=<span class="string">&quot;clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:buttons</span>=<span class="string">&quot;clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">xmlns:inputLayout</span>=<span class="string">&quot;clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">mc:Ignorable</span>=<span class="string">&quot;d&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:Class</span>=<span class="string">&quot;$rootnamespace$.Pages.$fileinputname$Page&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">x:TypeArguments</span>=<span class="string">&quot;viewmodel:$fileinputname$ViewModel&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Title</span>=<span class="string">&quot;&#123;Binding Title&#125;&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Shell.NavBarIsVisible</span>=<span class="string">&quot;False&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">NavigationPage.HasNavigationBar</span>=<span class="string">&quot;False&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:FirstValidationErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">&quot;firstValidationErrorCoverter&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">converter:ValidationResultHasErrorConverter</span> <span class="attr">x:Key</span>=<span class="string">&quot;validationResultHasErrorConverter&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">AbsoluteLayout</span> <span class="attr">HorizontalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">VerticalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Padding</span>=<span class="string">&quot;0&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ScrollView</span> <span class="attr">Orientation</span>=<span class="string">&quot;Vertical&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">AbsoluteLayout.LayoutBounds</span>=<span class="string">&quot;1.0, 1.0, 1.0, 1.0&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">AbsoluteLayout.LayoutFlags</span>=<span class="string">&quot;All&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">HorizontalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">Padding</span>=<span class="string">&quot;0, 0, 0, 0&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">StackLayout</span> <span class="attr">Orientation</span>=<span class="string">&quot;Vertical&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">&lt;!-- Content here!! --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Label</span> <span class="attr">Text</span>=<span class="string">&quot;Hello Xamarin&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;/<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">StackLayout</span> <span class="attr">IsVisible</span>=<span class="string">&quot;&#123;Binding IsBusy&#125;&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">AbsoluteLayout.LayoutBounds</span>=<span class="string">&quot;1.0, 1.0, 1.0, 1.0&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">AbsoluteLayout.LayoutFlags</span>=<span class="string">&quot;All&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">HorizontalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">VerticalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">Orientation</span>=<span class="string">&quot;Vertical&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">BackgroundColor</span>=<span class="string">&quot;#50000000&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ActivityIndicator</span> <span class="attr">HorizontalOptions</span>=<span class="string">&quot;Fill&quot;</span></span></span><br><span class="line"><span class="tag">                                    <span class="attr">VerticalOptions</span>=<span class="string">&quot;CenterAndExpand&quot;</span></span></span><br><span class="line"><span class="tag">                                    <span class="attr">IsRunning</span>=<span class="string">&quot;True&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">AbsoluteLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ContentPage.Content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">core:AppContentPage</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8" ?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">core:</span>AppContentPage</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xamarin.com/schemas/2014/forms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>x</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.microsoft.com/winfx/2009/xaml<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xamarin.com/schemas/2014/forms/design<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>mc</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.openxmlformats.org/markup-compatibility/2006<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>local</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:$rootnamespace$<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>core</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>behaviors</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core.Behaviors;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>converter</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Core.Converters;assembly=Kr.Bbon.Core<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>viewmodel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:$rootnamespace$.ViewModels<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>fa</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Kr.Bbon.Styles.FontAwesome;assembly=Kr.Bbon.Styles.FontAwesome<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>buttons</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">xmlns:</span>inputLayout</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">mc:</span>Ignorable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">x:</span>Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$rootnamespace$.Pages.$fileinputname$Page<span class="token punctuation">"</span></span>
+                        <span class="token attr-name"><span class="token namespace">x:</span>TypeArguments</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewmodel:$fileinputname$ViewModel<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;Binding Title&#125;<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Shell.NavBarIsVisible</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>False<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">NavigationPage.HasNavigationBar</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>False<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContentPage.Resources</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">converter:</span>FirstValidationErrorConverter</span> <span class="token attr-name"><span class="token namespace">x:</span>Key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>firstValidationErrorCoverter<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">converter:</span>ValidationResultHasErrorConverter</span> <span class="token attr-name"><span class="token namespace">x:</span>Key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>validationResultHasErrorConverter<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContentPage.Resources</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContentPage.Content</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbsoluteLayout</span> <span class="token attr-name">HorizontalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>FillAndExpand<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">VerticalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>FillAndExpand<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Padding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ScrollView</span> <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Vertical<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">AbsoluteLayout.LayoutBounds</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0, 1.0, 1.0, 1.0<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">AbsoluteLayout.LayoutFlags</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>All<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">HorizontalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>FillAndExpand<span class="token punctuation">"</span></span>
+                        <span class="token attr-name">Padding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0, 0, 0, 0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackLayout</span> <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Vertical<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+                <span class="token comment">&lt;!-- Content here!! --></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">Text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hello Xamarin<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackLayout</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ScrollView</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackLayout</span> <span class="token attr-name">IsVisible</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;Binding IsBusy&#125;<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">AbsoluteLayout.LayoutBounds</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0, 1.0, 1.0, 1.0<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">AbsoluteLayout.LayoutFlags</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>All<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">HorizontalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>FillAndExpand<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">VerticalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>FillAndExpand<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Vertical<span class="token punctuation">"</span></span>
+                            <span class="token attr-name">BackgroundColor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#50000000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ActivityIndicator</span> <span class="token attr-name">HorizontalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fill<span class="token punctuation">"</span></span>
+                                    <span class="token attr-name">VerticalOptions</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CenterAndExpand<span class="token punctuation">"</span></span>
+                                    <span class="token attr-name">IsRunning</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>True<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackLayout</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AbsoluteLayout</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContentPage.Content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">core:</span>AppContentPage</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>Page.xaml.cs 파일의 내용</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> $rootnamespace$.ViewModels;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms.Xaml;</span><br><span class="line"></span><br><span class="line">namespace $rootnamespace$.Pages</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XamlCompilation(XamlCompilationOptions.Compile)</span>]</span><br><span class="line">    [<span class="meta">Route(RouteUri.$fileinputname$)</span>]</span><br><span class="line">    public partial class $fileinputname$Page : AppContentPage&lt;$fileinputname$ViewModel&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> $fileinputname$Page()</span><br><span class="line">            : <span class="keyword">base</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Core</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> $rootnamespace$<span class="token punctuation">.</span>ViewModels<span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Linq</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Threading<span class="token punctuation">.</span>Tasks</span><span class="token punctuation">;</span>
+
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms<span class="token punctuation">.</span>Xaml</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> $rootnamespace$<span class="token punctuation">.</span>Pages
+<span class="token punctuation">&#123;</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">XamlCompilation</span><span class="token attribute-arguments"><span class="token punctuation">(</span>XamlCompilationOptions<span class="token punctuation">.</span>Compile<span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Route</span><span class="token attribute-arguments"><span class="token punctuation">(</span>RouteUri<span class="token punctuation">.</span>$fileinputname$<span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword">public</span> <span class="token keyword">partial</span> <span class="token keyword">class</span> $fileinputname$Page <span class="token punctuation">:</span> AppContentPage<span class="token operator">&lt;</span>$fileinputname$ViewModel<span class="token operator">></span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">public</span> $fileinputname$<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">InitializeComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>ViewModel.cs 파일의 내용</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Kr.Bbon.Core;</span><br><span class="line"><span class="keyword">using</span> Kr.Bbon.Core.Validations;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Windows.Input;</span><br><span class="line"><span class="keyword">using</span> Xamarin.Forms;</span><br><span class="line"></span><br><span class="line">namespace $rootnamespace$.ViewModels</span><br><span class="line">&#123;</span><br><span class="line">    public class $fileinputname$ViewModel : ViewModelBase</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> CONSTANTS</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Constructors</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> $fileinputname$ViewModel()</span><br><span class="line">            : <span class="keyword">base</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            Title = <span class="string">&quot;Title Here&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Commands</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Properties</span></span><br><span class="line">        </span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">InitializeCommands</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// Initialize Commands</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">base</span>.InitializeCommands();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">AddValidations</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">base</span>.AddValidations();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Add properties validation rule  </span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Methods</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> Properties private fields </span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">        </span><br><span class="line">        <span class="meta">#<span class="meta-keyword">region</span> local variables</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Core</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Kr<span class="token punctuation">.</span>Bbon<span class="token punctuation">.</span>Core<span class="token punctuation">.</span>Validations</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Linq</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Threading<span class="token punctuation">.</span>Tasks</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Windows<span class="token punctuation">.</span>Input</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">Xamarin<span class="token punctuation">.</span>Forms</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> $rootnamespace$<span class="token punctuation">.</span>ViewModels
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> $fileinputname$ViewModel <span class="token punctuation">:</span> ViewModelBase
+    <span class="token punctuation">&#123;</span>
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> CONSTANTS</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> Constructors</span>
+        
+        <span class="token keyword">public</span> $fileinputname$<span class="token function">ViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            Title <span class="token operator">=</span> <span class="token string">"Title Here"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> Commands</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> Properties</span>
+        
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+        
+        <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">InitializeCommands</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// Initialize Commands</span>
+
+            <span class="token keyword">base</span><span class="token punctuation">.</span><span class="token function">InitializeCommands</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddValidations</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">base</span><span class="token punctuation">.</span><span class="token function">AddValidations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Add properties validation rule  </span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> Methods</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> Properties private fields </span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+        
+        <span class="token preprocessor property">#<span class="token directive keyword">region</span> local variables</span>
+
+        <span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>해당 파일을 하나의 <code>.zip</code> 파일로 내보내기 합니다.</p>
 <p><code>.zip</code> 파일은 아래와 같이 모든 파일을 포함하고 있어야 합니다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyXamarin.PageWithViewMode.zip</span><br><span class="line">- __PreviewImage.png</span><br><span class="line">- __TemplateIcon.png</span><br><span class="line">- MyTemplate.vstemplate</span><br><span class="line">- Page.xaml</span><br><span class="line">- Page.xaml.cs</span><br><span class="line">- ViewModel.cs</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-plaintext" data-language="plaintext"><code class="language-plaintext">MyXamarin.PageWithViewMode.zip
+- __PreviewImage.png
+- __TemplateIcon.png
+- MyTemplate.vstemplate
+- Page.xaml
+- Page.xaml.cs
+- ViewModel.cs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>아이템 템플릿 <code>.zip</code> 파일을 아이템 템플릿 디렉터리에 복사합니다.</p>
 <p>Visual Studio 가 실행중이면 재시작해야 추가된 아이템 템플릿을 읽어 들입니다.</p>
 <p>솔루션 탐색기 혹은 파일 메뉴에서 새 항목 추가 메뉴를 시작하면 추가한 아이템 템플릿을 선택할 수 있습니다.</p>
 <img src="/2019/09/29/Visual-Studio-Item-Template/vs-item-template-add-new-item.png" class="">
+
 <p>제약조건에 맞게 올바른 이름을 입력하고 추가하면 프로젝트 루트 디렉터리에 파일이 추가됩니다.</p>
 <p>이름을 Hello 라고 입력하면, 아래와 같이 파일이 만들어 집니다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- HelloPage.xaml</span><br><span class="line">- HelloPage.xaml.cs</span><br><span class="line">- HelloViewModel.cs</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-plaintext" data-language="plaintext"><code class="language-plaintext">- HelloPage.xaml
+- HelloPage.xaml.cs
+- HelloViewModel.cs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>저는 이제 Page 는 Pages 디렉터리에 ViewModel 은 ViewModels 디렉터리에서 관리하므로 각 디렉터리로 이동 후 구현을 시작하면 됩니다.</p>
-
-  </div>
-</article>
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Visual Studio Item Template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MyTemplate-vstemplate-%ED%8C%8C%EC%9D%BC"><span class="toc-number">1.1.</span> <span class="toc-text">MyTemplate.vstemplate 파일</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TemplateData"><span class="toc-number">1.1.1.</span> <span class="toc-text">TemplateData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TemplateContent"><span class="toc-number">1.1.2.</span> <span class="toc-text">TemplateContent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%82%98%EB%A7%8C%EC%9D%98-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD"><span class="toc-number">1.2.</span> <span class="toc-text">나만의 템플릿으로 변경</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul class="inline-list">
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/"
-      ><i class="fab fa-facebook fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://twitter.com/share?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&text=Visual Studio Item Template"
-      ><i class="fab fa-twitter fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li> -->
-  <li>
-    <a
-      class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&is_video=false&description=Visual Studio Item Template"
-      ><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <li>
-    <a
-      class="icon"
-      href="mailto:?subject=Visual Studio Item Template&body=Check out this article: http://bbon.me/2019/09/29/Visual-Studio-Item-Template/"
-      ><i class="fas fa-envelope fa-lg" aria-hidden="true"></i
-    ></a>
-  </li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&title=Visual Studio Item Template"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&name=Visual Studio Item Template&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li> -->
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://bbon.me/2019/09/29/Visual-Studio-Item-Template/&t=Visual Studio Item Template"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li> -->
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2020 bbon
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a href="/categories/">Categories</a></li>
-         
-          <li><a href="/search/">Search</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/bbonkr">Projects</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
-
-
-    <!-- jquery -->
-
-<script src="/lib/jquery/jquery.min.js"></script>
-
-
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-
-<!-- clipboard -->
-
-  
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Google Analytics -->
-
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-64779499-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-
-<!-- Baidu Analytics -->
-
-<!-- Disqus Comments -->
-
-
-</body>
-</html>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2019/09/11/typescript-make-module-definition-file/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2019/11/01/Postman-Variables-usages/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>
