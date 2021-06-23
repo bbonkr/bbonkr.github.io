@@ -2,8 +2,8 @@
 mixin postInfo(item)
     if is_post()
         .post-info
-            - var profile_img = page.profile || theme.profile;
-            - var profile_url = page.profile_url || theme.profile_url;
+            - var profile_img = page.profile || theme.profile_image_url;
+            - var profile_url = page.profile_url || "https://github.com/" + theme.github.username;
             .post-info-profile
                 a(href=url_for(profile_url) target="_blank")
                     img(src=url_for(profile_img))

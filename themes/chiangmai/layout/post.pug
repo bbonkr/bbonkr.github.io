@@ -19,6 +19,10 @@ block description
     else
         meta(name="og:image", content=defaultImageURL)
     meta(name="og:description", content=desc)
+    if theme.twitter
+        meta(name="twitter:card" content="summary")
+        meta(name="witter:site" content=theme.twitter.username)
+        meta(name="witter:creator" content=theme.twitter.username)
 
 block header
     nav.navi-post
