@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Migrate web apps to container · {bbon}</title><meta name="description"><meta name="og:title" content="Migrate web apps to container"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2020/11/23/migrate-webapps-to-container/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">Migrate web apps to container</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/Log" target="_self"><span>LOG</span></a></div><div class="post-date">2020년 11월 23일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2020/11/23/migrate-webapps-to-container/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2020/11/23/migrate-webapps-to-container/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p>AWS Lightsail 에서 실행되고 있는 두개의 웹 응용프로그램이 있습니다.</p>
+<ul>
+<li>  1 vCPU 프로세싱</li>
+<li>  512MB 메모리</li>
+<li>  20GB SSD 스토리지</li>
+<li>  3.5 USD 월별요금</li>
+<li>  1TB 전송</li>
+<li>  OS: Ubuntu 16.04</li>
+</ul>
+<p>두 개의 웹 응용프로그램은 PHP 를 사용하고, nginx 를 사용해서 서비스되고 있습니다.</p>
+<p>혹시나 다른 서버로 이전하게 될 수도 있고, 관리도 힘들어서 구성을 코드화하고 싶어졌습니다.</p>
+<p>그래서, 두 응용프로그램을 컨테이너에서 실행될 수 있는 환경으로 이전했습니다.</p>
+<p>Lightsail 에 새로운 인스턴스를 만들고, Docker를 설치하고, docker-compose 로 구성 내용을 관리하도록 이전했습니다.</p>
+<ul>
+<li>  1 vCPU</li>
+<li>  1GB 메모리</li>
+<li>  30GB SSD 스토리지</li>
+<li>  5.0 USD 월별요금</li>
+<li>  2TB 전송</li>
+<li>  OS: Ubuntu 20.04</li>
+</ul>
+<h2 id="계획"><a href="#계획" class="headerlink" title="계획"></a>계획</h2><img src="/2020/11/23/migrate-webapps-to-container/aws-lightsail-container.png" class="">
+
+<h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><p>호스트 <code>80</code>, <code>443</code> 포트는 nginx 컨테이너에 연결됩니다.</p>
+<p>DBMS 와 두 web app은 호스트 장치에 포트를 연결하지 않고, 컨테이너 내부에서만 접근할 수 있도록 <code>EXPOSE</code> 명령으로 구성합니다.</p>
+<p>도커 네트워크를 만들어서 사용합니다.</p>
+<p>nginx 에서 리버스 프록시 연결을 위한 네트워크와 web app 에서 DBMS 접근을 위한 네트워크를 분리하려고 했으나, 복잡해지는 것 같아 내부 네트워크는 하나만 사용하도록 구성합니다.</p>
+<h3 id="docker-network"><a href="#docker-network" class="headerlink" title="docker network"></a>docker network</h3><p>도커 네트워크를 작성합니다. 컨테이너는 작성된 네트워크로 연결됩니다.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ docker network create <span class="token operator">&lt;</span>name of network<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>bridge 네트워크가 사용됩니다.</p>
+</blockquote>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>GUI 환경에서 관리할 수 있는 <a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용합니다.</p>
+<p>이제, 편리하게 GUI 환경에서 리버스 프록시를 관리할 수 있습니다.</p>
+<p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p>
+<h3 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p>
+<p>볼륨을 연결해서 데이터베이스 파일이 유지됩니다.</p>
+<h3 id="web-apps"><a href="#web-apps" class="headerlink" title="web apps"></a>web apps</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화하고, 볼륨을 연결해서 필요한 파일을 호스트에서 접근할 수 있고, 파일들이 컨테이너 외부에서 관리되어 계속 유지됩니다.</p>
+<h2 id="완료"><a href="#완료" class="headerlink" title="완료"></a>완료</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용하면 도메인을 연결하고, 리버스 프록시 구성시 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 인증서를 간편하게 구성하고, 재발행이 자동화되어 편리합니다.</p>
+<p>이제, 필요한 구성이 코드화되고, 필요한 파일은 호스트에서 확인할 수 있으므로 서버 이전을 매우 편리하게 진행할 수 있습니다.</p>
+<p>구성이 변경된 <a href="https://bbon.kr/" target="_blank" rel="noopener">블로그: bbon.kr</a> web app 이 잘 동작하고 있습니다.</p>
+<h2 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h2><p>한번씩 CPU 사용량 급증하는 현상이 발생하고 있으나, 원인을 찾을 수 없습니다.</p>
+<p>적은 리소스로 서버를 모니터링할 수 있는 도구를 찾고 있습니다.</p>
+<h2 id="남은-사항"><a href="#남은-사항" class="headerlink" title="남은 사항"></a>남은 사항</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a>를 사용해서 리버스 프록시로 구성된 web app 의 도메인 별로 인증서를 사용하고 있는데, <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 제공하는 와일드카드 인증서를 사용하도록 구성해야 합니다.</p>
+<p>CPU 사용이 급증하는 현상의 원인을 파악하고, 해결해야 합니다.</p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2020/11/15/react-starter-kit/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2020/12/31/review-2020/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>

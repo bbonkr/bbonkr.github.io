@@ -6,7 +6,7 @@
   <link href="http://bbon.me/atom.xml" rel="self"/>
   
   <link href="http://bbon.me/"/>
-  <updated>2021-06-23T12:15:50.194Z</updated>
+  <updated>2021-06-25T11:30:51.019Z</updated>
   <id>http://bbon.me/</id>
   
   <author>
@@ -15,6 +15,264 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Electron Release with GitHub Action</title>
+    <link href="http://bbon.me/2021/02/14/github-action-electron-release/"/>
+    <id>http://bbon.me/2021/02/14/github-action-electron-release/</id>
+    <published>2021-02-14T11:30:05.000Z</published>
+    <updated>2021-06-25T11:30:51.019Z</updated>
+    
+    <content type="html"><![CDATA[<p>Electron 으로 작성된 응용 프로그램을 Windows, Macos 실행파일로 빌드하고, GitHub Release 에서 다운로드 가능한 상태로 준비하는 과정을 자동화한 워크플로우를 회고합니다.</p><h2 id="GitHub-Actions"><a href="#GitHub-Actions" class="headerlink" title="GitHub Actions"></a>GitHub Actions</h2><p>GitHub 에서 제공하는 워크 플로우 자동화 도구입니다.</p><p>활용해서 여러가지 자동화를 시도할 수 있습니다.</p><p><code>Build</code>, <code>Release</code> 두 개의 액션으로 구성했습니다.</p><p><code>Release</code> 액션은 <code>Build</code> 액션에 의존하고 있습니다.</p><p>모든 단계가 문제없이 실행되면, main 브랜치에 새로운 태그가 작성되고, GitHub Release 에 새로 작성된 태그에 해당하는 Electron 응용 프로그램이 다운로드가 준비된 상태로 비공개로 작성됩니다.</p><p>간략한 흐름은 아래와 같습니다.</p><ol><li>main 브랜치에 커밋이 전송됩니다.</li><li>Build 액션이 실행됩니다.<ol><li>Ubuntu 에 Node.js 환경을 준비합니다.</li><li>npm build 스크립트를 실행합니다.</li><li>git tag를 작성합니다.</li><li>GitHub Release 를 작성합니다.</li><li><code>upload-assets</code> 이벤트를 실행합니다.</li></ol></li><li>Release 액션이 실행됩니다. Macos 와 Windows 에서 아래 단계가 각각 실행됩니다.</li><li>Node.js 환경을 준비합니다.</li><li>npm pack 스크립트를 실행합니다.</li><li>GitHub Release 에 응용프로그램을 업로드합니다.</li></ol><h3 id="⚙-Job-Build"><a href="#⚙-Job-Build" class="headerlink" title="⚙ Job: Build"></a>⚙ Job: Build</h3><p>main 브랜치에 커밋이 푸쉬되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/build.yml" target="_blank" rel="noopener">.github/workflows/build.yml 보기</a></p><p>build Job 은 <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install Dependencies</code>, <code>Build</code>, <code>package-version</code>, <code>package-version-to-git-tag</code>, <code>Release Drafter</code>, <code>Check Upload Url</code>, <code>Repository Dispatch</code> 단계로 구성되어 있습니다.</p><p>Ubuntu 에서 실행합니다.</p><h4 id="👞-step-Checkout"><a href="#👞-step-Checkout" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p><h4 id="👞-step-Install-Node-js-Npm"><a href="#👞-step-Install-Node-js-Npm" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p><p>v12 Node.js 를 사용합니다.</p><h4 id="👞-step-Install-Dependencies"><a href="#👞-step-Install-Dependencies" class="headerlink" title="👞 step: Install Dependencies"></a>👞 step: Install Dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p><h4 id="👞-step-Build"><a href="#👞-step-Build" class="headerlink" title="👞 step: Build"></a>👞 step: Build</h4><p>npm build 스크립트를 실행합니다.</p><h4 id="👞-step-package-version"><a href="#👞-step-package-version" class="headerlink" title="👞 step: package-version"></a>👞 step: package-version</h4><p>package.json 파일에 작성된 버전 값을 PACKAGE_VERION 환경변수로 설정합니다.</p><h4 id="👞-step-package-version-to-git-tag"><a href="#👞-step-package-version-to-git-tag" class="headerlink" title="👞 step: package-version-to-git-tag"></a>👞 step: package-version-to-git-tag</h4><p><a href="https://github.com/pkgdeps/git-tag-action" target="_blank" rel="noopener"><code>pkgdeps/git-tag-action</code></a> 액션으로 git tag 를 작성합니다.</p><p>package.json 파일의 버전과 git tag 를 동기화하기 위해 사용합니다.</p><p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p><h4 id="👞-step-Release-Drafter"><a href="#👞-step-Release-Drafter" class="headerlink" title="👞 step: Release Drafter"></a>👞 step: Release Drafter</h4><p><a href="https://github.com/release-drafter/release-drafter" target="_blank" rel="noopener"><code>release-drafter/release-drafter</code></a> 액션으로 작성된 git tag 에 대한 GitHub Release 를 작성합니다.</p><p>GitHub Release의 본문에 변경사항 정의된 템플릿 기반의 내용으로 작성됩니다.</p><p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p><p>작성된 GitHub Relase 는 Draft 상태입니다.</p><p>실행 파일이 업로드된 후 직접 상태를 변경해서 공개하도록 하고 싶습니다.</p><h4 id="👞-step-Check-Upload-Url"><a href="#👞-step-Check-Upload-Url" class="headerlink" title="👞 step: Check Upload Url"></a>👞 step: Check Upload Url</h4><p><code>Release Drafter</code> 단계의 출력값을 확인합니다.</p><p><code>Release Drafter</code> 단계에서 작성된 GitHub Release 의 첨부파일 <small>Assets</small> 업로드 경로를 확인하기 위해 추가된 단계입니다.</p><h4 id="👞-step-Repository-Dispatch"><a href="#👞-step-Repository-Dispatch" class="headerlink" title="👞 step: Repository Dispatch"></a>👞 step: Repository Dispatch</h4><p><a href="https://github.com/peter-evans/repository-dispatch" target="_blank" rel="noopener"><code>peter-evans/repository-dispatch</code></a> 액션으로 지정된 GitHub 저장소를 대상으로 사용자 정의 이벤트를 실행합니다.</p><blockquote><p><code>peter-evans/repository-dispatch</code> 액션은 GitHub api 중 web hook 을 사용합니다.</p></blockquote><p>이벤트 형식은 <code>upload-assets</code> 으로 지정합니다.<br>웹 훅을 요청할 때, 요청 본문으로 <code>Release Drafter</code> 단계의 출력값중 <code>upload_url</code> 을 전송합니다.</p><h3 id="⚙-Job-Release"><a href="#⚙-Job-Release" class="headerlink" title="⚙ Job: Release"></a>⚙ Job: Release</h3><p>저장소에 웹 훅 이벤트가 요청되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">.github/workflows/release.yml 보기</a></p><p>구독하는 이벤트 형식은 <code>upload-assets</code> 입니다.</p><p>Release Job 은 <code>Context</code>, <code>Verify Upload Url</code>, <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install dependencies</code>, <code>Pack</code>, <code>Upload Assets to Release with a wildcard</code> 단계로 구성되어 있습니다.</p><p>Macos, Windows 에서 실행됩니다.<br>각 단계는 지정된 OS 별로 한번씩 두번 실행됩니다.</p><h4 id="👞-step-Context"><a href="#👞-step-Context" class="headerlink" title="👞 step: Context"></a>👞 step: Context</h4><p>GitHub Action 으로 제공되는 기본 데이터를 확인해보고 싶어서 추가한 단계입니다.</p><h4 id="👞-step-Verify-Upload-Url"><a href="#👞-step-Verify-Upload-Url" class="headerlink" title="👞 step: Verify Upload Url"></a>👞 step: Verify Upload Url</h4><p>웹 훅으로 입력된 요청 본문이 정상적으로 전달되는지 확인해보고 싶어서 추가한 단계입니다. <code>Conext</code> 단계에서 동일한 값을 확인할 수 있습니다.</p><h4 id="👞-step-Checkout-1"><a href="#👞-step-Checkout-1" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p><h4 id="👞-step-Install-Node-js-Npm-1"><a href="#👞-step-Install-Node-js-Npm-1" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p><p>v12 Node.js 를 사용합니다.</p><h4 id="👞-step-Install-dependencies"><a href="#👞-step-Install-dependencies" class="headerlink" title="👞 step: Install dependencies"></a>👞 step: Install dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p><h4 id="👞-step-Pack"><a href="#👞-step-Pack" class="headerlink" title="👞 step: Pack"></a>👞 step: Pack</h4><p>npm pack 스크립트를 실행합니다.</p><p>electron 으로 작성된 실행파일이 packages 디렉터리에 작성됩니다.</p><h4 id="👞-step-Upload-Assets-to-Release-with-a-wildcard"><a href="#👞-step-Upload-Assets-to-Release-with-a-wildcard" class="headerlink" title="👞 step: Upload Assets to Release with a wildcard"></a>👞 step: Upload Assets to Release with a wildcard</h4><p>packages 디렉터리에 작성된 실행파일을 이전 Build 액션에서 전달한 업로드 경로를 사용해서 Release Assets 로 업로드합니다.</p><h2 id="📋-Workflows"><a href="#📋-Workflows" class="headerlink" title="📋 Workflows"></a>📋 Workflows</h2><p><a href="https://github.com/bbonkr/renameapp/actions" target="_blank" rel="noopener">Actions: bbonkr/renameapp</a> 페이지에서 실행된 워크플로우를 확인할 수 있습니다.</p><h2 id="🧰-Releases"><a href="#🧰-Releases" class="headerlink" title="🧰 Releases"></a>🧰 Releases</h2><p><a href="https://github.com/bbonkr/renameapp/releases" target="_blank" rel="noopener">Releases: bbonkr/renameapp</a> 페이지에서 작성된 GItHub Release 를 확인할 수 있습니다.</p><h2 id="📢-Conclusion"><a href="#📢-Conclusion" class="headerlink" title="📢 Conclusion"></a>📢 Conclusion</h2><p>가능하면 많은 부분을 자동화해서 꼭 필요한 일에 집중할 수 있는 환경을 준비하는 것은 매우 중요한 일이라고 생각됩니다.</p><p>이렇게 게시 워크플로우를 자동화해두면 이번 게시에 뭐가 변경되었는지를 작성하는 시간을 줄일 수 있고, 게시에 다운로그 가능한 파일을 누락하는 실수도 없습니다.</p><p>지속적으로 더 좋은 워크플로우를 생각하고, 구성하고 회고하도록 하겠습니다.</p><p>저와 유사한 워크플로우를 자동화하려고 진행하시는 분에게 도움이 되면 좋겠습니다.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Electron 으로 작성된 응용 프로그램을 Windows, Macos 실행파일로 빌드하고, GitHub Release 에서 다운로드 가능한 상태로 준비하는 과정을 자동화한 워크플로우를 회고합니다.&lt;/p&gt;
+&lt;h2 id=&quot;GitHub-Actions</summary>
+      
+    
+    
+    
+    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+    <category term="github" scheme="http://bbon.me/tags/github/"/>
+    
+    <category term="electron" scheme="http://bbon.me/tags/electron/"/>
+    
+    <category term="github-actions" scheme="http://bbon.me/tags/github-actions/"/>
+    
+    <category term="ci-cd" scheme="http://bbon.me/tags/ci-cd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kr.bbon.EntityFrameworkCore.Extensions Package</title>
+    <link href="http://bbon.me/2021/01/03/kr-bbon-EntityFrameworkCore-Extensions-Package/"/>
+    <id>http://bbon.me/2021/01/03/kr-bbon-EntityFrameworkCore-Extensions-Package/</id>
+    <published>2021-01-03T11:21:05.000Z</published>
+    <updated>2021-06-25T11:29:31.337Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody><tr><td align="center"><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener"><img src="https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions"></a></td><td align="center"><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener"><img src="https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions"></a></td><td align="center"><img src="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg" alt="publish to nuget"></td></tr></tbody></table><p><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">Nuget: kr.bbon.EntityFrameworkCore.Extensions</a> 페이지에서 패키지를 찾을 수 있습니다.</p><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p><a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank" rel="noopener">Microsoft.EntityFrameworkCore</a> 패키지를 사용하면서, 데이터를 정렬를 자주 사용합니다.</p><p>이 때, 문자열 형식으로 필드 이름으로 정렬할 수 있으면 편리할 것 같아서 확장을 작성했습니다.</p><h2 id="기능"><a href="#기능" class="headerlink" title="기능"></a>기능</h2><h3 id="Sort-확장-메서드"><a href="#Sort-확장-메서드" class="headerlink" title="Sort 확장 메서드"></a>Sort 확장 메서드</h3><p>IQueryable<T> 인터페이스에 Sort 확장 메서드를 추가합니다.</p><p>Sort 확장메서드는 내부적으로 OderBy, OrderByDescending, ThenBy, ThenByDescending 확장 메서드를 사용합니다.</p><p><code>Sort(string fieldName, [bool isAscending = true])</code></p><blockquote><p>fieldName 은 대소문자를 구분하지 않습니다.<br>fieldName 에 해당하는 필드를 찾을 수 없으면 예외가 발생합니다.</p></blockquote><p>사용법:</p><p><a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Document.cs#L5" target="_blank" rel="noopener">Document 형식</a>의 Content 오름차순, Id 내림차순으로 정렬하는 코드입니다. [<a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Program.cs#L48" target="_blank" rel="noopener">코드 보기</a>]</p><pre class="line-numbers language-cshap" data-language="cshap"><code class="language-cshap">using(var ctx &#x3D; new ExampleDbContext())&#123;    var result &#x3D; ctx.Documents.Sort(nameof(Document.Content)).Sort(nameof(Document.Id), false);&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="관련-링크"><a href="#관련-링크" class="headerlink" title="관련 링크"></a>관련 링크</h2><ul><li>  <a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">GitHub: kr.bbon.EntityFrameworkCore.Extensions</a></li><li>  <a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">Nuget: kr.bbon.EntityFrameworkCore.Extensions</a></li><li>  <a href="https://dotnet.microsoft.com/" target="_blank" rel="noopener">.NET</a></li><li>  <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank" rel="noopener">Nuget: Microsoft.EntityFrameworkCore</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;center</summary>
+      
+    
+    
+    
+    <category term="Package" scheme="http://bbon.me/categories/Package/"/>
+    
+    
+    <category term=".net" scheme="http://bbon.me/tags/net/"/>
+    
+    <category term="nuget" scheme="http://bbon.me/tags/nuget/"/>
+    
+    <category term="ef" scheme="http://bbon.me/tags/ef/"/>
+    
+    <category term="entity-framework" scheme="http://bbon.me/tags/entity-framework/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Review 2020</title>
+    <link href="http://bbon.me/2020/12/31/review-2020/"/>
+    <id>http://bbon.me/2020/12/31/review-2020/</id>
+    <published>2020-12-31T11:19:44.000Z</published>
+    <updated>2021-06-25T11:20:39.511Z</updated>
+    
+    <content type="html"><![CDATA[<p>2020년을 돌아봅니다.</p><h2 id="기술-스택"><a href="#기술-스택" class="headerlink" title="기술 스택"></a>기술 스택</h2><h3 id="NET-5"><a href="#NET-5" class="headerlink" title=".NET 5"></a>.NET 5</h3><p>이전에 작성했던 .NET Core 2.x ~ 3.x 응용프로그램을 .NET 5 로 이전해보고 있습니다.</p><p>계속 함께할 생각입니다.</p><h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><p>2020 년에는 거의 대부분의 프로젝트에서 웹 프론트엔드 업무를 담당했습니다.</p><p>React 를 사용해서 진행했고, 앞으로도 React 를 계속할 생각입니다.</p><h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>큰 프로젝트가 아니면 nodejs 는 좋은 백엔드 플랫폼으로 생각됩니다.</p><p><a href="http://expressjs.com/" target="_blank" rel="noopener">express.js</a> 를 사용해서 구현했는데, 이제 <a href="http://nestjs.com/" target="_blank" rel="noopener">nestjs</a> 를 활용하기 위해 공부하고 있습니다.</p><p>그리고, 크로스 플랫폼 CLI 도구 작성에도 활용하고 있습니다.</p><h3 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h3><p>Javascript 로 작성해야 하는 코드는 이제 Typescript 를 사용하는 것이 더 편하게 느껴집니다.</p><p>코드를 조금더 작성해야하고, 트랜스파일 구성을 해야 하는 것은 불편하지만, 코드를 작성할 때 더 편리합니다.</p><p>계속 Typescript 를 계속 사용할 생각입니다.</p><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>컨테이너 기술을 도커로 익히고 있는데, 다른 컨테이너도 조금씩 배워야 합니다.</p><p>AWS Lightsail 에서 동작하는 웹 응용프로그램을 컨테이너를 사용하도록 이전했습니다.</p><h3 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><p>2019년을 돌아보고, 2020년에 하고 싶은 것들이 있었는데, 생각이 바뀐 부분이 있습니다.</p><p>간단한 기능으로 구성된 모바일 앱을 작성할때 좋은 기술이라고 생각합니다.</p><p>그런데, 직접 구현할 수 없는 기능 또는 네이티브 기능이 필요하고, 그 기능을 사용하기 위해 패키지를 검색했는데 구현된 코드를 찾을 수 없다면 굉장히 난감했습니다.</p><p>다른 플랫폼도 동일하겠지만, 쉽게 접근했다가 매우 힘들어질 수 있겠다고 생각되었습니다.</p><p>이 기술은 메인으로 가져가기보다는 간단하게 모바일 앱을 구현할 때만 사용해야겠습니다.</p><h2 id="2020년-이야기"><a href="#2020년-이야기" class="headerlink" title="2020년 이야기"></a>2020년 이야기</h2><p>스타트업 팀과 몇몇 작업을 같이 진행했습니다.</p><p>팀의 서비스 기획이 정리되지 않아 진행을 포기한 프로젝트도 있고, 마무리 단계까지 진행하고 사회적 문저로 아직 서비스를 시작하지 못한 팀도 있습니다.</p><p>그리고, 파트타임으로 일을 시작했습니다.</p><p>기획이 정리되지 않은 어느 작은 스타트업 팀에서 문제가 되었던 부분이 서비스를 기획하시는 분이 서비스를 정리하면, 공상가 분이 계속 아이디어를 추가했습니다.<br>서비스 컨셉이 계속 변경되었습니다.<br>고민 끝에 이 팀에서는 서비스 구현이 힘들 것 같아 포기하게 되었습니다.</p><p>마무리 단계에서 서비스가 아직 시작되지 않은 팀은 COVID-19 로 인해 서비스 시작이 늦어지고 있습니다.</p><p>그리고, 페이스북 챗으로 연락했던 팀에서 파트타임을 제안해주셔서 쉬엄쉬엄 작업을 진행하고 있습니다.</p><h3 id="응용프로그램"><a href="#응용프로그램" class="headerlink" title="응용프로그램"></a>응용프로그램</h3><p>2020년에 게시된 응용프로그램 목록입니다.</p><ul><li>  <a href="https://flexbox.bbon.me/" target="_blank" rel="noopener">Help me! Display: flex</a></li><li>  <a href="https://guid.bbon.me/" target="_blank" rel="noopener">GUID Generator</a></li><li>  <a href="https://play.google.com/store/apps/details?id=kr.bbon.whendoibuyamask" target="_blank" rel="noopener">구글플레이: 공적 마스크 안내</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/formatter" target="_blank" rel="noopener">npm: @bbon/formatter</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/filedownload" target="_blank" rel="noopener">npm: @bbon/filedownload</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/css-to-jss" target="_blank" rel="noopener">npm: @bbon/css-to-jss</a></li><li>  <a href="https://resume.bbon.me/" target="_blank" rel="noopener">공개 이력서</a></li></ul><h2 id="2021년에는"><a href="#2021년에는" class="headerlink" title="2021년에는"></a>2021년에는</h2><p>지금처럼 천천히 업무를 찾고, 진행하고 싶습니다.</p><p>좋은 분들과 계속 인연을 가져가고 싶습니다.</p><p>Apple silicon 이 탑재된 mac 을 구입해야 합니다.<br>M1 보다 고성능의 기술의 발표를 기대하고 있습니다.</p><p>COVID-19 로부터 안전해지는 그 때를 기다리고 있습니다.<br>만나뵙고 싶은 분들이 많은데, 찾아뵙고 싶습니다.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;2020년을 돌아봅니다.&lt;/p&gt;
+&lt;h2 id=&quot;기술-스택&quot;&gt;&lt;a href=&quot;#기술-스택&quot; class=&quot;headerlink&quot; title=&quot;기술 스택&quot;&gt;&lt;/a&gt;기술 스택&lt;/h2&gt;&lt;h3 id=&quot;NET-5&quot;&gt;&lt;a href=&quot;#NET-5&quot; class=&quot;h</summary>
+      
+    
+    
+    
+    <category term="Log" scheme="http://bbon.me/categories/Log/"/>
+    
+    
+    <category term="review" scheme="http://bbon.me/tags/review/"/>
+    
+    <category term="log" scheme="http://bbon.me/tags/log/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Migrate web apps to container</title>
+    <link href="http://bbon.me/2020/11/23/migrate-webapps-to-container/"/>
+    <id>http://bbon.me/2020/11/23/migrate-webapps-to-container/</id>
+    <published>2020-11-23T11:17:47.000Z</published>
+    <updated>2021-06-25T11:19:14.505Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p>AWS Lightsail 에서 실행되고 있는 두개의 웹 응용프로그램이 있습니다.</p><ul><li>  1 vCPU 프로세싱</li><li>  512MB 메모리</li><li>  20GB SSD 스토리지</li><li>  3.5 USD 월별요금</li><li>  1TB 전송</li><li>  OS: Ubuntu 16.04</li></ul><p>두 개의 웹 응용프로그램은 PHP 를 사용하고, nginx 를 사용해서 서비스되고 있습니다.</p><p>혹시나 다른 서버로 이전하게 될 수도 있고, 관리도 힘들어서 구성을 코드화하고 싶어졌습니다.</p><p>그래서, 두 응용프로그램을 컨테이너에서 실행될 수 있는 환경으로 이전했습니다.</p><p>Lightsail 에 새로운 인스턴스를 만들고, Docker를 설치하고, docker-compose 로 구성 내용을 관리하도록 이전했습니다.</p><ul><li>  1 vCPU</li><li>  1GB 메모리</li><li>  30GB SSD 스토리지</li><li>  5.0 USD 월별요금</li><li>  2TB 전송</li><li>  OS: Ubuntu 20.04</li></ul><h2 id="계획"><a href="#계획" class="headerlink" title="계획"></a>계획</h2><img src="/2020/11/23/migrate-webapps-to-container/aws-lightsail-container.png" class=""><h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><p>호스트 <code>80</code>, <code>443</code> 포트는 nginx 컨테이너에 연결됩니다.</p><p>DBMS 와 두 web app은 호스트 장치에 포트를 연결하지 않고, 컨테이너 내부에서만 접근할 수 있도록 <code>EXPOSE</code> 명령으로 구성합니다.</p><p>도커 네트워크를 만들어서 사용합니다.</p><p>nginx 에서 리버스 프록시 연결을 위한 네트워크와 web app 에서 DBMS 접근을 위한 네트워크를 분리하려고 했으나, 복잡해지는 것 같아 내부 네트워크는 하나만 사용하도록 구성합니다.</p><h3 id="docker-network"><a href="#docker-network" class="headerlink" title="docker network"></a>docker network</h3><p>도커 네트워크를 작성합니다. 컨테이너는 작성된 네트워크로 연결됩니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ docker network create <span class="token operator">&lt;</span>name of network<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>bridge 네트워크가 사용됩니다.</p></blockquote><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>GUI 환경에서 관리할 수 있는 <a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용합니다.</p><p>이제, 편리하게 GUI 환경에서 리버스 프록시를 관리할 수 있습니다.</p><p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p><h3 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p><p>볼륨을 연결해서 데이터베이스 파일이 유지됩니다.</p><h3 id="web-apps"><a href="#web-apps" class="headerlink" title="web apps"></a>web apps</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화하고, 볼륨을 연결해서 필요한 파일을 호스트에서 접근할 수 있고, 파일들이 컨테이너 외부에서 관리되어 계속 유지됩니다.</p><h2 id="완료"><a href="#완료" class="headerlink" title="완료"></a>완료</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용하면 도메인을 연결하고, 리버스 프록시 구성시 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 인증서를 간편하게 구성하고, 재발행이 자동화되어 편리합니다.</p><p>이제, 필요한 구성이 코드화되고, 필요한 파일은 호스트에서 확인할 수 있으므로 서버 이전을 매우 편리하게 진행할 수 있습니다.</p><p>구성이 변경된 <a href="https://bbon.kr/" target="_blank" rel="noopener">블로그: bbon.kr</a> web app 이 잘 동작하고 있습니다.</p><h2 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h2><p>한번씩 CPU 사용량 급증하는 현상이 발생하고 있으나, 원인을 찾을 수 없습니다.</p><p>적은 리소스로 서버를 모니터링할 수 있는 도구를 찾고 있습니다.</p><h2 id="남은-사항"><a href="#남은-사항" class="headerlink" title="남은 사항"></a>남은 사항</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a>를 사용해서 리버스 프록시로 구성된 web app 의 도메인 별로 인증서를 사용하고 있는데, <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 제공하는 와일드카드 인증서를 사용하도록 구성해야 합니다.</p><p>CPU 사용이 급증하는 현상의 원인을 파악하고, 해결해야 합니다.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;개요&quot;&gt;&lt;a href=&quot;#개요&quot; class=&quot;headerlink&quot; title=&quot;개요&quot;&gt;&lt;/a&gt;개요&lt;/h2&gt;&lt;p&gt;AWS Lightsail 에서 실행되고 있는 두개의 웹 응용프로그램이 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;  1 vCPU 프로세</summary>
+      
+    
+    
+    
+    <category term="Log" scheme="http://bbon.me/categories/Log/"/>
+    
+    
+    <category term="docker" scheme="http://bbon.me/tags/docker/"/>
+    
+    <category term="aws" scheme="http://bbon.me/tags/aws/"/>
+    
+    <category term="review" scheme="http://bbon.me/tags/review/"/>
+    
+    <category term="log" scheme="http://bbon.me/tags/log/"/>
+    
+    <category term="lightsail" scheme="http://bbon.me/tags/lightsail/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React Starter Kit</title>
+    <link href="http://bbon.me/2020/11/15/react-starter-kit/"/>
+    <id>http://bbon.me/2020/11/15/react-starter-kit/</id>
+    <published>2020-11-15T11:15:25.000Z</published>
+    <updated>2021-06-25T11:16:53.036Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="GitHub-템플릿-사용"><a href="#GitHub-템플릿-사용" class="headerlink" title="GitHub 템플릿 사용"></a>GitHub 템플릿 사용</h2><p>GitHub 에서 저장소를 작성할 때, 템플릿으로 표시된 저장소를 사용해서 내 저장소를 작성할 수 있습니다.</p><img src="/2020/11/15/react-starter-kit/github-use-this-template.png" class=""><h2 id="템플릿"><a href="#템플릿" class="headerlink" title="템플릿"></a>템플릿</h2><p>SPA 를 시작하려면 구현하려는 프레임워크뿐만 아니라 트랜스파일, 번들링 등 신경써야 하는 부분이 많습니다.</p><p>React 를 처음 시작하시는 분들을 위해서, React 구현에 집중하실 수 있게 템플릿을 작성했습니다.</p><p>React Starter Kit 에서 저장소를 작성하시려면 <a href="https://github.com/bbonkr/react-starter-kit" target="_blank" rel="noopener">GitHub: React Starter Kit</a> 페이지로 이동한 후 <code>Use this template</code> 버튼을 클릭해서 본인의 저장소를 만드세요.</p><p>작성된 본인의 저장소를 로컬에 복제한 후 React 프레임워크에 집중해서 시작하실 수 있습니다.</p><h2 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h2><p>스타터 킷은 typescript 로 작성할 수 있게 구성되어 있습니다.</p><p>webpack 으로 트랜스파일과 번들링이 구성되어 있습니다.</p><p>개발환경으로 webpack-dev-server를 사용하고, HMR <small>Hot Module Replacement</small>가 준비되어 있습니다.</p><h2 id="시작"><a href="#시작" class="headerlink" title="시작"></a>시작</h2><p>원격 저장소를 로컬 저장소로 복제하고, 터미널에서 <code>npm run dev</code> 명령으로 개발서버를 시작합니다.</p><p>웹 브라우저에서 <code>http://localhost:3000</code> 을 탐색하면, 현재 작성된 코드가 렌더링 됩니다.</p><p>이 상태에서 컴포넌트를 작성하고, 라우트를 추가해서 구현한 코드를 바로 웹 브라우저에서 확인할 수 있습니다.</p><h2 id="나중에"><a href="#나중에" class="headerlink" title="나중에"></a>나중에</h2><p>React 프레임워크가 익숙해지면, webpack 도 익혀보시길 권장합니다.</p><h2 id="관련-링크"><a href="#관련-링크" class="headerlink" title="관련 링크"></a>관련 링크</h2><ul><li>  <a href="https://github.com/bbonkr/react-starter-kit" target="_blank" rel="noopener">GitHub: React Starter Kit</a></li><li>  <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li><li>  <a href="https://ko.reactjs.org/" target="_blank" rel="noopener">React</a></li><li>  <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">Typescript</a></li><li>  <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a></li><li>  <a href="https://webpack.js.org/configuration/dev-server" target="_blank" rel="noopener">webpack dev server</a></li><li>  <a href="https://webpack.js.org/guides/hot-module-replacement" target="_blank" rel="noopener">Hot Module Replacement</a></li><li>  <a href="https://docs.npmjs.com/" target="_blank" rel="noopener">npm</a></li><li>  <a href="https://git-scm.com/" target="_blank" rel="noopener">git</a></li><li>  <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-template-repository" target="_blank" rel="noopener">GitHub: Creating a template repository</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;GitHub-템플릿-사용&quot;&gt;&lt;a href=&quot;#GitHub-템플릿-사용&quot; class=&quot;headerlink&quot; title=&quot;GitHub 템플릿 사용&quot;&gt;&lt;/a&gt;GitHub 템플릿 사용&lt;/h2&gt;&lt;p&gt;GitHub 에서 저장소를 작성할 때, 템플릿으</summary>
+      
+    
+    
+    
+    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+    <category term="github" scheme="http://bbon.me/tags/github/"/>
+    
+    <category term="react" scheme="http://bbon.me/tags/react/"/>
+    
+    <category term="typescript" scheme="http://bbon.me/tags/typescript/"/>
+    
+    <category term="starter kit" scheme="http://bbon.me/tags/starter-kit/"/>
+    
+    <category term="template" scheme="http://bbon.me/tags/template/"/>
+    
+    <category term="webpack" scheme="http://bbon.me/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.NET Core 3.1 프로젝트를 .NET 5 로 마이그레이션</title>
+    <link href="http://bbon.me/2020/11/14/migrate-net-core-3-1-project-to-net-5/"/>
+    <id>http://bbon.me/2020/11/14/migrate-net-core-3-1-project-to-net-5/</id>
+    <published>2020-11-14T11:12:11.000Z</published>
+    <updated>2021-06-25T11:13:13.540Z</updated>
+    
+    <content type="html"><![CDATA[<p>변환 대상은 .NET Core 3.1 을 사용해서 작성된 응용프로그램입니다.</p><p>전체 코드는 340eb28b1ea510a2c59e8627659cd81b689b7244 커밋에서 확인할 수 있습니다.</p><p><a href="https://github.com/bbonkr/bing-wallpaper/tree/340eb28b1ea510a2c59e8627659cd81b689b7244" target="_blank" rel="noopener"><code>Commit &lt;&gt; 340eb28b1ea510a2c59e8627659cd81b689b7244</code></a></p><p>.NET Core 3.1 을 사용해서 작성된 응용프로그램을 .NET 5를 사용하는 응용프로그램으로 마이그레이션하려면, 솔루션의 모든 프로젝트의 대상 프레임워크를 <code>net5.0</code>으로 변경하고, 의존 패키지를 .NET 5 호환 버전으로 업데이트하면 됩니다.</p><p>의존 패키지가 .NET 5 를 지원하지 않는 경우가 아니라면 큰 문제없이 마이그레이션을 마칠 수 있을 것이라 생각합니다.</p><h2 id="대상-프레임워크-변경"><a href="#대상-프레임워크-변경" class="headerlink" title="대상 프레임워크 변경"></a>대상 프레임워크 변경</h2><p>솔루션 파일을 Visual Studio 에서 열고, 포함된 프로젝트의 대상 프레임워크 <small>TargetFramework</small>를 아래 표와 같이 <code>net5.0</code>으로 변경합니다.</p><table><thead><tr><th align="center">이전 대상 프레임워크</th><th align="center">변경 대상 프레임워크</th></tr></thead><tbody><tr><td align="center">netstandard2.1</td><td align="center">net5.0</td></tr><tr><td align="center">netcoreapp3.0</td><td align="center">net5.0</td></tr></tbody></table><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">></span></span>net5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="Nuget-패키지-업데이트"><a href="#Nuget-패키지-업데이트" class="headerlink" title="Nuget 패키지 업데이트"></a>Nuget 패키지 업데이트</h2><p>의존하는 모든 Nuget 패키지를 .NET 5 호환 가능한 버전으로 업데이트합니다.</p><h2 id="Docker-이미지-변경"><a href="#Docker-이미지-변경" class="headerlink" title="Docker 이미지 변경"></a>Docker 이미지 변경</h2><p>build-time image: <code>mcr.microsoft.com/dotnet/sdk:5.0</code><br>run-time image: <code>mcr.microsoft.com/dotnet/runtime:5.0</code></p><p>도커 이미지 정보는 아래 <code>.NET Runtime - Docker Hub</code> 페이지에서 확인할 수 있습니다.</p><p><a href="https://hub.docker.com/_/microsoft-dotnet-runtime/" target="_blank" rel="noopener">.NET Runtime - Docker Hub</a></p><p><code>.NET Runtime - Docker Hub</code> 페이지에서 관련 저장소를 확인하세요.</p><p>아래는 .NET 5 프로젝트에서 사용되는 도커파일 예제입니다.</p><pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM mcr.microsoft.com&#x2F;dotnet&#x2F;sdk:5.0 AS buildWORKDIR &#x2F;app# copy csproj and restore as distinct layersCOPY . .RUN dotnet restore# copy everything else and build appRUN cd Bing.Wallpaper.Service.App &amp;&amp; dotnet publish -c Release -o &#x2F;app&#x2F;outFROM mcr.microsoft.com&#x2F;dotnet&#x2F;runtime:5.0 AS runtimeWORKDIR &#x2F;appCOPY --from&#x3D;build &#x2F;app&#x2F;out .&#x2F;ENTRYPOINT [&quot;dotnet&quot;, &quot;Bing.Wallpaper.Service.App.dll&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h2><p>의존 패키지가 .NET 5 호환 가능한 버전이 존재해서 큰 문제없이 변경되었습니다.</p><p><a href="https://github.com/bbonkr/bing-wallpaper/tree/d3151bedcadefdcbf7c144c568a871c7718a94cb" target="_blank" rel="noopener"><code>Commit &lt;&gt; d3151bedcadefdcbf7c144c568a871c7718a94cb</code></a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;변환 대상은 .NET Core 3.1 을 사용해서 작성된 응용프로그램입니다.&lt;/p&gt;
+&lt;p&gt;전체 코드는 340eb28b1ea510a2c59e8627659cd81b689b7244 커밋에서 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https:</summary>
+      
+    
+    
+    
+    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+    <category term=".net" scheme="http://bbon.me/tags/net/"/>
+    
+    <category term=".net 5" scheme="http://bbon.me/tags/net-5/"/>
+    
+    <category term="migration" scheme="http://bbon.me/tags/migration/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPA 에서 파일 다운로드</title>
+    <link href="http://bbon.me/2020/09/07/filedownload-within-spa/"/>
+    <id>http://bbon.me/2020/09/07/filedownload-within-spa/</id>
+    <published>2020-09-07T11:10:06.000Z</published>
+    <updated>2021-06-25T11:11:25.665Z</updated>
+    
+    <content type="html"><![CDATA[<p>SPA <small>Single Page Application</small> 로 작성중인 웹 응용프로그램에서 파일 다운로드를 구현할 때, 새 창으로 다운로드할 파일의 URI를 제공해서 처리하면 매우 편리하게 파일을 다운로드할 수 있습니다.</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fileDownloadUri <span class="token operator">=</span> <span class="token string">'파일 다운로드 URI'</span><span class="token punctuation">;</span>window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>fileDownloadUri<span class="token punctuation">,</span> <span class="token string">'_blank'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>파일 URI와 함께 인증이 필요할 때, 쿠키를 사용중이면 동일하게 사용하면 됩니다.</p><p>그런데, 쿠키를 사용하지 않고, JWT 등을 사용해서 요청 헤더에 데이터를 제공하는 형식으로 인증을 처리중이면, 새창을 열어서 처리하는 방식으로는 처리가 불가능합니다.</p><p>이 때, 사용할 수 있는 간단한 코드조각을 npm 패키지로 공유합니다.</p><h2 id="📢-bbon-filedownload-패키지"><a href="#📢-bbon-filedownload-패키지" class="headerlink" title="📢 @bbon/filedownload 패키지"></a>📢 @bbon/filedownload 패키지</h2><p><a href="https://www.npmjs.com/package/@bbon/filedownload" target="_blank" rel="noopener">npm: @bbon/filedownload 패키지</a> 페이지에서 패키지를 확인하실 수 있습니다.</p><h2 id="🛠-설치"><a href="#🛠-설치" class="headerlink" title="🛠 설치"></a>🛠 설치</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> @bbon/filedownload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> <span class="token function">add</span> @bbon/filedownload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="🎮-사용"><a href="#🎮-사용" class="headerlink" title="🎮 사용"></a>🎮 사용</h2><p>HTTP 요청은 사용중인 패키지 또는 API를 사용하시면 됩니다.</p><p>응답 형식은 <code>BLOB</code> 으로 지정되어야 합니다.</p><p>AWS S3, Azure Storage, Google Cloud Storage 등의 클라우드 객체 저장소에 사용이 가능합니다.<br>물론, 직접 구현한 웹 응용프로그램의 BLOB 응답에도 사용가능합니다.</p><p>예제 코드에서 HTTP 요청은 <a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">Axios 패키지</a>를 사용합니다.</p><pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">const</span> requestConfig<span class="token operator">:</span> AxiosRequestConfig <span class="token operator">=</span> <span class="token punctuation">&#123;</span>    <span class="token operator">...</span>Axios<span class="token punctuation">.</span>defaults<span class="token punctuation">,</span>    responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>Axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>fileDownloadUrl<span class="token punctuation">,</span> requestConfig<span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>            <span class="token keyword">const</span> contentType <span class="token operator">=</span>                res<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'content-type'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token string">'application/octet-stream'</span><span class="token punctuation">;</span>            <span class="token keyword">const</span> helper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileDownloadHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            helper<span class="token punctuation">.</span><span class="token function">download</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>                data<span class="token operator">:</span> res<span class="token punctuation">.</span>data<span class="token punctuation">,</span>                filename<span class="token operator">:</span> fileName<span class="token punctuation">,</span>                contentType<span class="token punctuation">,</span>            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token keyword">finally</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>전체코드는 <a href="https://github.com/bbonkr/bbon-filedownload-sample" target="_blank" rel="noopener">GitHub: bbon-filedownload-sample</a> 저장소에서 확인하실 수 있습니다.</p><p><a href="https://bbon.me/bbon-filedownload-sample/">😎 예제 페이지</a>에서 동작을 확인하실 수 있습니다. <small>(다운로드 버튼을 클릭하면, 빨간 이미지를 다운로드합니다. 확인하실 때 눈👁을 조심하십시오.)</small></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;SPA &lt;small&gt;Single Page Application&lt;/small&gt; 로 작성중인 웹 응용프로그램에서 파일 다운로드를 구현할 때, 새 창으로 다운로드할 파일의 URI를 제공해서 처리하면 매우 편리하게 파일을 다운로드할 수 있습니다.&lt;/p&gt;</summary>
+      
+    
+    
+    
+    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+    <category term="npm" scheme="http://bbon.me/tags/npm/"/>
+    
+    <category term="react" scheme="http://bbon.me/tags/react/"/>
+    
+    <category term="typescript" scheme="http://bbon.me/tags/typescript/"/>
+    
+    <category term="code snippet" scheme="http://bbon.me/tags/code-snippet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSL 2 on Windows 10 build 2004</title>
+    <link href="http://bbon.me/2020/06/01/wsl-2-windows-10-build-2004/"/>
+    <id>http://bbon.me/2020/06/01/wsl-2-windows-10-build-2004/</id>
+    <published>2020-06-01T01:00:00.000Z</published>
+    <updated>2021-06-25T11:08:42.858Z</updated>
+    
+    <content type="html"><![CDATA[<p>최근 게시된 Windows 10 Build 2004 는 WSL 2 버전<small>Windows Subsystem Linux version 2</small>이 포함되어 있습니다.</p><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-003.png" class=""><p>WSL 2 버전은 Linux용 Windows 하위 시스템 아키텍쳐의 새로운 버전입니다.</p><p>WSL 2 버전은 파일 시스템 성능을 높이고, 전체 시스템 호출 호환성을 추가합니다.</p><p>WSL 2 버전은 WSL 1버전을 대체하지 않으므로, 리눅스 배포반을 사용할 때, WSL 2 버전 또는 WSL 1 버전을 선택적으로 지정할 수 있습니다.</p><h2 id="WSL-사용"><a href="#WSL-사용" class="headerlink" title="WSL 사용"></a>WSL 사용</h2><p>WSL 을 사용하려면 아래 두 Windows 기능을 사용하도록 변경되어야 합니다.</p><p>기능 이름: 가상 머신 플랫폼 Virtual Machine Platform</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName VirtualMachinePlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>기능 이름: Linux용 Windows 하위 시스템 Windows Subsystem for Linux</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName Microsoft<span class="token operator">-</span>Windows<span class="token operator">-</span>Subsystem<span class="token operator">-</span>Linux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-001.png" class=""><h2 id="리눅스-배포판-설치"><a href="#리눅스-배포판-설치" class="headerlink" title="리눅스 배포판 설치"></a>리눅스 배포판 설치</h2><p>리눅스 배포판의 설치 방법은 여러 가지가 제공됩니다.</p><p>가장 쉬운 방법은 Windows Store 에서 리눅스 배포판을 검색하고, 설치하는 방법입니다.</p><p>예를 들어 리눅스 배포판중 Ubuntu를 사용하려면 Windows Store 에서 Ubuntu를 검색하고, 원하는 버전을 설치한 후 실행하면 됩니다.</p><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-002.png" class=""><p>리눅스 배포판이 설치된 후 실행하면 리눅스에서 사용할 사용자 이름, 비밀번호를 입력하는 창이 열리고, 원하는 사용자 이름, 비밀번호를 입력한 후 사용하시면 됩니다.</p><h2 id="WSL-1-버전-사용자"><a href="#WSL-1-버전-사용자" class="headerlink" title="WSL 1 버전 사용자"></a>WSL 1 버전 사용자</h2><p>WSL 1 버전으로 리눅스 배포판을 사용중이면, WSL 1 버전을 계속 사용해도 되고, WSL 2 버전으로 변경할 수도 있습니다.</p><p><code>wsl -l -v</code> 명령으로 현재 실행중인 배포판 목록을 확인할 수 있습니다.</p><p>배포판 이름, 상태, WSL 버전이 출력됩니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v  NAME            STATE           VERSION<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Running         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>WSL 2 버전으로 변경하려면 <code>wsl --set-version &lt;distribution name&gt; &lt;version&gt;</code> 명령으로 배포판을 실행할 WSL 버전을 지정할 수 있습니다.</p><p>예를 들어 배포판 이름이 Ubuntu-20.04 이고 WSL 1 버전으로 실행 중인 리눅스 배포판을 WSL 2 버전으로 실행되도록 변경하려면 아래와 같이 명령을 실행합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>WSL 2 버전로 실행중인 배포판을 WSL 1 버전으로 변경할 수도 있습니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-versoin</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="❗-WSL-버전-변경-동작안함"><a href="#❗-WSL-버전-변경-동작안함" class="headerlink" title="❗ WSL 버전 변경 동작안함"></a>❗ WSL 버전 변경 동작안함</h2><p>저는 WSL 1 버전을 사용했었고, 글 작성 당시에는 WSL 1 버전을 사용하지 않게 설정되어 있는 상태였습니다.</p><p>WSL 2 버전사용을 위해 Windows 기능을 활성화하고, 리눅스 배포판을 설치한 후 WSL 2 버전으로 변경을 시도했는데, 처리되는 것 같지 았았습니다.<br><code>wsl --set-version Ubuntu-20.04 2</code> 명령 실행 후 금방 종료되어 버렸습니다.</p><p>WSL 배포판 목록을 확인해 보니, 여전히 WSL 1 버전으로 출력됩니다.</p><p>관련 문제를 검색해보니, <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 리눅스 커널 업데이트</a> 페이지를 확인하고, x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지를 다운로드하고 설치했습니다.</p><p>x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지 설치 후 다시 WSL 2 버전으로 변경을 시도하니 시간이 조금 흐른 후 종료되었습니다.</p><p>WSL 배포판 목록을 확인해보니, WSL 2 버전으로 실행중임을 확인할 수 있었습니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2Conversion in progress<span class="token punctuation">,</span> this may take a few minutes<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token keyword">For</span> information on key differences with WSL 2 please visit https:<span class="token operator">/</span><span class="token operator">/</span>aka<span class="token punctuation">.</span>ms<span class="token operator">/</span>wsl2Conversion complete<span class="token punctuation">.</span><span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v NAME            STATE           VERSION<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Stopped         2 Debian          Stopped         1 Ubuntu          Stopped         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>리눅스에서 윈도우 파일 시스템으로 관리되는 Git 로컬 저장소의 파일 처리는 WSL 1 버전에 비해 빨라졌지만, 느립니다. 💦</p><p>Windows 사용자 디렉터리와 WSL 사용자 디렉터리는 분리되어 있습니다.</p><p>Windows 에서 WSL 사용자 디렉터리에 접근하려면 <code>\\wsl$\&lt;distribution name&gt;\home\&lt;linux username&gt;</code>와 같이 네트워크 경로를 사용해서 접근할 수 있습니다. 👏</p><p>예를 들어 배포판 이름이 <code>Ubuntu-20.04</code> 이고, 리눅스 사용자 이름이 <code>bbon</code>이면, 연결 경로는 아래와 같습니다.</p><p>🙌 <code>\\wsl$\Ubuntu-20.04\home\bbon</code></p><p>윈도우에서 사용하는 Visual Studio Code 에 <a href="https://code.visualstudio.com/blogs/2019/09/03/wsl2" target="_blank" rel="noopener">Remote -WSL 확장</a>을 설치한 후 리눅스에서 Visual Studio Code를 실행 <code>$ code .</code> 하면, Visual Studio Code Server 가 시작되고, 윈도우에서 리눅스의 파일시스템에 원격으로 연결해서 작업이 가능합니다. 👍</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ code <span class="token builtin class-name">.</span>Installing VS Code Server <span class="token keyword">for</span> x64 <span class="token punctuation">(</span>0000000000000000000000000000000000000000<span class="token punctuation">)</span>Downloading: <span class="token number">100</span>%Unpacking: <span class="token number">100</span>%Unpacked <span class="token number">2321</span> files and folders to /home/bbon/.vscode-server/bin/0000000000000000000000000000000000000000.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p><p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><ul><li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/" target="_blank" rel="noopener">Linux용 Windows 하위 시스템 설명서</a></li><li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 Linux 커널 업데이트</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;최근 게시된 Windows 10 Build 2004 는 WSL 2 버전&lt;small&gt;Windows Subsystem Linux version 2&lt;/small&gt;이 포함되어 있습니다.&lt;/p&gt;
+&lt;img src=&quot;/2020/06/01/wsl-2-windo</summary>
+      
+    
+    
+    
+    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
+    
+    
+    <category term="microsoft" scheme="http://bbon.me/tags/microsoft/"/>
+    
+    <category term="linux" scheme="http://bbon.me/tags/linux/"/>
+    
+    <category term="Windows 10" scheme="http://bbon.me/tags/Windows-10/"/>
+    
+    <category term="wsl" scheme="http://bbon.me/tags/wsl/"/>
+    
+    <category term="Windows Subsystem for linux" scheme="http://bbon.me/tags/Windows-Subsystem-for-linux/"/>
+    
+  </entry>
   
   <entry>
     <title>나의 NPM 패키지 만들기</title>
@@ -355,264 +613,6 @@
     <category term="react-native" scheme="http://bbon.me/tags/react-native/"/>
     
     <category term="rn" scheme="http://bbon.me/tags/rn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lenovo ThinkPad T490</title>
-    <link href="http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/"/>
-    <id>http://bbon.me/2019/07/13/Lenovo-ThinkPad-T490/</id>
-    <published>2019-07-13T06:24:42.000Z</published>
-    <updated>2019-08-05T09:59:13.787Z</updated>
-    
-    <content type="html"><![CDATA[<p>유일한 약점이 커피를 못탄다는 <a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1" target="_blank" rel="noopener">Lenovo ThinkPad T490</a> 을 구매했습니다.</p><img src="/2019/07/13/Lenovo-ThinkPad-T490/lenovo-laptop-thinkpad-t490-hero.png" class="" title="Lenovo T490"><blockquote><p><small>제품 사진은 <a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1" target="_blank" rel="noopener">Lenovo T490</a> 페이지에서 가져왔습니다.</small></p></blockquote><h2 id="주문상세"><a href="#주문상세" class="headerlink" title="주문상세"></a>주문상세</h2><table><thead><tr><th align="left">구분</th><th align="left">상세</th></tr></thead><tbody><tr><td align="left">Processor</td><td align="left">인텔 코어 i7-8565U 프로세서(1.80GHz, Turbo Boost 포함 최대 4.60GHz, 4코어, 8MB 캐시)</td></tr><tr><td align="left">운영체제(OS)</td><td align="left">Windows 10 Pro 64</td></tr><tr><td align="left">Operating System Language</td><td align="left">Windows 10 Pro 64 한국어/영어</td></tr><tr><td align="left">Onboard Memory</td><td align="left">8GB DDR4 2666MHz 온보드</td></tr><tr><td align="left">Total Memory</td><td align="left">8GB DDR4 2400MHz 온보드</td></tr><tr><td align="left">Hard Drive</td><td align="left">512GB SSD PCIe-NVMe M.2 2280</td></tr><tr><td align="left">Display</td><td align="left">35.6cm(14.0형) WQHD(2560x1440), IPS, 500nit, 반사</td></tr><tr><td align="left">Graphic Card</td><td align="left">NVIDIA GeForce MX250 GDDR5 2GB</td></tr><tr><td align="left">Top Cover Material</td><td align="left">표준 PPSU Poly 덮개</td></tr><tr><td align="left">Color</td><td align="left">검은색</td></tr><tr><td align="left">Keyboard</td><td align="left">백라이트 키보드 한국어</td></tr><tr><td align="left">Fingerprint Reader</td><td align="left">지문 리더기</td></tr><tr><td align="left">Pointing Device</td><td align="left">지문 판독기 NFC 없음</td></tr><tr><td align="left">TPM Setting</td><td align="left">하드웨어 TPM2.0 사용</td></tr><tr><td align="left">System Expansion Slots</td><td align="left">스마트 카드 리더기</td></tr><tr><td align="left">Battery</td><td align="left">3셀 리튬 폴리머 내장 배터리, 50Wh</td></tr><tr><td align="left">Power Cord</td><td align="left">65W AC 어댑터(3핀) - EU(USB Type C)</td></tr><tr><td align="left">WLAN Selection</td><td align="left">WLAN</td></tr><tr><td align="left">Wireless</td><td align="left">인텔 무선-AC 9560 2x2 AC, Bluetooth 버전 5.0, 온보드</td></tr><tr><td align="left">Camera</td><td align="left">마이크가 포함된 IR 및 720p HD 카메라</td></tr><tr><td align="left">Display Panel</td><td align="left">35.6cm(14.0인치) WQHD(2560x1440), IPS, 눈부힘, 비터치식, IR 카메라, 마이크, WWAN 없음, WLAN</td></tr><tr><td align="left">Package Box</td><td align="left">표준 패키징</td></tr><tr><td align="left">Language Pack</td><td align="left">출판물-한국어/영어</td></tr><tr><td align="left">Warranty</td><td align="left">1년 센터 내방 (메인보드 2년)</td></tr></tbody></table><h2 id="이야기"><a href="#이야기" class="headerlink" title="이야기"></a>이야기</h2><p>2019-03-31 퇴사하면서 랩탑을 구매하기 위해 2,600,000 원의 예산을 책정했습니다.</p><p>처음 갖고 싶은 모델은 아래와 같습니다.</p><ul><li>  <a href="https://www.dell.com/ko-kr/shop/dell-%EB%85%B8%ED%8A%B8%EB%B6%81/xps-15/spd/xps-15-7590-laptop" target="_blank" rel="noopener">DELL XPS 15 9570</a></li><li>  <a href="https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c?activetab=pivot:overviewtab" target="_blank" rel="noopener">Microsoft Surface Book 2</a></li><li>  <a href="https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-x-series/X1-Carbon-Gen-7/p/22TP2TXX17G" target="_blank" rel="noopener">Lenovo ThinkPad X1 Carbon</a></li><li>  <a href="https://www.apple.com/kr/shop/buy-mac/macbook-pro/15%ED%98%95" target="_blank" rel="noopener">MacBook Pro</a></li></ul><p>하지만, MacBook Pro, Surface Book 2 는 예산을 초과합니다.</p><p>구매 대상 목록에서 제외했습니다.</p><p>남은 두 모델은 4K의 해상도와 밝고 큰 화면이 매력적으로 느껴졌습니다.</p><p>CPU 는 인델의 문제로 뜨겁고, 성능이 제한될 수 밖에 없는 상황을 알고 있으므로 모델 선택시 크게 신경쓰지 않습니다.</p><p>그런데, 최근 스타트업 팀을 찾고 있는데, 대부분 초기에 급여를 받을 수 없는 조건이라 생활비를 최대한 아껴야 하는 상황이 되었습니다.</p><p>그래서, 랩탑 구매 예산을 삭감하기로 결정하고, 성능을 어느 정도 타협하고 Lenovo T 시리즈로 눈을 돌렸습니다.</p><p>T 시리즈 중 14인치 크기의 화면과 RJ45 단자가 있고 메모리를 추가할 수 있는 모델을 확인해 보니</p><ul><li>  T480S</li><li>  T490</li></ul><p>두 모델이 보입니다.</p><p>최근 모델이 더 좋겠지라는 생각으로 T490을 선택하고, 모듈들을 변경한 후 장바구니에 담았습니다.</p><p>라이브 챗으로 할인코드를 받을 수 있다고 해서, 시도해보니 정말 코드를 줘서 약 120,000 원을 할인받아 구매했습니다.</p><p>최종 구매가격은 약 1,667,000 원입니다.</p><h2 id="모듈-변경"><a href="#모듈-변경" class="headerlink" title="모듈 변경"></a>모듈 변경</h2><p>메모리는 경우 추가 장착이 가능한 모델입니다.<br>모듈을 추가하는 것보다 구매 후 직접 설치하는 것이 저렴해서 추가하지 않았습니다.</p><p>저장장치는 직접 구매하는 것보다 모듈을 변경하는 것이 더 저렴해서 512 GB SSD PCIe-NVMe M.2 2280 으로 변경했습니다.</p><p>화면은 가장 중요하게 생각한 모듈이라 가장 밝은 모듈로 변경했습니다.<br>해당 화면으로 변경하면 Windows Hello 를 위한 IR 이 포함된 720P 카메라로 고정됩니다.</p><p>NVidia GeForce MX250 을 추가한 이유는 코드를 작성할 때 사용하는 IDE 가 GPU 를 사용하므로, 없는 것보다 나을 것 같아서 추가했습니다.<br>외장 그래픽 모듈이 추가되면 전원 어댑터도 65W 로 변경됩니다.</p><p>Windows 10 은 Pro 기능이 필요하므로 Home 에서 Pro 로 변경했습니다.</p><p>지문 판독기는 Windows Hello 인증 테스트시 IR 카메라와 지문 인증을 테스트하기 위해 필요하고, 가격도 11,000 원이라 추가했습니다.</p><h2 id="걱정"><a href="#걱정" class="headerlink" title="걱정"></a>걱정</h2><p>Lenovo 제품은 구입 후 회사의 도움을 받는 것을 포기하는게 좋다고 들었는데, 서비스 품질이 좋아졌으면 좋겠습니다.<br>그리고, 문제없이 사용가능한 장치를 받았으면 좋겠습니다.</p><h2 id="개봉기"><a href="#개봉기" class="headerlink" title="개봉기"></a>개봉기</h2><h2 id="사용기"><a href="#사용기" class="headerlink" title="사용기"></a>사용기</h2><h2 id="평가"><a href="#평가" class="headerlink" title="평가"></a>평가</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;유일한 약점이 커피를 못탄다는 &lt;a href=&quot;https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1&quot; target=&quot;_blank&quot; rel=&quot;no</summary>
-      
-    
-    
-    
-    <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
-    
-    
-    <category term="laptop" scheme="http://bbon.me/tags/laptop/"/>
-    
-    <category term="thinkpad" scheme="http://bbon.me/tags/thinkpad/"/>
-    
-    <category term="t490" scheme="http://bbon.me/tags/t490/"/>
-    
-    <category term="lenovo" scheme="http://bbon.me/tags/lenovo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Update your apps to be 64-bit compliant by 2019-08-01</title>
-    <link href="http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/"/>
-    <id>http://bbon.me/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/</id>
-    <published>2019-07-10T08:48:22.000Z</published>
-    <updated>2019-08-05T09:59:13.784Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>Google Play Store 에 게시되는 앱은 2019-08-01 까지 64비트 호환으로 업데이트되어야 합니다.</p></blockquote><p>유사한 제목으로 전자우편을 받았습니다.</p><p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows&WT.mc_id=docs-forums-jamont" target="_blank" rel="noopener">CPU 아키텍쳐</a> 페이지에서 지원되는 아키텍쳐를 지정하는 방법을 확인할 수 있습니다.</p><p><a href="https://docs.microsoft.com/ko-kr/xamarin/android/deploy-test/building-apps/abi-specific-apks" target="_blank" rel="noopener">ABI 관련 APK 빌드</a> 페이지에서 지원 아키텍쳐 별 바이너리를 작성하기 위한 방법을 확인할 수 있습니다.</p><p>2019-08-01 까지 64비트 지원 안드로이드 응용프로그램을 준비하기 위한 방법에 대한 자세한 설명은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지에서 확인할 수 있습니다.</p><p>아래 내용은 <a href="https://devblogs.microsoft.com/xamarin/64-bit-requirements-xamarin-android-apps/" target="_blank" rel="noopener">Preparing Android Apps for Google Play’s 64-bit Requirements</a> 페이지의 내용을 간략하게 소개합니다.</p><h2 id="변경"><a href="#변경" class="headerlink" title="변경"></a>변경</h2><p>Xamarin.Android 는 4가지의 ABI를 지원합니다.</p><p>*[ABI]: Application Binary Interface</p><ul><li>  armeabi-v7a</li><li>  arm64-v8a</li><li>  x86</li><li>  x86_64</li></ul><p>Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 빌드 속성을 바꿔야 합니다.</p><h3 id="Visual-Studio-2019"><a href="#Visual-Studio-2019" class="headerlink" title="Visual Studio 2019"></a>Visual Studio 2019</h3><p>안드로이드 프로젝트의 속성창을 열고, 안드로이드 옵션 탭으로 이동합니다.</p><p>아래쪽의 고급 <small>Advanced</small> 버튼을 클릭하면 고급 설정창이 열립니다.</p><p>지원 아키텍쳐에 아래 두 항목이 선택되어야 합니다.</p><ul><li>  armeabi-v7a</li><li>  arm64-v8a</li></ul><img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019-android-x64.png" class=""><h3 id="Visual-Studio-2019-for-Mac"><a href="#Visual-Studio-2019-for-Mac" class="headerlink" title="Visual Studio 2019 for Mac"></a>Visual Studio 2019 for Mac</h3><p>안드로이드 프로젝트 속성창을 열고, 안드로이드 빌드 페이지로 이동합니다.</p><p>고급탭의 지원되는 ABI 목록에서 아래 두 항목이 선택되어야 합니다.</p><ul><li>  armeabi-v7a</li><li>  arm64-v8a</li></ul><img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/vs2019forMac-android-x64.png" class=""><h2 id="빌드"><a href="#빌드" class="headerlink" title="빌드"></a>빌드</h2><p>빌드 구성을 <strong>Release</strong>로 선택하고 빌드한 후 아카이브를 작성합니다.</p><h2 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h2><p>Android Studio 의 APK Analizer 도구를 사용해서 64비트 라이브러리가 포함되어 빌드되었는지 확인할 수 있습니다.</p><blockquote><p><a href="https://developer.android.com/distribute/best-practices/develop/64-bit?hl=ko" target="_blank" rel="noopener">앱에서 64비트 기기를 지원하는지 확인</a> 페이지의 내용을 참조</p></blockquote><p>APK Analyzer 도구를 실행하고 아카이브된 APK 파일을 선택합니다.</p><p>잠시후 아래와 같은 화면을 확인할 수 있습니다.</p><img src="/2019/07/10/update-your-apps-to-be-64-bit-compliant-by-2019-08-01/scoreboard.png" class=""><p>오른쪽 창의 lib 에 arm64-v8a 관련 내용이 보이면 64비트 지원 앱으로 판단하시면 됩니다.</p><h2 id="주의"><a href="#주의" class="headerlink" title="주의"></a>주의</h2><p>프로젝트에서 참조된 외부 라이브러리 관련 내용이 포함되어 있는지 확인해야 합니다.</p><p>필요한 내용이 보이지 않으면 외부 라이브러리가 64비트를 지원하는지 확인하고 지원하지 않으면 해결방안을 찾아야 합니다.</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Google Play Store 에 게시되는 앱은 2019-08-01 까지 64비트 호환으로 업데이트되어야 합니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;유사한 제목으로 전자우편을 받았습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;</summary>
-      
-    
-    
-    
-    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
-    
-    
-    <category term="android" scheme="http://bbon.me/tags/android/"/>
-    
-    <category term="google play" scheme="http://bbon.me/tags/google-play/"/>
-    
-    <category term="xamarin" scheme="http://bbon.me/tags/xamarin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python mysqlclient 패키지 설치 문제</title>
-    <link href="http://bbon.me/2019/06/29/python-mysqlclient-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98/"/>
-    <id>http://bbon.me/2019/06/29/python-mysqlclient-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98/</id>
-    <published>2019-06-29T08:04:12.000Z</published>
-    <updated>2019-08-05T09:59:13.783Z</updated>
-    
-    <content type="html"><![CDATA[<p>Django 프로젝트를 만들고, 데이터베이스 연결 구성을 위해 <code>mysqlclient</code> 패키지를 설치하던 중 문제가 발생했습니다.</p><h2 id="환경"><a href="#환경" class="headerlink" title="환경"></a>환경</h2><ul><li>  macOS Mojave 10.14.5</li><li>  Python 3.7.3</li><li>  pip 19.1.1 (Python 3.7)</li></ul><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>터미널에서 아래 명령으로 <code>mysqlclient</code> 패키지 설치를 실행하면 에러가 발생합니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ pip3 <span class="token function">install</span> mysqlclientCollecting mysqlclient  Using cached https://files.pythonhosted.org/packages/f4/f1/3bb6f64ca7a429729413e6556b7ba5976df06019a5245a43d36032f1061e/mysqlclient-1.4.2.post1.tar.gz    ERROR: Complete output from <span class="token builtin class-name">command</span> python setup.py egg_info:    ERROR: Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:      File <span class="token string">"&lt;string>"</span>, line <span class="token number">1</span>, <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">></span>      File <span class="token string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup.py"</span>, line <span class="token number">16</span>, <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">></span>        metadata, options <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>      File <span class="token string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line <span class="token number">53</span>, <span class="token keyword">in</span> get_config        libraries <span class="token operator">=</span> <span class="token punctuation">[</span>dequote<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">2</span>:<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> libs <span class="token keyword">if</span> i.startswith<span class="token punctuation">(</span><span class="token string">'-l'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>      File <span class="token string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line <span class="token number">53</span>, <span class="token keyword">in</span> <span class="token operator">&lt;</span>listcomp<span class="token operator">></span>        libraries <span class="token operator">=</span> <span class="token punctuation">[</span>dequote<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">2</span>:<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> libs <span class="token keyword">if</span> i.startswith<span class="token punctuation">(</span><span class="token string">'-l'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>      File <span class="token string">"/private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/setup_posix.py"</span>, line <span class="token number">12</span>, <span class="token keyword">in</span> dequote        raise Exception<span class="token punctuation">(</span><span class="token string">"Wrong MySQL configuration: maybe https://bugs.mysql.com/bug.php?id=86971 ?"</span><span class="token punctuation">)</span>    Exception: Wrong MySQL configuration: maybe https://bugs.mysql.com/bug.php?id<span class="token operator">=</span><span class="token number">86971</span> ?    ----------------------------------------ERROR: Command <span class="token string">"python setup.py egg_info"</span> failed with error code <span class="token number">1</span> <span class="token keyword">in</span> /private/var/folders/df/8jqrf7b543z2ff2s0rhbq54c0000gn/T/pip-install-v5w8wcwf/mysqlclient/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h2><p>먼저 <code>mysqlclient</code> 문서를 확인합니다.</p><dl><dt><code>mysqlclient</code> 문서</dt><dd><a href="https://pypi.org/project/mysqlclient/" target="_blank" rel="noopener">mysqlclient - PyPI</a></dd></dl><p>필요한 의존 패키지를 설치합니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ brew <span class="token function">install</span> mysql-connector-c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>앞서 설치한 의존 패키지 MySQL Connector/C 의 기본 구성이 부정확해서 내용을 변경해야 합니다.</p><p>mysql_config 구성을 수정해야 합니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">which</span> mysql_config                    <span class="token comment"># 파일의 위치를 찾습니다.</span>/usr/local/bin/mysql_config$ <span class="token function">sudo</span> <span class="token function">nano</span> /usr/local/bin/mysql_config <span class="token comment"># 편집기로 파일을 수정합니다.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>아래 내용을 찾아서 변경합니다.</p><blockquote><p>on macOS, on or about line 112:</p></blockquote><p>원본:</p><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token comment"># Create options</span><span class="token constant">libs</span><span class="token attr-value"><span class="token punctuation">=</span>"-L$pkglibdir"</span><span class="token constant">libs</span><span class="token attr-value"><span class="token punctuation">=</span>"$libs -l "</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>변경:</p><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token comment"># Create options</span><span class="token constant">libs</span><span class="token attr-value"><span class="token punctuation">=</span>"-L$pkglibdir"</span><span class="token comment"># libs="$libs -l "</span><span class="token constant">libs</span><span class="token attr-value"><span class="token punctuation">=</span>"$libs -lmysqlclient -lssl -lcrypto"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>SSL 관련 문제가 발생하면 아래 명령으로 정보를 확인해서 문제를 해결해야 합니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ brew info openssl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>이제 mysqlclient 패키지를 문제없이 설치할 수 있습니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ pip3 <span class="token function">install</span> mysqlclientCollecting mysqlclient  Using cached https://files.pythonhosted.org/packages/f4/f1/3bb6f64ca7a429729413e6556b7ba5976df06019a5245a43d36032f1061e/mysqlclient-1.4.2.post1.tar.gzBuilding wheels <span class="token keyword">for</span> collected packages: mysqlclient  Building wheel <span class="token keyword">for</span> mysqlclient <span class="token punctuation">(</span>setup.py<span class="token punctuation">)</span> <span class="token punctuation">..</span>. <span class="token keyword">done</span>  Stored <span class="token keyword">in</span> directory: /Users/bbon/Library/Caches/pip/wheels/30/91/e0/2ee952bce05b1247807405c6710c6130e49468a5240ae27134Successfully built mysqlclientInstalling collected packages: mysqlclientSuccessfully installed mysqlclient-1.4.2.post1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Django 프로젝트를 만들고, 데이터베이스 연결 구성을 위해 &lt;code&gt;mysqlclient&lt;/code&gt; 패키지를 설치하던 중 문제가 발생했습니다.&lt;/p&gt;
-&lt;h2 id=&quot;환경&quot;&gt;&lt;a href=&quot;#환경&quot; class=&quot;headerlink&quot; titl</summary>
-      
-    
-    
-    
-    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
-    
-    
-    <category term="mysql" scheme="http://bbon.me/tags/mysql/"/>
-    
-    <category term="mariadb" scheme="http://bbon.me/tags/mariadb/"/>
-    
-    <category term="django" scheme="http://bbon.me/tags/django/"/>
-    
-    <category term="python" scheme="http://bbon.me/tags/python/"/>
-    
-    <category term="pip" scheme="http://bbon.me/tags/pip/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node Blog App</title>
-    <link href="http://bbon.me/2019/06/28/Node-Blog-App/"/>
-    <id>http://bbon.me/2019/06/28/Node-Blog-App/</id>
-    <published>2019-06-28T13:15:32.000Z</published>
-    <updated>2019-08-05T09:59:13.781Z</updated>
-    
-    <content type="html"><![CDATA[<p>Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.</p><h2 id="기술-스택-Technology-stack"><a href="#기술-스택-Technology-stack" class="headerlink" title="기술 스택 Technology stack"></a>기술 스택 <small>Technology stack</small></h2><h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><h4 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h4><p><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a>는 Node.js에서 사용되는 웹 응용프로그램 작성을 위한 프레임워크입니다.</p><p>프론트엔드에서 데이터를 요청할 API를 제공하는 웹앱이 작성되어 있습니다.</p><h4 id="Passport"><a href="#Passport" class="headerlink" title="Passport"></a>Passport</h4><p><a href="http://www.passportjs.org/" target="_blank" rel="noopener">Passport</a>는 Node.js에서 사용되는 인증 프레임워크입니다.</p><p>이번 프로젝트에서는 정의된 모델을 사용하는 로컬 인증을 사용합니다.</p><h4 id="Sequelize"><a href="#Sequelize" class="headerlink" title="Sequelize"></a>Sequelize</h4><p><a href="http://docs.sequelizejs.com/" target="_blank" rel="noopener">Sequelize</a>는 프로미스 기반의 Node.js ORM <small>Object-relational mapping</small> 입니다.</p><p>이번 프로젝트의 데이터베이스관리시스템 <small>DBMS</small>은 MariaDB를 사용합니다.</p><h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><p><a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>는 <a href="https://www.facebook.com/react" target="_blank" rel="noopener">페이스북</a>에서 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">오픈소스</a>로 개발을 진행중인 사용자 인터페이스 <small>UI, User Interface</small> 작성을 위한 자바스크립트 라이브러리입니다.</p><p>이번 프로젝트에서는 가능하면 컴포넌트를 클래스를 선언하지 않고 함수 컴포넌트만으로 작성하고, 훅 <small>Hook</small>으로 상태 <small>State</small>관리 및 React 기능을 사용하는 것이 목표입니다.</p><h4 id="Next-js"><a href="#Next-js" class="headerlink" title="Next.js"></a>Next.js</h4><p><a href="https://nextjs.org/" target="_blank" rel="noopener">Next.js</a>는 React 를 사용해서 싱글 페이지 응용프로그램 <small>SPA Single Page Application</small> 을 작성하고, 검색엔진최적화 <small>SEO Search Engine Optimaizaion</small>을 위해 서버 사이드 렌더링 <small>SSR Server Side Rendering</small>과 파일 시스템 기반 라우팅, 자동 코드 스플릿팅 등 많은 기능을 제공해주는 프레임워크입니다.</p><h4 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React Redux"></a>React Redux</h4><p><a href="https://react-redux.js.org/" target="_blank" rel="noopener">React Redux</a>는 Redux 저장소의 데이터를 읽고, 저장소의 작업을 보내 데이터를 업데이트하는 형식으로 상태를 관리할 수 있습니다.</p><p>React Hook을 지원해서 (<code>useSelector</code>, <code>useDispatch</code>) 함수형 컴포넌트에서도 문제없이 사용할 수 있습니다.</p><h4 id="Redux-Saga"><a href="#Redux-Saga" class="headerlink" title="Redux-Saga"></a>Redux-Saga</h4><p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga</a>로 Redux 작업을 비동기로 처리합니다.</p><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="noopener">제너레이터 Generator</a>로 비동기 처리를 구현한 것이 매우 흥미롭습니다.</p><h4 id="styled-components"><a href="#styled-components" class="headerlink" title="styled components"></a>styled components</h4><p><a href="https://www.styled-components.com/" target="_blank" rel="noopener">styled-components</a>는 컴포넌트 작성 때 인라인 스타일로 적용하면 코드 가독성이 나빠지고, 속성의 이름을 css와 다르게 작성해야하는 점을 해결해 줍니다.</p><p>컴포넌트 코드 파일에 인라인 스타일을 적용할 수 밖에 없을 때에 사용합니다.</p><h4 id="Ant-Design"><a href="#Ant-Design" class="headerlink" title="Ant Design"></a>Ant Design</h4><p>React 로 사용자 인터페이스를 구성하기 위한 컴포넌트 작성시 어떻게 보여줄 것인가를 생각하는 것은 생각보다 시간이 많이 걸립니다.</p><p>작은 프로젝트를 혼자 진행할 때에는 더욱 시간이 많이 걸립니다. 이럴 때 전문가의 도움을 받으면 시간을 많이 절약할 수 있습니다.</p><p>이 프로젝트에서는 전반적으로 Ant Design 팀의 디자인 가이드 라인을 따르며 컴포넌트 디자인을 사용했습니다.</p><h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><p>응용프로그램을 게시하기 위해서 도커 이미지를 작성하고, 개인적으로 사용중인 시놀로지 디스크 스테이션에서 도커 컨테이너를 실행하고 있습니다.</p><p><a href="https://sample-sns.bbon.me/" target="_blank" rel="noopener">데모 사이트</a>에서 동작을 확인할 수 있습니다.</p><img src="/2019/06/28/Node-Blog-App/001.png" class=""><h2 id="회고"><a href="#회고" class="headerlink" title="회고"></a>회고</h2><p>약 한달간 프로젝트를 진행하며 React에 재미를 붙였습니다.</p><p>의존성으로 추가되어 사용중인 패키지는 대부분 사용 방법에 대한 문서가 잘 제공되어 큰 문제없이 진행되었습니다.</p><p>그 중 가장 시간이 많이 걸렸던 부분은 Next.js 구성에 포함된 Webpack 에 대한 부분이었습니다.<br>시간이 많이 걸리며 구성을 변경하고, 확인을 진행하다 보니 대부분 Next.js 에서 기본값으로 구성해 놓은 것들이었습니다.<br>그래서, 거의 구성 코드가 없습니다.</p><p>ORM 으로 사용된 Sequelize는 기능을 너무 많이 제공해서 어렵게 느껴지는 부분이 많았습니다.</p><p>next.js는 아주 편리한 프레임워크로 생각됩니다.<br>그리고, 정적 파일 생성 기능을 제공(<code>next export</code>)해서 간단한 페이지 작성시 자주 사용할 것 같습니다.</p><p>코드는 <a href="https://github.com/bbonkr/nodeblog" target="_blank" rel="noopener">GitHub</a>에서 확인할 수 있습니다.</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Node.js 백엔드와 React 프론트엔드로 작성된 블로깅 서비스 앱입니다.&lt;/p&gt;
-&lt;h2 id=&quot;기술-스택-Technology-stack&quot;&gt;&lt;a href=&quot;#기술-스택-Technology-stack&quot; class=&quot;headerlink&quot; titl</summary>
-      
-    
-    
-    
-    <category term="Project" scheme="http://bbon.me/categories/Project/"/>
-    
-    
-    <category term="node.js" scheme="http://bbon.me/tags/node-js/"/>
-    
-    <category term="react" scheme="http://bbon.me/tags/react/"/>
-    
-    <category term="next.js" scheme="http://bbon.me/tags/next-js/"/>
-    
-    <category term="redux" scheme="http://bbon.me/tags/redux/"/>
-    
-    <category term="redux-saga" scheme="http://bbon.me/tags/redux-saga/"/>
-    
-    <category term="ant.design" scheme="http://bbon.me/tags/ant-design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PowerShell Core</title>
-    <link href="http://bbon.me/2019/06/01/PowerShell-Core/"/>
-    <id>http://bbon.me/2019/06/01/PowerShell-Core/</id>
-    <published>2019-06-01T12:17:23.000Z</published>
-    <updated>2019-08-24T16:36:20.995Z</updated>
-    
-    <content type="html"><![CDATA[<p>작업을 시작하기 위해 파워쉘을 열었는데, 평소와는 다른 메시지가 출력됩니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">Windows PowerShellCopyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> Microsoft Corporation<span class="token punctuation">.</span> All rights reserved<span class="token punctuation">.</span><span class="token keyword">Try</span> the new cross<span class="token operator">-</span>platform PowerShell https:<span class="token operator">/</span><span class="token operator">/</span>aka<span class="token punctuation">.</span>ms<span class="token operator">/</span>pscore6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>궁금해서 <a href="https://aka.ms/pscore6" target="_blank" rel="noopener">https://aka.ms/pscore6</a> 링크로 이동하니 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell?view=powershell-6#powershell-core" target="_blank" rel="noopener">다양한 버전의 PowerShell 설치 <small>Installing various versions of PowerShell</small></a> 페이지가 열립니다.</p><p>페이지 아래쪽에 PowerShell Core 라는 제목이 보이고 아래와 같은 링크들이 있습니다.</p><ul><li>  <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Windows</a></li><li>  <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on Linux</a></li><li>  <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-macos?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on macOS</a></li><li>  <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/powershell-core-on-arm?view=powershell-6" target="_blank" rel="noopener">Installing PowerShell Core on ARM</a></li></ul><p>파워쉘은 Windows 에서만 사용할 수 있었는데, 이제 다른 OS에서도 파워쉘을 사용할 수 있습니다.</p><p><a href="https://github.com/powershell/powershell" target="_blank" rel="noopener">GitHub</a> 에서 코드를 공개하고 있습니다.</p><h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><h3 id="Windows-10"><a href="#Windows-10" class="headerlink" title="Windows 10"></a>Windows 10</h3><p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있습니다.</p><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 <small>Release</small> 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p><p>Ubuntu, Debian 에서</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> powershell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>CentOS, RedHat 에서</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> yum <span class="token function">install</span> powershell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>Fedora 에서</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> dnf <span class="token function">install</span> powershell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 Release 페이지</a> 에서 설치 파일을 다운로드할 수 있고, 편리하게 패키지 관리자로 설치할 수 있습니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ brew cask <span class="token function">install</span> powershell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="ARM"><a href="#ARM" class="headerlink" title="ARM"></a>ARM</h3><p><a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6#deploying-on-windows-iot" target="_blank" rel="noopener">Windows IoT</a> 와 <a href="https://docs.microsoft.com/ko-kr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-6#raspbian" target="_blank" rel="noopener">Raspbian</a> 에서 설치하는 방법이 설명되어 있습니다.</p><h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><p>설치하면서 환경변수 PATH 에 설치되는 위치가 추가되므로 자주 사용하는 터미널 응용프로그램을 열고 <code>PWSH</code> 명령으로 PowerShell Core 를 실행할 수 있습니다.</p><p>시작메뉴에서 검색하면 PowerShell 6 으로 찾을 수 있습니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-004.png" class=""><h2 id="사용"><a href="#사용" class="headerlink" title="사용"></a>사용</h2><p>Windows 10 에서 설치를 진행합니다.</p><p><a href="https://github.com/PowerShell/PowerShell/releases/latest" target="_blank" rel="noopener">GitHub 출시 페이지</a> 에서 PowerShell-6.2.1-win-x64.msi 파일을 다운로드하고 실행하면 간단하게 설치됩니다.</p><p>설치 마법사에서 아래와 같이 환경변수에 설치 경로 추가 등의 항목을 선택하면 간단하게 편리한 환경을 구성할 수 있습니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-001.png" class=""><p>윈도우 파워쉘과 유사한 아이콘이 사용됩니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-002.png" class=""><p>터미널을 열고 PWSH 명령으로 PowerShell Core 를 실행하고, PowerShell 명령으로 Windows PowerShell을 실행할 수 있습니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-003.png" class=""><h2 id="Visual-Studio-Code-Terminal"><a href="#Visual-Studio-Code-Terminal" class="headerlink" title="Visual Studio Code Terminal"></a>Visual Studio Code Terminal</h2><p>Visual Studio Code 에서 기본 터미널로 설정하기 위해서 설정창을 열고 <kbd>Ctrl</kbd> + <kbd>,</kbd> 검색창에 terminal 을 입력한 후 <code>Terminal &gt; Integrated &gt; Env:Windows</code> 항목을 찾습니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-005.png" class=""><p>아래쪽의 Edit in settings.json 링크를 클릭해서 설정 파일을 열고, <code>terminal.integrated.shell.windows</code> 의 값을 PowerShell Core 실행파일의 전체 경로로 변경합니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-006.png" class=""><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"terminal.integrated.shell.windows"</span><span class="token operator">:</span> <span class="token string">"C:\\Program Files\\PowerShell\\6\\pwsh.exe"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>이제 Visual Studio Code 에서 터미널을 열면 <kbd>Ctrl</kbd> + <kbd>`</kbd> 터미널에서 PowerShell Core 가 사용됩니다.</p><img src="/2019/06/01/PowerShell-Core/2019-06-01-powershell-core-007.png" class="">]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;작업을 시작하기 위해 파워쉘을 열었는데, 평소와는 다른 메시지가 출력됩니다.&lt;/p&gt;
-&lt;pre class=&quot;line-numbers language-powershell&quot; data-language=&quot;powershell&quot;&gt;&lt;code class=&quot;lang</summary>
-      
-    
-    
-    
-    <category term="HowTo" scheme="http://bbon.me/categories/HowTo/"/>
-    
-    
-    <category term="microsoft" scheme="http://bbon.me/tags/microsoft/"/>
-    
-    <category term="powershell" scheme="http://bbon.me/tags/powershell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>너와 나의 점수판 Score Board App</title>
-    <link href="http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/"/>
-    <id>http://bbon.me/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/</id>
-    <published>2019-04-24T12:04:10.000Z</published>
-    <updated>2020-03-24T06:44:12.916Z</updated>
-    
-    <content type="html"><![CDATA[<p>경기 점수를 어디에서나 편리하게 기록하는 것을 지원하기 위한 응용프로그램입니다.</p><p>축구 동호회, 탁구 동호회 등 1점씩 득점을 처리하는 경기에 최적화 되어 있습니다.</p><p>모든 기능을 무료로 사용하세요. 😃</p><h2 id="다운로드"><a href="#다운로드" class="headerlink" title="다운로드"></a>다운로드</h2><p><a href="https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener">@Google Play</a></p><p><a href="https://www.microsoft.com/store/apps/9P7VPGXBGPWJ?cid=storebadge&ocid=badge" target="_blank" rel="noopener">@Microsoft Store</a></p><h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><h3 id="경기-목록"><a href="#경기-목록" class="headerlink" title="경기 목록"></a>경기 목록</h3><p>지금까지 기록한 경기 목록입니다.</p><img src="/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/score-board-app-002.png" class=""><h3 id="경기-추가"><a href="#경기-추가" class="headerlink" title="경기 추가"></a>경기 추가</h3><p>오른쪽 위에 있는 ➕ 버튼을 탭하면 경기 정보를 입력해서 항목을 추가할 수 있습니다.</p><img src="/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/score-board-app-003.png" class=""><h3 id="점수판"><a href="#점수판" class="headerlink" title="점수판"></a>점수판</h3><p>팀 별로 ➕ 버튼을 탭하면 점수가 1 증가하고, ➖ 버튼을 탭하면 점수가 1 감소합니다.</p><p>점수의 최소값은 0이며 0보다 작은 점수는 입력할 수 없습니다.</p><img src="/2019/04/24/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90-Score-Board-App/score-board-app-004.png" class="">]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;경기 점수를 어디에서나 편리하게 기록하는 것을 지원하기 위한 응용프로그램입니다.&lt;/p&gt;
-&lt;p&gt;축구 동호회, 탁구 동호회 등 1점씩 득점을 처리하는 경기에 최적화 되어 있습니다.&lt;/p&gt;
-&lt;p&gt;모든 기능을 무료로 사용하세요. 😃&lt;/p&gt;
-&lt;h2 id</summary>
-      
-    
-    
-    
-    <category term="Repository" scheme="http://bbon.me/categories/Repository/"/>
-    
-    
-    <category term="windows 10" scheme="http://bbon.me/tags/windows-10/"/>
-    
-    <category term="free" scheme="http://bbon.me/tags/free/"/>
-    
-    <category term="microsoft store" scheme="http://bbon.me/tags/microsoft-store/"/>
-    
-    <category term="android" scheme="http://bbon.me/tags/android/"/>
-    
-    <category term="google play" scheme="http://bbon.me/tags/google-play/"/>
-    
-    <category term="score board" scheme="http://bbon.me/tags/score-board/"/>
-    
-    <category term="점수판" scheme="http://bbon.me/tags/%EC%A0%90%EC%88%98%ED%8C%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Microsoft Store File Rename App</title>
-    <link href="http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/"/>
-    <id>http://bbon.me/2019/04/07/Microsoft-Store-File-Rename-App/</id>
-    <published>2019-04-07T11:55:14.000Z</published>
-    <updated>2020-03-24T06:44:12.916Z</updated>
-    
-    <content type="html"><![CDATA[<p>다수의 파일이름을 일괄 변경하기 위해 사용하는 응용프로그램입니다.</p><p>Windows 10 에서만 사용할 수 있습니다.</p><p><a href="https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot:overviewtab#" target="_blank" rel="noopener">Microsoft Store</a> 에서 응용프로그램을 설치합니다.</p><p>파일이름을 변경하기 위해 네가지 방법을 제공합니다.</p><p>문자열 치환 접두어 추가 접미어 추가 정규식으로 치환</p><p>정규식으로 치환은 <a href="https://docs.microsoft.com/ko-kr/dotnet/standard/base-types/regular-expressions" target="_blank" rel="noopener">.NET 정규식 페이지</a>에서 원하는 규칙을 찾기 위한 패턴의 자세한 정보를 얻을 수 있습니다.</p><p>스토어에서 제공되는 스크린샷 중 다섯번째 이미지와 같이 정규식을 사용해서 원하는 이름으로 변경할 수 있습니다.</p><h2 id="사용방법"><a href="#사용방법" class="headerlink" title="사용방법"></a>사용방법</h2><p>아래 순서로 파일이름을 일괄변경할 수 있습니다.</p><ol><li>이름을 변경할 파일을 추가합니다.<ol><li>파일 추가 버튼을 클릭해서 이름 변경 대상 파일 목록을 추가합니다. 이 때, 목록은 초기화된 후 파일 목록이 추가됩니다.</li><li>윈도우 탐색기에서 파일을 선택한 후 파일 추가 버튼으로 드래그 앤 드롭합니다. 이 때, 목록은 초기화되지 않고 대상파일이 추가됩니다.</li></ol></li><li>파일이름 변경 방법을 선택합니다.</li><li>변경할 조건을 입력합니다.<ol><li>문자열 치환 첫번째 입력항목에 찾을 조건을 입력하고, 두번째 입력항목에 변경될 문자열을 입력합니다.</li><li>접두어 추가 입력항목에 추가할 문자열을 입력합니다.</li><li>접미어 추가 입력항목에 추가할 문자열을 입력합니다.</li><li>정규식으로 치환 첫번째 입력항목에 찾을 조건에 해당하는 정규식 패턴을 입력하고, 두번째 입력항목에 변경될 문자열 또는 패턴을 입력합니다.</li></ol></li><li>미리보기 버튼을 클릭해서 원하는 이름으로 변경되는지 확인합니다.</li><li>이름변경 버튼을 클릭해서 이름변경을 실행합니다.</li></ol><h2 id="평가-및-리뷰"><a href="#평가-및-리뷰" class="headerlink" title="평가 및 리뷰"></a>평가 및 리뷰</h2><p><a href="https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot:overviewtab#" target="_blank" rel="noopener">리뷰 페이지</a>에서 평가하거나 리뷰를 남길 수 있습니다.</p><h2 id="주의사항"><a href="#주의사항" class="headerlink" title="주의사항"></a>주의사항</h2><p>시스템 파일을 이 응용프로그램을 사용해서 이름 변경을 시도하지 마십시오.</p><h2 id="변경사항"><a href="#변경사항" class="headerlink" title="변경사항"></a>변경사항</h2><h3 id="1-0-2"><a href="#1-0-2" class="headerlink" title="1.0.2"></a>1.0.2</h3><p>정규식으로 치환시 정규식 작성을 위한 문자가 입력되지 않던 문제를 수정했습니다.</p><ul><li>문자열 치환, 접두어 추가, 접미어 추가시에는 Windows 파일시스템에서 파일이름으로 사용 가능한 문자만 입력할 수 있습니다.</li><li>정규식으로 치환시 Windows 파일시스템에서 파일이름으로 사용 불가능한 문자로 치환을 시도하는 경우 파일이름 변경이 실패합니다.</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;다수의 파일이름을 일괄 변경하기 위해 사용하는 응용프로그램입니다.&lt;/p&gt;
-&lt;p&gt;Windows 10 에서만 사용할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.microsoft.com/ko-kr/p/file-rename-app/</summary>
-      
-    
-    
-    
-    <category term="Repository" scheme="http://bbon.me/categories/Repository/"/>
-    
-    
-    <category term="file rename app" scheme="http://bbon.me/tags/file-rename-app/"/>
-    
-    <category term="freeware," scheme="http://bbon.me/tags/freeware/"/>
-    
-    <category term="microsoft store" scheme="http://bbon.me/tags/microsoft-store/"/>
-    
-    <category term="tools" scheme="http://bbon.me/tags/tools/"/>
-    
-    <category term="utilities" scheme="http://bbon.me/tags/utilities/"/>
-    
-    <category term="windows store" scheme="http://bbon.me/tags/windows-store/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MariaDB 를 빠르게 설치</title>
-    <link href="http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/"/>
-    <id>http://bbon.me/2019/02/24/MariaDB-%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EC%84%A4%EC%B9%98/</id>
-    <published>2019-02-24T11:44:52.000Z</published>
-    <updated>2020-03-24T06:44:12.915Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="도커-Docker"><a href="#도커-Docker" class="headerlink" title="도커 Docker"></a>도커 Docker</h2><p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a>는 컨테이너를 사용해 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼입니다.</p><p>저는 개발 환경을 준비하기 위해 도커 <small>Docker</small>를 활용하고 있습니다.</p><h2 id="도커-설치"><a href="#도커-설치" class="headerlink" title="도커 설치"></a>도커 설치</h2><p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">설치 파일</a>을 내려받아 설치합니다. 링크는 윈도우즈에서 도커를 사용하기 위해 필요합니다.</p><h2 id="이미지-검색"><a href="#이미지-검색" class="headerlink" title="이미지 검색"></a>이미지 검색</h2><p>MariaDB 이미지를 검색합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker search mariadbNAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATEDmariadb                                                   MariaDB is a community<span class="token operator">-</span>developed fork of MyS…   2596                <span class="token namespace">[OK]</span>bitnami<span class="token operator">/</span>mariadb                                           Bitnami MariaDB Docker Image                    86                                      <span class="token namespace">[OK]</span>linuxserver<span class="token operator">/</span>mariadb                                       A Mariadb container<span class="token punctuation">,</span> brought to you by Linux…   59toughiq<span class="token operator">/</span>mariadb<span class="token operator">-</span>cluster                                   Dockerized Automated MariaDB Galera Cluster …   37                                      <span class="token namespace">[OK]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="이미지-다운로드"><a href="#이미지-다운로드" class="headerlink" title="이미지 다운로드"></a>이미지 다운로드</h2><p>공식 이미지를 다운로드합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker pull mariadb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="컨테이너-실행"><a href="#컨테이너-실행" class="headerlink" title="컨테이너 실행"></a>컨테이너 실행</h2><p>다운로드 받은 이미지로 컨테이너를 실행합니다.</p><blockquote><p>컨테이너 실행 인수와 환경변수는 <a href="https://hub.docker.com/_/mariadb" target="_blank" rel="noopener">docker hub mariadb</a>에서 확인할 수 있습니다.</p></blockquote><h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>docker-compose를 사용하면 컨테이너 실행시 복잡하게 입력해야 하는 인수를 미리 준비하고 컨테이너 실행, 중지, 제거 절차를 손쉽게 처리할 수 있습니다.</p><p>적당한 디렉터리에 docker-compose.yml 파일을 아래의 내용으로 작성합니다.</p><p>사용자 프로필 디렉터리에 docker 디렉터리를 만들고 컨테이너 이름에 해당하는 mariadb 디렉터리를 만들었습니다.<br>그 안에 config, data 디렉터리를 추가했습니다.<br>docker-compose.yml 파일은 mariadb 디렉터리에 있습니다.</p><p>사용자 프로필 디렉터리는 윈도우즈 탐색기를 열고 주소창에 %userprofile% 을 입력하면 바로 이동할 수 있습니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> tree <span class="token punctuation">.</span>C:\USERS\<span class="token punctuation">&#123;</span>username<span class="token punctuation">&#125;</span>\DOCKER└─mariadb├─config└─<span class="token keyword">data</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>docker-compose.yml 파일의 내용입니다.</p><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">version: &quot;3.1&quot;services:  db:    container_name: mariadb    image: mariadb:latest    restart: always    ports:      - 3306:3306    volumes:      - &#x2F;c&#x2F;Users&#x2F;&#123;username&#125;&#x2F;docker&#x2F;mariadb&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql      - &#x2F;c&#x2F;Users&#x2F;&#123;username&#125;&#x2F;docker&#x2F;mariadb&#x2F;config:&#x2F;etc&#x2F;mysql&#x2F;conf.d    environment:      MYSQL_ROOT_PASSWORD: &#123; password &#125;      TZ: Asia&#x2F;Seoul<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>{username}: 윈도우즈 사용자 계정이름으로 변경이 필요합니다.<br>{password}: mariadb root 계정의 비밀번호로 변경이 필요합니다. (원하는 값으로 변경합니다.)</p></blockquote><p>mariadb/config 디렉터리에는 미리 구성한 cnf 파일을 추가합니다.</p><p>제가 사용하는 문자셋과 정렬을 구성한 mariadb.cnf 파일의 내용은 아래와 같습니다.</p><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token comment"># MariaDB-specific config file.</span><span class="token comment"># Read by /etc/mysql/my.cnf</span><span class="token selector">[client]</span><span class="token comment"># Default is Latin1, if you need UTF-8 set this (also in server section)</span><span class="token comment">#default-character-set = utf8</span><span class="token constant">default-character-set</span> <span class="token attr-value"><span class="token punctuation">=</span> utf8mb4</span><span class="token selector">[mysql]</span><span class="token constant">default-character-set</span> <span class="token attr-value"><span class="token punctuation">=</span> utf8mb4</span><span class="token selector">[mysqld]</span><span class="token comment">#</span><span class="token comment"># * Character sets</span><span class="token comment">#</span><span class="token comment"># Default is Latin1, if you need UTF-8 set all this (also in client section)</span><span class="token comment">#</span><span class="token comment">#character-set-server  = utf8</span><span class="token comment">#collation-server      = utf8_general_ci</span><span class="token comment">#character_set_server   = utf8</span><span class="token comment">#collation_server       = utf8_general_ci</span><span class="token comment"># Import all .cnf files from configuration directory</span><span class="token constant">character-set-client-handshake</span> <span class="token attr-value"><span class="token punctuation">=</span> FALSE</span><span class="token constant">character-set-server</span> <span class="token attr-value"><span class="token punctuation">=</span> utf8mb4</span><span class="token constant">collation-server</span> <span class="token attr-value"><span class="token punctuation">=</span> utf8mb4_unicode_ci</span>!includedir /etc/mysql/mariadb.conf.d/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>docker-compose.yml 파일을 작성했으면, 해당 파일이 있는 위치에서 아래 명령으로 컨테이너는 작성하고 실행합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker<span class="token operator">-</span>compose up <span class="token operator">-</span>d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>컨테이너 상태를 확인하려면 ps 명령을 사용합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker<span class="token operator">-</span>compose <span class="token function">ps</span>The system cannot find the path specified<span class="token punctuation">.</span> Name               Command             State           Ports<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">-</span>mariadb   docker<span class="token operator">-</span>entrypoint<span class="token punctuation">.</span>sh mysqld   Up      0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0<span class="token punctuation">.</span>0:3306<span class="token operator">-</span>>3306<span class="token operator">/</span>tcp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>컨테이너를 중지하려면 stop 명령을 사용합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker<span class="token operator">-</span>compose stop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>컨테이너를 시작하려면 start 명령을 사용합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> docker<span class="token operator">-</span>compose <span class="token function">start</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>컨테이너를 제거하려면 down 명령을 사용합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">ps</span>> docker<span class="token operator">-</span>compose down<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;도커-Docker&quot;&gt;&lt;a href=&quot;#도커-Docker&quot; class=&quot;headerlink&quot; title=&quot;도커 Docker&quot;&gt;&lt;/a&gt;도커 Docker&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.docker.com/&quot; target=&quot;</summary>
-      
-    
-    
-    
-    <category term="Computing" scheme="http://bbon.me/categories/Computing/"/>
-    
-    
-    <category term="docker" scheme="http://bbon.me/tags/docker/"/>
-    
-    <category term="mariadb" scheme="http://bbon.me/tags/mariadb/"/>
     
   </entry>
   

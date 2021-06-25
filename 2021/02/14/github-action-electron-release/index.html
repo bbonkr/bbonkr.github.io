@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Electron Release with GitHub Action · {bbon}</title><meta name="description"><meta name="og:title" content="Electron Release with GitHub Action"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2021/02/14/github-action-electron-release/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">Electron Release with GitHub Action</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/HowTo" target="_self"><span>HOWTO</span></a></div><div class="post-date">2021년 2월 14일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2021/02/14/github-action-electron-release/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2021/02/14/github-action-electron-release/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><p>Electron 으로 작성된 응용 프로그램을 Windows, Macos 실행파일로 빌드하고, GitHub Release 에서 다운로드 가능한 상태로 준비하는 과정을 자동화한 워크플로우를 회고합니다.</p>
+<h2 id="GitHub-Actions"><a href="#GitHub-Actions" class="headerlink" title="GitHub Actions"></a>GitHub Actions</h2><p>GitHub 에서 제공하는 워크 플로우 자동화 도구입니다.</p>
+<p>활용해서 여러가지 자동화를 시도할 수 있습니다.</p>
+<p><code>Build</code>, <code>Release</code> 두 개의 액션으로 구성했습니다.</p>
+<p><code>Release</code> 액션은 <code>Build</code> 액션에 의존하고 있습니다.</p>
+<p>모든 단계가 문제없이 실행되면, main 브랜치에 새로운 태그가 작성되고, GitHub Release 에 새로 작성된 태그에 해당하는 Electron 응용 프로그램이 다운로드가 준비된 상태로 비공개로 작성됩니다.</p>
+<p>간략한 흐름은 아래와 같습니다.</p>
+<ol>
+<li>main 브랜치에 커밋이 전송됩니다.</li>
+<li>Build 액션이 실행됩니다.<ol>
+<li>Ubuntu 에 Node.js 환경을 준비합니다.</li>
+<li>npm build 스크립트를 실행합니다.</li>
+<li>git tag를 작성합니다.</li>
+<li>GitHub Release 를 작성합니다.</li>
+<li><code>upload-assets</code> 이벤트를 실행합니다.</li>
+</ol>
+</li>
+<li>Release 액션이 실행됩니다. Macos 와 Windows 에서 아래 단계가 각각 실행됩니다.</li>
+<li>Node.js 환경을 준비합니다.</li>
+<li>npm pack 스크립트를 실행합니다.</li>
+<li>GitHub Release 에 응용프로그램을 업로드합니다.</li>
+</ol>
+<h3 id="⚙-Job-Build"><a href="#⚙-Job-Build" class="headerlink" title="⚙ Job: Build"></a>⚙ Job: Build</h3><p>main 브랜치에 커밋이 푸쉬되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/build.yml" target="_blank" rel="noopener">.github/workflows/build.yml 보기</a></p>
+<p>build Job 은 <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install Dependencies</code>, <code>Build</code>, <code>package-version</code>, <code>package-version-to-git-tag</code>, <code>Release Drafter</code>, <code>Check Upload Url</code>, <code>Repository Dispatch</code> 단계로 구성되어 있습니다.</p>
+<p>Ubuntu 에서 실행합니다.</p>
+<h4 id="👞-step-Checkout"><a href="#👞-step-Checkout" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p>
+<h4 id="👞-step-Install-Node-js-Npm"><a href="#👞-step-Install-Node-js-Npm" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p>
+<p>v12 Node.js 를 사용합니다.</p>
+<h4 id="👞-step-Install-Dependencies"><a href="#👞-step-Install-Dependencies" class="headerlink" title="👞 step: Install Dependencies"></a>👞 step: Install Dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p>
+<h4 id="👞-step-Build"><a href="#👞-step-Build" class="headerlink" title="👞 step: Build"></a>👞 step: Build</h4><p>npm build 스크립트를 실행합니다.</p>
+<h4 id="👞-step-package-version"><a href="#👞-step-package-version" class="headerlink" title="👞 step: package-version"></a>👞 step: package-version</h4><p>package.json 파일에 작성된 버전 값을 PACKAGE_VERION 환경변수로 설정합니다.</p>
+<h4 id="👞-step-package-version-to-git-tag"><a href="#👞-step-package-version-to-git-tag" class="headerlink" title="👞 step: package-version-to-git-tag"></a>👞 step: package-version-to-git-tag</h4><p><a href="https://github.com/pkgdeps/git-tag-action" target="_blank" rel="noopener"><code>pkgdeps/git-tag-action</code></a> 액션으로 git tag 를 작성합니다.</p>
+<p>package.json 파일의 버전과 git tag 를 동기화하기 위해 사용합니다.</p>
+<p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p>
+<h4 id="👞-step-Release-Drafter"><a href="#👞-step-Release-Drafter" class="headerlink" title="👞 step: Release Drafter"></a>👞 step: Release Drafter</h4><p><a href="https://github.com/release-drafter/release-drafter" target="_blank" rel="noopener"><code>release-drafter/release-drafter</code></a> 액션으로 작성된 git tag 에 대한 GitHub Release 를 작성합니다.</p>
+<p>GitHub Release의 본문에 변경사항 정의된 템플릿 기반의 내용으로 작성됩니다.</p>
+<p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p>
+<p>작성된 GitHub Relase 는 Draft 상태입니다.</p>
+<p>실행 파일이 업로드된 후 직접 상태를 변경해서 공개하도록 하고 싶습니다.</p>
+<h4 id="👞-step-Check-Upload-Url"><a href="#👞-step-Check-Upload-Url" class="headerlink" title="👞 step: Check Upload Url"></a>👞 step: Check Upload Url</h4><p><code>Release Drafter</code> 단계의 출력값을 확인합니다.</p>
+<p><code>Release Drafter</code> 단계에서 작성된 GitHub Release 의 첨부파일 <small>Assets</small> 업로드 경로를 확인하기 위해 추가된 단계입니다.</p>
+<h4 id="👞-step-Repository-Dispatch"><a href="#👞-step-Repository-Dispatch" class="headerlink" title="👞 step: Repository Dispatch"></a>👞 step: Repository Dispatch</h4><p><a href="https://github.com/peter-evans/repository-dispatch" target="_blank" rel="noopener"><code>peter-evans/repository-dispatch</code></a> 액션으로 지정된 GitHub 저장소를 대상으로 사용자 정의 이벤트를 실행합니다.</p>
+<blockquote>
+<p><code>peter-evans/repository-dispatch</code> 액션은 GitHub api 중 web hook 을 사용합니다.</p>
+</blockquote>
+<p>이벤트 형식은 <code>upload-assets</code> 으로 지정합니다.<br>웹 훅을 요청할 때, 요청 본문으로 <code>Release Drafter</code> 단계의 출력값중 <code>upload_url</code> 을 전송합니다.</p>
+<h3 id="⚙-Job-Release"><a href="#⚙-Job-Release" class="headerlink" title="⚙ Job: Release"></a>⚙ Job: Release</h3><p>저장소에 웹 훅 이벤트가 요청되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">.github/workflows/release.yml 보기</a></p>
+<p>구독하는 이벤트 형식은 <code>upload-assets</code> 입니다.</p>
+<p>Release Job 은 <code>Context</code>, <code>Verify Upload Url</code>, <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install dependencies</code>, <code>Pack</code>, <code>Upload Assets to Release with a wildcard</code> 단계로 구성되어 있습니다.</p>
+<p>Macos, Windows 에서 실행됩니다.<br>각 단계는 지정된 OS 별로 한번씩 두번 실행됩니다.</p>
+<h4 id="👞-step-Context"><a href="#👞-step-Context" class="headerlink" title="👞 step: Context"></a>👞 step: Context</h4><p>GitHub Action 으로 제공되는 기본 데이터를 확인해보고 싶어서 추가한 단계입니다.</p>
+<h4 id="👞-step-Verify-Upload-Url"><a href="#👞-step-Verify-Upload-Url" class="headerlink" title="👞 step: Verify Upload Url"></a>👞 step: Verify Upload Url</h4><p>웹 훅으로 입력된 요청 본문이 정상적으로 전달되는지 확인해보고 싶어서 추가한 단계입니다. <code>Conext</code> 단계에서 동일한 값을 확인할 수 있습니다.</p>
+<h4 id="👞-step-Checkout-1"><a href="#👞-step-Checkout-1" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p>
+<h4 id="👞-step-Install-Node-js-Npm-1"><a href="#👞-step-Install-Node-js-Npm-1" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p>
+<p>v12 Node.js 를 사용합니다.</p>
+<h4 id="👞-step-Install-dependencies"><a href="#👞-step-Install-dependencies" class="headerlink" title="👞 step: Install dependencies"></a>👞 step: Install dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p>
+<h4 id="👞-step-Pack"><a href="#👞-step-Pack" class="headerlink" title="👞 step: Pack"></a>👞 step: Pack</h4><p>npm pack 스크립트를 실행합니다.</p>
+<p>electron 으로 작성된 실행파일이 packages 디렉터리에 작성됩니다.</p>
+<h4 id="👞-step-Upload-Assets-to-Release-with-a-wildcard"><a href="#👞-step-Upload-Assets-to-Release-with-a-wildcard" class="headerlink" title="👞 step: Upload Assets to Release with a wildcard"></a>👞 step: Upload Assets to Release with a wildcard</h4><p>packages 디렉터리에 작성된 실행파일을 이전 Build 액션에서 전달한 업로드 경로를 사용해서 Release Assets 로 업로드합니다.</p>
+<h2 id="📋-Workflows"><a href="#📋-Workflows" class="headerlink" title="📋 Workflows"></a>📋 Workflows</h2><p><a href="https://github.com/bbonkr/renameapp/actions" target="_blank" rel="noopener">Actions: bbonkr/renameapp</a> 페이지에서 실행된 워크플로우를 확인할 수 있습니다.</p>
+<h2 id="🧰-Releases"><a href="#🧰-Releases" class="headerlink" title="🧰 Releases"></a>🧰 Releases</h2><p><a href="https://github.com/bbonkr/renameapp/releases" target="_blank" rel="noopener">Releases: bbonkr/renameapp</a> 페이지에서 작성된 GItHub Release 를 확인할 수 있습니다.</p>
+<h2 id="📢-Conclusion"><a href="#📢-Conclusion" class="headerlink" title="📢 Conclusion"></a>📢 Conclusion</h2><p>가능하면 많은 부분을 자동화해서 꼭 필요한 일에 집중할 수 있는 환경을 준비하는 것은 매우 중요한 일이라고 생각됩니다.</p>
+<p>이렇게 게시 워크플로우를 자동화해두면 이번 게시에 뭐가 변경되었는지를 작성하는 시간을 줄일 수 있고, 게시에 다운로그 가능한 파일을 누락하는 실수도 없습니다.</p>
+<p>지속적으로 더 좋은 워크플로우를 생각하고, 구성하고 회고하도록 하겠습니다.</p>
+<p>저와 유사한 워크플로우를 자동화하려고 진행하시는 분에게 도움이 되면 좋겠습니다.</p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2021/01/03/kr-bbon-EntityFrameworkCore-Extensions-Package/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>

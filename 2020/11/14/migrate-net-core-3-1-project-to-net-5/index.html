@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>.NET Core 3.1 프로젝트를 .NET 5 로 마이그레이션 · {bbon}</title><meta name="description"><meta name="og:title" content=".NET Core 3.1 프로젝트를 .NET 5 로 마이그레이션"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2020/11/14/migrate-net-core-3-1-project-to-net-5/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">.NET Core 3.1 프로젝트를 .NET 5 로 마이그레이션</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/HowTo" target="_self"><span>HOWTO</span></a></div><div class="post-date">2020년 11월 14일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2020/11/14/migrate-net-core-3-1-project-to-net-5/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2020/11/14/migrate-net-core-3-1-project-to-net-5/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><p>변환 대상은 .NET Core 3.1 을 사용해서 작성된 응용프로그램입니다.</p>
+<p>전체 코드는 340eb28b1ea510a2c59e8627659cd81b689b7244 커밋에서 확인할 수 있습니다.</p>
+<p><a href="https://github.com/bbonkr/bing-wallpaper/tree/340eb28b1ea510a2c59e8627659cd81b689b7244" target="_blank" rel="noopener"><code>Commit &lt;&gt; 340eb28b1ea510a2c59e8627659cd81b689b7244</code></a></p>
+<p>.NET Core 3.1 을 사용해서 작성된 응용프로그램을 .NET 5를 사용하는 응용프로그램으로 마이그레이션하려면, 솔루션의 모든 프로젝트의 대상 프레임워크를 <code>net5.0</code>으로 변경하고, 의존 패키지를 .NET 5 호환 버전으로 업데이트하면 됩니다.</p>
+<p>의존 패키지가 .NET 5 를 지원하지 않는 경우가 아니라면 큰 문제없이 마이그레이션을 마칠 수 있을 것이라 생각합니다.</p>
+<h2 id="대상-프레임워크-변경"><a href="#대상-프레임워크-변경" class="headerlink" title="대상 프레임워크 변경"></a>대상 프레임워크 변경</h2><p>솔루션 파일을 Visual Studio 에서 열고, 포함된 프로젝트의 대상 프레임워크 <small>TargetFramework</small>를 아래 표와 같이 <code>net5.0</code>으로 변경합니다.</p>
+<table>
+<thead>
+<tr>
+<th align="center">이전 대상 프레임워크</th>
+<th align="center">변경 대상 프레임워크</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">netstandard2.1</td>
+<td align="center">net5.0</td>
+</tr>
+<tr>
+<td align="center">netcoreapp3.0</td>
+<td align="center">net5.0</td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">></span></span>net5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Nuget-패키지-업데이트"><a href="#Nuget-패키지-업데이트" class="headerlink" title="Nuget 패키지 업데이트"></a>Nuget 패키지 업데이트</h2><p>의존하는 모든 Nuget 패키지를 .NET 5 호환 가능한 버전으로 업데이트합니다.</p>
+<h2 id="Docker-이미지-변경"><a href="#Docker-이미지-변경" class="headerlink" title="Docker 이미지 변경"></a>Docker 이미지 변경</h2><p>build-time image: <code>mcr.microsoft.com/dotnet/sdk:5.0</code><br>run-time image: <code>mcr.microsoft.com/dotnet/runtime:5.0</code></p>
+<p>도커 이미지 정보는 아래 <code>.NET Runtime - Docker Hub</code> 페이지에서 확인할 수 있습니다.</p>
+<p><a href="https://hub.docker.com/_/microsoft-dotnet-runtime/" target="_blank" rel="noopener">.NET Runtime - Docker Hub</a></p>
+<p><code>.NET Runtime - Docker Hub</code> 페이지에서 관련 저장소를 확인하세요.</p>
+<p>아래는 .NET 5 프로젝트에서 사용되는 도커파일 예제입니다.</p>
+<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM mcr.microsoft.com&#x2F;dotnet&#x2F;sdk:5.0 AS build
+WORKDIR &#x2F;app
+
+# copy csproj and restore as distinct layers
+COPY . .
+RUN dotnet restore
+
+# copy everything else and build app
+RUN cd Bing.Wallpaper.Service.App &amp;&amp; dotnet publish -c Release -o &#x2F;app&#x2F;out
+
+FROM mcr.microsoft.com&#x2F;dotnet&#x2F;runtime:5.0 AS runtime
+WORKDIR &#x2F;app
+COPY --from&#x3D;build &#x2F;app&#x2F;out .&#x2F;
+ENTRYPOINT [&quot;dotnet&quot;, &quot;Bing.Wallpaper.Service.App.dll&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h2><p>의존 패키지가 .NET 5 호환 가능한 버전이 존재해서 큰 문제없이 변경되었습니다.</p>
+<p><a href="https://github.com/bbonkr/bing-wallpaper/tree/d3151bedcadefdcbf7c144c568a871c7718a94cb" target="_blank" rel="noopener"><code>Commit &lt;&gt; d3151bedcadefdcbf7c144c568a871c7718a94cb</code></a></p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2020/09/07/filedownload-within-spa/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2020/11/15/react-starter-kit/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>

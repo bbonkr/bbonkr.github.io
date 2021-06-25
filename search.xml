@@ -4,6 +4,256 @@
   
     
     <entry>
+      <title>Electron Release with GitHub Action</title>
+      <link href="/2021/02/14/github-action-electron-release/"/>
+      <url>/2021/02/14/github-action-electron-release/</url>
+      
+        <content type="html"><![CDATA[<p>Electron 으로 작성된 응용 프로그램을 Windows, Macos 실행파일로 빌드하고, GitHub Release 에서 다운로드 가능한 상태로 준비하는 과정을 자동화한 워크플로우를 회고합니다.</p><h2 id="GitHub-Actions"><a href="#GitHub-Actions" class="headerlink" title="GitHub Actions"></a>GitHub Actions</h2><p>GitHub 에서 제공하는 워크 플로우 자동화 도구입니다.</p><p>활용해서 여러가지 자동화를 시도할 수 있습니다.</p><p><code>Build</code>, <code>Release</code> 두 개의 액션으로 구성했습니다.</p><p><code>Release</code> 액션은 <code>Build</code> 액션에 의존하고 있습니다.</p><p>모든 단계가 문제없이 실행되면, main 브랜치에 새로운 태그가 작성되고, GitHub Release 에 새로 작성된 태그에 해당하는 Electron 응용 프로그램이 다운로드가 준비된 상태로 비공개로 작성됩니다.</p><p>간략한 흐름은 아래와 같습니다.</p><ol><li>main 브랜치에 커밋이 전송됩니다.</li><li>Build 액션이 실행됩니다.<ol><li>Ubuntu 에 Node.js 환경을 준비합니다.</li><li>npm build 스크립트를 실행합니다.</li><li>git tag를 작성합니다.</li><li>GitHub Release 를 작성합니다.</li><li><code>upload-assets</code> 이벤트를 실행합니다.</li></ol></li><li>Release 액션이 실행됩니다. Macos 와 Windows 에서 아래 단계가 각각 실행됩니다.</li><li>Node.js 환경을 준비합니다.</li><li>npm pack 스크립트를 실행합니다.</li><li>GitHub Release 에 응용프로그램을 업로드합니다.</li></ol><h3 id="⚙-Job-Build"><a href="#⚙-Job-Build" class="headerlink" title="⚙ Job: Build"></a>⚙ Job: Build</h3><p>main 브랜치에 커밋이 푸쉬되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/build.yml" target="_blank" rel="noopener">.github/workflows/build.yml 보기</a></p><p>build Job 은 <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install Dependencies</code>, <code>Build</code>, <code>package-version</code>, <code>package-version-to-git-tag</code>, <code>Release Drafter</code>, <code>Check Upload Url</code>, <code>Repository Dispatch</code> 단계로 구성되어 있습니다.</p><p>Ubuntu 에서 실행합니다.</p><h4 id="👞-step-Checkout"><a href="#👞-step-Checkout" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p><h4 id="👞-step-Install-Node-js-Npm"><a href="#👞-step-Install-Node-js-Npm" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p><p>v12 Node.js 를 사용합니다.</p><h4 id="👞-step-Install-Dependencies"><a href="#👞-step-Install-Dependencies" class="headerlink" title="👞 step: Install Dependencies"></a>👞 step: Install Dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p><h4 id="👞-step-Build"><a href="#👞-step-Build" class="headerlink" title="👞 step: Build"></a>👞 step: Build</h4><p>npm build 스크립트를 실행합니다.</p><h4 id="👞-step-package-version"><a href="#👞-step-package-version" class="headerlink" title="👞 step: package-version"></a>👞 step: package-version</h4><p>package.json 파일에 작성된 버전 값을 PACKAGE_VERION 환경변수로 설정합니다.</p><h4 id="👞-step-package-version-to-git-tag"><a href="#👞-step-package-version-to-git-tag" class="headerlink" title="👞 step: package-version-to-git-tag"></a>👞 step: package-version-to-git-tag</h4><p><a href="https://github.com/pkgdeps/git-tag-action" target="_blank" rel="noopener"><code>pkgdeps/git-tag-action</code></a> 액션으로 git tag 를 작성합니다.</p><p>package.json 파일의 버전과 git tag 를 동기화하기 위해 사용합니다.</p><p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p><h4 id="👞-step-Release-Drafter"><a href="#👞-step-Release-Drafter" class="headerlink" title="👞 step: Release Drafter"></a>👞 step: Release Drafter</h4><p><a href="https://github.com/release-drafter/release-drafter" target="_blank" rel="noopener"><code>release-drafter/release-drafter</code></a> 액션으로 작성된 git tag 에 대한 GitHub Release 를 작성합니다.</p><p>GitHub Release의 본문에 변경사항 정의된 템플릿 기반의 내용으로 작성됩니다.</p><p><code>package-version</code> 단계에서 얻은 버전을 사용합니다.</p><p>작성된 GitHub Relase 는 Draft 상태입니다.</p><p>실행 파일이 업로드된 후 직접 상태를 변경해서 공개하도록 하고 싶습니다.</p><h4 id="👞-step-Check-Upload-Url"><a href="#👞-step-Check-Upload-Url" class="headerlink" title="👞 step: Check Upload Url"></a>👞 step: Check Upload Url</h4><p><code>Release Drafter</code> 단계의 출력값을 확인합니다.</p><p><code>Release Drafter</code> 단계에서 작성된 GitHub Release 의 첨부파일 <small>Assets</small> 업로드 경로를 확인하기 위해 추가된 단계입니다.</p><h4 id="👞-step-Repository-Dispatch"><a href="#👞-step-Repository-Dispatch" class="headerlink" title="👞 step: Repository Dispatch"></a>👞 step: Repository Dispatch</h4><p><a href="https://github.com/peter-evans/repository-dispatch" target="_blank" rel="noopener"><code>peter-evans/repository-dispatch</code></a> 액션으로 지정된 GitHub 저장소를 대상으로 사용자 정의 이벤트를 실행합니다.</p><blockquote><p><code>peter-evans/repository-dispatch</code> 액션은 GitHub api 중 web hook 을 사용합니다.</p></blockquote><p>이벤트 형식은 <code>upload-assets</code> 으로 지정합니다.<br>웹 훅을 요청할 때, 요청 본문으로 <code>Release Drafter</code> 단계의 출력값중 <code>upload_url</code> 을 전송합니다.</p><h3 id="⚙-Job-Release"><a href="#⚙-Job-Release" class="headerlink" title="⚙ Job: Release"></a>⚙ Job: Release</h3><p>저장소에 웹 훅 이벤트가 요청되면 실행되는 GitHub Action 입니다.<br><a href="https://github.com/bbonkr/renameapp/blob/main/.github/workflows/release.yml" target="_blank" rel="noopener">.github/workflows/release.yml 보기</a></p><p>구독하는 이벤트 형식은 <code>upload-assets</code> 입니다.</p><p>Release Job 은 <code>Context</code>, <code>Verify Upload Url</code>, <code>Checkout</code>, <code>Install Node.js, Npm</code>, <code>Install dependencies</code>, <code>Pack</code>, <code>Upload Assets to Release with a wildcard</code> 단계로 구성되어 있습니다.</p><p>Macos, Windows 에서 실행됩니다.<br>각 단계는 지정된 OS 별로 한번씩 두번 실행됩니다.</p><h4 id="👞-step-Context"><a href="#👞-step-Context" class="headerlink" title="👞 step: Context"></a>👞 step: Context</h4><p>GitHub Action 으로 제공되는 기본 데이터를 확인해보고 싶어서 추가한 단계입니다.</p><h4 id="👞-step-Verify-Upload-Url"><a href="#👞-step-Verify-Upload-Url" class="headerlink" title="👞 step: Verify Upload Url"></a>👞 step: Verify Upload Url</h4><p>웹 훅으로 입력된 요청 본문이 정상적으로 전달되는지 확인해보고 싶어서 추가한 단계입니다. <code>Conext</code> 단계에서 동일한 값을 확인할 수 있습니다.</p><h4 id="👞-step-Checkout-1"><a href="#👞-step-Checkout-1" class="headerlink" title="👞 step: Checkout"></a>👞 step: Checkout</h4><p>원격 저장소에서 코드를 내려받습니다.</p><h4 id="👞-step-Install-Node-js-Npm-1"><a href="#👞-step-Install-Node-js-Npm-1" class="headerlink" title="👞 step: Install Node.js, Npm"></a>👞 step: Install Node.js, Npm</h4><p>Node.js 환경을 구성합니다.</p><p>v12 Node.js 를 사용합니다.</p><h4 id="👞-step-Install-dependencies"><a href="#👞-step-Install-dependencies" class="headerlink" title="👞 step: Install dependencies"></a>👞 step: Install dependencies</h4><p>package.json 에 작성된 패키지를 설치합니다.</p><h4 id="👞-step-Pack"><a href="#👞-step-Pack" class="headerlink" title="👞 step: Pack"></a>👞 step: Pack</h4><p>npm pack 스크립트를 실행합니다.</p><p>electron 으로 작성된 실행파일이 packages 디렉터리에 작성됩니다.</p><h4 id="👞-step-Upload-Assets-to-Release-with-a-wildcard"><a href="#👞-step-Upload-Assets-to-Release-with-a-wildcard" class="headerlink" title="👞 step: Upload Assets to Release with a wildcard"></a>👞 step: Upload Assets to Release with a wildcard</h4><p>packages 디렉터리에 작성된 실행파일을 이전 Build 액션에서 전달한 업로드 경로를 사용해서 Release Assets 로 업로드합니다.</p><h2 id="📋-Workflows"><a href="#📋-Workflows" class="headerlink" title="📋 Workflows"></a>📋 Workflows</h2><p><a href="https://github.com/bbonkr/renameapp/actions" target="_blank" rel="noopener">Actions: bbonkr/renameapp</a> 페이지에서 실행된 워크플로우를 확인할 수 있습니다.</p><h2 id="🧰-Releases"><a href="#🧰-Releases" class="headerlink" title="🧰 Releases"></a>🧰 Releases</h2><p><a href="https://github.com/bbonkr/renameapp/releases" target="_blank" rel="noopener">Releases: bbonkr/renameapp</a> 페이지에서 작성된 GItHub Release 를 확인할 수 있습니다.</p><h2 id="📢-Conclusion"><a href="#📢-Conclusion" class="headerlink" title="📢 Conclusion"></a>📢 Conclusion</h2><p>가능하면 많은 부분을 자동화해서 꼭 필요한 일에 집중할 수 있는 환경을 준비하는 것은 매우 중요한 일이라고 생각됩니다.</p><p>이렇게 게시 워크플로우를 자동화해두면 이번 게시에 뭐가 변경되었는지를 작성하는 시간을 줄일 수 있고, 게시에 다운로그 가능한 파일을 누락하는 실수도 없습니다.</p><p>지속적으로 더 좋은 워크플로우를 생각하고, 구성하고 회고하도록 하겠습니다.</p><p>저와 유사한 워크플로우를 자동화하려고 진행하시는 분에게 도움이 되면 좋겠습니다.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> HowTo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> electron </tag>
+            
+            <tag> github-actions </tag>
+            
+            <tag> ci-cd </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>kr.bbon.EntityFrameworkCore.Extensions Package</title>
+      <link href="/2021/01/03/kr-bbon-EntityFrameworkCore-Extensions-Package/"/>
+      <url>/2021/01/03/kr-bbon-EntityFrameworkCore-Extensions-Package/</url>
+      
+        <content type="html"><![CDATA[<table><thead><tr><th align="center"></th><th align="center"></th><th align="center"></th></tr></thead><tbody><tr><td align="center"><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener"><img src="https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions"></a></td><td align="center"><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener"><img src="https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions"></a></td><td align="center"><img src="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg" alt="publish to nuget"></td></tr></tbody></table><p><a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">Nuget: kr.bbon.EntityFrameworkCore.Extensions</a> 페이지에서 패키지를 찾을 수 있습니다.</p><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p><a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank" rel="noopener">Microsoft.EntityFrameworkCore</a> 패키지를 사용하면서, 데이터를 정렬를 자주 사용합니다.</p><p>이 때, 문자열 형식으로 필드 이름으로 정렬할 수 있으면 편리할 것 같아서 확장을 작성했습니다.</p><h2 id="기능"><a href="#기능" class="headerlink" title="기능"></a>기능</h2><h3 id="Sort-확장-메서드"><a href="#Sort-확장-메서드" class="headerlink" title="Sort 확장 메서드"></a>Sort 확장 메서드</h3><p>IQueryable<T> 인터페이스에 Sort 확장 메서드를 추가합니다.</p><p>Sort 확장메서드는 내부적으로 OderBy, OrderByDescending, ThenBy, ThenByDescending 확장 메서드를 사용합니다.</p><p><code>Sort(string fieldName, [bool isAscending = true])</code></p><blockquote><p>fieldName 은 대소문자를 구분하지 않습니다.<br>fieldName 에 해당하는 필드를 찾을 수 없으면 예외가 발생합니다.</p></blockquote><p>사용법:</p><p><a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Document.cs#L5" target="_blank" rel="noopener">Document 형식</a>의 Content 오름차순, Id 내림차순으로 정렬하는 코드입니다. [<a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Program.cs#L48" target="_blank" rel="noopener">코드 보기</a>]</p><pre class="line-numbers language-cshap" data-language="cshap"><code class="language-cshap">using(var ctx &#x3D; new ExampleDbContext())&#123;    var result &#x3D; ctx.Documents.Sort(nameof(Document.Content)).Sort(nameof(Document.Id), false);&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="관련-링크"><a href="#관련-링크" class="headerlink" title="관련 링크"></a>관련 링크</h2><ul><li>  <a href="https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">GitHub: kr.bbon.EntityFrameworkCore.Extensions</a></li><li>  <a href="https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions" target="_blank" rel="noopener">Nuget: kr.bbon.EntityFrameworkCore.Extensions</a></li><li>  <a href="https://dotnet.microsoft.com/" target="_blank" rel="noopener">.NET</a></li><li>  <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank" rel="noopener">Nuget: Microsoft.EntityFrameworkCore</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Package </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> .net </tag>
+            
+            <tag> nuget </tag>
+            
+            <tag> ef </tag>
+            
+            <tag> entity-framework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Review 2020</title>
+      <link href="/2020/12/31/review-2020/"/>
+      <url>/2020/12/31/review-2020/</url>
+      
+        <content type="html"><![CDATA[<p>2020년을 돌아봅니다.</p><h2 id="기술-스택"><a href="#기술-스택" class="headerlink" title="기술 스택"></a>기술 스택</h2><h3 id="NET-5"><a href="#NET-5" class="headerlink" title=".NET 5"></a>.NET 5</h3><p>이전에 작성했던 .NET Core 2.x ~ 3.x 응용프로그램을 .NET 5 로 이전해보고 있습니다.</p><p>계속 함께할 생각입니다.</p><h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><p>2020 년에는 거의 대부분의 프로젝트에서 웹 프론트엔드 업무를 담당했습니다.</p><p>React 를 사용해서 진행했고, 앞으로도 React 를 계속할 생각입니다.</p><h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>큰 프로젝트가 아니면 nodejs 는 좋은 백엔드 플랫폼으로 생각됩니다.</p><p><a href="http://expressjs.com/" target="_blank" rel="noopener">express.js</a> 를 사용해서 구현했는데, 이제 <a href="http://nestjs.com/" target="_blank" rel="noopener">nestjs</a> 를 활용하기 위해 공부하고 있습니다.</p><p>그리고, 크로스 플랫폼 CLI 도구 작성에도 활용하고 있습니다.</p><h3 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h3><p>Javascript 로 작성해야 하는 코드는 이제 Typescript 를 사용하는 것이 더 편하게 느껴집니다.</p><p>코드를 조금더 작성해야하고, 트랜스파일 구성을 해야 하는 것은 불편하지만, 코드를 작성할 때 더 편리합니다.</p><p>계속 Typescript 를 계속 사용할 생각입니다.</p><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>컨테이너 기술을 도커로 익히고 있는데, 다른 컨테이너도 조금씩 배워야 합니다.</p><p>AWS Lightsail 에서 동작하는 웹 응용프로그램을 컨테이너를 사용하도록 이전했습니다.</p><h3 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><p>2019년을 돌아보고, 2020년에 하고 싶은 것들이 있었는데, 생각이 바뀐 부분이 있습니다.</p><p>간단한 기능으로 구성된 모바일 앱을 작성할때 좋은 기술이라고 생각합니다.</p><p>그런데, 직접 구현할 수 없는 기능 또는 네이티브 기능이 필요하고, 그 기능을 사용하기 위해 패키지를 검색했는데 구현된 코드를 찾을 수 없다면 굉장히 난감했습니다.</p><p>다른 플랫폼도 동일하겠지만, 쉽게 접근했다가 매우 힘들어질 수 있겠다고 생각되었습니다.</p><p>이 기술은 메인으로 가져가기보다는 간단하게 모바일 앱을 구현할 때만 사용해야겠습니다.</p><h2 id="2020년-이야기"><a href="#2020년-이야기" class="headerlink" title="2020년 이야기"></a>2020년 이야기</h2><p>스타트업 팀과 몇몇 작업을 같이 진행했습니다.</p><p>팀의 서비스 기획이 정리되지 않아 진행을 포기한 프로젝트도 있고, 마무리 단계까지 진행하고 사회적 문저로 아직 서비스를 시작하지 못한 팀도 있습니다.</p><p>그리고, 파트타임으로 일을 시작했습니다.</p><p>기획이 정리되지 않은 어느 작은 스타트업 팀에서 문제가 되었던 부분이 서비스를 기획하시는 분이 서비스를 정리하면, 공상가 분이 계속 아이디어를 추가했습니다.<br>서비스 컨셉이 계속 변경되었습니다.<br>고민 끝에 이 팀에서는 서비스 구현이 힘들 것 같아 포기하게 되었습니다.</p><p>마무리 단계에서 서비스가 아직 시작되지 않은 팀은 COVID-19 로 인해 서비스 시작이 늦어지고 있습니다.</p><p>그리고, 페이스북 챗으로 연락했던 팀에서 파트타임을 제안해주셔서 쉬엄쉬엄 작업을 진행하고 있습니다.</p><h3 id="응용프로그램"><a href="#응용프로그램" class="headerlink" title="응용프로그램"></a>응용프로그램</h3><p>2020년에 게시된 응용프로그램 목록입니다.</p><ul><li>  <a href="https://flexbox.bbon.me/" target="_blank" rel="noopener">Help me! Display: flex</a></li><li>  <a href="https://guid.bbon.me/" target="_blank" rel="noopener">GUID Generator</a></li><li>  <a href="https://play.google.com/store/apps/details?id=kr.bbon.whendoibuyamask" target="_blank" rel="noopener">구글플레이: 공적 마스크 안내</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/formatter" target="_blank" rel="noopener">npm: @bbon/formatter</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/filedownload" target="_blank" rel="noopener">npm: @bbon/filedownload</a></li><li>  <a href="https://www.npmjs.com/package/@bbon/css-to-jss" target="_blank" rel="noopener">npm: @bbon/css-to-jss</a></li><li>  <a href="https://resume.bbon.me/" target="_blank" rel="noopener">공개 이력서</a></li></ul><h2 id="2021년에는"><a href="#2021년에는" class="headerlink" title="2021년에는"></a>2021년에는</h2><p>지금처럼 천천히 업무를 찾고, 진행하고 싶습니다.</p><p>좋은 분들과 계속 인연을 가져가고 싶습니다.</p><p>Apple silicon 이 탑재된 mac 을 구입해야 합니다.<br>M1 보다 고성능의 기술의 발표를 기대하고 있습니다.</p><p>COVID-19 로부터 안전해지는 그 때를 기다리고 있습니다.<br>만나뵙고 싶은 분들이 많은데, 찾아뵙고 싶습니다.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Log </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> review </tag>
+            
+            <tag> log </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Migrate web apps to container</title>
+      <link href="/2020/11/23/migrate-webapps-to-container/"/>
+      <url>/2020/11/23/migrate-webapps-to-container/</url>
+      
+        <content type="html"><![CDATA[<h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p>AWS Lightsail 에서 실행되고 있는 두개의 웹 응용프로그램이 있습니다.</p><ul><li>  1 vCPU 프로세싱</li><li>  512MB 메모리</li><li>  20GB SSD 스토리지</li><li>  3.5 USD 월별요금</li><li>  1TB 전송</li><li>  OS: Ubuntu 16.04</li></ul><p>두 개의 웹 응용프로그램은 PHP 를 사용하고, nginx 를 사용해서 서비스되고 있습니다.</p><p>혹시나 다른 서버로 이전하게 될 수도 있고, 관리도 힘들어서 구성을 코드화하고 싶어졌습니다.</p><p>그래서, 두 응용프로그램을 컨테이너에서 실행될 수 있는 환경으로 이전했습니다.</p><p>Lightsail 에 새로운 인스턴스를 만들고, Docker를 설치하고, docker-compose 로 구성 내용을 관리하도록 이전했습니다.</p><ul><li>  1 vCPU</li><li>  1GB 메모리</li><li>  30GB SSD 스토리지</li><li>  5.0 USD 월별요금</li><li>  2TB 전송</li><li>  OS: Ubuntu 20.04</li></ul><h2 id="계획"><a href="#계획" class="headerlink" title="계획"></a>계획</h2><img src="/2020/11/23/migrate-webapps-to-container/aws-lightsail-container.png" class=""><h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><p>호스트 <code>80</code>, <code>443</code> 포트는 nginx 컨테이너에 연결됩니다.</p><p>DBMS 와 두 web app은 호스트 장치에 포트를 연결하지 않고, 컨테이너 내부에서만 접근할 수 있도록 <code>EXPOSE</code> 명령으로 구성합니다.</p><p>도커 네트워크를 만들어서 사용합니다.</p><p>nginx 에서 리버스 프록시 연결을 위한 네트워크와 web app 에서 DBMS 접근을 위한 네트워크를 분리하려고 했으나, 복잡해지는 것 같아 내부 네트워크는 하나만 사용하도록 구성합니다.</p><h3 id="docker-network"><a href="#docker-network" class="headerlink" title="docker network"></a>docker network</h3><p>도커 네트워크를 작성합니다. 컨테이너는 작성된 네트워크로 연결됩니다.</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ docker network create <span class="token operator">&lt;</span>name of network<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>bridge 네트워크가 사용됩니다.</p></blockquote><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>GUI 환경에서 관리할 수 있는 <a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용합니다.</p><p>이제, 편리하게 GUI 환경에서 리버스 프록시를 관리할 수 있습니다.</p><p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p><h3 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화합니다.</p><p>볼륨을 연결해서 데이터베이스 파일이 유지됩니다.</p><h3 id="web-apps"><a href="#web-apps" class="headerlink" title="web apps"></a>web apps</h3><p>docker-compose.yml 파일을 작성해서 구성을 코드화하고, 볼륨을 연결해서 필요한 파일을 호스트에서 접근할 수 있고, 파일들이 컨테이너 외부에서 관리되어 계속 유지됩니다.</p><h2 id="완료"><a href="#완료" class="headerlink" title="완료"></a>완료</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a> 를 사용하면 도메인을 연결하고, 리버스 프록시 구성시 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 인증서를 간편하게 구성하고, 재발행이 자동화되어 편리합니다.</p><p>이제, 필요한 구성이 코드화되고, 필요한 파일은 호스트에서 확인할 수 있으므로 서버 이전을 매우 편리하게 진행할 수 있습니다.</p><p>구성이 변경된 <a href="https://bbon.kr/" target="_blank" rel="noopener">블로그: bbon.kr</a> web app 이 잘 동작하고 있습니다.</p><h2 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h2><p>한번씩 CPU 사용량 급증하는 현상이 발생하고 있으나, 원인을 찾을 수 없습니다.</p><p>적은 리소스로 서버를 모니터링할 수 있는 도구를 찾고 있습니다.</p><h2 id="남은-사항"><a href="#남은-사항" class="headerlink" title="남은 사항"></a>남은 사항</h2><p><a href="https://nginxproxymanager.com/" target="_blank" rel="noopener">Nginx Proxy Manager</a>를 사용해서 리버스 프록시로 구성된 web app 의 도메인 별로 인증서를 사용하고 있는데, <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 에서 제공하는 와일드카드 인증서를 사용하도록 구성해야 합니다.</p><p>CPU 사용이 급증하는 현상의 원인을 파악하고, 해결해야 합니다.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Log </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> aws </tag>
+            
+            <tag> review </tag>
+            
+            <tag> log </tag>
+            
+            <tag> lightsail </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>React Starter Kit</title>
+      <link href="/2020/11/15/react-starter-kit/"/>
+      <url>/2020/11/15/react-starter-kit/</url>
+      
+        <content type="html"><![CDATA[<h2 id="GitHub-템플릿-사용"><a href="#GitHub-템플릿-사용" class="headerlink" title="GitHub 템플릿 사용"></a>GitHub 템플릿 사용</h2><p>GitHub 에서 저장소를 작성할 때, 템플릿으로 표시된 저장소를 사용해서 내 저장소를 작성할 수 있습니다.</p><img src="/2020/11/15/react-starter-kit/github-use-this-template.png" class=""><h2 id="템플릿"><a href="#템플릿" class="headerlink" title="템플릿"></a>템플릿</h2><p>SPA 를 시작하려면 구현하려는 프레임워크뿐만 아니라 트랜스파일, 번들링 등 신경써야 하는 부분이 많습니다.</p><p>React 를 처음 시작하시는 분들을 위해서, React 구현에 집중하실 수 있게 템플릿을 작성했습니다.</p><p>React Starter Kit 에서 저장소를 작성하시려면 <a href="https://github.com/bbonkr/react-starter-kit" target="_blank" rel="noopener">GitHub: React Starter Kit</a> 페이지로 이동한 후 <code>Use this template</code> 버튼을 클릭해서 본인의 저장소를 만드세요.</p><p>작성된 본인의 저장소를 로컬에 복제한 후 React 프레임워크에 집중해서 시작하실 수 있습니다.</p><h2 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h2><p>스타터 킷은 typescript 로 작성할 수 있게 구성되어 있습니다.</p><p>webpack 으로 트랜스파일과 번들링이 구성되어 있습니다.</p><p>개발환경으로 webpack-dev-server를 사용하고, HMR <small>Hot Module Replacement</small>가 준비되어 있습니다.</p><h2 id="시작"><a href="#시작" class="headerlink" title="시작"></a>시작</h2><p>원격 저장소를 로컬 저장소로 복제하고, 터미널에서 <code>npm run dev</code> 명령으로 개발서버를 시작합니다.</p><p>웹 브라우저에서 <code>http://localhost:3000</code> 을 탐색하면, 현재 작성된 코드가 렌더링 됩니다.</p><p>이 상태에서 컴포넌트를 작성하고, 라우트를 추가해서 구현한 코드를 바로 웹 브라우저에서 확인할 수 있습니다.</p><h2 id="나중에"><a href="#나중에" class="headerlink" title="나중에"></a>나중에</h2><p>React 프레임워크가 익숙해지면, webpack 도 익혀보시길 권장합니다.</p><h2 id="관련-링크"><a href="#관련-링크" class="headerlink" title="관련 링크"></a>관련 링크</h2><ul><li>  <a href="https://github.com/bbonkr/react-starter-kit" target="_blank" rel="noopener">GitHub: React Starter Kit</a></li><li>  <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li><li>  <a href="https://ko.reactjs.org/" target="_blank" rel="noopener">React</a></li><li>  <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">Typescript</a></li><li>  <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a></li><li>  <a href="https://webpack.js.org/configuration/dev-server" target="_blank" rel="noopener">webpack dev server</a></li><li>  <a href="https://webpack.js.org/guides/hot-module-replacement" target="_blank" rel="noopener">Hot Module Replacement</a></li><li>  <a href="https://docs.npmjs.com/" target="_blank" rel="noopener">npm</a></li><li>  <a href="https://git-scm.com/" target="_blank" rel="noopener">git</a></li><li>  <a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-template-repository" target="_blank" rel="noopener">GitHub: Creating a template repository</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> HowTo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> react </tag>
+            
+            <tag> typescript </tag>
+            
+            <tag> starter kit </tag>
+            
+            <tag> template </tag>
+            
+            <tag> webpack </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>.NET Core 3.1 프로젝트를 .NET 5 로 마이그레이션</title>
+      <link href="/2020/11/14/migrate-net-core-3-1-project-to-net-5/"/>
+      <url>/2020/11/14/migrate-net-core-3-1-project-to-net-5/</url>
+      
+        <content type="html"><![CDATA[<p>변환 대상은 .NET Core 3.1 을 사용해서 작성된 응용프로그램입니다.</p><p>전체 코드는 340eb28b1ea510a2c59e8627659cd81b689b7244 커밋에서 확인할 수 있습니다.</p><p><a href="https://github.com/bbonkr/bing-wallpaper/tree/340eb28b1ea510a2c59e8627659cd81b689b7244" target="_blank" rel="noopener"><code>Commit &lt;&gt; 340eb28b1ea510a2c59e8627659cd81b689b7244</code></a></p><p>.NET Core 3.1 을 사용해서 작성된 응용프로그램을 .NET 5를 사용하는 응용프로그램으로 마이그레이션하려면, 솔루션의 모든 프로젝트의 대상 프레임워크를 <code>net5.0</code>으로 변경하고, 의존 패키지를 .NET 5 호환 버전으로 업데이트하면 됩니다.</p><p>의존 패키지가 .NET 5 를 지원하지 않는 경우가 아니라면 큰 문제없이 마이그레이션을 마칠 수 있을 것이라 생각합니다.</p><h2 id="대상-프레임워크-변경"><a href="#대상-프레임워크-변경" class="headerlink" title="대상 프레임워크 변경"></a>대상 프레임워크 변경</h2><p>솔루션 파일을 Visual Studio 에서 열고, 포함된 프로젝트의 대상 프레임워크 <small>TargetFramework</small>를 아래 표와 같이 <code>net5.0</code>으로 변경합니다.</p><table><thead><tr><th align="center">이전 대상 프레임워크</th><th align="center">변경 대상 프레임워크</th></tr></thead><tbody><tr><td align="center">netstandard2.1</td><td align="center">net5.0</td></tr><tr><td align="center">netcoreapp3.0</td><td align="center">net5.0</td></tr></tbody></table><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">></span></span>net5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="Nuget-패키지-업데이트"><a href="#Nuget-패키지-업데이트" class="headerlink" title="Nuget 패키지 업데이트"></a>Nuget 패키지 업데이트</h2><p>의존하는 모든 Nuget 패키지를 .NET 5 호환 가능한 버전으로 업데이트합니다.</p><h2 id="Docker-이미지-변경"><a href="#Docker-이미지-변경" class="headerlink" title="Docker 이미지 변경"></a>Docker 이미지 변경</h2><p>build-time image: <code>mcr.microsoft.com/dotnet/sdk:5.0</code><br>run-time image: <code>mcr.microsoft.com/dotnet/runtime:5.0</code></p><p>도커 이미지 정보는 아래 <code>.NET Runtime - Docker Hub</code> 페이지에서 확인할 수 있습니다.</p><p><a href="https://hub.docker.com/_/microsoft-dotnet-runtime/" target="_blank" rel="noopener">.NET Runtime - Docker Hub</a></p><p><code>.NET Runtime - Docker Hub</code> 페이지에서 관련 저장소를 확인하세요.</p><p>아래는 .NET 5 프로젝트에서 사용되는 도커파일 예제입니다.</p><pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM mcr.microsoft.com&#x2F;dotnet&#x2F;sdk:5.0 AS buildWORKDIR &#x2F;app# copy csproj and restore as distinct layersCOPY . .RUN dotnet restore# copy everything else and build appRUN cd Bing.Wallpaper.Service.App &amp;&amp; dotnet publish -c Release -o &#x2F;app&#x2F;outFROM mcr.microsoft.com&#x2F;dotnet&#x2F;runtime:5.0 AS runtimeWORKDIR &#x2F;appCOPY --from&#x3D;build &#x2F;app&#x2F;out .&#x2F;ENTRYPOINT [&quot;dotnet&quot;, &quot;Bing.Wallpaper.Service.App.dll&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h2><p>의존 패키지가 .NET 5 호환 가능한 버전이 존재해서 큰 문제없이 변경되었습니다.</p><p><a href="https://github.com/bbonkr/bing-wallpaper/tree/d3151bedcadefdcbf7c144c568a871c7718a94cb" target="_blank" rel="noopener"><code>Commit &lt;&gt; d3151bedcadefdcbf7c144c568a871c7718a94cb</code></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> HowTo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> .net </tag>
+            
+            <tag> .net 5 </tag>
+            
+            <tag> migration </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SPA 에서 파일 다운로드</title>
+      <link href="/2020/09/07/filedownload-within-spa/"/>
+      <url>/2020/09/07/filedownload-within-spa/</url>
+      
+        <content type="html"><![CDATA[<p>SPA <small>Single Page Application</small> 로 작성중인 웹 응용프로그램에서 파일 다운로드를 구현할 때, 새 창으로 다운로드할 파일의 URI를 제공해서 처리하면 매우 편리하게 파일을 다운로드할 수 있습니다.</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fileDownloadUri <span class="token operator">=</span> <span class="token string">'파일 다운로드 URI'</span><span class="token punctuation">;</span>window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>fileDownloadUri<span class="token punctuation">,</span> <span class="token string">'_blank'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>파일 URI와 함께 인증이 필요할 때, 쿠키를 사용중이면 동일하게 사용하면 됩니다.</p><p>그런데, 쿠키를 사용하지 않고, JWT 등을 사용해서 요청 헤더에 데이터를 제공하는 형식으로 인증을 처리중이면, 새창을 열어서 처리하는 방식으로는 처리가 불가능합니다.</p><p>이 때, 사용할 수 있는 간단한 코드조각을 npm 패키지로 공유합니다.</p><h2 id="📢-bbon-filedownload-패키지"><a href="#📢-bbon-filedownload-패키지" class="headerlink" title="📢 @bbon/filedownload 패키지"></a>📢 @bbon/filedownload 패키지</h2><p><a href="https://www.npmjs.com/package/@bbon/filedownload" target="_blank" rel="noopener">npm: @bbon/filedownload 패키지</a> 페이지에서 패키지를 확인하실 수 있습니다.</p><h2 id="🛠-설치"><a href="#🛠-설치" class="headerlink" title="🛠 설치"></a>🛠 설치</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> @bbon/filedownload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">yarn</span> <span class="token function">add</span> @bbon/filedownload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="🎮-사용"><a href="#🎮-사용" class="headerlink" title="🎮 사용"></a>🎮 사용</h2><p>HTTP 요청은 사용중인 패키지 또는 API를 사용하시면 됩니다.</p><p>응답 형식은 <code>BLOB</code> 으로 지정되어야 합니다.</p><p>AWS S3, Azure Storage, Google Cloud Storage 등의 클라우드 객체 저장소에 사용이 가능합니다.<br>물론, 직접 구현한 웹 응용프로그램의 BLOB 응답에도 사용가능합니다.</p><p>예제 코드에서 HTTP 요청은 <a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">Axios 패키지</a>를 사용합니다.</p><pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">const</span> requestConfig<span class="token operator">:</span> AxiosRequestConfig <span class="token operator">=</span> <span class="token punctuation">&#123;</span>    <span class="token operator">...</span>Axios<span class="token punctuation">.</span>defaults<span class="token punctuation">,</span>    responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>Axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>fileDownloadUrl<span class="token punctuation">,</span> requestConfig<span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>            <span class="token keyword">const</span> contentType <span class="token operator">=</span>                res<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'content-type'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token string">'application/octet-stream'</span><span class="token punctuation">;</span>            <span class="token keyword">const</span> helper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileDownloadHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            helper<span class="token punctuation">.</span><span class="token function">download</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>                data<span class="token operator">:</span> res<span class="token punctuation">.</span>data<span class="token punctuation">,</span>                filename<span class="token operator">:</span> fileName<span class="token punctuation">,</span>                contentType<span class="token punctuation">,</span>            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">&#125;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token keyword">finally</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token function">setLoading</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>전체코드는 <a href="https://github.com/bbonkr/bbon-filedownload-sample" target="_blank" rel="noopener">GitHub: bbon-filedownload-sample</a> 저장소에서 확인하실 수 있습니다.</p><p><a href="https://bbon.me/bbon-filedownload-sample/">😎 예제 페이지</a>에서 동작을 확인하실 수 있습니다. <small>(다운로드 버튼을 클릭하면, 빨간 이미지를 다운로드합니다. 확인하실 때 눈👁을 조심하십시오.)</small></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> HowTo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> npm </tag>
+            
+            <tag> react </tag>
+            
+            <tag> typescript </tag>
+            
+            <tag> code snippet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WSL 2 on Windows 10 build 2004</title>
+      <link href="/2020/06/01/wsl-2-windows-10-build-2004/"/>
+      <url>/2020/06/01/wsl-2-windows-10-build-2004/</url>
+      
+        <content type="html"><![CDATA[<p>최근 게시된 Windows 10 Build 2004 는 WSL 2 버전<small>Windows Subsystem Linux version 2</small>이 포함되어 있습니다.</p><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-003.png" class=""><p>WSL 2 버전은 Linux용 Windows 하위 시스템 아키텍쳐의 새로운 버전입니다.</p><p>WSL 2 버전은 파일 시스템 성능을 높이고, 전체 시스템 호출 호환성을 추가합니다.</p><p>WSL 2 버전은 WSL 1버전을 대체하지 않으므로, 리눅스 배포반을 사용할 때, WSL 2 버전 또는 WSL 1 버전을 선택적으로 지정할 수 있습니다.</p><h2 id="WSL-사용"><a href="#WSL-사용" class="headerlink" title="WSL 사용"></a>WSL 사용</h2><p>WSL 을 사용하려면 아래 두 Windows 기능을 사용하도록 변경되어야 합니다.</p><p>기능 이름: 가상 머신 플랫폼 Virtual Machine Platform</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName VirtualMachinePlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>기능 이름: Linux용 Windows 하위 시스템 Windows Subsystem for Linux</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName Microsoft<span class="token operator">-</span>Windows<span class="token operator">-</span>Subsystem<span class="token operator">-</span>Linux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-001.png" class=""><h2 id="리눅스-배포판-설치"><a href="#리눅스-배포판-설치" class="headerlink" title="리눅스 배포판 설치"></a>리눅스 배포판 설치</h2><p>리눅스 배포판의 설치 방법은 여러 가지가 제공됩니다.</p><p>가장 쉬운 방법은 Windows Store 에서 리눅스 배포판을 검색하고, 설치하는 방법입니다.</p><p>예를 들어 리눅스 배포판중 Ubuntu를 사용하려면 Windows Store 에서 Ubuntu를 검색하고, 원하는 버전을 설치한 후 실행하면 됩니다.</p><img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-002.png" class=""><p>리눅스 배포판이 설치된 후 실행하면 리눅스에서 사용할 사용자 이름, 비밀번호를 입력하는 창이 열리고, 원하는 사용자 이름, 비밀번호를 입력한 후 사용하시면 됩니다.</p><h2 id="WSL-1-버전-사용자"><a href="#WSL-1-버전-사용자" class="headerlink" title="WSL 1 버전 사용자"></a>WSL 1 버전 사용자</h2><p>WSL 1 버전으로 리눅스 배포판을 사용중이면, WSL 1 버전을 계속 사용해도 되고, WSL 2 버전으로 변경할 수도 있습니다.</p><p><code>wsl -l -v</code> 명령으로 현재 실행중인 배포판 목록을 확인할 수 있습니다.</p><p>배포판 이름, 상태, WSL 버전이 출력됩니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v  NAME            STATE           VERSION<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Running         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>WSL 2 버전으로 변경하려면 <code>wsl --set-version &lt;distribution name&gt; &lt;version&gt;</code> 명령으로 배포판을 실행할 WSL 버전을 지정할 수 있습니다.</p><p>예를 들어 배포판 이름이 Ubuntu-20.04 이고 WSL 1 버전으로 실행 중인 리눅스 배포판을 WSL 2 버전으로 실행되도록 변경하려면 아래와 같이 명령을 실행합니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>WSL 2 버전로 실행중인 배포판을 WSL 1 버전으로 변경할 수도 있습니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-versoin</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="❗-WSL-버전-변경-동작안함"><a href="#❗-WSL-버전-변경-동작안함" class="headerlink" title="❗ WSL 버전 변경 동작안함"></a>❗ WSL 버전 변경 동작안함</h2><p>저는 WSL 1 버전을 사용했었고, 글 작성 당시에는 WSL 1 버전을 사용하지 않게 설정되어 있는 상태였습니다.</p><p>WSL 2 버전사용을 위해 Windows 기능을 활성화하고, 리눅스 배포판을 설치한 후 WSL 2 버전으로 변경을 시도했는데, 처리되는 것 같지 았았습니다.<br><code>wsl --set-version Ubuntu-20.04 2</code> 명령 실행 후 금방 종료되어 버렸습니다.</p><p>WSL 배포판 목록을 확인해 보니, 여전히 WSL 1 버전으로 출력됩니다.</p><p>관련 문제를 검색해보니, <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 리눅스 커널 업데이트</a> 페이지를 확인하고, x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지를 다운로드하고 설치했습니다.</p><p>x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지 설치 후 다시 WSL 2 버전으로 변경을 시도하니 시간이 조금 흐른 후 종료되었습니다.</p><p>WSL 배포판 목록을 확인해보니, WSL 2 버전으로 실행중임을 확인할 수 있었습니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2Conversion in progress<span class="token punctuation">,</span> this may take a few minutes<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token keyword">For</span> information on key differences with WSL 2 please visit https:<span class="token operator">/</span><span class="token operator">/</span>aka<span class="token punctuation">.</span>ms<span class="token operator">/</span>wsl2Conversion complete<span class="token punctuation">.</span><span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v NAME            STATE           VERSION<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Stopped         2 Debian          Stopped         1 Ubuntu          Stopped         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>리눅스에서 윈도우 파일 시스템으로 관리되는 Git 로컬 저장소의 파일 처리는 WSL 1 버전에 비해 빨라졌지만, 느립니다. 💦</p><p>Windows 사용자 디렉터리와 WSL 사용자 디렉터리는 분리되어 있습니다.</p><p>Windows 에서 WSL 사용자 디렉터리에 접근하려면 <code>\\wsl$\&lt;distribution name&gt;\home\&lt;linux username&gt;</code>와 같이 네트워크 경로를 사용해서 접근할 수 있습니다. 👏</p><p>예를 들어 배포판 이름이 <code>Ubuntu-20.04</code> 이고, 리눅스 사용자 이름이 <code>bbon</code>이면, 연결 경로는 아래와 같습니다.</p><p>🙌 <code>\\wsl$\Ubuntu-20.04\home\bbon</code></p><p>윈도우에서 사용하는 Visual Studio Code 에 <a href="https://code.visualstudio.com/blogs/2019/09/03/wsl2" target="_blank" rel="noopener">Remote -WSL 확장</a>을 설치한 후 리눅스에서 Visual Studio Code를 실행 <code>$ code .</code> 하면, Visual Studio Code Server 가 시작되고, 윈도우에서 리눅스의 파일시스템에 원격으로 연결해서 작업이 가능합니다. 👍</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ code <span class="token builtin class-name">.</span>Installing VS Code Server <span class="token keyword">for</span> x64 <span class="token punctuation">(</span>0000000000000000000000000000000000000000<span class="token punctuation">)</span>Downloading: <span class="token number">100</span>%Unpacking: <span class="token number">100</span>%Unpacked <span class="token number">2321</span> files and folders to /home/bbon/.vscode-server/bin/0000000000000000000000000000000000000000.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p><p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><ul><li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/" target="_blank" rel="noopener">Linux용 Windows 하위 시스템 설명서</a></li><li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 Linux 커널 업데이트</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> HowTo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> microsoft </tag>
+            
+            <tag> linux </tag>
+            
+            <tag> Windows 10 </tag>
+            
+            <tag> wsl </tag>
+            
+            <tag> Windows Subsystem for linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>나의 NPM 패키지 만들기</title>
       <link href="/2020/04/25/publish-my-npm-package/"/>
       <url>/2020/04/25/publish-my-npm-package/</url>

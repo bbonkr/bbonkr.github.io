@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="ko" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>WSL 2 on Windows 10 build 2004 · {bbon}</title><meta name="description"><meta name="og:title" content="WSL 2 on Windows 10 build 2004"><meta name="og:type" content="website"><meta name="og:url" content="http://bbon.me/2020/06/01/wsl-2-windows-10-build-2004/"><meta name="og:image" content="/images/logo.png"><meta name="og:description"><meta name="twitter:card" content="summary"><meta name="witter:site" content="@bbonkr"><meta name="witter:creator" content="@bbonkr"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/chiangmai.css"><link rel="stylesheet" href="/css/prism.css"><link rel="search" type="application/opensearchdescription+xml" href="http://bbon.me/atom.xml" title="{bbon}"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="{bbon}" type="application/atom+xml">
+</head><body class="post"><div id="fb-root"></div><div class="wrap"><header><nav class="navi-post"><a class="navi-post-back" href="javascript:history.back()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="navi-post-home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a></nav></header><main class="post"><div class="post"><article class="post-block"><h1 class="post-title">WSL 2 on Windows 10 build 2004</h1><div class="post-info"><div class="post-info-profile"><a href="https://github.com/bbonkr" target="_blank"><img src="/images/me.png"></a></div><div class="post-info-details"><div class="post-categories"><a href="/categories/HowTo" target="_self"><span>HOWTO</span></a></div><div class="post-date">2020년 6월 1일</div></div></div><div class="post-share"><div class="fb-like" data-href="http://bbon.me/2020/06/01/wsl-2-windows-10-build-2004/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">                 </div><div class="fb-share-button" data-href="http://bbon.me/2020/06/01/wsl-2-windows-10-build-2004/" data-layout="button" data-size="small" data-mobile-iframe="true"></div></div><div class="post-content"><p>최근 게시된 Windows 10 Build 2004 는 WSL 2 버전<small>Windows Subsystem Linux version 2</small>이 포함되어 있습니다.</p>
+<img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-003.png" class="">
+
+<p>WSL 2 버전은 Linux용 Windows 하위 시스템 아키텍쳐의 새로운 버전입니다.</p>
+<p>WSL 2 버전은 파일 시스템 성능을 높이고, 전체 시스템 호출 호환성을 추가합니다.</p>
+<p>WSL 2 버전은 WSL 1버전을 대체하지 않으므로, 리눅스 배포반을 사용할 때, WSL 2 버전 또는 WSL 1 버전을 선택적으로 지정할 수 있습니다.</p>
+<h2 id="WSL-사용"><a href="#WSL-사용" class="headerlink" title="WSL 사용"></a>WSL 사용</h2><p>WSL 을 사용하려면 아래 두 Windows 기능을 사용하도록 변경되어야 합니다.</p>
+<p>기능 이름: 가상 머신 플랫폼 Virtual Machine Platform</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName VirtualMachinePlatform<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>기능 이름: Linux용 Windows 하위 시스템 Windows Subsystem for Linux</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> <span class="token function">Enable-WindowsOptionalFeature</span> <span class="token operator">-</span>Online <span class="token operator">-</span>FeatureName Microsoft<span class="token operator">-</span>Windows<span class="token operator">-</span>Subsystem<span class="token operator">-</span>Linux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-001.png" class="">
+
+<h2 id="리눅스-배포판-설치"><a href="#리눅스-배포판-설치" class="headerlink" title="리눅스 배포판 설치"></a>리눅스 배포판 설치</h2><p>리눅스 배포판의 설치 방법은 여러 가지가 제공됩니다.</p>
+<p>가장 쉬운 방법은 Windows Store 에서 리눅스 배포판을 검색하고, 설치하는 방법입니다.</p>
+<p>예를 들어 리눅스 배포판중 Ubuntu를 사용하려면 Windows Store 에서 Ubuntu를 검색하고, 원하는 버전을 설치한 후 실행하면 됩니다.</p>
+<img src="/2020/06/01/wsl-2-windows-10-build-2004/2020-06-01-wsl-2-windows-10-build-2004-002.png" class="">
+
+<p>리눅스 배포판이 설치된 후 실행하면 리눅스에서 사용할 사용자 이름, 비밀번호를 입력하는 창이 열리고, 원하는 사용자 이름, 비밀번호를 입력한 후 사용하시면 됩니다.</p>
+<h2 id="WSL-1-버전-사용자"><a href="#WSL-1-버전-사용자" class="headerlink" title="WSL 1 버전 사용자"></a>WSL 1 버전 사용자</h2><p>WSL 1 버전으로 리눅스 배포판을 사용중이면, WSL 1 버전을 계속 사용해도 되고, WSL 2 버전으로 변경할 수도 있습니다.</p>
+<p><code>wsl -l -v</code> 명령으로 현재 실행중인 배포판 목록을 확인할 수 있습니다.</p>
+<p>배포판 이름, 상태, WSL 버전이 출력됩니다.</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v
+  NAME            STATE           VERSION
+<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Running         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>WSL 2 버전으로 변경하려면 <code>wsl --set-version &lt;distribution name&gt; &lt;version&gt;</code> 명령으로 배포판을 실행할 WSL 버전을 지정할 수 있습니다.</p>
+<p>예를 들어 배포판 이름이 Ubuntu-20.04 이고 WSL 1 버전으로 실행 중인 리눅스 배포판을 WSL 2 버전으로 실행되도록 변경하려면 아래와 같이 명령을 실행합니다.</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>WSL 2 버전로 실행중인 배포판을 WSL 1 버전으로 변경할 수도 있습니다.</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-versoin</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="❗-WSL-버전-변경-동작안함"><a href="#❗-WSL-버전-변경-동작안함" class="headerlink" title="❗ WSL 버전 변경 동작안함"></a>❗ WSL 버전 변경 동작안함</h2><p>저는 WSL 1 버전을 사용했었고, 글 작성 당시에는 WSL 1 버전을 사용하지 않게 설정되어 있는 상태였습니다.</p>
+<p>WSL 2 버전사용을 위해 Windows 기능을 활성화하고, 리눅스 배포판을 설치한 후 WSL 2 버전으로 변경을 시도했는데, 처리되는 것 같지 았았습니다.<br><code>wsl --set-version Ubuntu-20.04 2</code> 명령 실행 후 금방 종료되어 버렸습니다.</p>
+<p>WSL 배포판 목록을 확인해 보니, 여전히 WSL 1 버전으로 출력됩니다.</p>
+<p>관련 문제를 검색해보니, <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 리눅스 커널 업데이트</a> 페이지를 확인하고, x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지를 다운로드하고 설치했습니다.</p>
+<p>x64 장치용 최신 WSL 2 리눅스 커널 업데이트 패키지 설치 후 다시 WSL 2 버전으로 변경을 시도하니 시간이 조금 흐른 후 종료되었습니다.</p>
+<p>WSL 배포판 목록을 확인해보니, WSL 2 버전으로 실행중임을 확인할 수 있었습니다.</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> wsl <span class="token operator">--</span><span class="token function">set-version</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04 2
+Conversion in progress<span class="token punctuation">,</span> this may take a few minutes<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">For</span> information on key differences with WSL 2 please visit https:<span class="token operator">/</span><span class="token operator">/</span>aka<span class="token punctuation">.</span>ms<span class="token operator">/</span>wsl2
+Conversion complete<span class="token punctuation">.</span>
+<span class="token function">PS</span>> wsl <span class="token operator">-</span>l <span class="token operator">-</span>v
+ NAME            STATE           VERSION
+<span class="token operator">*</span> Ubuntu<span class="token operator">-</span>20<span class="token punctuation">.</span>04    Stopped         2
+ Debian          Stopped         1
+ Ubuntu          Stopped         2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h2><p>리눅스에서 윈도우 파일 시스템으로 관리되는 Git 로컬 저장소의 파일 처리는 WSL 1 버전에 비해 빨라졌지만, 느립니다. 💦</p>
+<p>Windows 사용자 디렉터리와 WSL 사용자 디렉터리는 분리되어 있습니다.</p>
+<p>Windows 에서 WSL 사용자 디렉터리에 접근하려면 <code>\\wsl$\&lt;distribution name&gt;\home\&lt;linux username&gt;</code>와 같이 네트워크 경로를 사용해서 접근할 수 있습니다. 👏</p>
+<p>예를 들어 배포판 이름이 <code>Ubuntu-20.04</code> 이고, 리눅스 사용자 이름이 <code>bbon</code>이면, 연결 경로는 아래와 같습니다.</p>
+<p>🙌 <code>\\wsl$\Ubuntu-20.04\home\bbon</code></p>
+<p>윈도우에서 사용하는 Visual Studio Code 에 <a href="https://code.visualstudio.com/blogs/2019/09/03/wsl2" target="_blank" rel="noopener">Remote -WSL 확장</a>을 설치한 후 리눅스에서 Visual Studio Code를 실행 <code>$ code .</code> 하면, Visual Studio Code Server 가 시작되고, 윈도우에서 리눅스의 파일시스템에 원격으로 연결해서 작업이 가능합니다. 👍</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ code <span class="token builtin class-name">.</span>
+Installing VS Code Server <span class="token keyword">for</span> x64 <span class="token punctuation">(</span>0000000000000000000000000000000000000000<span class="token punctuation">)</span>
+Downloading: <span class="token number">100</span>%
+Unpacking: <span class="token number">100</span>%
+Unpacked <span class="token number">2321</span> files and folders to /home/bbon/.vscode-server/bin/0000000000000000000000000000000000000000.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p>
+<p>리눅스 배포판을 연결하려면 명령 프롬프트를 열고, <code>bash</code> 명령을 실행하면 기본 리눅스 배포판이 연결됩니다.</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">PS</span>> bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><ul>
+<li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/" target="_blank" rel="noopener">Linux용 Windows 하위 시스템 설명서</a></li>
+<li>  <a href="https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">WSL 2 Linux 커널 업데이트</a></li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2020/04/25/publish-my-npm-package/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a><a class="next" href="/2020/09/07/filedownload-within-spa/"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div class="copyright"><p>© 2019 - 2021 <a href="https://github.com/bbonkr" target="_blank">bbon</a>. Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/stunstunstun/hexo-theme-chiangmai" target="_blank">hexo-theme-chiangmai</a>.</p></div></footer></div><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','UA-64779499-1','auto');ga('send','pageview');</script></body></html>
