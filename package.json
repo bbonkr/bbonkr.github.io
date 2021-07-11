@@ -11,7 +11,8 @@
     "g": "npx hexo generate",
     "deploy": "npx hexo deploy",
     "d": "npx hexo deploy",
-    "build:theme:chiangmai": "gulp --gulpfile themes/chiangmai/gulpfile.js sassTask"
+    "build:theme:chiangmai": "gulp --gulpfile themes/chiangmai/gulpfile.js sassTask",
+    "new:post": "hexo new post "
   },
   "hexo": {
     "version": "5.4.0"
