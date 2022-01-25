@@ -10,6 +10,7 @@
         // "checkJs": true,
         "jsx": "react",
         "strict": true,
+        "moduleResolution": "node",
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -18,7 +19,8 @@
     },
     "exclude": [
         "node_modules",
-        "content"
+        "content",
+        "src/**/__*.tsx"
     ],
     "include": [
         "./src/**/*",    

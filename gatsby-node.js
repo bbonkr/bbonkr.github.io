@@ -1,88 +1,119 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const kebabCase = require('lodash/kebabCase');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
+    const { createPage } = actions;
 
-  // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`);
+    // Define a template for blog post
+    const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
+    const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
 
-  // Get all markdown blog posts sorted by date
-  const result = await graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
-        ) {
-          nodes {
-            id
-            fields {
-              slug
+    // Get all markdown blog posts sorted by date
+    const result = await graphql(
+        `
+            {
+                allMarkdownRemark(
+                    sort: { fields: [frontmatter___date], order: ASC }
+                    limit: 2000
+                ) {
+                    edges {
+                        node {
+                            id
+                            fields {
+                                slug
+                            }
+                            frontmatter {
+                                tags
+                                github {
+                                    owner
+                                    repo
+                                }
+                            }
+                        }
+                    }
+                }
+                tagsGroup: allMarkdownRemark(limit: 2000) {
+                    group(field: frontmatter___tags) {
+                        fieldValue
+                    }
+                }
             }
-          }
-        }
-      }
-    `
-  );
-
-  if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors
+        `
     );
-    return;
-  }
 
-  const posts = result.data.allMarkdownRemark.nodes;
+    if (result.errors) {
+        reporter.panicOnBuild(
+            `There was an error loading your blog posts`,
+            result.errors
+        );
+        return;
+    }
 
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
+    const edges = result.data.allMarkdownRemark.edges;
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id;
-      const nextPostId =
-        index === posts.length - 1 ? null : posts[index + 1].id;
+    // Create blog posts pages
+    // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
+    // `context` is available in the template as a prop and as a variable in GraphQL
 
-      createPage({
-        path: post.fields.slug,
-        component: blogPost,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
-      });
-    });
-  }
+    if (edges.length > 0) {
+        edges.forEach((edge, index) => {
+            const post = edge.node;
+            const previousPostId =
+                index === 0 ? null : edges[index - 1].node.id;
+            const nextPostId =
+                index === edges.length - 1 ? null : edges[index + 1].node.id;
+
+            createPage({
+                path: post.fields.slug,
+                component: blogPost,
+                context: {
+                    id: post.id,
+                    previousPostId,
+                    nextPostId,
+                },
+            });
+        });
+    }
+
+    const tags = result.data.tagsGroup.group;
+    if (typeof tags !== 'undefined' && tags.length > 0) {
+        tags.forEach((tag) => {
+            createPage({
+                path: `/tags/${kebabCase(tag.fieldValue)}/`,
+                component: tagTemplate,
+                context: {
+                    tag: tag.fieldValue,
+                },
+            });
+        });
+    }
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+    const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    if (node.internal.type === `MarkdownRemark`) {
+        const value = createFilePath({ node, getNode });
 
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    });
-  }
+        createNodeField({
+            name: `slug`,
+            node,
+            value,
+        });
+    }
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
+    const { createTypes } = actions;
 
-  // Explicitly define the siteMetadata {} object
-  // This way those will always be defined even if removed from gatsby-config.js
+    // Explicitly define the siteMetadata {} object
+    // This way those will always be defined even if removed from gatsby-config.js
 
-  // Also explicitly define the Markdown frontmatter
-  // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
-  createTypes(`
+    // Also explicitly define the Markdown frontmatter
+    // This way the "MarkdownRemark" queries will return `null` even when no
+    // blog posts are stored inside "content/blog" instead of returning an error
+    createTypes(`
     type SiteSiteMetadata {
       author: Author
       siteUrl: String
@@ -103,10 +134,16 @@ exports.createSchemaCustomization = ({ actions }) => {
       fields: Fields
     }
 
+    type GitHub {
+        owner: String
+        repo: String
+    }
     type Frontmatter {
       title: String
       description: String
       date: Date @dateformat
+      tags: [String]
+      github: GitHub
     }
 
     type Fields {
