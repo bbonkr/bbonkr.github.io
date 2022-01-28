@@ -1,17 +1,14 @@
 import * as React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, PageProps } from 'gatsby';
 
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Posts } from '../models/data';
+import kebabCase from 'lodash/kebabCase';
+import PostListItem from '../components/post-list-item';
 
-interface BlogIndexProps {
-    data: Posts;
-    location: Location;
-}
-
-const BlogIndex = ({ data, location }: BlogIndexProps) => {
+const BlogIndex = ({ data, location }: PageProps<Posts>) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const posts = data.allMarkdownRemark.edges;
 
@@ -40,44 +37,7 @@ const BlogIndex = ({ data, location }: BlogIndexProps) => {
 
                     return (
                         <li key={post.node.fields.slug}>
-                            <article
-                                className="post-list-item"
-                                itemScope
-                                itemType="http://schema.org/Article"
-                            >
-                                <header>
-                                    <h2>
-                                        <Link
-                                            to={post.node.fields.slug}
-                                            itemProp="url"
-                                        >
-                                            <span itemProp="headline">
-                                                {title}
-                                            </span>
-                                        </Link>
-                                    </h2>
-                                    <small>{post.node.frontmatter.date}</small>
-                                    <ul>
-                                        {post.node.frontmatter.tags?.map(
-                                            (tag) => (
-                                                <li key={tag}>{tag}</li>
-                                            )
-                                        )}
-                                    </ul>
-                                </header>
-                                <section>
-                                    <p
-                                        dangerouslySetInnerHTML={{
-                                            __html:
-                                                (post.node.frontmatter
-                                                    .description ||
-                                                    post.node.excerpt) ??
-                                                '',
-                                        }}
-                                        itemProp="description"
-                                    />
-                                </section>
-                            </article>
+                            <PostListItem post={post} />
                         </li>
                     );
                 })}
@@ -109,6 +69,8 @@ export const pageQuery = graphql`
                         date(formatString: "MMMM DD, YYYY")
                         title
                         description
+                        tags
+                        categories
                     }
                 }
             }

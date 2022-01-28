@@ -27,15 +27,24 @@ interface Edge {
     node: MarkdownRemark;
 }
 
+export type Post = Edge;
+
 interface MarkdownRemarks {
     edges?: Edge[];
 }
 
-interface SiteMetadata {
-    title: string;
+interface Author {
+    name: string;
+    summary?: string;
 }
 
-interface Site {
+interface SiteMetadata {
+    title?: string;
+    author: Author;
+    social?: Social;
+}
+
+export interface Site {
     siteMetadata?: SiteMetadata;
 }
 
@@ -49,4 +58,17 @@ export interface Data {
 export interface Posts {
     site: Site;
     allMarkdownRemark: MarkdownRemarks;
+}
+
+export interface Tag {
+    fieldValue: string;
+    totalCount: number;
+    edges: Post[];
+}
+
+export interface Social {
+    twitter?: string;
+    github?: string;
+    linkedin?: string;
+    facebook?: string;
 }

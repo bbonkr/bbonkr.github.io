@@ -1,34 +1,21 @@
 import { useStaticQuery, graphql } from 'gatsby';
-
-interface Author {
-    name: string;
-    summary?: string;
-}
-
-interface Social {
-    twitter?: string;
-}
-
-interface SiteMetadata {
-    author: Author;
-    social?: Social;
-}
-
-interface Site {
-    siteMetadata: SiteMetadata;
-}
+import { Site } from '../../models/data';
 
 export const useSiteQuery = () => {
     const data = useStaticQuery<{ site: Site }>(graphql`
         query BioQuery {
             site {
                 siteMetadata {
+                    title
                     author {
                         name
                         summary
                     }
                     social {
                         twitter
+                        github
+                        linkedin
+                        facebook
                     }
                 }
             }

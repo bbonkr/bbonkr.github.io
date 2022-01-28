@@ -1,0 +1,29 @@
+.article-body > * {
+    @apply py-3;
+}
+
+.article-body > h1,
+.article-body > h2,
+.article-body > h3,
+.article-body > h4,
+.article-body > h5,
+.article-body > h6 {
+    @apply py-2;
+}
+
+.article-body > p {
+    @apply py-6;
+}
+
+.article-body > ul > li,
+.article-body > ol > li {
+    @apply py-3;
+}
+
+.article-body > pre {
+    @apply bg-gray-900 rounded text-white font-mono text-base p-2 md:p-4;
+}
+
+.article-body > pre > code {
+    @apply break-words whitespace-pre-wrap;
+}

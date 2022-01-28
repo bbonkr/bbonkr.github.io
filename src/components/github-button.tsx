@@ -1,8 +1,5 @@
 import * as React from 'react';
 
-//import 'github-buttons/dist/buttons.js';
-import { render } from 'github-buttons';
-
 interface GitHubButtonProps {
     owner: string;
     repo: string;
@@ -15,19 +12,23 @@ const GitHubButtons = ({ owner, repo, size, showCount }: GitHubButtonProps) => {
     const repoUrl = `https://github.com/${owner}/${repo}`;
 
     React.useEffect(() => {
-        document
-            .querySelectorAll<HTMLAnchorElement>(
-                '.github-buttons .github-button'
-            )
-            ?.forEach((anchor) => {
-                render(anchor, (el) => {
-                    anchor.parentNode?.replaceChild(el, anchor);
-                });
+        if (window) {
+            import('github-buttons').then(({ render }) => {
+                document
+                    .querySelectorAll<HTMLAnchorElement>(
+                        '.github-buttons .github-button'
+                    )
+                    ?.forEach((anchor) => {
+                        render(anchor, (el) => {
+                            anchor.parentNode?.replaceChild(el, anchor);
+                        });
+                    });
             });
+        }
     }, []);
 
     return (
-        <ul className="github-buttons">
+        <ul className="github-buttons flex gap-3 flex-wrap">
             {/* Star | Watch | Fork | Issue | Follow */}
             <li>
                 <a

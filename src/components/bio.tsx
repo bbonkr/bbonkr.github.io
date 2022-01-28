@@ -6,9 +6,11 @@
  */
 
 import * as React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+import { FaTwitter } from 'react-icons/fa';
 import { useSiteQuery } from '../hooks/queries/useSiteQuery';
+import SocialLinks from './social-links';
+
 const Bio = () => {
     const { site } = useSiteQuery();
 
@@ -17,26 +19,34 @@ const Bio = () => {
     const social = site.siteMetadata?.social;
 
     return (
-        <div className="bio">
+        <div id="bio" className="flex w-full items-center font-sans px-4 py-12">
             <StaticImage
-                className="bio-avatar"
+                className="w-10 h-10 rounded-full mr-4"
                 layout="fixed"
                 formats={['auto', 'webp', 'avif']}
-                src="../images/profile-pic.png"
+                src="../images/me.png"
                 width={50}
                 height={50}
                 quality={95}
                 alt="Profile picture"
             />
             {author?.name && (
-                <p>
-                    Written by <strong>{author.name}</strong>{' '}
-                    {author?.summary || null}
-                    {` `}
-                    <a href={`https://twitter.com/${social?.twitter || ``}`}>
-                        You should follow them on Twitter
-                    </a>
-                </p>
+                <div className="flex-1 px-2">
+                    <p className="text-base font-bold md:text-xl leading-none mb-2">
+                        {author.name}
+                        {author?.summary || null}{' '}
+                    </p>
+                    {author?.summary && (
+                        <p className="text-gray-600 dark:text-gray-400 text-xs md:text-base">
+                            {author?.summary}
+                        </p>
+                    )}
+                    {social && (
+                        <div className="justify-end">
+                            <SocialLinks social={social} />
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );

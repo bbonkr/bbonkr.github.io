@@ -1,45 +1,86 @@
-import * as React from "react";
-import { Link } from "gatsby";
+import * as React from 'react';
+import { Link } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import { Header } from '../components/header';
+import MainNav from './main-nav';
 
 interface LayoutProps {
-  location: Location;
-  title: string;
+    location: Location;
+    title: string;
 }
 
 const Layout = ({
-  location,
-  title,
-  children,
+    location,
+    title,
+    children,
 }: React.PropsWithChildren<LayoutProps>) => {
-  const rootPath = "/"; // `${__PATH_PREFIX__}/`;
-  const isRootPath = location.pathname === rootPath;
-  let header;
+    const rootPath = '/'; // `${__PATH_PREFIX__}/`;
+    const isRootPath = location.pathname === rootPath;
+    let header;
 
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    );
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    );
-  }
+    if (isRootPath) {
+        header = (
+            <h1 className="main-heading">
+                <Link to="/">{title}</Link>
+            </h1>
+        );
+    } else {
+        header = (
+            <Link className="header-link-home" to="/">
+                {title}
+            </Link>
+        );
+    }
 
-  return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
-  );
+    return (
+        <React.Fragment>
+            <Helmet
+                bodyAttributes={{
+                    class: 'bg-gray-100 dark:bg-gray-800 font-sans leading-normal tracking-normal',
+                }}
+            />
+            <Header title={title} />
+            <div
+                className="container w-full md:max-w-3xl mx-auto pt-20"
+                data-is-root-path={isRootPath}
+            >
+                {/* <header className="global-header">{header}</header> */}
+
+                {/* <MainNav /> */}
+                <main className="w-full px-4 md:px-6 text-xl text-gray-800 dark:text-gray-400 leading-normal">
+                    {children}
+                </main>
+            </div>
+            <footer className="bg-white dark:bg-gray-900 border-t border-gray-400 dark:border-gray-600 dark:text-gray-100 shadow">
+                {/* <div className="container max-w-4xl mx-auto flex py-8">
+                    <div className="w-full mx-auto flex flex-wrap">
+                        <div className="flex w-full md:w-1/2">
+                            <div className="px-8">
+                                <h3 className="font-bold text-gray-900">
+                                    About
+                                </h3>
+                                <p className="py-4 text-gray-600 text-sm">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Maecenas vel mi ut felis
+                                    tempus commodo nec id erat. Suspendisse
+                                    consectetur dapibus velit ut lacinia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                <div className="container max-w-4xl mx-auto flex flex-col justify-center items-center py-8">
+                    <div className="w-full mx-auto flex flex-wrap flex-1 flex-col justify-center items-center">
+                        <div className="px-8">
+                            © {new Date().getFullYear()}, Built with
+                            {` `}
+                            <a href="https://www.gatsbyjs.com">Gatsby</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </React.Fragment>
+    );
 };
 
 export default Layout;

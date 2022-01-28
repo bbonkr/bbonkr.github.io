@@ -2,7 +2,10 @@
 title: "awesome mac apps"
 date: "2019-01-11"
 description: 
-tags: [example]
+categories:
+  - Example
+tags:
+  - example
 ---
 
 ## Writing

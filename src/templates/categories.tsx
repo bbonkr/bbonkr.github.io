@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 
 interface PageContext {
-    tag: string;
+    category: string;
 }
 
 interface Frontmatter {
@@ -29,8 +29,13 @@ interface Edge {
     node: EdgeNode;
 }
 
+interface Group {
+    fieldValue: string;
+}
+
 interface MarkdownRemark {
     totalCount: number;
+    group: Group[];
     edges: Edge[];
 }
 
@@ -46,19 +51,24 @@ interface Data {
     site: Site;
 }
 
-type TagsProps = PageProps<Data, PageContext>;
-
-const TagTemplate = ({ pageContext, data, location }: TagsProps) => {
-    const { tag } = pageContext;
-    const { totalCount, edges } = data.allMarkdownRemark;
-    const tagHeader = `${totalCount} post${
+const CategoriesTemplate = ({
+    pageContext,
+    data,
+    location,
+}: PageProps<Data, PageContext>) => {
+    // const { category } = pageContext;
+    const { totalCount, group, edges } = data.allMarkdownRemark;
+    const category = group.find((_, index) => index === 0)?.fieldValue ?? '';
+    const categoryHeader = `${totalCount} post${
         totalCount === 1 ? '' : 's'
-    } tagged with "${tag}"`;
+    } in "${category}"`;
+
     const siteTitle = data.site.siteMetadata?.title || `Title`;
+
     return (
         <Layout location={location} title={siteTitle}>
-            <Seo title={tag} description={tagHeader} />
-            <h1>{tagHeader}</h1>
+            <Seo title={category} description={categoryHeader} />
+            <h1>{categoryHeader}</h1>
             <ul>
                 {edges.map(({ node }) => {
                     const { slug } = node.fields;
@@ -71,15 +81,15 @@ const TagTemplate = ({ pageContext, data, location }: TagsProps) => {
                 })}
             </ul>
 
-            <Link to="/tags">All tags</Link>
+            <Link to="/categories">All categories</Link>
         </Layout>
     );
 };
 
-export default TagTemplate;
+export default CategoriesTemplate;
 
 export const pageQuery = graphql`
-    query BlogPostByTag($tag: String!) {
+    query BlogPostByCategory($category: String!) {
         site {
             siteMetadata {
                 title
@@ -88,8 +98,11 @@ export const pageQuery = graphql`
         allMarkdownRemark(
             limit: 2000
             sort: { fields: [frontmatter___date], order: DESC }
-            filter: { frontmatter: { tags: { in: [$tag] } } }
+            filter: { frontmatter: { categories: { in: [$category] } } }
         ) {
+            group(field: frontmatter___categories) {
+                fieldValue
+            }
             totalCount
             edges {
                 node {

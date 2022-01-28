@@ -1,0 +1,11 @@
+.social-list {
+    display: flex;
+    row-gap: 0.3rem;
+    column-gap: 0.6rem;
+    list-style-type: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: var(--spacing-2);
+    margin-bottom: 0;
+}

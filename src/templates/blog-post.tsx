@@ -1,17 +1,13 @@
 import * as React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, PageProps } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
 import GitHubButtons from '../components/github-button';
-interface BlogPostTemplateProps {
-    data: Data;
-    location: Location;
-}
 
-const BlogPostTemplate = ({ data, location }: BlogPostTemplateProps) => {
+const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const { previous, next } = data;
@@ -27,17 +23,32 @@ const BlogPostTemplate = ({ data, location }: BlogPostTemplateProps) => {
                 itemScope
                 itemType="http://schema.org/Article"
             >
-                <header>
-                    <h1 itemProp="headline">{post.frontmatter.title}</h1>
-                    <p>{post.frontmatter.date}</p>
+                <header className="font-sans">
+                    <p className="text-base md:text-sm text-green-500 font-bold">
+                        &lt;{' '}
+                        <Link
+                            to="/"
+                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                        >
+                            BACK TO BLOG
+                        </Link>
+                    </p>
+                    <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+                        {post.frontmatter.title}
+                    </h1>
+                    <p className="text-sm md:text-base font-normal text-gray-600">
+                        {post.frontmatter.date}
+                    </p>
                 </header>
+
                 <section
+                    className="article-body"
                     dangerouslySetInnerHTML={{ __html: post.html }}
                     itemProp="articleBody"
                 />
 
                 {post.frontmatter.github && (
-                    <section>
+                    <section className="article-body">
                         <h2>GitHub Repository</h2>
                         <GitHubButtons
                             repo={post.frontmatter.github.repo}
@@ -48,13 +59,16 @@ const BlogPostTemplate = ({ data, location }: BlogPostTemplateProps) => {
                     </section>
                 )}
 
-                <aside>
+                <aside className="text-base md:text-sm text-gray-500 px-4 py-6">
                     <span>Tags:</span>
-                    <ul className="tags-list">
+                    <ul className="list-style-none flex gap-3 flex-wrap break-words">
                         {post.frontmatter.tags?.map((tag) => {
                             return (
                                 <li key={tag}>
-                                    <Link to={`/tags/${kebabCase(tag)}`}>
+                                    <Link
+                                        to={`/tags/${kebabCase(tag)}`}
+                                        className="text-base md:text-sm text-green-500 no-underline hover:underline"
+                                    >
                                         {tag}
                                     </Link>
                                 </li>
@@ -63,39 +77,51 @@ const BlogPostTemplate = ({ data, location }: BlogPostTemplateProps) => {
                     </ul>
                 </aside>
 
-                <hr />
+                <hr className="border-b-2 border-gray-400 mb-8 mx-4" />
 
                 <footer>
-                    <Bio />
+                    <nav>
+                        <ul className="font-sans flex justify-between content-center px-4 pb-12">
+                            <li className="flex-start text-left">
+                                {previous && (
+                                    <React.Fragment>
+                                        <span className="text-xs md:text-sm font-normal text-gray-600">
+                                            &lt; Previous Post
+                                        </span>
+
+                                        <Link
+                                            to={previous.fields.slug}
+                                            rel="prev"
+                                            className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                                        >
+                                            <br />
+                                            {previous.frontmatter.title}
+                                        </Link>
+                                    </React.Fragment>
+                                )}
+                            </li>
+                            <li className="flex-end text-right">
+                                {next && (
+                                    <React.Fragment>
+                                        <span className="text-xs md:text-sm font-normal text-gray-600">
+                                            Next Post &gt;
+                                        </span>
+                                        <br />
+                                        <Link
+                                            to={next.fields.slug}
+                                            rel="next"
+                                            className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                                        >
+                                            {next.frontmatter.title}
+                                        </Link>
+                                    </React.Fragment>
+                                )}
+                            </li>
+                        </ul>
+                    </nav>
                 </footer>
             </article>
-
-            <nav className="blog-post-nav">
-                <ul
-                    style={{
-                        display: `flex`,
-                        flexWrap: `wrap`,
-                        justifyContent: `space-between`,
-                        listStyle: `none`,
-                        padding: 0,
-                    }}
-                >
-                    <li>
-                        {previous && (
-                            <Link to={previous.fields.slug} rel="prev">
-                                ← {previous.frontmatter.title}
-                            </Link>
-                        )}
-                    </li>
-                    <li>
-                        {next && (
-                            <Link to={next.fields.slug} rel="next">
-                                {next.frontmatter.title} →
-                            </Link>
-                        )}
-                    </li>
-                </ul>
-            </nav>
+            <Bio />
         </Layout>
     );
 };
@@ -121,6 +147,7 @@ export const pageQuery = graphql`
                 title
                 date(formatString: "MMMM DD, YYYY")
                 description
+                categories
                 tags
                 github {
                     owner

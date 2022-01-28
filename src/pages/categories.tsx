@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import kebabCase from 'lodash/kebabCase';
 
-import { Link, graphql } from 'gatsby';
+import { Link, graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Bio from '../components/bio';
@@ -15,13 +15,13 @@ interface Site {
     siteMetadata: SiteMetadata;
 }
 
-interface TagGroup {
+interface Category {
     fieldValue: string;
-    totlaCount: number;
+    totalCount: number;
 }
 
 interface MarkdownRemark {
-    group: TagGroup[];
+    group: Category[];
 }
 
 interface Data {
@@ -29,12 +29,7 @@ interface Data {
     site: Site;
 }
 
-interface TagsPageProps {
-    data: Data;
-    location: Location;
-}
-
-const TagsPage = ({ location, data }: TagsPageProps) => {
+const CategoriesPage = ({ location, data }: PageProps<Data>) => {
     const {
         allMarkdownRemark: { group },
         site: {
@@ -43,15 +38,19 @@ const TagsPage = ({ location, data }: TagsPageProps) => {
     } = data;
     return (
         <Layout location={location} title={title}>
-            <Seo title="All tags" />
+            <Seo title="All categories" />
             <Bio />
             <div>
-                <h1>Tags</h1>
+                <h1>Categories</h1>
                 <ul>
-                    {group.map((tag) => (
-                        <li key={tag.fieldValue}>
-                            <Link to={`/tags/${kebabCase(tag.fieldValue)}`}>
-                                {tag.fieldValue} ({tag.totlaCount})
+                    {group.map((category) => (
+                        <li key={category.fieldValue}>
+                            <Link
+                                to={`/categories/${kebabCase(
+                                    category.fieldValue
+                                )}`}
+                            >
+                                {category.fieldValue} ({category.totalCount})
                             </Link>
                         </li>
                     ))}
@@ -61,7 +60,7 @@ const TagsPage = ({ location, data }: TagsPageProps) => {
     );
 };
 
-export default TagsPage;
+export default CategoriesPage;
 
 export const pageQuery = graphql`
     query {
@@ -71,7 +70,7 @@ export const pageQuery = graphql`
             }
         }
         allMarkdownRemark(limit: 2000) {
-            group(field: frontmatter___tags) {
+            group(field: frontmatter___categories) {
                 fieldValue
                 totalCount
             }

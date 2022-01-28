@@ -8,6 +8,9 @@ module.exports = {
         description: `A starter blog demonstrating what Gatsby can do.`,
         social: {
             twitter: 'bbonkr',
+            github: 'bbonkr',
+            linkedin: 'bbonkr',
+            facebook: 'bbonkr',
         },
     },
     plugins: [
@@ -151,5 +154,6 @@ module.exports = {
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
+        `gatsby-plugin-postcss`,
     ],
 };
