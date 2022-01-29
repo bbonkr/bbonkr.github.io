@@ -3,13 +3,17 @@ import { Tag } from '../../models/data';
 
 // import './tag-list.css';
 
-interface TagListProps {
-    tags: Tag[];
-    selectedTag?: string;
-    onChange?: (tag: string) => void;
+interface CategoryListProps {
+    categories?: Tag[];
+    selectedCategory?: string;
+    onChange?: (category: string) => void;
 }
 
-export const TagList = ({ tags, selectedTag, onChange }: TagListProps) => {
+export const CategoryList = ({
+    categories,
+    selectedCategory,
+    onChange,
+}: CategoryListProps) => {
     const handleClickTag = (tag: string) => () => {
         if (onChange) {
             onChange(tag);
@@ -18,18 +22,18 @@ export const TagList = ({ tags, selectedTag, onChange }: TagListProps) => {
 
     return (
         <ul className="flex flex-row flex-wrap break-words gap-3 px-4 py-3">
-            {tags.map((tag) => (
+            {categories?.map((category) => (
                 <li
-                    key={tag.fieldValue}
+                    key={category.fieldValue}
                     className={`cursor-pointer text-green-600 dark:text-green-600  p-2 ${
-                        selectedTag === tag.fieldValue
+                        selectedCategory === category.fieldValue
                             ? 'cursor-not-allowed border-green-600 border-b-2'
                             : ''
                     }`}
-                    onClick={handleClickTag(tag.fieldValue)}
+                    onClick={handleClickTag(category.fieldValue)}
                 >
                     {`#`}
-                    {tag.fieldValue} ({tag.totalCount})
+                    {category.fieldValue} ({category.totalCount})
                 </li>
             ))}
         </ul>

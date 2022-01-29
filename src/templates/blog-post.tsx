@@ -6,6 +6,8 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
 import GitHubButtons from '../components/github-button';
+import { SimpleTagList } from '../components/tags';
+import ThemeProvider, { Theme } from '../context/theme/theme-context';
 
 const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;
@@ -33,10 +35,10 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                             BACK TO BLOG
                         </Link>
                     </p>
-                    <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+                    <h1 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100 pt-6 pb-2 text-3xl md:text-4xl">
                         {post.frontmatter.title}
                     </h1>
-                    <p className="text-sm md:text-base font-normal text-gray-600">
+                    <p className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
                         {post.frontmatter.date}
                     </p>
                 </header>
@@ -50,34 +52,28 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                 {post.frontmatter.github && (
                     <section className="article-body">
                         <h2>GitHub Repository</h2>
-                        <GitHubButtons
-                            repo={post.frontmatter.github.repo}
-                            owner={post.frontmatter.github.owner}
-                            showCount
-                            size="large"
-                        />
+                        <ThemeProvider.Consumer>
+                            {(state) => (
+                                <GitHubButtons
+                                    repo={post.frontmatter.github!.repo}
+                                    owner={post.frontmatter.github!.owner}
+                                    showCount
+                                    size={'large'}
+                                    theme={state.theme}
+                                />
+                            )}
+                        </ThemeProvider.Consumer>
                     </section>
                 )}
 
                 <aside className="text-base md:text-sm text-gray-500 px-4 py-6">
                     <span>Tags:</span>
                     <ul className="list-style-none flex gap-3 flex-wrap break-words">
-                        {post.frontmatter.tags?.map((tag) => {
-                            return (
-                                <li key={tag}>
-                                    <Link
-                                        to={`/tags/${kebabCase(tag)}`}
-                                        className="text-base md:text-sm text-green-500 no-underline hover:underline"
-                                    >
-                                        {tag}
-                                    </Link>
-                                </li>
-                            );
-                        })}
+                        <SimpleTagList tags={post.frontmatter.tags} />
                     </ul>
                 </aside>
 
-                <hr className="border-b-2 border-gray-400 mb-8 mx-4" />
+                <hr className="border-b-2 border-gray-400 mb-8" />
 
                 <footer>
                     <nav>

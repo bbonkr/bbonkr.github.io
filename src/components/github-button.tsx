@@ -1,99 +1,88 @@
 import * as React from 'react';
+import { Theme } from '../context/theme/theme-context';
+import GitHubButton from 'react-github-btn';
+
+type GitHubButtonType = 'Star' | 'Watch' | 'Fork' | 'Issue' | 'Follow';
+type GitHubButtonSize = 'large';
+
+interface GitHubButtonModel {
+    type: GitHubButtonType;
+    url: string;
+    label?: string;
+    icon?: string;
+    text?: string; // if does not set, use type to text
+}
 
 interface GitHubButtonProps {
     owner: string;
     repo: string;
     showCount?: boolean;
-    size?: 'large';
+    size?: GitHubButtonSize;
+    theme?: Theme;
 }
 
-const GitHubButtons = ({ owner, repo, size, showCount }: GitHubButtonProps) => {
-    const ownerUrl = `https://github.com/${owner}`;
-    const repoUrl = `https://github.com/${owner}/${repo}`;
+const GitHubButtons = React.memo(
+    ({ owner, repo, size, showCount, theme }: GitHubButtonProps) => {
+        const ownerUrl = `https://github.com/${owner}`;
+        const repoUrl = `https://github.com/${owner}/${repo}`;
+        const getColorScheme = (themeValue?: Theme) => {
+            return themeValue
+                ? themeValue
+                : 'no-preference: light; light: light; dark: dark;';
+        };
 
-    React.useEffect(() => {
-        if (window) {
-            import('github-buttons').then(({ render }) => {
-                document
-                    .querySelectorAll<HTMLAnchorElement>(
-                        '.github-buttons .github-button'
-                    )
-                    ?.forEach((anchor) => {
-                        render(anchor, (el) => {
-                            anchor.parentNode?.replaceChild(el, anchor);
-                        });
-                    });
-            });
-        }
-    }, []);
+        const githubButtons: GitHubButtonModel[] = [
+            {
+                type: 'Star',
+                url: repoUrl,
+                icon: 'octicon-star',
+                label: `Star ${owner}/${repo} on GitHub`,
+            },
+            {
+                type: 'Watch',
+                url: `${repoUrl}/subscription`,
+                icon: 'octicon-eye',
+                label: `Watch ${owner}/${repo} on GitHub`,
+            },
+            {
+                type: 'Fork',
+                url: `${repoUrl}/fork`,
+                icon: 'octicon-repo-forked',
+                label: `Fork ${owner}/${repo} on GitHub`,
+            },
+            {
+                type: 'Issue',
+                url: `${repoUrl}/issues`,
+                icon: 'octicon-issue-opened',
+                label: `Issue ${owner}/${repo} on GitHub`,
+            },
+            {
+                type: 'Follow',
+                url: ownerUrl,
+                label: `Follow ${owner}/${repo} on GitHub`,
+                text: `Follow @${owner}`,
+            },
+        ];
 
-    return (
-        <ul className="github-buttons flex gap-3 flex-wrap">
-            {/* Star | Watch | Fork | Issue | Follow */}
-            <li>
-                <a
-                    className="github-button"
-                    href={repoUrl}
-                    data-color-scheme="no-preference: dark; light: light; dark: dark;"
-                    data-icon="octicon-star"
-                    data-show-count={showCount}
-                    data-size={size}
-                    aria-label={`Star ${owner}/${repo} on GitHub`}
-                >
-                    Star
-                </a>
-            </li>
-            <li>
-                <a
-                    className="github-button"
-                    href={`${repoUrl}/subscription`}
-                    data-color-scheme="no-preference: dark; light: light; dark: dark;"
-                    data-icon="octicon-eye"
-                    data-show-count={showCount}
-                    data-size={size}
-                    aria-label={`Watch ${owner}/${repo} on GitHub`}
-                >
-                    Watch
-                </a>
-            </li>
-            <li>
-                <a
-                    className="github-button"
-                    href={`${repoUrl}/fork`}
-                    data-color-scheme="no-preference: dark; light: light; dark: dark;"
-                    data-show-count={showCount}
-                    data-size={size}
-                    aria-label={`Fork ${owner}/${repo} on GitHub`}
-                >
-                    Fork
-                </a>
-            </li>
-            <li>
-                <a
-                    className="github-button"
-                    href={`${repoUrl}/issues`}
-                    data-color-scheme="no-preference: dark; light: light; dark: dark;"
-                    data-show-count={showCount}
-                    data-size={size}
-                    aria-label={`Issue ${owner}/${repo} on GitHub`}
-                >
-                    Issue
-                </a>
-            </li>
-            <li>
-                <a
-                    className="github-button"
-                    href={ownerUrl}
-                    data-color-scheme="no-preference: dark; light: light; dark: dark;"
-                    data-show-count={showCount}
-                    data-size={size}
-                    aria-label={`Follow @${owner} on GitHub`}
-                >
-                    Follow @bbonkr
-                </a>
-            </li>
-        </ul>
-    );
-};
+        return (
+            <ul className="github-buttons flex gap-3 flex-wrap">
+                {githubButtons.map((model) => (
+                    <li key={model.type}>
+                        <GitHubButton
+                            href={model.url}
+                            data-color-scheme={getColorScheme(theme)}
+                            data-show-count={showCount}
+                            data-size={size}
+                            data-icon={model.icon}
+                            aria-label={model.label}
+                        >
+                            {model.text ?? model.type}
+                        </GitHubButton>
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+);
 
 export default GitHubButtons;

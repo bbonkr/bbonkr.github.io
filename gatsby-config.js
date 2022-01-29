@@ -3,7 +3,8 @@ module.exports = {
         title: `Gatsby Starter Blog`,
         author: {
             name: `Pon Cheol Ku (구본철)`,
-            summary: '',
+            summary: 'Software developer',
+            location: 'South Korea',
         },
         description: `A starter blog demonstrating what Gatsby can do.`,
         social: {

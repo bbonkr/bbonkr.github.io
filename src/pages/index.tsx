@@ -30,7 +30,7 @@ const BlogIndex = ({ data, location }: PageProps<Posts>) => {
         <Layout location={location} title={siteTitle}>
             <Seo title="All posts" />
             <Bio />
-            <ol style={{ listStyle: `none` }}>
+            <ol className="list-style-none">
                 {posts?.map((post) => {
                     const title =
                         post.node.frontmatter.title || post.node.fields.slug;

@@ -3,14 +3,14 @@ import * as React from 'react';
 import kebabCase from 'lodash/kebabCase';
 
 import { Link, graphql, PageProps } from 'gatsby';
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import Bio from '../components/bio';
-import { Post } from '../models/data';
-import PostListItem from '../components/post-list-item';
+import Layout from '../../components/layout';
+import Seo from '../../components/seo';
+import Bio from '../../components/bio';
+import { Post } from '../../models/data';
+import PostListItem from '../../components/post-list-item';
 
 interface PageContext {
-    tag: string;
+    category: string;
 }
 
 interface SiteMetadata {
@@ -25,14 +25,14 @@ interface Site {
 //     node: Post;
 // }
 
-interface Tag {
+interface Category {
     fieldValue: string;
     totalCount: number;
     edges: Post[];
 }
 
 interface MarkdownRemark {
-    group: Tag[];
+    group: Category[];
 }
 
 interface Data {
@@ -40,16 +40,12 @@ interface Data {
     site: Site;
 }
 
-const TagPageTemplate = ({
+const CategoryPage = ({
     location,
     data,
     params,
     pageContext,
 }: PageProps<Data, PageContext>) => {
-    const [selectedTag, setSelectedTag] = React.useState<string>(
-        pageContext.tag
-    );
-
     const {
         allMarkdownRemark: { group },
         site: {
@@ -57,55 +53,49 @@ const TagPageTemplate = ({
         },
     } = data;
 
-    const handleClickTag = (tag: string) => () => {
-        setSelectedTag((_) => tag);
-    };
-
-    console.info(pageContext.tag, params.tag, data);
+    console.info(pageContext.category, params.category, data);
 
     return (
         <Layout location={location} title={title}>
-            <Seo title={`Post taged by #${pageContext.tag}`} />
+            <Seo title={`Posts categorized by #${params.category}`} />
             <Bio />
             <div>
                 <h1>
-                    {`Post taged by`}{' '}
-                    <span className="text-green-500">{`#${pageContext.tag}`}</span>{' '}
+                    {`Posts categorized by`}{' '}
+                    <span className="text-green-500">{`#${params.category}`}</span>{' '}
                 </h1>
             </div>
-            {selectedTag && (
-                <div>
-                    {group
-                        // .find((tag) => tag.fieldValue === selectedTag)
-                        .find((_, index) => index === 0)
-                        ?.edges.map((edge) => {
-                            return (
-                                <PostListItem
-                                    key={edge.node.fields.slug}
-                                    post={edge}
-                                />
-                            );
-                        })}
-                </div>
-            )}
+
+            <div>
+                {group
+                    .find((_, index) => index === 0)
+                    // .find((tag) => tag.fieldValue === selectedCategory)
+                    ?.edges.map((edge) => {
+                        return (
+                            <PostListItem
+                                key={edge.node.fields.slug}
+                                post={edge}
+                            />
+                        );
+                    })}
+            </div>
         </Layout>
     );
 };
 
-export default TagPageTemplate;
+export default CategoryPage;
 
 export const pageQuery = graphql`
-    query postsByTag($tag: String) {
+    query {
         site {
             siteMetadata {
                 title
             }
         }
         allMarkdownRemark(
-            sort: { fields: [frontmatter___date], order: DESC }
-            filter: { frontmatter: { tags: { in: [$tag] } } }
+            sort: { fields: [frontmatter___date], order: DESC } # filter: { frontmatter: { categories: { in: [$category] } } }
         ) {
-            group(field: frontmatter___tags) {
+            group(field: frontmatter___categories) {
                 fieldValue
                 totalCount
                 edges {

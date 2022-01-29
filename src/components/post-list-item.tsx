@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
-import kebabCase from 'lodash/kebabCase';
 import { Post } from '../models/data';
-import { TagTitle, TagList } from './tags';
+import { SimpleTagList } from './tags';
+import { SimpleCategoryList } from './categories';
 
 import '../components/tags/tag-list.css';
 
@@ -13,21 +13,30 @@ interface PostListItemProps {
 const PostListItem = ({ post }: PostListItemProps) => {
     return (
         <article
-            className="post-list-item"
+            className="post-list-item py-6"
             itemScope
             itemType="http://schema.org/Article"
         >
-            <header>
-                <h2>
+            <header className="pt-6">
+                <aside>
+                    {post.node.frontmatter.categories && (
+                        <SimpleCategoryList
+                            categories={post.node.frontmatter.categories}
+                        />
+                    )}
+                </aside>
+                <h2 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100 pb-2 text-3xl md:text-4xl">
                     <Link to={post.node.fields.slug} itemProp="url">
                         <span itemProp="headline">
                             {post.node.frontmatter.title}
                         </span>
                     </Link>
                 </h2>
-                <small>{post.node.frontmatter.date}</small>
+                <small className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
+                    {post.node.frontmatter.date}
+                </small>
             </header>
-            <section>
+            <section className="article-body">
                 <p
                     dangerouslySetInnerHTML={{
                         __html:
@@ -38,21 +47,11 @@ const PostListItem = ({ post }: PostListItemProps) => {
                     itemProp="description"
                 />
             </section>
-            <footer>
-                <div>
-                    <TagTitle />
 
-                    <ul className="tags-list">
-                        {post.node.frontmatter.tags?.map((tag) => (
-                            <li key={tag}>
-                                <Link to={`/tags/${kebabCase(tag)}`}>
-                                    {`#`}
-                                    {tag}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+            <footer>
+                <aside className="text-base md:text-sm text-gray-500 flex flex-row">
+                    <SimpleTagList tags={post.node.frontmatter.tags} />
+                </aside>
             </footer>
         </article>
     );

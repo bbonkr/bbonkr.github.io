@@ -40,7 +40,12 @@ interface Data {
     site: Site;
 }
 
-const TagPage = ({ location, data, params }: PageProps<Data, PageContext>) => {
+const TagPage = ({
+    location,
+    data,
+    params,
+    pageContext,
+}: PageProps<Data, PageContext>) => {
     const [selectedTag, setSelectedTag] = React.useState<string>(params.tag);
 
     const {
@@ -54,35 +59,29 @@ const TagPage = ({ location, data, params }: PageProps<Data, PageContext>) => {
         setSelectedTag((_) => tag);
     };
 
+    console.info(pageContext.tag, params.tag, data);
+
     return (
         <Layout location={location} title={title}>
             <Seo title={`Post taged by #${params.tag}`} />
             <Bio />
             <div>
-                <h1>{`Post taged by #${params.tag}`}</h1>
-                {/* <ul className="tags-list">
-                    {group.map((tag) => (
-                        <li
-                            key={tag.fieldValue}
-                            className={`cursor-pointer ${
-                                selectedTag === tag.fieldValue
-                                    ? 'cursor-not-allowed'
-                                    : ''
-                            }`}
-                            onClick={handleClickTag(tag.fieldValue)}
-                        >
-                            {`#`}
-                            {tag.fieldValue} ({tag.totalCount})
-                        </li>
-                    ))}
-                </ul> */}
+                <h1>
+                    {`Post taged by`}{' '}
+                    <span className="text-green-500">{`#${params.tag}`}</span>{' '}
+                </h1>
             </div>
             {selectedTag && (
                 <div>
                     {data.allMarkdownRemark.group
                         .find((tag) => tag.fieldValue === selectedTag)
                         ?.edges.map((edge) => {
-                            return <PostListItem post={edge} />;
+                            return (
+                                <PostListItem
+                                    key={edge.node.fields.slug}
+                                    post={edge}
+                                />
+                            );
                         })}
                 </div>
             )}

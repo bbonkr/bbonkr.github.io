@@ -1,42 +1,16 @@
 import * as React from 'react';
 
-import { Link, graphql, PageProps } from 'gatsby';
+import kebabCase from 'lodash/kebabCase';
 
+import { Link, graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
+import Bio from '../components/bio';
+import { Post } from '../models/data';
+import PostListItem from '../components/post-list-item';
 
 interface PageContext {
     category: string;
-}
-
-interface Frontmatter {
-    title: string;
-    tags?: string[];
-    categories?: string[];
-    date: Date;
-}
-
-interface Field {
-    slug: string;
-}
-
-interface EdgeNode {
-    frontmatter: Frontmatter;
-    fields: Field;
-}
-
-interface Edge {
-    node: EdgeNode;
-}
-
-interface Group {
-    fieldValue: string;
-}
-
-interface MarkdownRemark {
-    totalCount: number;
-    group: Group[];
-    edges: Edge[];
 }
 
 interface SiteMetadata {
@@ -46,74 +20,97 @@ interface SiteMetadata {
 interface Site {
     siteMetadata: SiteMetadata;
 }
+
+// interface Edge {
+//     node: Post;
+// }
+
+interface Category {
+    fieldValue: string;
+    totalCount: number;
+    edges: Post[];
+}
+
+interface MarkdownRemark {
+    group: Category[];
+}
+
 interface Data {
     allMarkdownRemark: MarkdownRemark;
     site: Site;
 }
 
-const CategoriesTemplate = ({
-    pageContext,
-    data,
+const CategoryPageTemplate = ({
     location,
+    data,
+    params,
+    pageContext,
 }: PageProps<Data, PageContext>) => {
-    // const { category } = pageContext;
-    const { totalCount, group, edges } = data.allMarkdownRemark;
-    const category = group.find((_, index) => index === 0)?.fieldValue ?? '';
-    const categoryHeader = `${totalCount} post${
-        totalCount === 1 ? '' : 's'
-    } in "${category}"`;
+    const {
+        allMarkdownRemark: { group },
+        site: {
+            siteMetadata: { title },
+        },
+    } = data;
 
-    const siteTitle = data.site.siteMetadata?.title || `Title`;
+    console.info(pageContext.category, params.category, data);
 
     return (
-        <Layout location={location} title={siteTitle}>
-            <Seo title={category} description={categoryHeader} />
-            <h1>{categoryHeader}</h1>
-            <ul>
-                {edges.map(({ node }) => {
-                    const { slug } = node.fields;
-                    const { title } = node.frontmatter;
-                    return (
-                        <li key={slug}>
-                            <Link to={slug}>{title}</Link>
-                        </li>
-                    );
-                })}
-            </ul>
+        <Layout location={location} title={title}>
+            <Seo title={`Posts categorized by #${params.category}`} />
+            <Bio />
+            <div>
+                <h1>
+                    {`Posts categorized by`}{' '}
+                    <span className="text-green-500">{`#${params.category}`}</span>{' '}
+                </h1>
+            </div>
 
-            <Link to="/categories">All categories</Link>
+            <div>
+                {group
+                    .find((_, index) => index === 0)
+                    // .find((tag) => tag.fieldValue === selectedCategory)
+                    ?.edges.map((edge) => {
+                        return (
+                            <PostListItem
+                                key={edge.node.fields.slug}
+                                post={edge}
+                            />
+                        );
+                    })}
+            </div>
         </Layout>
     );
 };
 
-export default CategoriesTemplate;
+export default CategoryPageTemplate;
 
 export const pageQuery = graphql`
-    query BlogPostByCategory($category: String!) {
+    query getPostsByCategory($category: String) {
         site {
             siteMetadata {
                 title
             }
         }
         allMarkdownRemark(
-            limit: 2000
             sort: { fields: [frontmatter___date], order: DESC }
             filter: { frontmatter: { categories: { in: [$category] } } }
         ) {
             group(field: frontmatter___categories) {
                 fieldValue
-            }
-            totalCount
-            edges {
-                node {
-                    fields {
-                        slug
-                    }
-                    frontmatter {
-                        title
-                        date(formatString: "MMMM DD, YYYY")
-                        categories
-                        tags
+                totalCount
+                edges {
+                    node {
+                        excerpt(format: PLAIN)
+                        fields {
+                            slug
+                        }
+                        frontmatter {
+                            date(formatString: "MMMM DD, YYYY")
+                            title
+                            tags
+                            categories
+                        }
                     }
                 }
             }

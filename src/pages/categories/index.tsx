@@ -1,14 +1,12 @@
 import * as React from 'react';
 
-import kebabCase from 'lodash/kebabCase';
-
 import { graphql, PageProps } from 'gatsby';
 import Layout from '../../components/layout';
 import Seo from '../../components/seo';
 import Bio from '../../components/bio';
-import { Tag } from '../../models/data';
+import { Category } from '../../models/data';
 import PostListItem from '../../components/post-list-item';
-import { TagList } from '../../components/tags';
+import { CategoryList } from '../../components/categories';
 
 interface SiteMetadata {
     title: string;
@@ -19,7 +17,7 @@ interface Site {
 }
 
 interface MarkdownRemark {
-    group: Tag[];
+    group: Category[];
 }
 
 interface Data {
@@ -27,8 +25,8 @@ interface Data {
     site: Site;
 }
 
-const TagsPage = ({ location, data }: PageProps<Data>) => {
-    const [selectedTag, setSelectedTag] = React.useState<string>();
+const CategoriesPage = ({ location, data }: PageProps<Data>) => {
+    const [selectedCategory, setSelectedCategory] = React.useState<string>();
 
     const {
         allMarkdownRemark: { group },
@@ -38,26 +36,26 @@ const TagsPage = ({ location, data }: PageProps<Data>) => {
     } = data;
 
     const handleClickTag = (tag: string) => {
-        setSelectedTag((_) => tag);
+        setSelectedCategory((_) => tag);
     };
 
     return (
         <Layout location={location} title={title}>
-            <Seo title="All tags" />
+            <Seo title="All categories" />
             <Bio />
             <div>
-                <h1>Tags</h1>
+                <h1>Categories</h1>
 
-                <TagList
-                    tags={group}
-                    selectedTag={selectedTag}
+                <CategoryList
+                    categories={group}
+                    selectedCategory={selectedCategory}
                     onChange={handleClickTag}
                 />
             </div>
-            {selectedTag && (
+            {selectedCategory && (
                 <div>
                     {data.allMarkdownRemark.group
-                        .find((tag) => tag.fieldValue === selectedTag)
+                        .find((tag) => tag.fieldValue === selectedCategory)
                         ?.edges.map((edge) => {
                             return (
                                 <PostListItem
@@ -72,7 +70,7 @@ const TagsPage = ({ location, data }: PageProps<Data>) => {
     );
 };
 
-export default TagsPage;
+export default CategoriesPage;
 
 export const pageQuery = graphql`
     query {
@@ -82,7 +80,7 @@ export const pageQuery = graphql`
             }
         }
         allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-            group(field: frontmatter___tags) {
+            group(field: frontmatter___categories) {
                 fieldValue
                 totalCount
                 edges {

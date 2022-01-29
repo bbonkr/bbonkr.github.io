@@ -1,39 +1,42 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
+import { Theme } from '../../context/theme/theme-context';
 interface HeaderProps {
     title?: string;
+    theme?: Theme;
+    onToggleTheme?: () => void;
 }
 
-type Theme = 'light' | 'dark';
+// type Theme = 'light' | 'dark';
 
-export const Header = ({ title }: HeaderProps) => {
-    const isDarkTheme = useMediaQuery({
-        query: '(prefers-color-scheme: dark)',
-    });
-    const [theme, setTheme] = React.useState<Theme>(
-        window.localStorage?.theme
-            ? window.localStorage?.theme
-            : isDarkTheme
-            ? 'dark'
-            : 'light'
-    );
-    const handleClickToggleTheme = () => {
-        setTheme((prevState) => (prevState === 'light' ? 'dark' : 'light'));
-    };
+export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
+    // const isDarkTheme = useMediaQuery({
+    //     query: '(prefers-color-scheme: dark)',
+    // });
+    // const [theme, setTheme] = React.useState<Theme>(
+    //     window.localStorage?.theme
+    //         ? window.localStorage?.theme
+    //         : isDarkTheme
+    //         ? 'dark'
+    //         : 'light'
+    // );
+    // const handleClickToggleTheme = () => {
+    //     setTheme((prevState) => (prevState === 'light' ? 'dark' : 'light'));
+    // };
 
-    React.useEffect(() => {
-        if (window) {
-            window.localStorage.setItem('theme', theme);
-            window.localStorage.theme = theme;
-        }
+    // React.useEffect(() => {
+    //     if (window) {
+    //         window.localStorage.setItem('theme', theme);
+    //         window.localStorage.theme = theme;
+    //     }
 
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [theme]);
+    //     if (theme === 'dark') {
+    //         document.documentElement.classList.add('dark');
+    //     } else {
+    //         document.documentElement.classList.remove('dark');
+    //     }
+    // }, [theme]);
 
     React.useEffect(() => {
         let h = document.documentElement as HTMLElement,
@@ -175,11 +178,19 @@ export const Header = ({ title }: HeaderProps) => {
                         <li className="mr-3">
                             <button
                                 className="js-change-theme focus:outline-none inline-block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
-                                onClick={handleClickToggleTheme}
+                                onClick={onToggleTheme}
                             >
-                                {theme === 'dark'
-                                    ? '☀️ Light mode'
-                                    : '🌙 Dark mode'}
+                                {theme === 'dark' ? (
+                                    <React.Fragment>
+                                        <span>{`☀️`}</span>{' '}
+                                        <span>{`Light mode`}</span>
+                                    </React.Fragment>
+                                ) : (
+                                    <React.Fragment>
+                                        <span>{`🌙`}</span>{' '}
+                                        <span>{`Dark mode`}</span>
+                                    </React.Fragment>
+                                )}
                             </button>
                         </li>
                     </ul>

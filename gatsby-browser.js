@@ -1,3 +1,6 @@
+import React from 'react';
+import { ThemeProvider } from './src/context/theme/theme-context';
+
 // import tailwindcss
 import './src/css/index.css';
 import './src/css/article-body.css';
@@ -15,3 +18,7 @@ import 'typeface-merriweather';
 // import 'prismjs/themes/prism.css';
 import 'prismjs/themes/prism-tomorrow.min.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
+export const wrapRootElement = ({ element }) => {
+    return <ThemeProvider>{element}</ThemeProvider>;
+};

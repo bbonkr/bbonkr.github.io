@@ -7,6 +7,7 @@ interface Frontmatter {
     title: string;
     date: Date;
     description?: string;
+    categories?: string[];
     tags?: string[];
     github?: GitHub;
 }
@@ -36,6 +37,7 @@ interface MarkdownRemarks {
 interface Author {
     name: string;
     summary?: string;
+    location?: string;
 }
 
 interface SiteMetadata {
@@ -61,6 +63,12 @@ export interface Posts {
 }
 
 export interface Tag {
+    fieldValue: string;
+    totalCount: number;
+    edges: Post[];
+}
+
+export interface Category {
     fieldValue: string;
     totalCount: number;
     edges: Post[];
