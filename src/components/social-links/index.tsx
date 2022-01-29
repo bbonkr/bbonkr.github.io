@@ -14,17 +14,6 @@ const SocialLinks = ({ social, openNewWindow }: SocialLinksProps) => {
     const anchorRel = `noreferrer ${openNewWindow ? 'external' : ''}`;
     return (
         <ul className="social-list">
-            {social?.twitter && (
-                <li>
-                    <a
-                        href={`https://twitter.com/${social?.twitter || ``}`}
-                        target={anchroTarget}
-                        rel={anchorRel}
-                    >
-                        <FaTwitter size={'1.3rem'} />
-                    </a>
-                </li>
-            )}
             {social?.github && (
                 <li>
                     <a
@@ -36,16 +25,14 @@ const SocialLinks = ({ social, openNewWindow }: SocialLinksProps) => {
                     </a>
                 </li>
             )}
-            {social?.linkedin && (
+            {social?.twitter && (
                 <li>
                     <a
-                        href={`https://www.linkedin.com/in/${
-                            social?.linkedin || ``
-                        }/`}
+                        href={`https://twitter.com/${social?.twitter || ``}`}
                         target={anchroTarget}
                         rel={anchorRel}
                     >
-                        <FaLinkedin size={`1.3rem`} />
+                        <FaTwitter size={'1.3rem'} />
                     </a>
                 </li>
             )}
@@ -59,6 +46,19 @@ const SocialLinks = ({ social, openNewWindow }: SocialLinksProps) => {
                         rel={anchorRel}
                     >
                         <FaFacebook size={`1.3rem`} />
+                    </a>
+                </li>
+            )}
+            {social?.linkedin && (
+                <li>
+                    <a
+                        href={`https://www.linkedin.com/in/${
+                            social?.linkedin || ``
+                        }/`}
+                        target={anchroTarget}
+                        rel={anchorRel}
+                    >
+                        <FaLinkedin size={`1.3rem`} />
                     </a>
                 </li>
             )}

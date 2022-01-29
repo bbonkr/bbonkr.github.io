@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
-import kebabCase from 'lodash/kebabCase';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
 import GitHubButtons from '../components/github-button';
 import { SimpleTagList } from '../components/tags';
-import ThemeProvider, { Theme } from '../context/theme/theme-context';
+import ThemeProvider from '../context/theme/theme-context';
 
 const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;

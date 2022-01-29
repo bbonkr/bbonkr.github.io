@@ -1,7 +1,6 @@
 ---
 title: "Exchange Web Service"
 date: 2015-01-14 09:00:00
-intro: "Exchange Web Service"
 categories: 
   - Computing
 tags:

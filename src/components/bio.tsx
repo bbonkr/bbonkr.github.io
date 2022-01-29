@@ -32,12 +32,11 @@ const Bio = () => {
             />
             {author?.name && (
                 <div className="flex-1 px-2">
-                    <p className="text-base font-bold md:text-xl leading-none mb-2">
+                    <p className="text-base font-bold md:text-xl leading-none mb-1">
                         {author.name}
-                        {author?.summary || null}{' '}
                     </p>
                     {author?.summary && (
-                        <p className="text-gray-600 dark:text-gray-400 text-xs md:text-base">
+                        <p className="text-gray-600 dark:text-gray-400 text-xs md:text-base mb-1">
                             {author?.summary}
                         </p>
                     )}

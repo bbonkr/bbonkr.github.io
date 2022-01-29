@@ -2,9 +2,79 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const kebabCase = require('lodash/kebabCase');
 
-const createPostPages = async (graphql, actions, reporter) => {
-    const { createPage } = actions;
+const createPostPages = async (createPage, reporter, allPosts) => {
+    // const { createPage } = actions;
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
+
+    const { edges } = allPosts;
+
+    if (edges.length > 0) {
+        edges.forEach((item, index) => {
+            const post = item.node;
+            const previousPostId =
+                index === 0 ? null : edges[index - 1].node.id;
+            const nextPostId =
+                index === edges.length - 1 ? null : edges[index + 1].node.id;
+
+            createPage({
+                path: post.fields.slug,
+                component: tempalte,
+                context: {
+                    id: post.id,
+                    previousPostId,
+                    nextPostId,
+                },
+            });
+        });
+    }
+};
+
+const createTagPages = async (createPage, reporter, tagGroups) => {
+    const template = path.resolve(`./src/templates/tags.tsx`);
+
+    const tags = tagGroups.group;
+
+    if (typeof tags !== 'undefined' && tags.length > 0) {
+        tags.forEach((item) => {
+            if (typeof item !== 'undefined' && item.fieldValue) {
+                createPage({
+                    path: `/tags/${kebabCase(item.fieldValue)}`,
+                    component: template,
+                    context: {
+                        tag: item.fieldValue,
+                    },
+                });
+            }
+        });
+    }
+};
+
+const createCategoryPages = async (createPage, reporter, categoryGroups) => {
+    const template = path.resolve(`./src/templates/categories.tsx`);
+
+    const categories = categoryGroups.group;
+
+    if (typeof categories !== 'undefined' && categories.length > 0) {
+        categories.forEach((item) => {
+            if (typeof item !== 'undefined' && item.fieldValue) {
+                createPage({
+                    path: `/categories/${kebabCase(item.fieldValue)}`,
+                    component: template,
+                    context: {
+                        category: item.fieldValue,
+                    },
+                });
+            }
+        });
+    }
+};
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+    const { createPage } = actions;
+
+    // Define a template for blog post
+
+    // Get all markdown blog posts sorted by date
 
     const result = await graphql(
         `
@@ -30,182 +100,35 @@ const createPostPages = async (graphql, actions, reporter) => {
                         }
                     }
                 }
+
+                categoryGroups: allMarkdownRemark(limit: 2000) {
+                    group(field: frontmatter___categories) {
+                        fieldValue
+                    }
+                }
+
+                tagGroups: allMarkdownRemark(limit: 2000) {
+                    group(field: frontmatter___tags) {
+                        fieldValue
+                    }
+                }
             }
         `
     );
 
     if (result.errors) {
-        reporter.panicOnBuild(
-            `There was an error loading your blog posts`,
-            result.errors
-        );
+        reporter.panicOnBuild(`There was an error loading data`, result.errors);
         return;
     }
 
-    // const edges = result.data.allPosts.edges;
-    const { allPosts } = result.data;
+    await createPostPages(createPage, reporter, result.data.allPosts);
 
-    // Create blog posts pages
-    // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-    // `context` is available in the template as a prop and as a variable in GraphQL
+    await createTagPages(createPage, reporter, result.data.tagGroups);
 
-    const { edges } = allPosts;
-
-    if (edges.length > 0) {
-        edges.forEach((item, index) => {
-            const post = item.node;
-            const previousPostId =
-                index === 0 ? null : edges[index - 1].node.id;
-            const nextPostId =
-                index === edges.length - 1 ? null : edges[index + 1].node.id;
-
-            createPage({
-                path: post.fields.slug,
-                component: tempalte,
-                context: {
-                    id: post.id,
-                    previousPostId,
-                    nextPostId,
-                },
-            });
-        });
-
-        reporter.info('Post pages created.');
-    } else {
-        reporter.info('Pass post pages.');
-    }
-};
-
-const createTagPages = async (graphql, actions, reporter) => {
-    const { createPage } = actions;
-    const template = path.resolve(`./src/templates/tags.tsx`);
-    // const template = path.resolve('./src/pages/tags/[tag].tsx');
-
-    const result = await graphql(`
-        {
-            tagGroups: allMarkdownRemark(limit: 2000) {
-                group(field: frontmatter___tags) {
-                    fieldValue
-                }
-            }
-        }
-    `);
-
-    if (result.errors) {
-        reporter.panicOnBuild(`There was an error loading tags`, result.errors);
-        return;
-    }
-
-    const tags = result.data.tagGroups.group;
-
-    if (typeof tags !== 'undefined' && tags.length > 0) {
-        tags.forEach((item) => {
-            if (typeof item !== 'undefined' && item.fieldValue) {
-                // createPage({
-                //     path: `/tags/${kebabCase(item.fieldValue)}/`,
-                //     component: template,
-                //     context: {
-                //         tag: item.fieldValue,
-                //     },
-                // });
-
-                createPage({
-                    // path: `/tags/:tag`,
-                    // matchPath: `/tags/:tag`,
-                    path: `/tags/${kebabCase(item.fieldValue)}`,
-                    component: template,
-                    context: {
-                        tag: item.fieldValue,
-                    },
-                });
-            }
-        });
-        reporter.info('Tag pages created.');
-    } else {
-        reporter.info('Pass tag pages.');
-    }
-};
-
-const createCategoryPages = async (graphql, actions, reporter) => {
-    const { createPage } = actions;
-    const template = path.resolve(`./src/templates/categories.tsx`);
-    // const template = path.resolve('./src/pages/categories/[category].tsx');
-    const result = await graphql(`
-        {
-            categoryGroups: allMarkdownRemark(limit: 2000) {
-                group(field: frontmatter___categories) {
-                    fieldValue
-                }
-            }
-        }
-    `);
-
-    if (result.errors) {
-        reporter.panicOnBuild(
-            `There was an error loading categories`,
-            result.errors
-        );
-
-        return;
-    }
-
-    const categories = result.data.categoryGroups.group;
-
-    if (typeof categories !== 'undefined' && categories.length > 0) {
-        categories.forEach((item) => {
-            if (typeof item === 'undefined' && item.fieldValue) {
-                // createPage({
-                //     path: `/categories/${kebabCase(item.fieldValue)}/`,
-                //     component: template,
-                //     context: {
-                //         category: item.fieldValue,
-                //     },
-                // });
-                createPage({
-                    // path: `/categories/:category`,
-                    // matchPath: `/categories/:category`,
-                    path: `/categories/${kebabCase(item.fieldValue)}`,
-                    component: template,
-                    context: {
-                        category: item.fieldValue,
-                    },
-                });
-            }
-        });
-
-        reporter.info('Category pages created.');
-    } else {
-        reporter.info('Passed category pages.');
-    }
-};
-
-exports.createPages = async ({ graphql, actions, reporter }) => {
-    // const { createPage } = actions;
-
-    // Define a template for blog post
-
-    // Get all markdown blog posts sorted by date
-
-    await createPostPages(graphql, actions, reporter);
-
-    await createTagPages(graphql, actions, reporter);
-
-    await createCategoryPages(graphql, actions, reporter);
+    await createCategoryPages(createPage, reporter, result.data.categoryGroups);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-    // const { createNodeField } = actions;
-
-    // if (node.internal.type === `MarkdownRemark`) {
-    //     const value = createFilePath({ node, getNode });
-
-    //     createNodeField({
-    //         name: `slug`,
-    //         node,
-    //         value,
-    //     });
-    // }
-
     const { createNodeField } = actions;
 
     if (node.internal.type === `MarkdownRemark`) {
@@ -233,7 +156,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
                 slug = slug.substring(0, slug.length - 1);
             }
 
-            // slug = `/${encodeURIComponent(slug)}/`;
             slug = `/${slug}/`;
             return slug;
         };

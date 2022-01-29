@@ -43,7 +43,6 @@ interface Data {
 const TagPageTemplate = ({
     location,
     data,
-    params,
     pageContext,
 }: PageProps<Data, PageContext>) => {
     const [selectedTag, setSelectedTag] = React.useState<string>(
@@ -60,8 +59,6 @@ const TagPageTemplate = ({
     const handleClickTag = (tag: string) => () => {
         setSelectedTag((_) => tag);
     };
-
-    console.info(pageContext.tag, params.tag, data);
 
     return (
         <Layout location={location} title={title}>

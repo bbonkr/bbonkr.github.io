@@ -1,8 +1,5 @@
 import * as React from 'react';
-
-import kebabCase from 'lodash/kebabCase';
-
-import { Link, graphql, PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Bio from '../components/bio';
@@ -20,10 +17,6 @@ interface SiteMetadata {
 interface Site {
     siteMetadata: SiteMetadata;
 }
-
-// interface Edge {
-//     node: Post;
-// }
 
 interface Category {
     fieldValue: string;
@@ -43,7 +36,6 @@ interface Data {
 const CategoryPageTemplate = ({
     location,
     data,
-    params,
     pageContext,
 }: PageProps<Data, PageContext>) => {
     const {
@@ -53,16 +45,14 @@ const CategoryPageTemplate = ({
         },
     } = data;
 
-    console.info(pageContext.category, params.category, data);
-
     return (
         <Layout location={location} title={title}>
-            <Seo title={`Posts categorized by #${params.category}`} />
+            <Seo title={`Posts categorized by #${pageContext.category}`} />
             <Bio />
             <div>
                 <h1>
                     {`Posts categorized by`}{' '}
-                    <span className="text-green-500">{`#${params.category}`}</span>{' '}
+                    <span className="text-green-500">{`#${pageContext.category}`}</span>{' '}
                 </h1>
             </div>
 
@@ -86,7 +76,7 @@ const CategoryPageTemplate = ({
 export default CategoryPageTemplate;
 
 export const pageQuery = graphql`
-    query getPostsByCategory($category: String) {
+    query postsByCategory($category: String) {
         site {
             siteMetadata {
                 title

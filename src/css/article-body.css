@@ -8,7 +8,7 @@
 .article-body > h4,
 .article-body > h5,
 .article-body > h6 {
-    @apply py-2 border-green-600 px-2;
+    @apply py-2 border-green-600 px-2 my-2;
 }
 
 .article-body > h2 {
