@@ -135,28 +135,30 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         const slug = createFilePath({
             node,
             getNode,
-            // basePath: `pages`
+            // basePath: `posts`,
         });
 
         const rewriteSlug = (slug) => {
-            // 폴더 경로에 따라 url에 표시되는 것을 폴더 경로를 제거하고 파일명으로만 url을 지정되도록 하기 위함
-            if (slug.match(/\//g).length > 2) {
-                const tempStr = slug.split('/');
-                slug = `/${tempStr[tempStr.length - 2]}/`;
-            }
+            let datePart = '';
+            let title = '';
 
-            // jekyll 기준으로 파일명에 날짜를 포함시키던 것을 url에서 제거하기 위함
             const dayRegExp =
-                /\/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-/;
+                /^\/(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])[-|\/](?:([\w가-힣\-]+)\/)(?:([\w가-힣\-]+)\/)?$/g;
             if (slug.match(dayRegExp)) {
-                slug = slug.replace(dayRegExp, '');
+                title = slug.replace(dayRegExp, '$4');
+                const title2nd = slug.replace(dayRegExp, '$5');
+                if (!title) {
+                    title = title2nd;
+                }
+
+                if (title2nd && title !== title2nd && title2nd !== 'index') {
+                    title = title2nd;
+                }
+
+                datePart = slug.replace(dayRegExp, '$1/$2/$3');
             }
 
-            if (slug.endsWith('/')) {
-                slug = slug.substring(0, slug.length - 1);
-            }
-
-            slug = `/${slug}/`;
+            slug = `/${datePart}/${title}/`;
             return slug;
         };
 

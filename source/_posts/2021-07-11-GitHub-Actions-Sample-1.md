@@ -7,7 +7,7 @@ categories:
 tags:
     - github
     - github actions
-    - .net
+    - dotnet
     - react
     - typescript
 ---

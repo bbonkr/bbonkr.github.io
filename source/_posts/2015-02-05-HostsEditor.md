@@ -4,10 +4,9 @@ date: 2015-02-05 09:00:00
 intro: HostsEditor
 categories: Repository
 tags:
-  - c#
   - app
   - csharp
-  - .net
+  - dotnet
   - windows-forms
   - github
 comments: false

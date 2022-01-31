@@ -4,10 +4,9 @@ date: 2015-01-14 09:00:00
 intro: "Exchange Web Service"
 categories: Computing
 tags:
-    - .net
+    - dotnet
     - exchange
     - csharp
-    - c#
     - dotnet
 comments: false
 ---

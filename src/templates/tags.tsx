@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import kebabCase from 'lodash/kebabCase';
+// import kebabCase from 'lodash/kebabCase';
 
 import { Link, graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';

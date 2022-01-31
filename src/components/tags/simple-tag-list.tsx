@@ -1,6 +1,6 @@
 import * as React from 'react';
-import kebabCase from 'lodash/kebabCase';
 import { Link } from 'gatsby';
+import kebabCase from 'lodash/kebabCase';
 
 interface SimpleTagListProps {
     tags?: string[];

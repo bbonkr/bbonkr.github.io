@@ -5,7 +5,7 @@ categories:
     - Package
 tags:
     - nuget
-    - .net
+    - dotnet
     - ef
     - entity-framework
 intro:

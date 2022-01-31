@@ -4,8 +4,8 @@ date: 2020-11-14 20:12:11
 categories:
     - HowTo
 tags:
-    - .net
-    - .net 5
+    - dotnet
+    - dotnet 5
     - migration
 intro:
 comments:

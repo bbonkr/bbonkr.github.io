@@ -3,7 +3,7 @@ title: "Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생"
 date: 2017-08-16
 intro: "Visual Studio 2017 에서 원격 저장소로 푸시 중 오류 발생"
 tags:
-    - .net
+    - dotnet
     - git
     - troubleshooting
     - visualstudio
