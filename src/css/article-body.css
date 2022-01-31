@@ -1,5 +1,5 @@
 .article-body > * {
-    @apply py-3;
+    @apply py-3 break-words;
 }
 
 .article-body > h1,
@@ -36,7 +36,7 @@
 
 .article-body > ul > li,
 .article-body > ol > li {
-    @apply py-3;
+    @apply py-1;
 }
 
 .article-body > pre {
@@ -45,4 +45,12 @@
 
 .article-body > pre > code {
     @apply break-words whitespace-pre-wrap;
+}
+
+.article-body p code {
+    @apply break-words;
+}
+
+.article-body .github-buttons li {
+    @apply py-0;
 }

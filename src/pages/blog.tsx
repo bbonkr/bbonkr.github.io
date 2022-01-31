@@ -7,7 +7,7 @@ import Seo from '../components/seo';
 import { Posts } from '../models/data';
 import PostListItem from '../components/post-list-item';
 
-const HomePage = ({ data, location }: PageProps<Posts>) => {
+const BlogPage = ({ data, location }: PageProps<Posts>) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const posts = data.allMarkdownRemark.edges;
 
@@ -47,7 +47,7 @@ const HomePage = ({ data, location }: PageProps<Posts>) => {
     );
 };
 
-export default HomePage;
+export default BlogPage;
 
 export const pageQuery = graphql`
     query {

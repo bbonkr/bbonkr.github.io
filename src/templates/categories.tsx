@@ -47,12 +47,12 @@ const CategoryPageTemplate = ({
 
     return (
         <Layout location={location} title={title}>
-            <Seo title={`Posts categorized by #${pageContext.category}`} />
+            <Seo title={`Posts categorized by ${pageContext.category}`} />
             <Bio />
             <div>
                 <h1>
                     {`Posts categorized by`}{' '}
-                    <span className="text-green-500">{`#${pageContext.category}`}</span>{' '}
+                    <span className="text-green-500">{`${pageContext.category}`}</span>{' '}
                 </h1>
             </div>
 

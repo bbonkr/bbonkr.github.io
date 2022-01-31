@@ -11,33 +11,6 @@ interface HeaderProps {
 // type Theme = 'light' | 'dark';
 
 export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
-    // const isDarkTheme = useMediaQuery({
-    //     query: '(prefers-color-scheme: dark)',
-    // });
-    // const [theme, setTheme] = React.useState<Theme>(
-    //     window.localStorage?.theme
-    //         ? window.localStorage?.theme
-    //         : isDarkTheme
-    //         ? 'dark'
-    //         : 'light'
-    // );
-    // const handleClickToggleTheme = () => {
-    //     setTheme((prevState) => (prevState === 'light' ? 'dark' : 'light'));
-    // };
-
-    // React.useEffect(() => {
-    //     if (window) {
-    //         window.localStorage.setItem('theme', theme);
-    //         window.localStorage.theme = theme;
-    //     }
-
-    //     if (theme === 'dark') {
-    //         document.documentElement.classList.add('dark');
-    //     } else {
-    //         document.documentElement.classList.remove('dark');
-    //     }
-    // }, [theme]);
-
     React.useEffect(() => {
         let h = document.documentElement as HTMLElement,
             b = document.body as HTMLBodyElement,
@@ -139,22 +112,22 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                 </div>
 
                 <div
-                    className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0   z-20"
+                    className="w-full flex-grow lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20"
                     id="nav-content"
                 >
                     <ul className="list-reset lg:flex justify-end flex-1 items-center">
                         <li className="mr-3">
                             <Link
-                                to="/"
-                                className="inline-block py-2 px-4 text-gray-900 dark:text-gray-100 font-bold no-underline"
+                                to="/blog"
+                                className="block py-2 px-4 text-gray-900 dark:text-gray-100 font-bold no-underline"
                             >
-                                Main
+                                Blog
                             </Link>
                         </li>
                         <li className="mr-3">
                             <Link
                                 to="/profile"
-                                className="inline-block py-2 px-4 text-gray-900 dark:text-gray-100 font-bold no-underline"
+                                className="block py-2 px-4 text-gray-900 dark:text-gray-100 font-bold no-underline"
                             >
                                 Profile
                             </Link>
@@ -162,7 +135,7 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                         <li className="mr-3">
                             <Link
                                 to="/tags"
-                                className="inline-block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+                                className="block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
                             >
                                 Tags
                             </Link>
@@ -170,7 +143,7 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                         <li className="mr-3">
                             <Link
                                 to="/categories"
-                                className="inline-block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+                                className="block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4 "
                             >
                                 Categories
                             </Link>
@@ -183,12 +156,12 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                                 {theme === 'dark' ? (
                                     <React.Fragment>
                                         <span>{`☀️`}</span>{' '}
-                                        <span>{`Light mode`}</span>
+                                        <span className="md:hidden">{`Light mode`}</span>
                                     </React.Fragment>
                                 ) : (
                                     <React.Fragment>
                                         <span>{`🌙`}</span>{' '}
-                                        <span>{`Dark mode`}</span>
+                                        <span className="md:hidden">{`Dark mode`}</span>
                                     </React.Fragment>
                                 )}
                             </button>

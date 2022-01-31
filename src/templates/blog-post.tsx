@@ -7,6 +7,7 @@ import { Data } from '../models/data';
 import GitHubButtons from '../components/github-button';
 import { SimpleTagList } from '../components/tags';
 import ThemeProvider from '../context/theme/theme-context';
+import { SimpleCategoryList } from '../components/categories';
 
 const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;
@@ -28,13 +29,20 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                     <p className="text-base md:text-sm text-green-500 font-bold">
                         &lt;{' '}
                         <Link
-                            to="/"
+                            to="/blog"
                             className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
                         >
                             BACK TO BLOG
                         </Link>
                     </p>
-                    <h1 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100 pt-6 pb-2 text-3xl md:text-4xl">
+                    <aside className="pt-6">
+                        {post.frontmatter.categories && (
+                            <SimpleCategoryList
+                                categories={post.frontmatter.categories}
+                            />
+                        )}
+                    </aside>
+                    <h1 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100  pb-2 text-3xl md:text-4xl break-words">
                         {post.frontmatter.title}
                     </h1>
                     <p className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
@@ -43,7 +51,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                 </header>
 
                 <section
-                    className="article-body"
+                    className="article-body pt-6"
                     dangerouslySetInnerHTML={{ __html: post.html }}
                     itemProp="articleBody"
                 />
@@ -65,9 +73,9 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                     </section>
                 )}
 
-                <aside className="text-base md:text-sm text-gray-500 px-4 py-6">
+                <aside className="text-base md:text-sm text-gray-500 py-6">
                     <span>Tags:</span>
-                    <ul className="list-style-none flex gap-3 flex-wrap break-words">
+                    <ul className="list-style-none flex gap-3 flex-wrap">
                         <SimpleTagList tags={post.frontmatter.tags} />
                     </ul>
                 </aside>
@@ -76,43 +84,45 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
 
                 <footer>
                     <nav>
-                        <ul className="font-sans flex justify-between content-center px-4 pb-12">
-                            <li className="flex-start text-left">
-                                {previous && (
-                                    <React.Fragment>
-                                        <span className="text-xs md:text-sm font-normal text-gray-600">
-                                            &lt; Previous Post
-                                        </span>
+                        <div className="font-sans container max-w-4xl mx-auto flex">
+                            <div className="w-full mx-auto flex flex-wrap">
+                                <div className="flex-start text-left md:w-1/2 flex-1">
+                                    {previous && (
+                                        <React.Fragment>
+                                            <span className="text-xs md:text-sm font-normal text-gray-600">
+                                                &lt; Previous Post
+                                            </span>
 
-                                        <Link
-                                            to={previous.fields.slug}
-                                            rel="prev"
-                                            className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
-                                        >
+                                            <Link
+                                                to={previous.fields.slug}
+                                                rel="prev"
+                                                className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                                            >
+                                                <br />
+                                                {previous.frontmatter.title}
+                                            </Link>
+                                        </React.Fragment>
+                                    )}
+                                </div>
+                                <div className="flex-end text-right md:w-1/2 flex-1">
+                                    {next && (
+                                        <React.Fragment>
+                                            <span className="text-xs md:text-sm font-normal text-gray-600">
+                                                Next Post &gt;
+                                            </span>
                                             <br />
-                                            {previous.frontmatter.title}
-                                        </Link>
-                                    </React.Fragment>
-                                )}
-                            </li>
-                            <li className="flex-end text-right">
-                                {next && (
-                                    <React.Fragment>
-                                        <span className="text-xs md:text-sm font-normal text-gray-600">
-                                            Next Post &gt;
-                                        </span>
-                                        <br />
-                                        <Link
-                                            to={next.fields.slug}
-                                            rel="next"
-                                            className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
-                                        >
-                                            {next.frontmatter.title}
-                                        </Link>
-                                    </React.Fragment>
-                                )}
-                            </li>
-                        </ul>
+                                            <Link
+                                                to={next.fields.slug}
+                                                rel="next"
+                                                className="break-normal text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                                            >
+                                                {next.frontmatter.title}
+                                            </Link>
+                                        </React.Fragment>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </nav>
                 </footer>
             </article>

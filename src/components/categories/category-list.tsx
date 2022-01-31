@@ -32,7 +32,6 @@ export const CategoryList = ({
                     }`}
                     onClick={handleClickTag(category.fieldValue)}
                 >
-                    {`#`}
                     {category.fieldValue} ({category.totalCount})
                 </li>
             ))}

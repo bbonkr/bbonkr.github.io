@@ -25,7 +25,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
                         />
                     )}
                 </aside>
-                <h2 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100 pb-2 text-3xl md:text-4xl">
+                <h2 className="font-bold font-sans break-words text-gray-900 dark:text-gray-100 pb-2 text-3xl md:text-4xl">
                     <Link to={post.node.fields.slug} itemProp="url">
                         <span itemProp="headline">
                             {post.node.frontmatter.title}
@@ -36,7 +36,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
                     {post.node.frontmatter.date}
                 </small>
             </header>
-            <section className="article-body">
+            <section className="article-body mt-1 break-words">
                 <p
                     dangerouslySetInnerHTML={{
                         __html:
