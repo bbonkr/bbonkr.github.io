@@ -142,20 +142,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
             let datePart = '';
             let title = '';
 
+            const tokens = slug.split('/').filter((token) => Boolean(token));
+
+            if (tokens.length > 0) {
+                datePart = tokens[0];
+                if (tokens.length > 1 && tokens[1].toLowerCase() !== 'index') {
+                    title = tokens[1];
+                }
+            }
+
             const dayRegExp =
-                /^\/(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])[-|\/](?:([\w가-힣\-]+)\/)(?:([\w가-힣\-]+)\/)?$/g;
-            if (slug.match(dayRegExp)) {
-                title = slug.replace(dayRegExp, '$4');
-                const title2nd = slug.replace(dayRegExp, '$5');
-                if (!title) {
-                    title = title2nd;
+                /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])(?:-(.*))?$/g;
+            if (datePart.match(dayRegExp)) {
+                if (!title || title.toLowerCase() === 'index') {
+                    title = datePart.replace(dayRegExp, '$4');
                 }
 
-                if (title2nd && title !== title2nd && title2nd !== 'index') {
-                    title = title2nd;
-                }
-
-                datePart = slug.replace(dayRegExp, '$1/$2/$3');
+                title = kebabCase(title);
+                datePart = datePart.replace(dayRegExp, '$1/$2/$3');
             }
 
             slug = `/${datePart}/${title}/`;
@@ -178,7 +182,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
             }
             // 태그 필드가 배열이 아닌 문자열 하나일때 배열로 덮음
             else if (typeof node.frontmatter.tags === 'string') {
-                node.frontmatter.tags = [node.frontmatter.tags];
+                node.frontmatter.tags = [node.frontmatter.tags.toLowerCase()];
             }
 
             // 마크다운 파일 내 keywords 필드가 비어있을 시 오류가 나지 않도록 하기 위함
@@ -198,13 +202,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
             //     node.frontmatter.date = new Date(node.frontmatter.date);
             // }
 
-            if (
-                node.frontmatter.categories &&
-                Array.isArray(node.frontmatter.categories)
-            ) {
-                node.frontmatter.categories = node.frontmatter.categories.map(
-                    (category) => category.toLowerCase()
-                );
+            if (node.frontmatter.categories) {
+                if (typeof node.frontmatter.categories === 'string') {
+                    node.frontmatter.categories = [
+                        node.frontmatter.categories.toLowerCase(),
+                    ];
+                } else if (Array.isArray(node.frontmatter.categories)) {
+                    node.frontmatter.categories =
+                        node.frontmatter.categories.map((category) =>
+                            category.toLowerCase()
+                        );
+                }
             }
 
             return node;
