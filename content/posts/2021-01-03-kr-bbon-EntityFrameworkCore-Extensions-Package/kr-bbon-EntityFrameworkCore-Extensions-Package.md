@@ -10,11 +10,12 @@ tags:
     - entity-framework
 intro:
 comments:
+github:
+    owner: bbonkr
+    repo: kr.bbon.EntityFrameworkCore.Extensions
 ---
 
-|  |  |  |
-| :--: | :--: | :--: | 
-| [![](https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) | [![](https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) | ![publish to nuget](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg) |
+[![](https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) [![](https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions)
 
 
 [Nuget: kr.bbon.EntityFrameworkCore.Extensions](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) 페이지에서 패키지를 찾을 수 있습니다.

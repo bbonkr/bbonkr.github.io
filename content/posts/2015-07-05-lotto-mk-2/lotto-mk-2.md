@@ -12,6 +12,9 @@ tags:
   - windows-forms
   - github
 comments: false
+github:
+  owner: bbonkr
+  repo: Lotto-mk2
 ---
 
 ## 어떤 번호를 살까?
@@ -28,7 +31,9 @@ comments: false
 
 입력된 번호가 당첨내역 정보를 검색할 때, 보너스 번호를 포함해서 검색하려면 `보너스 번호 포함` 체크박스를 선택합니다.
 
-{% asset_img s-001.png 실행화면 %}
+<!-- {% asset_img s-001.png 실행화면 %} -->
+
+![실행화면](./s-001.png)
 
 ## 당첨번호 입력
 

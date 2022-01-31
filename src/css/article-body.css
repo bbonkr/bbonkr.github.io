@@ -51,6 +51,10 @@
     @apply break-words;
 }
 
+.article-body p a img {
+    display: inline-block;
+}
+
 .article-body .github-buttons li {
     @apply py-0;
 }

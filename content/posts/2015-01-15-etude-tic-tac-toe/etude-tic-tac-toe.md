@@ -15,7 +15,7 @@ comments: false
 
 Tic Tac Toe 게임을 간단하게 윈도우 응용프로그램으로 구현하였습니다.
 
-{% asset_img tictactoe.png tic-tac-toe %}
+![tic-tac-toe](./tictactoe.png)
 
 Tic-tac-toe 게임은 [wiki](http://en.wikipedia.org/wiki/Tic-tac-toe)에 소개되어 있는 것과 같이 가로 3, 세로 3개으로 이루어진 칸에 두명이 번갈아 가며 한 칸씩 차지해서 먼저 연속된 3칸을 차지하는 사람이 이기는 게임입니다.
 가로, 세로 혹은 대각선으로 연속된 3칸을 차지하면 됩니다.
