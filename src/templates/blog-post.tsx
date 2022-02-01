@@ -8,6 +8,7 @@ import GitHubButtons from '../components/github-button';
 import { SimpleTagList } from '../components/tags';
 import ThemeProvider from '../context/theme/theme-context';
 import { SimpleCategoryList } from '../components/categories';
+import { Utterances } from '../components/comment';
 
 const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;
@@ -124,6 +125,12 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                             </div>
                         </div>
                     </nav>
+
+                    <ThemeProvider.Consumer>
+                        {(themeState) => (
+                            <Utterances theme={themeState.theme} />
+                        )}
+                    </ThemeProvider.Consumer>
                 </footer>
             </article>
             <Bio />
