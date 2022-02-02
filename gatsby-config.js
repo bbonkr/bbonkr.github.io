@@ -1,6 +1,7 @@
 module.exports = {
     siteMetadata: {
         title: `<bbon />`,
+        siteUrl: 'https://bbon.me',
         author: {
             name: `Pon Cheol Ku (구본철)`,
             summary: 'Software developer',
@@ -99,7 +100,8 @@ module.exports = {
                 feeds: [
                     {
                         serialize: ({ query: { site, allMarkdownRemark } }) => {
-                            return allMarkdownRemark.nodes.map((node) => {
+                            return allMarkdownRemark.edges.map((edge) => {
+                                const node = edge.node;
                                 return Object.assign({}, node.frontmatter, {
                                     description: node.excerpt,
                                     date: node.frontmatter.date,
@@ -116,26 +118,33 @@ module.exports = {
                             });
                         },
                         query: `
-              {
-                allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  nodes {
-                    excerpt
-                    html
-                    fields {
-                      slug
-                    }
-                    frontmatter {
-                      title
-                      date
-                    }
-                  }
-                }
-              }
+{
+    site {
+    siteMetadata {
+      siteUrl
+      title
+    }
+  }
+  allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
+    edges {
+      node {
+        excerpt
+        html
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          date
+        }
+      }
+    }
+  }
+}
+
             `,
                         output: '/rss.xml',
-                        title: 'Gatsby Starter Blog RSS Feed',
+                        title: '<bbon /> RSS Feed',
                     },
                 ],
             },
@@ -143,8 +152,8 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Gatsby Starter Blog`,
-                short_name: `GatsbyJS`,
+                name: `<bbon />`,
+                short_name: `bbon`,
                 start_url: `/`,
                 background_color: `#ffffff`,
                 // This will impact how browsers show your PWA/website
@@ -159,5 +168,6 @@ module.exports = {
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
         `gatsby-plugin-postcss`,
+        `gatsby-plugin-sitemap`,
     ],
 };
