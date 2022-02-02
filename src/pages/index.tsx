@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
-
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
@@ -33,9 +32,6 @@ const HomePage = ({ data, location }: PageProps<Posts>) => {
             <Bio />
             <ol className="list-style-none">
                 {posts?.map((post) => {
-                    const title =
-                        post.node.frontmatter.title || post.node.fields.slug;
-
                     return (
                         <li key={post.node.fields.slug}>
                             <PostListItem post={post} />
@@ -57,7 +53,7 @@ export const pageQuery = graphql`
             }
         }
         allMarkdownRemark(
-            limit: 10
+            limit: 6
             sort: { fields: [frontmatter___date], order: DESC }
         ) {
             edges {

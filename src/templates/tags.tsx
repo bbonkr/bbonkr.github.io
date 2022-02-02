@@ -6,11 +6,18 @@ import { Link, graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Bio from '../components/bio';
-import { Post } from '../models/data';
+import { Post, Edge } from '../models/data';
 import PostListItem from '../components/post-list-item';
+import { PageNav } from '../components/pagination/page-nav';
+import { Hr } from '../components/hr';
 
 interface PageContext {
     tag: string;
+    limit: number;
+    skip: number;
+    totalPages: number;
+    currentPage: number;
+    basePath: string;
 }
 
 interface SiteMetadata {
@@ -32,7 +39,7 @@ interface Tag {
 }
 
 interface MarkdownRemark {
-    group: Tag[];
+    edges: Edge[];
 }
 
 interface Data {
@@ -45,46 +52,54 @@ const TagPageTemplate = ({
     data,
     pageContext,
 }: PageProps<Data, PageContext>) => {
-    const [selectedTag, setSelectedTag] = React.useState<string>(
-        pageContext.tag
-    );
-
     const {
-        allMarkdownRemark: { group },
+        allMarkdownRemark: { edges },
         site: {
             siteMetadata: { title },
         },
     } = data;
 
-    const handleClickTag = (tag: string) => () => {
-        setSelectedTag((_) => tag);
-    };
-
     return (
         <Layout location={location} title={title}>
             <Seo title={`Post taged by #${pageContext.tag}`} />
-            <Bio />
-            <div>
+            {/* <Bio /> */}
+            <header>
+                <aside>
+                    <p className="text-base md:text-sm text-green-500 font-bold">
+                        &lt;{' '}
+                        <Link
+                            to="/tags"
+                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                        >
+                            BACK TO TAGS
+                        </Link>
+                    </p>
+                </aside>
                 <h1>
                     {`Post taged by`}{' '}
                     <span className="text-green-500">{`#${pageContext.tag}`}</span>{' '}
                 </h1>
-            </div>
-            {selectedTag && (
-                <div>
-                    {group
-                        // .find((tag) => tag.fieldValue === selectedTag)
-                        .find((_, index) => index === 0)
-                        ?.edges.map((edge) => {
-                            return (
-                                <PostListItem
-                                    key={edge.node.fields.slug}
-                                    post={edge}
-                                />
-                            );
-                        })}
-                </div>
-            )}
+            </header>
+
+            <main>
+                {edges.map((edge) => {
+                    return (
+                        <PostListItem key={edge.node.fields.slug} post={edge} />
+                    );
+                })}
+            </main>
+
+            <Hr />
+
+            <footer>
+                <PageNav
+                    current={pageContext.currentPage}
+                    total={pageContext.totalPages}
+                    path={pageContext.basePath}
+                    showDescription
+                    useShortcut
+                />
+            </footer>
         </Layout>
     );
 };
@@ -92,7 +107,7 @@ const TagPageTemplate = ({
 export default TagPageTemplate;
 
 export const pageQuery = graphql`
-    query postsByTag($tag: String) {
+    query postsByTag($tag: String, $skip: Int!, $limit: Int!) {
         site {
             siteMetadata {
                 title
@@ -101,22 +116,20 @@ export const pageQuery = graphql`
         allMarkdownRemark(
             sort: { fields: [frontmatter___date], order: DESC }
             filter: { frontmatter: { tags: { in: [$tag] } } }
+            limit: $limit
+            skip: $skip
         ) {
-            group(field: frontmatter___tags) {
-                fieldValue
-                totalCount
-                edges {
-                    node {
-                        excerpt(format: PLAIN)
-                        fields {
-                            slug
-                        }
-                        frontmatter {
-                            date(formatString: "MMMM DD, YYYY")
-                            title
-                            tags
-                            categories
-                        }
+            edges {
+                node {
+                    excerpt(format: PLAIN)
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                        tags
+                        categories
                     }
                 }
             }

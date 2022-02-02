@@ -79,7 +79,7 @@ comments: false
 
 D:\Oracle\InstantClient 디렉터리에 Instant Client Package - SQL\*Plus 압축 파일의 내용까지 복사/이동한 상태라면 명령 프롬프트(CMD)를 실행하고, Instant Client 가 존재하는 디렉터리로 이동합니다.
 
-```dos
+```shell
 c:\> d:
 d:\> cd \Oracle\InstantClient
 d:\Oracle\InstantClient\> sqlplus userid/password@sid

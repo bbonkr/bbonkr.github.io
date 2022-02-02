@@ -1,12 +1,19 @@
 import * as React from 'react';
-
-import { graphql, PageProps } from 'gatsby';
+import kebabCase from 'lodash/kebabCase';
+import { graphql, PageProps, navigate } from 'gatsby';
 import Layout from '../../components/layout';
 import Seo from '../../components/seo';
 import Bio from '../../components/bio';
 import { Category } from '../../models/data';
-import PostListItem from '../../components/post-list-item';
 import { CategoryList } from '../../components/categories';
+
+interface FormValues {
+    category?: string;
+}
+
+interface FormState {
+    values?: FormValues;
+}
 
 interface SiteMetadata {
     title: string;
@@ -26,7 +33,7 @@ interface Data {
 }
 
 const CategoriesPage = ({ location, data }: PageProps<Data>) => {
-    const [selectedCategory, setSelectedCategory] = React.useState<string>();
+    const [formState, setFormState] = React.useState<FormState>({ values: {} });
 
     const {
         allMarkdownRemark: { group },
@@ -35,37 +42,59 @@ const CategoriesPage = ({ location, data }: PageProps<Data>) => {
         },
     } = data;
 
-    const handleClickTag = (tag: string) => {
-        setSelectedCategory((_) => tag);
+    const handleClickTag = (category: string) => {
+        navigate(`/categories/${kebabCase(category)}`);
+    };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        setFormState((prevState) => ({
+            ...(prevState ?? {}),
+            values: {
+                ...(prevState ?? {}).values,
+                [name]: value,
+            },
+        }));
     };
 
     return (
         <Layout location={location} title={title}>
             <Seo title="All categories" />
             <Bio />
-            <div>
+            <header>
                 <h1>Categories</h1>
+            </header>
+            <div>
+                <div className="w-full">
+                    <label className="block">
+                        <input
+                            type="text"
+                            name="category"
+                            className="mt-1 block w-full rounded-md shadow-sm border-green-600 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:bg-gray-800"
+                            onChange={handleChange}
+                            value={formState.values?.category ?? ''}
+                            placeholder="Filter"
+                        />
+                    </label>
+                </div>
 
                 <CategoryList
-                    categories={group}
-                    selectedCategory={selectedCategory}
+                    categories={group.filter((x) =>
+                        !formState.values || !formState.values?.category
+                            ? true
+                            : formState.values?.category
+                            ? x.fieldValue
+                                  .toLowerCase()
+                                  .startsWith(
+                                      formState.values?.category?.toLowerCase()
+                                  )
+                            : false
+                    )}
                     onChange={handleClickTag}
                 />
             </div>
-            {selectedCategory && (
-                <div>
-                    {data.allMarkdownRemark.group
-                        .find((tag) => tag.fieldValue === selectedCategory)
-                        ?.edges.map((edge) => {
-                            return (
-                                <PostListItem
-                                    key={edge.node.fields.slug}
-                                    post={edge}
-                                />
-                            );
-                        })}
-                </div>
-            )}
         </Layout>
     );
 };

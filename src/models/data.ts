@@ -1,9 +1,9 @@
-interface GitHub {
+export interface GitHub {
     owner: string;
     repo: string;
 }
 
-interface Frontmatter {
+export interface Frontmatter {
     title: string;
     date: Date;
     description?: string;
@@ -12,11 +12,11 @@ interface Frontmatter {
     github?: GitHub;
 }
 
-interface Field {
+export interface Field {
     slug: string;
 }
 
-interface MarkdownRemark {
+export interface MarkdownRemark {
     id: string;
     excerpt?: string;
     html: string;
@@ -24,23 +24,24 @@ interface MarkdownRemark {
     fields: Field;
 }
 
-interface Edge {
+export interface Edge {
     node: MarkdownRemark;
 }
 
 export type Post = Edge;
 
-interface MarkdownRemarks {
+export interface MarkdownRemarks {
     edges?: Edge[];
 }
 
-interface Author {
+export interface Author {
     name: string;
     summary?: string;
     location?: string;
+    description?: string;
 }
 
-interface SiteMetadata {
+export interface SiteMetadata {
     title?: string;
     author: Author;
     social?: Social;
@@ -79,4 +80,5 @@ export interface Social {
     github?: string;
     linkedin?: string;
     facebook?: string;
+    resume?: string;
 }

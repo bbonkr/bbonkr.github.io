@@ -52,12 +52,12 @@ A responsive, clean and simple [Hexo](http://hexo.io) theme for a personal websi
     
 3. Create pages and articles with the `hexo new [layout] <title>` command.
     For example, to create an "about me" page, run:
-    ```sh
+    ```bash
     $ hexo new page about
     ```
     This will create a new file in `source/about/index.md`
     Similary, you can create a new article with
-    ```sh
+    ```bash
     $ hexo new post "hello world"
     ```
     and add some interesting content in `source/_posts/hello-world.md`.
@@ -284,7 +284,7 @@ This post contains 2 tags and 1 category.
 
 You can create a page with a tag cloud by running:
 
-```sh
+```bash
 $ hexo new page tags
 ```
 
@@ -293,7 +293,7 @@ add a tag cloud to the home page by setting the `tags_overview` option to `true`
 
 Similarly, you can create a page with an overview of all categories by running:
 
-```sh
+```bash
 $ hexo new page categories
 ```
 
@@ -319,7 +319,7 @@ $ npm install hexo-generator-search --save
 
 Next, create a page to display the search engine:
 
-```sh
+```bash
 $ hexo new page search
 ```
 and put `type: search` in the front-matter.

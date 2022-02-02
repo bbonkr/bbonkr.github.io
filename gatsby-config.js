@@ -1,10 +1,12 @@
 module.exports = {
     siteMetadata: {
-        title: `Gatsby Starter Blog`,
+        title: `<bbon />`,
         author: {
             name: `Pon Cheol Ku (구본철)`,
             summary: 'Software developer',
             location: 'South Korea',
+            description:
+                'If you want to contact me, please send message comfortably where click below social icon link.',
         },
         description: `A starter blog demonstrating what Gatsby can do.`,
         social: {
@@ -12,6 +14,7 @@ module.exports = {
             github: 'bbonkr',
             linkedin: 'bbonkr',
             facebook: 'bbonkr',
+            resume: 'https://resume.bbon.me',
         },
     },
     plugins: [

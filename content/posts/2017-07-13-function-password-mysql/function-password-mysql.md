@@ -67,4 +67,5 @@ GenerateMySQLHash('hello');
 ```
 
 > 결과
+> 
 > `*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119`

@@ -1,13 +1,20 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Bio from '../components/bio';
-import { Post } from '../models/data';
+import { Edge, Post } from '../models/data';
 import PostListItem from '../components/post-list-item';
+import { Hr } from '../components/hr';
+import { PageNav } from '../components/pagination/page-nav';
 
 interface PageContext {
     category: string;
+    limit: number;
+    skip: number;
+    totalPages: number;
+    currentPage: number;
+    basePath: string;
 }
 
 interface SiteMetadata {
@@ -25,7 +32,8 @@ interface Category {
 }
 
 interface MarkdownRemark {
-    group: Category[];
+    // group: Category[];
+    edges: Edge[];
 }
 
 interface Data {
@@ -39,7 +47,7 @@ const CategoryPageTemplate = ({
     pageContext,
 }: PageProps<Data, PageContext>) => {
     const {
-        allMarkdownRemark: { group },
+        allMarkdownRemark: { edges },
         site: {
             siteMetadata: { title },
         },
@@ -48,27 +56,43 @@ const CategoryPageTemplate = ({
     return (
         <Layout location={location} title={title}>
             <Seo title={`Posts categorized by ${pageContext.category}`} />
-            <Bio />
-            <div>
+            {/* <Bio /> */}
+            <header>
+                <aside>
+                    <p className="text-base md:text-sm text-green-500 font-bold">
+                        &lt;{' '}
+                        <Link
+                            to="/categories"
+                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                        >
+                            BACK TO CATEGORIES
+                        </Link>
+                    </p>
+                </aside>
                 <h1>
                     {`Posts categorized by`}{' '}
                     <span className="text-green-500">{`${pageContext.category}`}</span>{' '}
                 </h1>
-            </div>
+            </header>
 
-            <div>
-                {group
-                    .find((_, index) => index === 0)
-                    // .find((tag) => tag.fieldValue === selectedCategory)
-                    ?.edges.map((edge) => {
-                        return (
-                            <PostListItem
-                                key={edge.node.fields.slug}
-                                post={edge}
-                            />
-                        );
-                    })}
-            </div>
+            <main>
+                {edges.map((edge) => {
+                    return (
+                        <PostListItem key={edge.node.fields.slug} post={edge} />
+                    );
+                })}
+            </main>
+            <Hr />
+
+            <footer>
+                <PageNav
+                    current={pageContext.currentPage}
+                    total={pageContext.totalPages}
+                    path={pageContext.basePath}
+                    showDescription
+                    useShortcut
+                />
+            </footer>
         </Layout>
     );
 };
@@ -76,7 +100,7 @@ const CategoryPageTemplate = ({
 export default CategoryPageTemplate;
 
 export const pageQuery = graphql`
-    query postsByCategory($category: String) {
+    query postsByCategory($category: String, $skip: Int!, $limit: Int!) {
         site {
             siteMetadata {
                 title
@@ -85,22 +109,20 @@ export const pageQuery = graphql`
         allMarkdownRemark(
             sort: { fields: [frontmatter___date], order: DESC }
             filter: { frontmatter: { categories: { in: [$category] } } }
+            limit: $limit
+            skip: $skip
         ) {
-            group(field: frontmatter___categories) {
-                fieldValue
-                totalCount
-                edges {
-                    node {
-                        excerpt(format: PLAIN)
-                        fields {
-                            slug
-                        }
-                        frontmatter {
-                            date(formatString: "MMMM DD, YYYY")
-                            title
-                            tags
-                            categories
-                        }
+            edges {
+                node {
+                    excerpt(format: PLAIN)
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                        tags
+                        categories
                     }
                 }
             }

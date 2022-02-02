@@ -10,12 +10,12 @@ tags:
 
 ## Install Xcode Command Line Tools
 
-```sh
+```basg
 $ xcode-select --install
 ```
 
 ## Use Gem
 
-```sh
+```bash
 $ gem install jekyll
 ```

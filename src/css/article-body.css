@@ -1,5 +1,5 @@
 .article-body > * {
-    @apply py-3 break-words;
+    @apply my-3 break-words;
 }
 
 .article-body > h1,
@@ -34,9 +34,26 @@
     @apply py-6;
 }
 
-.article-body > ul > li,
-.article-body > ol > li {
-    @apply py-1;
+.article-body ul,
+.article-body ol {
+    @apply my-4 list-inside pl-8;
+}
+
+.article-body li {
+    @apply pb-3;
+}
+
+.article-body ul {
+    @apply list-disc;
+}
+
+.article-body ol {
+    @apply list-decimal;
+}
+
+.article-body > ul,
+.article-body > ol {
+    @apply py-1 pl-0;
 }
 
 .article-body > pre {
@@ -57,4 +74,8 @@
 
 .article-body .github-buttons li {
     @apply py-0;
+}
+
+.article-body blockquote {
+    @apply border-gray-600 border-l-4 pl-4 opacity-70;
 }

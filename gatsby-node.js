@@ -37,12 +37,24 @@ const createTagPages = async (createPage, reporter, tagGroups) => {
     if (typeof tags !== 'undefined' && tags.length > 0) {
         tags.forEach((item) => {
             if (typeof item !== 'undefined' && item.fieldValue) {
-                createPage({
-                    path: `/tags/${kebabCase(item.fieldValue)}`,
-                    component: template,
-                    context: {
-                        tag: item.fieldValue,
-                    },
+                const postsPerPage = 6;
+                const posts = item.edges;
+                const totalPages = Math.ceil(posts.length / postsPerPage);
+                Array.from({ length: totalPages }).forEach((_, index) => {
+                    createPage({
+                        path: `/tags/${kebabCase(item.fieldValue)}${
+                            index === 0 ? '' : `/${index + 1}`
+                        }`,
+                        component: template,
+                        context: {
+                            tag: item.fieldValue,
+                            limit: postsPerPage,
+                            skip: index * postsPerPage,
+                            totalPages,
+                            currentPage: index + 1,
+                            basePath: `/tags/${kebabCase(item.fieldValue)}`,
+                        },
+                    });
                 });
             }
         });
@@ -56,17 +68,53 @@ const createCategoryPages = async (createPage, reporter, categoryGroups) => {
 
     if (typeof categories !== 'undefined' && categories.length > 0) {
         categories.forEach((item) => {
+            const postsPerPage = 6;
+            const posts = item.edges;
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+
             if (typeof item !== 'undefined' && item.fieldValue) {
-                createPage({
-                    path: `/categories/${kebabCase(item.fieldValue)}`,
-                    component: template,
-                    context: {
-                        category: item.fieldValue,
-                    },
+                Array.from({ length: totalPages }).forEach((_, index) => {
+                    createPage({
+                        path: `/categories/${kebabCase(item.fieldValue)}${
+                            index === 0 ? '' : `/${index + 1}`
+                        }`,
+                        component: template,
+                        context: {
+                            category: item.fieldValue,
+                            limit: postsPerPage,
+                            skip: index * postsPerPage,
+                            totalPages,
+                            currentPage: index + 1,
+                            basePath: `/categories/${kebabCase(
+                                item.fieldValue
+                            )}`,
+                        },
+                    });
                 });
             }
         });
     }
+};
+
+const createBlogListPages = async (createPage, reporter, allPosts) => {
+    const template = path.resolve(`./src/templates/blog-list.tsx`);
+    const postsPerPage = 6;
+    const posts = allPosts.edges;
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+
+    Array.from({ length: totalPages }).forEach((_, index) => {
+        createPage({
+            path: index === 0 ? `/blog` : `/blog/${index + 1}`,
+            component: template,
+            context: {
+                limit: postsPerPage,
+                skip: index * postsPerPage,
+                totalPages,
+                currentPage: index + 1,
+                basePath: '/blog',
+            },
+        });
+    });
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -104,12 +152,42 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 categoryGroups: allMarkdownRemark(limit: 2000) {
                     group(field: frontmatter___categories) {
                         fieldValue
+                        totalCount
+                        edges {
+                            node {
+                                excerpt(format: PLAIN)
+                                fields {
+                                    slug
+                                }
+                                frontmatter {
+                                    date(formatString: "MMMM DD, YYYY")
+                                    title
+                                    tags
+                                    categories
+                                }
+                            }
+                        }
                     }
                 }
 
                 tagGroups: allMarkdownRemark(limit: 2000) {
                     group(field: frontmatter___tags) {
                         fieldValue
+                        totalCount
+                        edges {
+                            node {
+                                excerpt(format: PLAIN)
+                                fields {
+                                    slug
+                                }
+                                frontmatter {
+                                    date(formatString: "MMMM DD, YYYY")
+                                    title
+                                    tags
+                                    categories
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -126,6 +204,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     await createTagPages(createPage, reporter, result.data.tagGroups);
 
     await createCategoryPages(createPage, reporter, result.data.categoryGroups);
+
+    await createBlogListPages(createPage, reporter, result.data.allPosts);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -283,6 +363,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String
       summary: String
       location: String
+      description: String
     }
 
     type Social {
@@ -290,6 +371,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       github: String
       linkedin: String
       facebook: String
+      resume: String
     }
 
     type MarkdownRemark implements Node {

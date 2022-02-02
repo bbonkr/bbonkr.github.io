@@ -42,7 +42,7 @@ Sort 확장메서드는 내부적으로 OderBy, OrderByDescending, ThenBy, ThenB
 
 [Document 형식](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Document.cs#L5)의 Content 오름차순, Id 내림차순으로 정렬하는 코드입니다. [[코드 보기](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/blob/6833ee59ac8c15e29db2a1e95422387f2f772183/example/Example.App/Program.cs#L48)]
 
-```cshap
+```csharp
 using(var ctx = new ExampleDbContext()){
     var result = ctx.Documents.Sort(nameof(Document.Content)).Sort(nameof(Document.Id), false);
 }
