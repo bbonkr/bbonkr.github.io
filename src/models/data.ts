@@ -19,6 +19,7 @@ export interface Field {
 export interface MarkdownRemark {
     id: string;
     excerpt?: string;
+    rawMarkdownBody?: string;
     html: string;
     frontmatter: Frontmatter;
     fields: Field;

@@ -78,7 +78,7 @@ const Layout = ({
                                         </div>
                                     </div>
 
-                                    <div className="flex w-full md:w-1/2">
+                                    {/* <div className="flex w-full md:w-1/2">
                                         <div className="px-8">
                                             <h3 className="font-bold text-gray-900 dark:text-gray-100">
                                                 About
@@ -92,7 +92,7 @@ const Layout = ({
                                                 lacinia.
                                             </p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="container max-w-4xl mx-auto flex flex-col justify-center items-center py-8">

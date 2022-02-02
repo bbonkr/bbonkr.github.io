@@ -7,7 +7,7 @@ categories:
 tags:
   - dotnet
   - app
-  - csharo
+  - csharp
   - sqlite
   - windows
   - windows-forms

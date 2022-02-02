@@ -1,7 +1,8 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
-// import { useMediaQuery } from 'react-responsive';
 import { Theme } from '../../context/theme/theme-context';
+import { FaSearch } from 'react-icons/fa';
+
 interface HeaderProps {
     title?: string;
     theme?: Theme;
@@ -148,6 +149,18 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                                 Categories
                             </Link>
                         </li>
+
+                        <li className="mr-3">
+                            <Link
+                                to="/search"
+                                className="block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4 "
+                            >
+                                <FaSearch className="text-xl inline-block mr-3" />
+
+                                <span className="md:hidden">Search</span>
+                            </Link>
+                        </li>
+
                         <li className="mr-3">
                             <button
                                 className="js-change-theme focus:outline-none inline-block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
@@ -155,12 +168,12 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                             >
                                 {theme === 'dark' ? (
                                     <React.Fragment>
-                                        <span>{`☀️`}</span>{' '}
+                                        <span className="text-xl mr-3">{`☀️`}</span>{' '}
                                         <span className="md:hidden">{`Light mode`}</span>
                                     </React.Fragment>
                                 ) : (
                                     <React.Fragment>
-                                        <span>{`🌙`}</span>{' '}
+                                        <span className="text-xl mr-3">{`🌙`}</span>{' '}
                                         <span className="md:hidden">{`Dark mode`}</span>
                                     </React.Fragment>
                                 )}

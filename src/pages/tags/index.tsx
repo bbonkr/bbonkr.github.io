@@ -58,9 +58,9 @@ const TagsPage = ({ location, data }: PageProps<Data>) => {
         }));
     };
 
-    React.useEffect(() => {
-        console.info('formState', formState);
-    }, []);
+    // React.useEffect(() => {
+    //     console.info('formState', formState);
+    // }, []);
 
     return (
         <Layout location={location} title={title}>

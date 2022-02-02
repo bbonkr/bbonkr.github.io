@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, navigate, PageProps } from 'gatsby';
 import { Site } from '../models/data';
 import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
@@ -13,6 +13,10 @@ interface Data {
 
 const ProfilePage = ({ data, location }: PageProps<Data>) => {
     const title = data.site.siteMetadata?.title ?? '';
+
+    const handleClickMainButton = () => {
+        navigate('/blog');
+    };
 
     return (
         <React.Fragment>
@@ -73,9 +77,18 @@ const ProfilePage = ({ data, location }: PageProps<Data>) => {
                             </p>
 
                             <div className="pt-12 pb-8">
-                                <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-                                    Get In Touch
+                                <button
+                                    className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+                                    onClick={handleClickMainButton}
+                                >
+                                    Would you like to read latest posts?
                                 </button>
+                                {/* <Link
+                                    to="/blog"
+                                    className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+                                >
+                                    Would you like to read latest posts?
+                                </Link> */}
                             </div>
 
                             <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-center gap-6">
