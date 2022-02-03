@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-tsx",
+    "path": "/tags/electron",
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Electron 으로 작성된 응용 프로그램을 Windows, Macos 실행파일로 빌드하고, GitHub Release 에서 다운로드 가능한 상태로 준비하는 과정을 자동화한 워크플로우를 회고합니다. GitHub Actions GitHub…","fields":{"slug":"/2021/02/14/github-action-electron-release/"},"frontmatter":{"date":"February 14, 2021","title":"Electron Release with GitHub Action","tags":["github","github-actions","electron","ci-cd"],"categories":["howto"]}}},{"node":{"excerpt":"…","fields":{"slug":"/2019/02/09/rename-app/"},"frontmatter":{"date":"February 09, 2019","title":"Rename App","tags":["electron","javascript","js"],"categories":["computing"]}}}]}},"pageContext":{"tag":"electron","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/electron"}},
+    "staticQueryHashes": ["2841359383"]}

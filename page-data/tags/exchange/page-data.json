@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-tsx",
+    "path": "/tags/exchange",
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"EWS Managed API GitHub에 코드가 공개되어 있습니다. Troubleshooting Ignore EWS Certification Error SSL 인증서 유효성 검사를 통과하지 못하는 경우 무시하고 진행할 수 있습니다.","fields":{"slug":"/2015/01/14/exchange-web-service/"},"frontmatter":{"date":"January 14, 2015","title":"Exchange Web Service","tags":["dotnet","exchange","csharp","dotnet"],"categories":["computing"]}}}]}},"pageContext":{"tag":"exchange","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/exchange"}},
+    "staticQueryHashes": ["2841359383"]}

@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-tsx",
+    "path": "/tags/gulp",
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Gulp Gulp는 시간을 소모하는 개발 업무 흐름을 자동화하기 위한 도구입니다. 자세한 내용은 gulpjs.com 에서 확인할 수 있습니다. 시작하기 gulpjs.com 에서 발췌 CLI 도구를 설치하고, 패키지를 설치한 후 gulpfile.js…","fields":{"slug":"/2018/01/03/gulp-task-automation/"},"frontmatter":{"date":"January 03, 2018","title":"Gulp: 자동화 도구","tags":["gulp","npm","nodejs","task","automation"],"categories":["computing"]}}}]}},"pageContext":{"tag":"gulp","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/gulp"}},
+    "staticQueryHashes": ["2841359383"]}

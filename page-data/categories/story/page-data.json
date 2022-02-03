@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-categories-tsx",
+    "path": "/categories/story",
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"2020년을 돌아봅니다. 기술 스택 .NET 5 이전에 작성했던 .NET Core 2.x ~ 3.x 응용프로그램을 .NET 5 로 이전해보고 있습니다. 계속 함께할 생각입니다. React 202…","fields":{"slug":"/2020/12/31/review-2020/"},"frontmatter":{"date":"December 31, 2020","title":"Review 2020","tags":["review","log"],"categories":["log","story"]}}},{"node":{"excerpt":"2019년을 돌아봅니다. 기술 스택의 다양화 React SPA 싱글 페이지 어플리케이션을 작성하고 싶어 공부를 시작했습니다. 최대한 프레임워크의 도움을 받고, 사용하기 좋은 패키지를 찾으며 리액트에 초점을 맞춰서 진행했습니다. Next.js…","fields":{"slug":"/2019/12/31/review-2019/"},"frontmatter":{"date":"December 31, 2019","title":"Review 2019","tags":["review"],"categories":["story"]}}}]}},"pageContext":{"category":"story","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/categories/story"}},
+    "staticQueryHashes": ["2841359383"]}
