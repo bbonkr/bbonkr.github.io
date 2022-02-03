@@ -13,7 +13,7 @@ comments: false
 
 Visual Studio 2017 에서 원격 저장소를 대상으로 **push** 명령을 실행하면, 아래와 유사한 오류가 발생합니다.
 
-{% asset_img error-git-visual-studio-2017-001.png %}
+![](./error-git-visual-studio-2017-001.png)
 
 아래와 유사한 내용을 출력창에서 확인할 수 있습니다.
 

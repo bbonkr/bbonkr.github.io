@@ -20,7 +20,7 @@ Grab 9 awesome Mac apps, totally FREE!
 
 ### MacBooster 3
 
-{% asset_img 82.png "MacBooster 3" %}
+![](./82.png "MacBooster 3")
 
 \$39.95
 
@@ -30,7 +30,7 @@ Min Requirements: Intel, 64-bit processor, OS X 10.6 or later
 
 ### PlugSpy 2
 
-{% asset_img 83.png "PlugSpy 2" %}
+![](./83.png "PlugSpy 2")
 
 \$4.00
 
@@ -40,7 +40,7 @@ Min Requirements: OS X 10.10 or later, 64-bit processor
 
 ### Mousai
 
-{% asset_img 84.png "Mousai" %}
+![](./84.png "Mousai")
 
 \$4.00
 
@@ -56,7 +56,7 @@ Min Requirements: OS X 10.9 or later
 
 ### HyperPDF
 
-{% asset_img 85.png "HyperPDF" %}
+![](./85.png "HyperPDF")
 
 \$16.00
 
@@ -74,7 +74,7 @@ Turn your PDF into awesome slides. HyperPDF provides built-in transitions.
 
 ### Code Cookbook
 
-{% asset_img 86.png "Code Cookbook" %}
+![](./86.png "Code Cookbook")
 
 \$6.00
 
@@ -86,7 +86,7 @@ Min Requirements: OS X 10.7 or later, Intel 64-bit processor
 
 ### Audio Recorder
 
-{% asset_img 87.png "Audio Recorder" %}
+![](./87.png "Audio Recorder")
 
 \$30.00
 
@@ -96,7 +96,7 @@ Min Requirements: OS X 10.6 or later
 
 ### QuickWeb
 
-{% asset_img 88.png "QuickWeb" %}
+![](./88.png "QuickWeb")
 
 \$2.00
 
@@ -116,7 +116,7 @@ Min Requirements: Intel, 64-bit processor, OS X 10.7 or later
 
 ### Bits
 
-{% asset_img 89.png Bits"" %}
+![](./89.png Bits"")
 
 \$5.00
 
@@ -126,7 +126,7 @@ Min Requirements: OS X 10.7 or later
 
 ### Better Window Manager
 
-{% asset_img 90.png "Better Window Manager" %}
+![](./90.png "Better Window Manager")
 
 \$3.00
 

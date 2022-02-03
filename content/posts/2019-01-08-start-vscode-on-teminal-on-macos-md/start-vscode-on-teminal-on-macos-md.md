@@ -10,7 +10,7 @@ intro:
 comments:
 ---
 
-{% asset_img 001.png %}
+![](./001.png)
 
 명령 파레트를 열고 (<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>), `Shell Command: Install 'code' command in PATH`를 선택합니다.
 

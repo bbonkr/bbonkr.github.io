@@ -19,7 +19,7 @@ comments:
 
 GitHub 에서 저장소를 작성할 때, 템플릿으로 표시된 저장소를 사용해서 내 저장소를 작성할 수 있습니다.
 
-{% asset_img github-use-this-template.png %}
+![](./github-use-this-template.png)
 
 ## 템플릿
 

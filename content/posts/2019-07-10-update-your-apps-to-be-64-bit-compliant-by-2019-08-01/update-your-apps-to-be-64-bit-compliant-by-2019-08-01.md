@@ -47,7 +47,7 @@ Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 
 -   armeabi-v7a
 -   arm64-v8a
 
-{% asset_img vs2019-android-x64.png %}
+![](./vs2019-android-x64.png)
 
 ### Visual Studio 2019 for Mac
 
@@ -58,7 +58,7 @@ Xamarin 으로 작성된 앱은 64비트 호환으로 업데이트하기 위해 
 -   armeabi-v7a
 -   arm64-v8a
 
-{% asset_img vs2019forMac-android-x64.png %}
+![](./vs2019forMac-android-x64.png)
 
 ## 빌드
 
@@ -74,7 +74,7 @@ APK Analyzer 도구를 실행하고 아카이브된 APK 파일을 선택합니�
 
 잠시후 아래와 같은 화면을 확인할 수 있습니다.
 
-{% asset_img scoreboard.png %}
+![](./scoreboard.png)
 
 오른쪽 창의 lib 에 arm64-v8a 관련 내용이 보이면 64비트 지원 앱으로 판단하시면 됩니다.
 

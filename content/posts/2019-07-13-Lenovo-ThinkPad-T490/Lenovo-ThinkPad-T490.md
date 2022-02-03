@@ -14,7 +14,7 @@ comments:
 
 유일한 약점이 커피를 못탄다는 [Lenovo ThinkPad T490](https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1) 을 구매했습니다.
 
-{% asset_img lenovo-laptop-thinkpad-t490-hero.png "Lenovo T490" %}
+![](./lenovo-laptop-thinkpad-t490-hero.png "Lenovo T490")
 
 > <small>제품 사진은 [Lenovo T490](https://www.lenovo.com/kr/ko/laptops/thinkpad/thinkpad-t-series/T490/p/20N2CTO1WWKOKR1) 페이지에서 가져왔습니다.</small>
 

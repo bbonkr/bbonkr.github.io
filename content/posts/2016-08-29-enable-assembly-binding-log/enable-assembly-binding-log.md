@@ -121,7 +121,7 @@ JIT 디버깅을 사용하면 처리되지 않은 모든 예외는
 
 아래와 같이 레지스트리 값을 추가하면 로깅이 활성화됩니다.
 
-{% asset_img regedit-fusion-log.png 설정 %}
+![](./regedit-fusion-log.png 설정)
 
 ## 로그확인
 
@@ -142,9 +142,9 @@ JIT 디버깅을 사용하면 처리되지 않은 모든 예외는
 
 Release 파일을 다운로드 받고 실행하면 아래와 같이 간단한 모양으로 실행됩니다.
 
-{% asset_img fusionlog-01.png %}
+![](./fusionlog-01.png)
 
-{% asset_img fusionlog-02.png %}
+![](./fusionlog-02.png)
 
 Check 버튼으로 현재 상태를 확인할 수 있고, Activate, Deactivate 버튼으로 활성, 비활성으로 상태를 변경할 수 있습니다.
 

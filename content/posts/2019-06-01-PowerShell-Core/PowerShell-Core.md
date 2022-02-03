@@ -79,7 +79,7 @@ $ brew cask install powershell
 
 시작메뉴에서 검색하면 PowerShell 6 으로 찾을 수 있습니다.
 
-{% asset_img 2019-06-01-powershell-core-004.png %}
+![](./2019-06-01-powershell-core-004.png)
 
 ## 사용
 
@@ -89,25 +89,25 @@ Windows 10 에서 설치를 진행합니다.
 
 설치 마법사에서 아래와 같이 환경변수에 설치 경로 추가 등의 항목을 선택하면 간단하게 편리한 환경을 구성할 수 있습니다.
 
-{% asset_img 2019-06-01-powershell-core-001.png %}
+![](./2019-06-01-powershell-core-001.png)
 
 윈도우 파워쉘과 유사한 아이콘이 사용됩니다.
 
-{% asset_img 2019-06-01-powershell-core-002.png %}
+![](./2019-06-01-powershell-core-002.png)
 
 터미널을 열고 PWSH 명령으로 PowerShell Core 를 실행하고, PowerShell 명령으로 Windows PowerShell을 실행할 수 있습니다.
 
-{% asset_img 2019-06-01-powershell-core-003.png %}
+![](./2019-06-01-powershell-core-003.png)
 
 ## Visual Studio Code Terminal
 
 Visual Studio Code 에서 기본 터미널로 설정하기 위해서 설정창을 열고 <kbd>Ctrl</kbd> + <kbd>,</kbd> 검색창에 terminal 을 입력한 후 `Terminal > Integrated > Env:Windows` 항목을 찾습니다.
 
-{% asset_img 2019-06-01-powershell-core-005.png %}
+![](./2019-06-01-powershell-core-005.png)
 
 아래쪽의 Edit in settings.json 링크를 클릭해서 설정 파일을 열고, `terminal.integrated.shell.windows` 의 값을 PowerShell Core 실행파일의 전체 경로로 변경합니다.
 
-{% asset_img 2019-06-01-powershell-core-006.png %}
+![](./2019-06-01-powershell-core-006.png)
 
 ```json
 "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe"
@@ -115,4 +115,4 @@ Visual Studio Code 에서 기본 터미널로 설정하기 위해서 설정창�
 
 이제 Visual Studio Code 에서 터미널을 열면 <kbd>Ctrl</kbd> + <kbd>`</kbd> 터미널에서 PowerShell Core 가 사용됩니다.
 
-{% asset_img 2019-06-01-powershell-core-007.png %}
+![](./2019-06-01-powershell-core-007.png)

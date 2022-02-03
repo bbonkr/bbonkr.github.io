@@ -112,7 +112,7 @@ $ cd ..
 $ react-native run-ios
 ```
 
-{% asset_img react-native-ios-2019-07-12-001.png "가상장치에서 실행된 앱" %}
+![](./react-native-ios-2019-07-12-001.png "가상장치에서 실행된 앱")
 
 ## 주의
 

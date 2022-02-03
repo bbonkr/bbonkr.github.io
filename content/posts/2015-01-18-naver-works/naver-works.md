@@ -17,7 +17,7 @@ Google Apps 는 이전에 활성화해둔 계정이 있어 사용중이고, Micr
 
 사용량이 많은 경우는 다음쪽 서비스가 무료로 사용할 수 있는 계정의 수도 많고, 클라우드 저장공간도 크게 제공하는데, 네이버에서는 좀 더 다양하게 서비스를 활용할 수 있도록 별도의 모바일 응용프로그램을 제공하고 있어, 체험을 해보려면 서비스를 다양하게 활용할 수 있는 쪽이 더 좋아 보여 네이버 웍스 서비스에 도메인을 연결시켰습니다.
 
-<!-- {% asset_img naver-works-logo.png Naver Works %} -->
+<!-- ![](./naver-works-logo.png Naver Works) -->
 
 ![Naver Works](./naver-works-logo.png)
 
@@ -57,7 +57,7 @@ Google Apps 는 이전에 활성화해둔 계정이 있어 사용중이고, Micr
 
 Naver Works 관련 모바일 응용프로그램을 App Store에서 다운로드
 
-<!-- {% asset_img naver-works-mail.png Naver Works Mail %} -->
+<!-- ![](./naver-works-mail.png Naver Works Mail) -->
 
 ![Naver Works Mail](./naver-works-mail.png)
 

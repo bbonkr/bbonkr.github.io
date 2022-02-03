@@ -18,7 +18,7 @@ HTTP API  웹 응용프로그램을 작성할 때,  [Postman](https://www.getpos
 
 작성한 API 가 잘 동작하는지 클라이언트에서 사용하는 것과 동일한 요청을 GUI를 통해 실행할 수 있어 매우 편리합니다.
 
-{% asset_img postman-variable-usage-001.png %}
+![](./postman-variable-usage-001.png)
 
 [무료 요금제](https://www.getpostman.com/pricing) 를 사용해도 매우 많은 기능을 제공합니다.
 
@@ -34,7 +34,7 @@ HTTP API  웹 응용프로그램을 작성할 때,  [Postman](https://www.getpos
 
 전역 변수와 환경 변수는 오른쪽 위 버튼을 클릭하면 관리 화면을 찾을 수 있습니다.
 
-{% asset_img postman-variable-usage-002.png %}
+![](./postman-variable-usage-002.png)
 
 > - [Managing global variables](https://learning.getpostman.com/docs/postman/environments-and-globals/manage-globals/)
 
@@ -75,7 +75,7 @@ Postman 을 사용하면 보통 한번만 작성한 후 저장하면, 다시 불
 
 > 기본주소를 `http://localhost:3000` 으로 설정합니다.
 
-{% asset_img postman-variable-usage-003.png %}
+![](./postman-variable-usage-003.png)
 
 
 ## 예제
@@ -111,7 +111,7 @@ Postman 의 현재 컬렉션에 signin 요청을 추가합니다.
 
 요청 URL은 `{{baseurl}}/api/signin` 을 입력합니다.
 
-{% asset_img postman-variable-usage-004.png %}
+![](./postman-variable-usage-004.png)
 
 응답에서 token 변수의 값을 설정하기 위해 Tests 탭으로 이동합니다.
 
@@ -129,7 +129,7 @@ pm.test('call', ()=> {
 });
 ```
 
-{% asset_img postman-variable-usage-005.png %}
+![](./postman-variable-usage-005.png)
 
 > Test 탭의 오른쪽에 코드 조각이 제공됩니다.
 
@@ -141,7 +141,7 @@ Postman 의 현재 컬렉션에 get stores 요청을 추가합니다.
 
 Authorization 탭에서 인증 형식을 Bearer Token 으로 선택하고 토큰의 값은 변수를 사용할 것이므로 `{{token}}` 을 입력합니다.
 
-{% asset_img postman-variable-usage-006.png %}
+![](./postman-variable-usage-006.png)
 
 준비를 마쳤습니다.
 

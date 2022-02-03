@@ -46,13 +46,13 @@ comments:
 4.  Preview 버튼을 클릭해서 미리보기를 확인합니다.
 5.  Rename 버튼을 클릭해서 파일이름을 변경합니다.
 
-{% asset_img rename-app-001.png %}
+![](./rename-app-001.png)
 
-{% asset_img rename-app-002.png %}
+![](./rename-app-002.png)
 
-{% asset_img rename-app-003.png %}
+![](./rename-app-003.png)
 
-{% asset_img rename-app-004.png %}
+![](./rename-app-004.png)
 
 > 정규식은 [자바스트립트의 정규식 가이드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D)를 참조하십시오.
 

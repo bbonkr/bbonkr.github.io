@@ -33,13 +33,13 @@ comments:
 
 지금까지 기록한 경기 목록입니다.
 
-{% asset_img score-board-app-002.png %}
+![](./score-board-app-002.png)
 
 ### 경기 추가
 
 오른쪽 위에 있는 ➕ 버튼을 탭하면 경기 정보를 입력해서 항목을 추가할 수 있습니다.
 
-{% asset_img score-board-app-003.png %}
+![](./score-board-app-003.png)
 
 ### 점수판
 
@@ -47,4 +47,4 @@ comments:
 
 점수의 최소값은 0이며 0보다 작은 점수는 입력할 수 없습니다.
 
-{% asset_img score-board-app-004.png %}
+![](./score-board-app-004.png)

@@ -16,7 +16,7 @@ comments:
 최근 게시된 Windows 10 Build 2004 는 WSL 2 버전<small>Windows Subsystem Linux version 2</small>이 포함되어 있습니다.
 
 
-{% asset_img 2020-06-01-wsl-2-windows-10-build-2004-003.png %}
+![](./2020-06-01-wsl-2-windows-10-build-2004-003.png)
 
 WSL 2 버전은 Linux용 Windows 하위 시스템 아키텍쳐의 새로운 버전입니다.
 
@@ -41,7 +41,7 @@ PS> Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsyst
 ```
 
 
-{% asset_img 2020-06-01-wsl-2-windows-10-build-2004-001.png %}
+![](./2020-06-01-wsl-2-windows-10-build-2004-001.png)
 
 ## 리눅스 배포판 설치
 
@@ -51,7 +51,7 @@ PS> Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsyst
 
 예를 들어 리눅스 배포판중 Ubuntu를 사용하려면 Windows Store 에서 Ubuntu를 검색하고, 원하는 버전을 설치한 후 실행하면 됩니다.
 
-{% asset_img 2020-06-01-wsl-2-windows-10-build-2004-002.png %}
+![](./2020-06-01-wsl-2-windows-10-build-2004-002.png)
 
 리눅스 배포판이 설치된 후 실행하면 리눅스에서 사용할 사용자 이름, 비밀번호를 입력하는 창이 열리고, 원하는 사용자 이름, 비밀번호를 입력한 후 사용하시면 됩니다.
 

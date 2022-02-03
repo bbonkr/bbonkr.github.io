@@ -120,11 +120,11 @@ namespace Kr.Bbon.Product.ViewModels
 
 Visual Studio 의 프로젝트 메뉴에서 템플릿 내보내기가 가능합니다.
 
-{% asset_img vs-item-template-export-template.png %}
+![](./vs-item-template-export-template.png)
 
 템플릿 내보내기 메뉴를 사용하면 마법사 형식으로 프로젝트를 템플릿으로 만들 것인지, 항목을 아이템 템플릿을 만들 것인지 선택이 가능합니다.
 
-{% asset_img vs-item-template-export-template-wizard.png %}
+![](./vs-item-template-export-template-wizard.png)
 
 
 이렇게 아이템 템플릿을 내보내면 아이템 템플릿 디렉터리에 `.zip` 파일이 추가되어져 있습니다.
@@ -132,7 +132,7 @@ Visual Studio 의 프로젝트 메뉴에서 템플릿 내보내기가 가능합�
 👉 아이템 템플릿 디렉터리는 Visual Studio 옵션에서 확인할 수 있어요.
 
 ![Visual Studio 옵션](vs-item-template-options.png)
-{% asset_img vs-item-template-options.png %}
+![](./vs-item-template-options.png)
 
 `.zip` 파일은 아래 항목을 포함하고 있습니다.
 
@@ -372,7 +372,7 @@ Visual Studio 가 실행중이면 재시작해야 추가된 아이템 템플릿�
 
 솔루션 탐색기 혹은 파일 메뉴에서 새 항목 추가 메뉴를 시작하면 추가한 아이템 템플릿을 선택할 수 있습니다.
 
-{% asset_img vs-item-template-add-new-item.png %}
+![](./vs-item-template-add-new-item.png)
 
 제약조건에 맞게 올바른 이름을 입력하고 추가하면 프로젝트 루트 디렉터리에 파일이 추가됩니다.
 

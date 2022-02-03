@@ -180,8 +180,8 @@ $ react-native run-ios
 
 정상적으로 실행됩니다.
 
-{% asset_img react-native-3-2019-07-12-001.png %}
+![](./react-native-3-2019-07-12-001.png)
 
-{% asset_img react-native-3-2019-07-12-002.png %}
+![](./react-native-3-2019-07-12-002.png)
 
-{% asset_img react-native-3-2019-07-12-003.png %}
+![](./react-native-3-2019-07-12-003.png)

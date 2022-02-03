@@ -42,7 +42,7 @@ Lightsail 에 새로운 인스턴스를 만들고, Docker를 설치하고, docke
 ## 계획
 
 
-{% asset_img aws-lightsail-container.png %}
+![](./aws-lightsail-container.png)
 
 ## 구현
 
