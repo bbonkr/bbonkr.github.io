@@ -21,3 +21,6 @@ jobs:
           npm install
       - run: |
           npm run build
+        env:
+          NODE_ENV: production
+          GA_ID: ${{ secrets.GA_ID }}          
