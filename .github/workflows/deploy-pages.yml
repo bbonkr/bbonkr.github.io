@@ -1,0 +1,32 @@
+name: 'Deploy pages'
+
+on: # rebuild any PRs and main branch changes
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16.x        
+
+      - run: |
+          npm install
+      - run: |
+          npm run build
+        env:
+          NODE_ENV: production
+          GA_ID: ${{ secret.GA_ID }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          # external_repository: bbonkr/bbonkr.github.io
+          publish_branch: gh-pages  # default: gh-pages
+          publish_dir: ./public

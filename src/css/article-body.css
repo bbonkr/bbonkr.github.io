@@ -79,3 +79,12 @@
 .article-body blockquote {
     @apply border-gray-600 border-l-4 pl-4 opacity-70;
 }
+
+.article-body a {
+    @apply text-green-600;
+    font-weight: 500;
+}
+
+.article-body a:hover {
+    text-decoration: underline;
+}

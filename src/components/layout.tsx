@@ -65,34 +65,39 @@ const Layout = ({
                                     <div className="flex w-full md:w-1/2">
                                         <div className="px-8">
                                             <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                                                About
+                                                Working
                                             </h3>
                                             <p className="py-4 text-gray-600 dark:text-gray-400 text-sm">
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                                Maecenas vel mi ut felis tempus
-                                                commodo nec id erat. Suspendisse
-                                                consectetur dapibus velit ut
-                                                lacinia.
+                                                I am replacing the static site
+                                                page builder to Gatsby.
                                             </p>
                                         </div>
                                     </div>
 
-                                    {/* <div className="flex w-full md:w-1/2">
+                                    <div className="flex w-full md:w-1/2">
                                         <div className="px-8">
                                             <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                                                About
+                                                Other sites
                                             </h3>
                                             <p className="py-4 text-gray-600 dark:text-gray-400 text-sm">
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                                Maecenas vel mi ut felis tempus
-                                                commodo nec id erat. Suspendisse
-                                                consectetur dapibus velit ut
-                                                lacinia.
+                                                If does not find interesting
+                                                topic, you might visit other
+                                                site on below link.
                                             </p>
+                                            <ul>
+                                                <li>
+                                                    <a
+                                                        href="https://bbon.kr"
+                                                        target="_blank"
+                                                        rel="nofollow"
+                                                        className="text-green-600"
+                                                    >
+                                                        Other Blog
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </div>
                             <div className="container max-w-4xl mx-auto flex flex-col justify-center items-center py-8">

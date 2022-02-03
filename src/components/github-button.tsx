@@ -67,7 +67,7 @@ const GitHubButtons = React.memo(
         return (
             <ul className="github-buttons flex gap-2 flex-wrap">
                 {githubButtons.map((model) => (
-                    <li key={model.type} className="py-0">
+                    <li key={model.type} className="py-0 list-none">
                         <GitHubButton
                             href={model.url}
                             data-color-scheme={getColorScheme(theme)}
