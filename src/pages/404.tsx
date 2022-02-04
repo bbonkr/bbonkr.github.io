@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
+import Bio from '../components/bio';
 
 interface SiteMetadata {
     title: string;
@@ -24,8 +25,30 @@ const NotFoundPage = ({ data, location }: NotFoundPageProps) => {
     return (
         <Layout location={location} title={siteTitle ?? title}>
             <Seo title={title} />
-            <h1>404: Not Found</h1>
-            <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+            <Bio />
+            <header>
+                <h1 className="text-2xl">404: Not Found</h1>
+            </header>
+            <main className="py-6">
+                <section>
+                    <p>You just hit a route that doesn&#39;t exist...</p>
+                    <p>Sorry about that.</p>
+                </section>
+                <section className="py-3">
+                    <p>How about find tagged posts at tags page.</p>
+                    <p>
+                        <Link to="/tags" className="text-green-600">
+                            Go to Tags page
+                        </Link>
+                    </p>
+                </section>
+                <section className="py-3">
+                    <p>How about find categorized posts at categories page.</p>
+                    <Link to="/categories" className="text-green-600">
+                        Go to Categories page
+                    </Link>
+                </section>
+            </main>
         </Layout>
     );
 };

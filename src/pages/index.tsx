@@ -28,7 +28,7 @@ const HomePage = ({ data, location }: PageProps<Posts>) => {
 
     return (
         <Layout location={location} title={siteTitle}>
-            <Seo title="All posts" />
+            <Seo title="Recent posts" />
             <Bio />
             <ol className="list-style-none">
                 {posts?.map((post) => {

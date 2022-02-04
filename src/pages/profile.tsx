@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FaGithub, FaTwitter, FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { RiNewspaperLine } from 'react-icons/ri';
+import Seo from '../components/seo';
 
 interface Data {
     site: Site;
@@ -26,7 +27,9 @@ const ProfilePage = ({ data, location }: PageProps<Data>) => {
                     className: `font-sans antialiased text-gray-900 dark:text-gray-100 leading-normal tracking-wider bg-cover`,
                 }}
             />
+
             <Layout location={location} title={title}>
+                <Seo title={`Profile`} />
                 <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
                     {/* <!--Main Col--> */}
                     <div
