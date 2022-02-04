@@ -12,9 +12,9 @@ comments:
 
 [React Native Getting Started](https://facebook.github.io/react-native/docs/getting-started) 페이지의 내용을 따라하면서 발생한 문제들입니다.
 
--   [시작하기 정말? #1](/2019/07/13/React-Native-Get-Started-really-1/)
+-   [시작하기 정말? #1](../react-native-get-started-really-1)
 -   시작하기 정말? #2 👈
--   [시작하기 정말? #3](/2019/07/13/React-Native-Get-Started-really-3/)
+-   [시작하기 정말? #3](../react-native-get-started-really-3)
 
 기본적인 설치 및 구성은 페이지를 보며 진행했습니다.
 
