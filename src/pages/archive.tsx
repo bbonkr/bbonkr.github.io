@@ -29,8 +29,11 @@ const BlogPage = ({ data, location }: PageProps<Posts>) => {
 
     return (
         <Layout location={location} title={siteTitle}>
-            <Seo title="All posts" />
+            <Seo title="Archieves" />
             <Bio />
+            <header>
+                <h1>Archives</h1>
+            </header>
             <ol className="list-style-none">
                 {posts?.map((post) => {
                     const title =
