@@ -73,8 +73,11 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
 
     return (
         <Layout location={location} title={siteTitle}>
-            <Seo title="All posts" />
+            <Seo title="Search" />
             <Bio />
+            <header>
+                <h1>Search</h1>
+            </header>
             <main>
                 <div className="w-full">
                     <label className="block">
