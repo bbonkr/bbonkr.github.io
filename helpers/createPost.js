@@ -17,7 +17,7 @@ const getDateString = (date) => {
 
 const getContent = (title, date) => {
     return `---
-title: ${title}
+title: "${title}"
 date: ${date}
 categories:
   - categories here
@@ -27,13 +27,13 @@ draft: true
 image: 
 comments: false
 github: # If you want to show github buttons, fill owner and repo
-  owner:  
+  owner: 
   repo: 
 ---    
 
 <!-- post content here -->
 
-    `;
+`;
 };
 
 const createPost = (baseDirectory, title, date) => {
