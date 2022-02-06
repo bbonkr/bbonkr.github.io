@@ -388,6 +388,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       author: Author
       siteUrl: String
       social: Social
+      seo: Seo
     }
 
     type Author {
@@ -403,6 +404,10 @@ exports.createSchemaCustomization = ({ actions }) => {
       linkedin: String
       facebook: String
       resume: String
+    }
+
+    type Seo {
+        facebookAppId: String
     }
 
     type MarkdownRemark implements Node {

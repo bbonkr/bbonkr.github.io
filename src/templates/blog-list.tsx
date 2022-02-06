@@ -99,6 +99,9 @@ export const blogListQuery = graphql`
                         title
                         tags
                         categories
+                        image
+                        draft
+                        comments
                     }
                 }
             }

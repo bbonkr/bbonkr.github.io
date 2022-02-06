@@ -1,3 +1,5 @@
+import { FluidObject } from 'gatsby-image';
+
 export interface GitHub {
     owner: string;
     repo: string;
@@ -10,6 +12,18 @@ export interface Frontmatter {
     categories?: string[];
     tags?: string[];
     github?: GitHub;
+    draft?: boolean;
+    comments?: boolean;
+    image?: string;
+    featuredImage?: FeaturedImage;
+}
+
+interface FeaturedImage {
+    childImageSharp?: ImageSharp;
+}
+
+interface ImageSharp {
+    fluid: FluidObject;
 }
 
 export interface Field {
@@ -42,10 +56,16 @@ export interface Author {
     description?: string;
 }
 
+export interface Seo {
+    facebookAppId?: string;
+}
+
 export interface SiteMetadata {
     title?: string;
     author: Author;
     social?: Social;
+    description?: string;
+    seo?: Seo;
 }
 
 export interface Site {

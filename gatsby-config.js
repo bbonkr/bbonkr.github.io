@@ -15,13 +15,16 @@ module.exports = {
             description:
                 'If you want to contact me, please send message comfortably where click below social icon link.',
         },
-        description: `A starter blog demonstrating what Gatsby can do.`,
+        description: `Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.`,
         social: {
             twitter: 'bbonkr',
             github: 'bbonkr',
             linkedin: 'bbonkr',
             facebook: 'bbonkr',
             resume: 'https://resume.bbon.me',
+        },
+        seo: {
+            facebookAppId: process.env.FB_APP_ID,
         },
     },
     plugins: [
@@ -33,7 +36,7 @@ module.exports = {
                 allExtensions: true, // defaults to false
             },
         },
-        `gatsby-plugin-image`,
+
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -41,6 +44,7 @@ module.exports = {
                 path: `${__dirname}/content/posts`,
             },
         },
+
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -48,6 +52,9 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
+        `gatsby-plugin-image`,
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-transformer-remark`,
             options: {
@@ -80,8 +87,7 @@ module.exports = {
                 ],
             },
         },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {

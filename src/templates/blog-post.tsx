@@ -15,6 +15,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const { previous, next } = data;
 
+    console.info(post.frontmatter.image);
     return (
         <Layout location={location} title={siteTitle}>
             <Seo
@@ -43,6 +44,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                             />
                         )}
                     </aside>
+
                     <h1 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100  pb-2 text-3xl md:text-4xl break-words">
                         {post.frontmatter.title}
                     </h1>
@@ -57,22 +59,24 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                     itemProp="articleBody"
                 />
 
-                {post.frontmatter.github && (
-                    <section className="article-body">
-                        <h2>GitHub Repository</h2>
-                        <ThemeProvider.Consumer>
-                            {(state) => (
-                                <GitHubButtons
-                                    repo={post.frontmatter.github!.repo}
-                                    owner={post.frontmatter.github!.owner}
-                                    showCount
-                                    size={'large'}
-                                    theme={state.theme}
-                                />
-                            )}
-                        </ThemeProvider.Consumer>
-                    </section>
-                )}
+                {post.frontmatter.github &&
+                    post.frontmatter.github.owner &&
+                    post.frontmatter.github.repo && (
+                        <section className="article-body">
+                            <h2>GitHub Repository</h2>
+                            <ThemeProvider.Consumer>
+                                {(state) => (
+                                    <GitHubButtons
+                                        repo={post.frontmatter.github!.repo}
+                                        owner={post.frontmatter.github!.owner}
+                                        showCount
+                                        size={'large'}
+                                        theme={state.theme}
+                                    />
+                                )}
+                            </ThemeProvider.Consumer>
+                        </section>
+                    )}
 
                 <aside className="text-base md:text-sm text-gray-500 py-6">
                     <span>Tags:</span>
@@ -165,6 +169,9 @@ export const pageQuery = graphql`
                     owner
                     repo
                 }
+                image
+                draft
+                comments
             }
         }
         previous: markdownRemark(id: { eq: $previousPostId }) {
@@ -173,6 +180,9 @@ export const pageQuery = graphql`
             }
             frontmatter {
                 title
+                image
+                draft
+                comments
             }
         }
         next: markdownRemark(id: { eq: $nextPostId }) {
@@ -181,6 +191,9 @@ export const pageQuery = graphql`
             }
             frontmatter {
                 title
+                image
+                draft
+                comments
             }
         }
     }
