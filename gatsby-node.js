@@ -1,9 +1,13 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const kebabCase = require('lodash/kebabCase');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const isProductionStage = () => process.env.NODE_ENV === 'production';
 
 const createPostPages = async (createPage, reporter, allPosts) => {
-    // const { createPage } = actions;
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
 
     const { edges } = allPosts;
@@ -119,6 +123,7 @@ const createBlogListPages = async (createPage, reporter, allPosts) => {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions;
+    const isProd = isProductionStage();
 
     // Define a template for blog post
 
@@ -129,6 +134,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             {
                 allPosts: allMarkdownRemark(
                     sort: { fields: [frontmatter___date], order: ASC }
+                    ${
+                        // If NODE_ENV is production, excludes draft content.
+                        isProd
+                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
+                            : ''
+                    }
                     limit: 2000
                 ) {
                     edges {
@@ -149,8 +160,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     }
                 }
 
-                categoryGroups: allMarkdownRemark(limit: 2000) {
-                    group(field: frontmatter___categories) {
+                categoryGroups: allMarkdownRemark(
+                    ${
+                        // If NODE_ENV is production, excludes draft content.
+                        isProd
+                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
+                            : ''
+                    }
+                    limit: 2000) {
+                    group(
+                        field: frontmatter___categories
+                        ) {
                         fieldValue
                         totalCount
                         edges {
@@ -170,8 +190,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     }
                 }
 
-                tagGroups: allMarkdownRemark(limit: 2000) {
-                    group(field: frontmatter___tags) {
+                tagGroups: allMarkdownRemark(
+                    ${
+                        // If NODE_ENV is production, excludes draft content.
+                        isProd
+                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
+                            : ''
+                    }
+                    limit: 2000) {
+                    group(
+                        field: frontmatter___tags
+                        ) {
                         fieldValue
                         totalCount
                         edges {
@@ -210,6 +239,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
+    const isProd = isProductionStage();
 
     if (node.internal.type === `MarkdownRemark`) {
         const slug = createFilePath({
@@ -247,40 +277,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         };
 
         const rewriteNode = (node) => {
-            // 마크다운 파일 내 퍼블리쉬 필드가 비어있을 시 오류가 나지 않도록 하기 위함
-            // development 환경일 시 published 필드가 모두 true이도록 하기 위함
-            // if (
-            //   node.frontmatter.published === undefined ||
-            //   process.env.NODE_ENV === 'development'
-            // ) {
-            //   node.frontmatter.published = true;
-            // }
-
-            // 마크다운 파일 내 태그 필드가 비어있을 시 오류가 나지 않도록 하기 위함
-            if (!node.frontmatter.tags || node.frontmatter.tags === '') {
-                node.frontmatter.tags = ['undefined'];
+            if (node.frontmatter.tags) {
+                const tags = node.frontmatter.tags;
+                if (typeof tags === 'string') {
+                    // if tags is string, set array with tags string
+                    node.frontmatter.tags = [
+                        node.frontmatter.tags.toLowerCase(),
+                    ];
+                } else if (Array.isArray(tags)) {
+                    // lowercase
+                    node.frontmatter.tags = node.frontmatter.tags.map((tag) =>
+                        tag.toLowerCase()
+                    );
+                }
+            } else {
+                node.frontmatter.tags = ['no-tag'];
             }
-            // 태그 필드가 배열이 아닌 문자열 하나일때 배열로 덮음
-            else if (typeof node.frontmatter.tags === 'string') {
-                node.frontmatter.tags = [node.frontmatter.tags.toLowerCase()];
-            }
-
-            // 마크다운 파일 내 keywords 필드가 비어있을 시 오류가 나지 않도록 하기 위함
-            // if (!node.frontmatter.keywords) {
-            //     node.frontmatter.keywords = [
-            //         node.siteMetadata.title,
-            //         node.siteMetadata.author.name,
-            //         ...(node.frontmatter.tags || []),
-            //     ];
-            // }
-
-            // markdown 내 date의 timezone 제거
-            // if (node.frontmatter.date.indexOf('+') !== -1) {
-            //     const date = new Date(node.frontmatter.date.split('+')[0]);
-            //     node.frontmatter.date = date;
-            // } else {
-            //     node.frontmatter.date = new Date(node.frontmatter.date);
-            // }
 
             if (node.frontmatter.categories) {
                 if (typeof node.frontmatter.categories === 'string') {
@@ -288,11 +300,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
                         node.frontmatter.categories.toLowerCase(),
                     ];
                 } else if (Array.isArray(node.frontmatter.categories)) {
-                    node.frontmatter.categories =
-                        node.frontmatter.categories.map((category) =>
-                            category.toLowerCase()
-                        );
+                    if (
+                        node.frontmatter.categories.filter((x) => Boolean)
+                            .length === 0
+                    ) {
+                        // If categories are empty string, set uncategorized as categories
+                        node.frontmatter.categories = ['uncategorized'];
+                    } else {
+                        node.frontmatter.categories =
+                            node.frontmatter.categories.map((category) =>
+                                category.toLowerCase()
+                            );
+                    }
                 }
+            } else {
+                node.frontmatter.categories = ['uncategorized'];
             }
 
             return node;
@@ -357,6 +379,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       author: Author
       siteUrl: String
       social: Social
+      seo: Seo
     }
 
     type Author {
@@ -372,6 +395,10 @@ exports.createSchemaCustomization = ({ actions }) => {
       linkedin: String
       facebook: String
       resume: String
+    }
+
+    type Seo {
+        facebookAppId: String
     }
 
     type MarkdownRemark implements Node {
@@ -391,6 +418,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       categories: [String!] @kebabCase 
       tags: [String!] @kebabCase
       github: GitHub
+      image: String
+      draft: Boolean
+      comments: Boolean
     }
 
     type Fields {

@@ -130,6 +130,9 @@ export const pageQuery = graphql`
                         title
                         tags
                         categories
+                        image
+                        draft
+                        comments
                     }
                 }
             }

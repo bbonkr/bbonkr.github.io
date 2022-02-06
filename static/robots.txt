@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bbon.me/sitemap.xml
+Sitemap: https://bbon.me/sitemap/sitemap-index.xml
