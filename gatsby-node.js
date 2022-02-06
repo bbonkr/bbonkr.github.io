@@ -7,8 +7,6 @@ dotenv.config();
 
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 
-console.info(`NODE_ENV: ${process.env.NODE_ENV}`);
-
 const createPostPages = async (createPage, reporter, allPosts) => {
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
 

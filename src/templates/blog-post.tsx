@@ -15,7 +15,6 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const { previous, next } = data;
 
-    console.info(post.frontmatter.image);
     return (
         <Layout location={location} title={siteTitle}>
             <Seo
