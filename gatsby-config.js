@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const isProductionStage = () => process.env.NODE_ENV === 'production';
+
 module.exports = {
     siteMetadata: {
         title: `<bbon />`,
@@ -125,7 +131,15 @@ module.exports = {
       title
     }
   }
-  allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
+  allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+      ${
+          // If NODE_ENV is production, excludes draft content.
+          isProductionStage()
+              ? 'filter: { frontmatter: { draft: { ne: true } } }'
+              : ''
+      }
+      ) {
     edges {
       node {
         excerpt
@@ -168,6 +182,54 @@ module.exports = {
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
         `gatsby-plugin-postcss`,
-        `gatsby-plugin-sitemap`,
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                query: `
+{
+    site {
+    siteMetadata {
+      siteUrl
+      title
+    }
+  }
+  allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+      ${
+          // If NODE_ENV is production, excludes draft content.
+          isProductionStage()
+              ? 'filter: { frontmatter: { draft: { ne: true } } }'
+              : ''
+      }
+      ) {
+    edges {
+      node {
+        fields {
+          slug
+        }
+        frontmatter {
+          date
+        }
+      }
+    }
+  }
+}
+      `,
+                resolvePages: ({ allMarkdownRemark: { edges } }) => {
+                    return edges.map((edge) => {
+                        return {
+                            path: edge.node.fields.slug,
+                            modifiedGmt: edge.node.frontmatter.date,
+                        };
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
+            },
+        },
     ],
 };
