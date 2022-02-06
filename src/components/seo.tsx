@@ -6,15 +6,9 @@
  */
 
 import * as React from 'react';
-// import PropTypes from "prop-types";
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-
-type Meta = {
-    property?: string;
-    name?: string;
-    content?: unknown;
-};
+import { Site } from '../models/data';
 
 interface SeoProps {
     description?: string;
@@ -24,19 +18,6 @@ interface SeoProps {
         HTMLMetaElement
     >[];
     title: string;
-}
-
-interface Social {
-    twitter?: string;
-}
-
-interface SiteMetadata {
-    title: string;
-    description?: string;
-    social?: Social;
-}
-interface Site {
-    siteMetadata: SiteMetadata;
 }
 
 const Seo = ({ description, lang, meta, title }: SeoProps) => {
@@ -50,13 +31,16 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
                         social {
                             twitter
                         }
+                        seo {
+                            facebookAppId
+                        }
                     }
                 }
             }
         `
     );
 
-    const metaDescription = description || site.siteMetadata.description;
+    const metaDescription = description || site?.siteMetadata?.description;
     const defaultTitle = site.siteMetadata?.title;
 
     const metaElementRecords: React.DetailedHTMLProps<
@@ -67,6 +51,7 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
             name: `description`,
             content: metaDescription,
         },
+
         {
             property: `og:title`,
             content: title,
@@ -77,16 +62,13 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
         },
         {
             property: `og:type`,
-            content: `website`,
+            content: `article`,
         },
         {
             name: `twitter:card`,
             content: `summary`,
         },
-        {
-            name: `twitter:creator`,
-            content: site.siteMetadata?.social?.twitter || ``,
-        },
+
         {
             name: `twitter:title`,
             content: title,
@@ -95,12 +77,26 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
             name: `twitter:description`,
             content: metaDescription,
         },
-    ];
+    ].filter(Boolean);
+
+    if (site.siteMetadata?.seo?.facebookAppId) {
+        metaElementRecords.push({
+            property: 'fb:app_id',
+            content: site.siteMetadata?.seo?.facebookAppId,
+        });
+    }
+
+    if (site.siteMetadata?.social?.twitter) {
+        metaElementRecords.push({
+            name: `twitter:creator`,
+            content: site.siteMetadata?.social?.twitter,
+        });
+    }
 
     return (
         <Helmet
             htmlAttributes={{
-                lang: lang ?? 'en',
+                lang: lang ?? 'ko',
             }}
             title={title}
             titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ''}

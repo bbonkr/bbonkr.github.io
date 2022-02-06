@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const isProductionStage = () => process.env.NODE_ENV === 'production';
+
 module.exports = {
     siteMetadata: {
         title: `<bbon />`,
@@ -9,13 +15,16 @@ module.exports = {
             description:
                 'If you want to contact me, please send message comfortably where click below social icon link.',
         },
-        description: `A starter blog demonstrating what Gatsby can do.`,
+        description: `Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.`,
         social: {
             twitter: 'bbonkr',
             github: 'bbonkr',
             linkedin: 'bbonkr',
             facebook: 'bbonkr',
             resume: 'https://resume.bbon.me',
+        },
+        seo: {
+            facebookAppId: process.env.FB_APP_ID,
         },
     },
     plugins: [
@@ -27,7 +36,7 @@ module.exports = {
                 allExtensions: true, // defaults to false
             },
         },
-        `gatsby-plugin-image`,
+
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -35,6 +44,7 @@ module.exports = {
                 path: `${__dirname}/content/posts`,
             },
         },
+
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -42,6 +52,9 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
+        `gatsby-plugin-image`,
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-transformer-remark`,
             options: {
@@ -74,8 +87,7 @@ module.exports = {
                 ],
             },
         },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
@@ -125,7 +137,15 @@ module.exports = {
       title
     }
   }
-  allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
+  allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+      ${
+          // If NODE_ENV is production, excludes draft content.
+          isProductionStage()
+              ? 'filter: { frontmatter: { draft: { ne: true } } }'
+              : ''
+      }
+      ) {
     edges {
       node {
         excerpt
@@ -168,6 +188,54 @@ module.exports = {
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
         `gatsby-plugin-postcss`,
-        `gatsby-plugin-sitemap`,
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                query: `
+{
+    site {
+    siteMetadata {
+      siteUrl
+      title
+    }
+  }
+  allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+      ${
+          // If NODE_ENV is production, excludes draft content.
+          isProductionStage()
+              ? 'filter: { frontmatter: { draft: { ne: true } } }'
+              : ''
+      }
+      ) {
+    edges {
+      node {
+        fields {
+          slug
+        }
+        frontmatter {
+          date
+        }
+      }
+    }
+  }
+}
+      `,
+                resolvePages: ({ allMarkdownRemark: { edges } }) => {
+                    return edges.map((edge) => {
+                        return {
+                            path: edge.node.fields.slug,
+                            modifiedGmt: edge.node.frontmatter.date,
+                        };
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
+            },
+        },
     ],
 };
