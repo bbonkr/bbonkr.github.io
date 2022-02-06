@@ -242,99 +242,92 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const isProd = isProductionStage();
 
     if (node.internal.type === `MarkdownRemark`) {
-        if (!isProd || (isProd && node.frontmatter.draft !== true)) {
-            const slug = createFilePath({
-                node,
-                getNode,
-                // basePath: `posts`,
-            });
+        const slug = createFilePath({
+            node,
+            getNode,
+            // basePath: `posts`,
+        });
 
-            const rewriteSlug = (slug) => {
-                let datePart = '';
-                let title = '';
+        const rewriteSlug = (slug) => {
+            let datePart = '';
+            let title = '';
 
-                const tokens = slug
-                    .split('/')
-                    .filter((token) => Boolean(token));
+            const tokens = slug.split('/').filter((token) => Boolean(token));
 
-                if (tokens.length > 0) {
-                    datePart = tokens[0];
+            if (tokens.length > 0) {
+                datePart = tokens[0];
+                if (tokens.length > 1 && tokens[1].toLowerCase() !== 'index') {
+                    title = tokens[1];
+                }
+            }
+
+            const dayRegExp =
+                /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])(?:-(.*))?$/g;
+            if (datePart.match(dayRegExp)) {
+                if (!title || title.toLowerCase() === 'index') {
+                    title = datePart.replace(dayRegExp, '$4');
+                }
+
+                title = kebabCase(title);
+                datePart = datePart.replace(dayRegExp, '$1/$2/$3');
+            }
+
+            slug = `/${datePart}/${title}/`;
+            return slug;
+        };
+
+        const rewriteNode = (node) => {
+            if (node.frontmatter.tags) {
+                const tags = node.frontmatter.tags;
+                if (typeof tags === 'string') {
+                    // if tags is string, set array with tags string
+                    node.frontmatter.tags = [
+                        node.frontmatter.tags.toLowerCase(),
+                    ];
+                } else if (Array.isArray(tags)) {
+                    // lowercase
+                    node.frontmatter.tags = node.frontmatter.tags.map((tag) =>
+                        tag.toLowerCase()
+                    );
+                }
+            } else {
+                node.frontmatter.tags = ['no-tag'];
+            }
+
+            if (node.frontmatter.categories) {
+                if (typeof node.frontmatter.categories === 'string') {
+                    node.frontmatter.categories = [
+                        node.frontmatter.categories.toLowerCase(),
+                    ];
+                } else if (Array.isArray(node.frontmatter.categories)) {
                     if (
-                        tokens.length > 1 &&
-                        tokens[1].toLowerCase() !== 'index'
+                        node.frontmatter.categories.filter((x) => Boolean)
+                            .length === 0
                     ) {
-                        title = tokens[1];
+                        // If categories are empty string, set uncategorized as categories
+                        node.frontmatter.categories = ['uncategorized'];
+                    } else {
+                        node.frontmatter.categories =
+                            node.frontmatter.categories.map((category) =>
+                                category.toLowerCase()
+                            );
                     }
                 }
+            } else {
+                node.frontmatter.categories = ['uncategorized'];
+            }
 
-                const dayRegExp =
-                    /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])(?:-(.*))?$/g;
-                if (datePart.match(dayRegExp)) {
-                    if (!title || title.toLowerCase() === 'index') {
-                        title = datePart.replace(dayRegExp, '$4');
-                    }
+            return node;
+        };
 
-                    title = kebabCase(title);
-                    datePart = datePart.replace(dayRegExp, '$1/$2/$3');
-                }
+        const newSlug = rewriteSlug(slug);
+        const newNode = rewriteNode(node);
 
-                slug = `/${datePart}/${title}/`;
-                return slug;
-            };
-
-            const rewriteNode = (node) => {
-                if (node.frontmatter.tags) {
-                    const tags = node.frontmatter.tags;
-                    if (typeof tags === 'string') {
-                        // if tags is string, set array with tags string
-                        node.frontmatter.tags = [
-                            node.frontmatter.tags.toLowerCase(),
-                        ];
-                    } else if (Array.isArray(tags)) {
-                        // lowercase
-                        node.frontmatter.tags = node.frontmatter.tags.map(
-                            (tag) => tag.toLowerCase()
-                        );
-                    }
-                } else {
-                    node.frontmatter.tags = ['no-tag'];
-                }
-
-                if (node.frontmatter.categories) {
-                    if (typeof node.frontmatter.categories === 'string') {
-                        node.frontmatter.categories = [
-                            node.frontmatter.categories.toLowerCase(),
-                        ];
-                    } else if (Array.isArray(node.frontmatter.categories)) {
-                        if (
-                            node.frontmatter.categories.filter((x) => Boolean)
-                                .length === 0
-                        ) {
-                            // If categories are empty string, set uncategorized as categories
-                            node.frontmatter.categories = ['uncategorized'];
-                        } else {
-                            node.frontmatter.categories =
-                                node.frontmatter.categories.map((category) =>
-                                    category.toLowerCase()
-                                );
-                        }
-                    }
-                } else {
-                    node.frontmatter.categories = ['uncategorized'];
-                }
-
-                return node;
-            };
-
-            const newSlug = rewriteSlug(slug);
-            const newNode = rewriteNode(node);
-
-            createNodeField({
-                name: `slug`,
-                node: newNode,
-                value: newSlug,
-            });
-        }
+        createNodeField({
+            name: `slug`,
+            node: newNode,
+            value: newSlug,
+        });
     }
 };
 

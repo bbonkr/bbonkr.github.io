@@ -13,9 +13,6 @@ tags:
   - "entityframeworkcore"
   - "github"
   - "github-repository"
-draft: true
-image: 
-comments: false
 github: # If you want to show github buttons, fill owner and repo
   owner: bbonkr
   repo: sample.ef.mtom 
