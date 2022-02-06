@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-tsx",
+    "path": "/tags/애플",
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"많은 고민 후 새로운 장치를 구입했습니다. MacBook Pro 16형, 2021년, 16인치 M1 맥스 SoC가 탑재되어 있는 모델을 구입했습니다. 주문 2021-12-18 주문하고, 2022-01-1…","fields":{"slug":"/2022/01/15/mac-book-pro-2021-16-inch-m-1-max/"},"frontmatter":{"date":"January 15, 2022","title":"MacBook Pro 2021 16-inch M1 Max","tags":["apple","apple-m1","laptop","m1","m1-max","mac","macbook-pro","macos","맥북","애플"],"categories":["blog","computing","story"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"애플","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/애플"}},
+    "staticQueryHashes": ["2568428658"]}

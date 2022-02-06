@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/d-ts",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"자바스크립트 Javascript로 작성되어 노드node로 동작하는 웹 응용프로그램을 타입스크립트 Typescript로 재작성하고 있습니다. npm…","fields":{"slug":"/2019/09/11/typescript-make-module-definition-file/"},"frontmatter":{"date":"September 11, 2019","title":"타입스크립트 모듈 정의 파일 만들기","tags":["typescript","ts","d.ts","타입스크립트","nodejs"],"categories":["howto"]}}}]}},"pageContext":{"tag":"d.ts","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/d-ts"}},
-    "staticQueryHashes": ["2841359383"]}
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"자바스크립트 Javascript로 작성되어 노드node로 동작하는 웹 응용프로그램을 타입스크립트 Typescript로 재작성하고 있습니다. npm…","fields":{"slug":"/2019/09/11/typescript-make-module-definition-file/"},"frontmatter":{"date":"September 11, 2019","title":"타입스크립트 모듈 정의 파일 만들기","tags":["typescript","ts","d.ts","타입스크립트","nodejs"],"categories":["howto"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"d.ts","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/d-ts"}},
+    "staticQueryHashes": ["2568428658"]}

@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/ubuntu",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"AWS Lightsail 3.5 USD/mo 요금제에 해당하는 작은 서버를 사용하고 있습니다. AWS Lightsail pricing 사용할 수 있는 자원은 아래와 같습니다. 512MB 메모리 1코어 프로세서 20GB SSD 디스크 1TB…","fields":{"slug":"/2019/08/25/create-swap-file-on-ubuntu/"},"frontmatter":{"date":"August 25, 2019","title":"Create SWAP file on Ubuntu","tags":["ubuntu","linux","swap-file","aws","aws-lightsail"],"categories":["howto"]}}}]}},"pageContext":{"tag":"ubuntu","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/ubuntu"}},
-    "staticQueryHashes": ["2841359383"]}
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"AWS Lightsail 3.5 USD/mo 요금제에 해당하는 작은 서버를 사용하고 있습니다. AWS Lightsail pricing 사용할 수 있는 자원은 아래와 같습니다. 512MB 메모리 1코어 프로세서 20GB SSD 디스크 1TB…","fields":{"slug":"/2019/08/25/create-swap-file-on-ubuntu/"},"frontmatter":{"date":"August 25, 2019","title":"Create SWAP file on Ubuntu","tags":["ubuntu","linux","swap-file","aws","aws-lightsail"],"categories":["howto"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"ubuntu","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/ubuntu"}},
+    "staticQueryHashes": ["2568428658"]}

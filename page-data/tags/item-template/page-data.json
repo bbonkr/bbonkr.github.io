@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/item-template",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Visual Studio Item Template Visual Studio…","fields":{"slug":"/2019/09/29/visual-studio-item-template/"},"frontmatter":{"date":"September 29, 2019","title":"Visual Studio Item Template","tags":["visual studio","item template"],"categories":["howto"]}}}]}},"pageContext":{"tag":"item template","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/item-template"}},
-    "staticQueryHashes": ["2841359383"]}
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Visual Studio Item Template Visual Studio…","fields":{"slug":"/2019/09/29/visual-studio-item-template/"},"frontmatter":{"date":"September 29, 2019","title":"Visual Studio Item Template","tags":["visual studio","item template"],"categories":["howto"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"item template","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/item-template"}},
+    "staticQueryHashes": ["2568428658"]}

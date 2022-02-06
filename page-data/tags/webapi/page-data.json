@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/webapi",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"ASP.NET Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오. 신규 프로젝트 작성 컨트롤러를 분리할 프로젝트를 작성합니다. .NET Standard…","fields":{"slug":"/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/"},"frontmatter":{"date":"July 25, 2019","title":"How to separate projects in asp net core web application","tags":["aspnetcore","mvc","webapi"],"categories":["howto"]}}}]}},"pageContext":{"tag":"webapi","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/webapi"}},
-    "staticQueryHashes": ["2841359383"]}
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"ASP.NET Core 웹 응용프로그램을 작성할 때, 웹 응용프로그램 프로젝트에서 컨트롤러를 다른 프로젝트로 분리하기를 원하면 이런 방법이 검토해 보십시오. 신규 프로젝트 작성 컨트롤러를 분리할 프로젝트를 작성합니다. .NET Standard…","fields":{"slug":"/2019/07/25/how-to-separate-projects-in-asp-net-core-web-application/"},"frontmatter":{"date":"July 25, 2019","title":"How to separate projects in asp net core web application","tags":["aspnetcore","mvc","webapi"],"categories":["howto"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"webapi","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/webapi"}},
+    "staticQueryHashes": ["2568428658"]}
