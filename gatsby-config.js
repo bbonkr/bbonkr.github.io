@@ -1,7 +1,3 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
-
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 
 module.exports = {

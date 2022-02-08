@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
+import Img from 'gatsby-image';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
@@ -14,42 +15,86 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const post = data.markdownRemark;
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const { previous, next } = data;
+    const hasFeaturedImage = Boolean(
+        post.frontmatter.featuredImage?.childImageSharp?.fluid
+    );
 
     return (
         <Layout location={location} title={siteTitle}>
             <Seo
                 title={post.frontmatter.title}
                 description={post.frontmatter.description || post.excerpt}
+                meta={[
+                    {
+                        property: 'og:image',
+                        content: `${data.site.siteMetadata?.siteUrl}${
+                            post.frontmatter.featuredImage?.childImageSharp
+                                ?.fluid.src ?? '/static/images/logo.png'
+                        }`,
+                    },
+                ].filter(Boolean)}
             />
             <article
                 className="blog-post"
                 itemScope
                 itemType="http://schema.org/Article"
             >
-                <header className="font-sans">
-                    <p className="text-base md:text-sm text-green-500 font-bold">
-                        &lt;{' '}
-                        <Link
-                            to="/blog"
-                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
-                        >
-                            BACK TO BLOG
-                        </Link>
-                    </p>
-                    <aside className="pt-6">
-                        {post.frontmatter.categories && (
-                            <SimpleCategoryList
-                                categories={post.frontmatter.categories}
+                <header className="font-sans relative">
+                    {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
+                        <React.Fragment>
+                            <Img
+                                fluid={
+                                    post.frontmatter.featuredImage
+                                        .childImageSharp?.fluid
+                                }
+                                className="blur-0"
                             />
-                        )}
-                    </aside>
+                        </React.Fragment>
+                    )}
 
-                    <h1 className="font-bold font-sans break-normal text-gray-900 dark:text-gray-100  pb-2 text-3xl md:text-4xl break-words">
-                        {post.frontmatter.title}
-                    </h1>
-                    <p className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
-                        {post.frontmatter.date}
-                    </p>
+                    <div
+                        className={`${
+                            hasFeaturedImage
+                                ? 'px-3 py-3 bg-gray-900 absolute bottom-0 l-2 r-2 w-full opacity-80 '
+                                : ''
+                        }`}
+                    >
+                        <p className="text-base md:text-sm text-green-500 font-bold">
+                            &lt;{' '}
+                            <Link
+                                to="/blog"
+                                className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                            >
+                                BACK TO BLOG
+                            </Link>
+                        </p>
+                        <aside className="pt-6">
+                            {post.frontmatter.categories && (
+                                <SimpleCategoryList
+                                    categories={post.frontmatter.categories}
+                                />
+                            )}
+                        </aside>
+
+                        <h1
+                            className={`font-bold font-sans break-normal ${
+                                hasFeaturedImage
+                                    ? 'text-gray-100'
+                                    : 'text-gray-900 dark:text-gray-100'
+                            }    pb-2 text-3xl md:text-4xl break-words`}
+                        >
+                            {post.frontmatter.title}
+                        </h1>
+                        <p
+                            className={`text-sm md:text-base font-normal ${
+                                hasFeaturedImage
+                                    ? 'text-gray-400'
+                                    : 'text-gray-600 dark:text-gray-400'
+                            }  `}
+                        >
+                            {post.frontmatter.date}
+                        </p>
+                    </div>
                 </header>
 
                 <section
@@ -152,6 +197,7 @@ export const pageQuery = graphql`
         site {
             siteMetadata {
                 title
+                siteUrl
             }
         }
         markdownRemark(id: { eq: $id }) {
@@ -168,7 +214,13 @@ export const pageQuery = graphql`
                     owner
                     repo
                 }
-                image
+                featuredImage {
+                    childImageSharp {
+                        fluid(maxWidth: 1024) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
                 draft
                 comments
             }
@@ -179,9 +231,15 @@ export const pageQuery = graphql`
             }
             frontmatter {
                 title
-                image
                 draft
                 comments
+                featuredImage {
+                    childImageSharp {
+                        fluid(maxWidth: 1024) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
         next: markdownRemark(id: { eq: $nextPostId }) {
@@ -190,9 +248,15 @@ export const pageQuery = graphql`
             }
             frontmatter {
                 title
-                image
                 draft
                 comments
+                featuredImage {
+                    childImageSharp {
+                        fluid(maxWidth: 1024) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

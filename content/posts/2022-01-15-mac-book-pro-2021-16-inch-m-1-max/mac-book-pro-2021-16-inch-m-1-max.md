@@ -16,6 +16,7 @@ tags:
   - "macos"
   - "맥북"
   - "애플"
+featuredImage: ./macbook-pro-2021-16-inch-m1-max-006.jpg
 ---    
 
 많은 고민 후 새로운 장치를 구입했습니다.

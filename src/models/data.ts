@@ -14,7 +14,6 @@ export interface Frontmatter {
     github?: GitHub;
     draft?: boolean;
     comments?: boolean;
-    image?: string;
     featuredImage?: FeaturedImage;
 }
 
@@ -62,6 +61,7 @@ export interface Seo {
 
 export interface SiteMetadata {
     title?: string;
+    siteUrl?: string;
     author: Author;
     social?: Social;
     description?: string;

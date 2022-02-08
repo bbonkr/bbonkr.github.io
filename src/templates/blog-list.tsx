@@ -99,7 +99,13 @@ export const blogListQuery = graphql`
                         title
                         tags
                         categories
-                        image
+                        featuredImage {
+                            childImageSharp {
+                                fluid(maxWidth: 1024) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
                         draft
                         comments
                     }
