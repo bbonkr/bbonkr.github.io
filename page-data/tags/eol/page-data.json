@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/eol",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"개발팀의 장비가 여러 플랫폼으로 구성된 경우 GIT 구성에 따라 변경사항이 없음에도 많은 파일이 스테이징 대상으로 출력됩니다. 보통 줄의 끝 (EOL; End of line)을 처리하는 방법이 OS 마다 달라서 발생합니다. 많이 사용되는 OS…","fields":{"slug":"/2021/12/22/configure-end-of-line-when-using-git-for-multi-platform-development-teams/"},"frontmatter":{"date":"December 22, 2021","title":"Configure end of line when using git for multi-platform development teams","tags":["eol","git","troubleshooting"],"categories":["blog","computing"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"eol","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/eol"}},
-    "staticQueryHashes": ["2568428658"]}
+    "staticQueryHashes": ["3068608076"]}

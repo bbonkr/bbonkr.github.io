@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/restful-api",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"HTTP API  웹 응용프로그램을 작성할 때,  Postman 을 많이 사용합니다. 작성한 API 가 잘 동작하는지 클라이언트에서 사용하는 것과 동일한 요청을 GUI…","fields":{"slug":"/2019/11/01/postman-variables-usages/"},"frontmatter":{"date":"November 01, 2019","title":"Postman: Variables usages","tags":["postman","test","tools","api","http api","restful api"],"categories":["howto"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"restful api","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/restful-api"}},
-    "staticQueryHashes": ["2568428658"]}
+    "staticQueryHashes": ["3068608076"]}

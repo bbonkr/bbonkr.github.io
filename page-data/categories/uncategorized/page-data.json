@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-categories-tsx",
     "path": "/categories/uncategorized",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Bundle Grab 9 awesome Mac apps, totally FREE! Get Paddle: The Creatable Freebie bundle MacBooster 3  $39.95 MacBooster helps you speed up…","fields":{"slug":"/2015/09/21/paddle-the-creatable-freebie-bundle/"},"frontmatter":{"date":"September 21, 2015","title":"The Creatable Freebie Bundle!","tags":["freebie","paddle","creatable","free","mac","osx"],"categories":["uncategorized"],"featuredImage":null,"draft":null,"comments":null}}}]}},"pageContext":{"category":"uncategorized","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/categories/uncategorized"}},
-    "staticQueryHashes": ["2568428658"]}
+    "staticQueryHashes": ["3068608076"]}

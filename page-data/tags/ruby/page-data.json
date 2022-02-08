@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/ruby",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"RVM Ruby Version Manager 설치 패키지를 갱신합니다. RVM을 설치하기 위해 curl을 설치합니다. RVM을 설치합니다. 설치후 프로파일 추가사항 적용을 위해 아래 명령을 실행합니다. 루비 설치 RVM…","fields":{"slug":"/2017/01/25/jekyll-on-ubuntu/"},"frontmatter":{"date":"January 25, 2017","title":"Jekyll on Ubuntu","tags":["jekyll","ruby","nodejs"],"categories":["computing"],"draft":null,"comments":false,"featuredImage":null}}}]}},"pageContext":{"tag":"ruby","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/ruby"}},
-    "staticQueryHashes": ["2568428658"]}
+    "staticQueryHashes": ["3068608076"]}

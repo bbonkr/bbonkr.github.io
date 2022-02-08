@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/log",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"2020년을 돌아봅니다. 기술 스택 .NET 5 이전에 작성했던 .NET Core 2.x ~ 3.x 응용프로그램을 .NET 5 로 이전해보고 있습니다. 계속 함께할 생각입니다. React 202…","fields":{"slug":"/2020/12/31/review-2020/"},"frontmatter":{"date":"December 31, 2020","title":"Review 2020","tags":["review","log"],"categories":["log","story"],"draft":null,"comments":null,"featuredImage":null}}},{"node":{"excerpt":"개요 AWS Lightsail 에서 실행되고 있는 두개의 웹 응용프로그램이 있습니다. 1 vCPU 프로세싱 512MB 메모리 20GB SSD 스토리지 3.5 USD 월별요금 1TB 전송 OS: Ubuntu 16.04 두 개의 웹 응용프로그램은 PHP…","fields":{"slug":"/2020/11/23/migrate-webapps-to-container/"},"frontmatter":{"date":"November 23, 2020","title":"Migrate web apps to container","tags":["docker","aws","lightsail","log","review"],"categories":["log"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"log","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/log"}},
-    "staticQueryHashes": ["2568428658"]}
+    "staticQueryHashes": ["3068608076"]}
