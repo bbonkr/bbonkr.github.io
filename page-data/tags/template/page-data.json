@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/template",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"GitHub 템플릿 사용 GitHub 에서 저장소를 작성할 때, 템플릿으로 표시된 저장소를 사용해서 내 저장소를 작성할 수 있습니다.  템플릿 SPA…","fields":{"slug":"/2020/11/15/react-starter-kit/"},"frontmatter":{"date":"November 15, 2020","title":"React Starter Kit","tags":["github","react","starter kit","template","typescript","webpack"],"categories":["howto"],"image":null,"draft":null,"comments":null}}}]}},"pageContext":{"tag":"template","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/template"}},
+    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"GitHub 템플릿 사용 GitHub 에서 저장소를 작성할 때, 템플릿으로 표시된 저장소를 사용해서 내 저장소를 작성할 수 있습니다.  템플릿 SPA…","fields":{"slug":"/2020/11/15/react-starter-kit/"},"frontmatter":{"date":"November 15, 2020","title":"React Starter Kit","tags":["github","react","starter kit","template","typescript","webpack"],"categories":["howto"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"template","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/template"}},
     "staticQueryHashes": ["2568428658"]}
