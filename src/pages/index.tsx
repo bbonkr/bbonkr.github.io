@@ -68,6 +68,13 @@ export const pageQuery = graphql`
                         description
                         tags
                         categories
+                        featuredImage {
+                            childImageSharp {
+                                fluid(maxWidth: 1024) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
                     }
                 }
             }

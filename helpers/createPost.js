@@ -24,7 +24,7 @@ categories:
 tags:
   - tags here
 draft: true
-image: 
+featuredImage: 
 comments: false
 github: # If you want to show github buttons, fill owner and repo
   owner: 
