@@ -1,9 +1,6 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const kebabCase = require('lodash/kebabCase');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 
@@ -418,7 +415,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       categories: [String!] @kebabCase 
       tags: [String!] @kebabCase
       github: GitHub
-      image: String
       draft: Boolean
       comments: Boolean
     }
