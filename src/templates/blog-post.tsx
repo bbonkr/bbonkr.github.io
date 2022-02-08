@@ -24,15 +24,9 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
             <Seo
                 title={post.frontmatter.title}
                 description={post.frontmatter.description || post.excerpt}
-                meta={[
-                    {
-                        property: 'og:image',
-                        content: `${data.site.siteMetadata?.siteUrl}${
-                            post.frontmatter.featuredImage?.childImageSharp
-                                ?.fluid.src ?? '/static/images/logo.png'
-                        }`,
-                    },
-                ].filter(Boolean)}
+                image={
+                    post.frontmatter.featuredImage?.childImageSharp?.fluid.src
+                }
             />
             <article
                 className="blog-post"

@@ -17,16 +17,18 @@ interface SeoProps {
         React.MetaHTMLAttributes<HTMLMetaElement>,
         HTMLMetaElement
     >[];
+    image?: string;
     title: string;
 }
 
-const Seo = ({ description, lang, meta, title }: SeoProps) => {
+const Seo = ({ description, lang, meta, image, title }: SeoProps) => {
     const { site } = useStaticQuery<{ site: Site }>(
         graphql`
             query {
                 site {
                     siteMetadata {
                         title
+                        siteUrl
                         description
                         social {
                             twitter
@@ -93,6 +95,16 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
         });
     }
 
+    const metas: React.DetailedHTMLProps<
+        React.MetaHTMLAttributes<HTMLMetaElement>,
+        HTMLMetaElement
+    >[] = [...metaElementRecords, ...(meta ?? [])];
+
+    metas.push({
+        property: 'og:image',
+        content: `${site.siteMetadata?.siteUrl}${image ?? '/images/logo.png'}`,
+    });
+
     return (
         <Helmet
             htmlAttributes={{
@@ -100,7 +112,7 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
             }}
             title={title}
             titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ''}
-            meta={[...metaElementRecords, ...(meta ?? [])]}
+            meta={metas}
         />
     );
 };
