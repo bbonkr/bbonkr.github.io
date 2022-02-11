@@ -9,8 +9,6 @@ interface HeaderProps {
     onToggleTheme?: () => void;
 }
 
-// type Theme = 'light' | 'dark';
-
 export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
     React.useEffect(() => {
         let h = document.documentElement as HTMLElement,
@@ -165,8 +163,20 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                             <button
                                 className="js-change-theme focus:outline-none inline-block text-gray-600 dark:text-gray-400 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
                                 onClick={onToggleTheme}
+                                title={
+                                    theme === 'dark'
+                                        ? 'Use system preferences'
+                                        : theme === 'light'
+                                        ? 'Use light theme'
+                                        : 'Use dark theme'
+                                }
                             >
                                 {theme === 'dark' ? (
+                                    <React.Fragment>
+                                        <span className="text-xl mr-3">{`♻`}</span>{' '}
+                                        <span className="md:hidden">{`Use system preferences`}</span>
+                                    </React.Fragment>
+                                ) : theme === 'light' ? (
                                     <React.Fragment>
                                         <span className="text-xl mr-3">{`☀️`}</span>{' '}
                                         <span className="md:hidden">{`Light mode`}</span>
