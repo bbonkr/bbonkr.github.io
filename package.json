@@ -43,7 +43,7 @@
     "gatsby-remark-smartypants": "^5.5.0",
     "gatsby-source-filesystem": "^4.6.0",
     "gatsby-transformer-remark": "^5.5.2",
-    "gatsby-transformer-sharp": "^4.6.0",
+    "gatsby-transformer-sharp": "^4.7.0",
     "github-buttons": "^2.21.1",
     "prismjs": "^1.25.0",
     "react": "^17.0.1",
