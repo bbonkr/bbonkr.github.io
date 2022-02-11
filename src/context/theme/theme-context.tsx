@@ -60,6 +60,10 @@ const ThemeProvider = ({ children }: React.PropsWithChildren<undefined>) => {
                 window
                     .matchMedia('(prefers-color-scheme: dark)')
                     .addEventListener('change', handleChangeOsTheme);
+            } else {
+                window
+                    .matchMedia('(prefers-color-scheme: dark)')
+                    .removeEventListener('change', handleChangeOsTheme);
             }
         }
 
