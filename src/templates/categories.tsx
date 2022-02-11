@@ -2,7 +2,6 @@ import * as React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
-import Bio from '../components/bio';
 import { Edge, Post } from '../models/data';
 import PostListItem from '../components/post-list-item';
 import { Hr } from '../components/hr';

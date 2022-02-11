@@ -88,7 +88,7 @@ export const Header = ({ title, theme, onToggleTheme }: HeaderProps) => {
                 <div className="pl-4">
                     <Link
                         to="/"
-                        className="text-gray-900 dark:text-gray-100 text-base no-underline hover:no-underline font-extrabold text-xl"
+                        className="text-gray-900 dark:text-gray-100 no-underline hover:no-underline font-extrabold text-xl"
                     >
                         {title}
                     </Link>
