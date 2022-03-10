@@ -55,43 +55,48 @@ const CategoryPageTemplate = ({
     return (
         <Layout location={location} title={title}>
             <Seo title={`Posts categorized by ${pageContext.category}`} />
-            {/* <Bio /> */}
-            <header>
-                <aside>
-                    <p className="text-base md:text-sm text-green-500 font-bold">
-                        &lt;{' '}
-                        <Link
-                            to="/categories"
-                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
-                        >
-                            BACK TO CATEGORIES
-                        </Link>
-                    </p>
-                </aside>
-                <h1>
-                    {`Posts categorized by`}{' '}
-                    <span className="text-green-500">{`${pageContext.category}`}</span>{' '}
-                </h1>
-            </header>
 
-            <main>
-                {edges.map((edge) => {
-                    return (
-                        <PostListItem key={edge.node.fields.slug} post={edge} />
-                    );
-                })}
-            </main>
-            <Hr />
+            <section className="py-6">
+                <header>
+                    <aside>
+                        <p className="text-base md:text-sm text-green-500 font-bold">
+                            &lt;{' '}
+                            <Link
+                                to="/categories"
+                                className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                            >
+                                BACK TO CATEGORIES
+                            </Link>
+                        </p>
+                    </aside>
+                    <h1>
+                        {`Posts categorized by`}{' '}
+                        <span className="text-green-500">{`${pageContext.category}`}</span>{' '}
+                    </h1>
+                </header>
 
-            <footer>
-                <PageNav
-                    current={pageContext.currentPage}
-                    total={pageContext.totalPages}
-                    path={pageContext.basePath}
-                    showDescription
-                    useShortcut
-                />
-            </footer>
+                <main>
+                    {edges.map((edge) => {
+                        return (
+                            <PostListItem
+                                key={edge.node.fields.slug}
+                                post={edge}
+                            />
+                        );
+                    })}
+                </main>
+                <Hr />
+
+                <footer>
+                    <PageNav
+                        current={pageContext.currentPage}
+                        total={pageContext.totalPages}
+                        path={pageContext.basePath}
+                        showDescription
+                        useShortcut
+                    />
+                </footer>
+            </section>
         </Layout>
     );
 };

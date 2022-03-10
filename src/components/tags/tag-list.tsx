@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Tag } from '../../models/data';
 
-// import './tag-list.css';
-
 interface TagListProps {
     tags: Tag[];
     selectedTag?: string;

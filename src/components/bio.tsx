@@ -11,7 +11,12 @@ import { FaTwitter } from 'react-icons/fa';
 import { useSiteQuery } from '../hooks/queries/useSiteQuery';
 import SocialLinks from './social-links';
 
-const Bio = () => {
+interface BioProps {
+    disablePaddingY?: boolean;
+    disablePaddingX?: boolean;
+}
+
+const Bio = ({ disablePaddingX, disablePaddingY }: BioProps) => {
     const { site } = useSiteQuery();
 
     // Set these values by editing "siteMetadata" in gatsby-config.js
@@ -19,7 +24,12 @@ const Bio = () => {
     const social = site.siteMetadata?.social;
 
     return (
-        <div id="bio" className="flex w-full items-center font-sans px-4 py-12">
+        <div
+            id="bio"
+            className={`flex w-full items-center font-sans ${
+                disablePaddingX ? '' : 'px-4'
+            } ${disablePaddingY ? '' : 'py-12'}`}
+        >
             <StaticImage
                 className="w-10 h-10 rounded-full mr-4"
                 layout="fixed"
