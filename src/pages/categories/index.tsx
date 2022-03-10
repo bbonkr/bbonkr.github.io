@@ -3,7 +3,6 @@ import kebabCase from 'lodash/kebabCase';
 import { graphql, PageProps, navigate } from 'gatsby';
 import Layout from '../../components/layout';
 import Seo from '../../components/seo';
-import Bio from '../../components/bio';
 import { Category } from '../../models/data';
 import { CategoryList } from '../../components/categories';
 
@@ -62,39 +61,40 @@ const CategoriesPage = ({ location, data }: PageProps<Data>) => {
     return (
         <Layout location={location} title={title}>
             <Seo title="All categories" />
-            <Bio />
-            <header>
-                <h1>Categories</h1>
-            </header>
-            <div>
-                <div className="w-full">
-                    <label className="block">
-                        <input
-                            type="text"
-                            name="category"
-                            className="mt-1 block w-full rounded-md shadow-sm border-green-600 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:bg-gray-800"
-                            onChange={handleChange}
-                            value={formState.values?.category ?? ''}
-                            placeholder="Filter"
-                        />
-                    </label>
-                </div>
+            <section className="py-6">
+                <header>
+                    <h1>Categories</h1>
+                </header>
+                <main>
+                    <div className="w-full">
+                        <label className="block">
+                            <input
+                                type="text"
+                                name="category"
+                                className="mt-1 block w-full rounded-md shadow-sm border-green-600 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:bg-gray-800"
+                                onChange={handleChange}
+                                value={formState.values?.category ?? ''}
+                                placeholder="Filter"
+                            />
+                        </label>
+                    </div>
 
-                <CategoryList
-                    categories={group.filter((x) =>
-                        !formState.values || !formState.values?.category
-                            ? true
-                            : formState.values?.category
-                            ? x.fieldValue
-                                  .toLowerCase()
-                                  .startsWith(
-                                      formState.values?.category?.toLowerCase()
-                                  )
-                            : false
-                    )}
-                    onChange={handleClickTag}
-                />
-            </div>
+                    <CategoryList
+                        categories={group.filter((x) =>
+                            !formState.values || !formState.values?.category
+                                ? true
+                                : formState.values?.category
+                                ? x.fieldValue
+                                      .toLowerCase()
+                                      .startsWith(
+                                          formState.values?.category?.toLowerCase()
+                                      )
+                                : false
+                        )}
+                        onChange={handleClickTag}
+                    />
+                </main>
+            </section>
         </Layout>
     );
 };

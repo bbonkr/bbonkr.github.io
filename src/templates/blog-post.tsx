@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
 import Img from 'gatsby-image';
-import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
@@ -29,7 +28,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                 }
             />
             <article
-                className="blog-post"
+                className="blog-post py-6"
                 itemScope
                 itemType="http://schema.org/Article"
             >
@@ -175,7 +174,6 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                     </ThemeProvider.Consumer>
                 </footer>
             </article>
-            <Bio />
         </Layout>
     );
 };

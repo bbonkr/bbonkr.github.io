@@ -1,11 +1,8 @@
 import * as React from 'react';
-
-// import kebabCase from 'lodash/kebabCase';
-
 import { Link, graphql, PageProps } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
-import Bio from '../components/bio';
+
 import { Post, Edge } from '../models/data';
 import PostListItem from '../components/post-list-item';
 import { PageNav } from '../components/pagination/page-nav';
@@ -62,44 +59,48 @@ const TagPageTemplate = ({
     return (
         <Layout location={location} title={title}>
             <Seo title={`Post taged by #${pageContext.tag}`} />
-            {/* <Bio /> */}
-            <header>
-                <aside>
-                    <p className="text-base md:text-sm text-green-500 font-bold">
-                        &lt;{' '}
-                        <Link
-                            to="/tags"
-                            className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
-                        >
-                            BACK TO TAGS
-                        </Link>
-                    </p>
-                </aside>
-                <h1>
-                    {`Post taged by`}{' '}
-                    <span className="text-green-500">{`#${pageContext.tag}`}</span>{' '}
-                </h1>
-            </header>
+            <section className="py-6">
+                <header>
+                    <aside>
+                        <p className="text-base md:text-sm text-green-500 font-bold">
+                            &lt;{' '}
+                            <Link
+                                to="/tags"
+                                className="text-base md:text-sm text-green-500 font-bold no-underline hover:underline"
+                            >
+                                BACK TO TAGS
+                            </Link>
+                        </p>
+                    </aside>
+                    <h1>
+                        {`Post taged by`}{' '}
+                        <span className="text-green-500">{`#${pageContext.tag}`}</span>{' '}
+                    </h1>
+                </header>
 
-            <main>
-                {edges.map((edge) => {
-                    return (
-                        <PostListItem key={edge.node.fields.slug} post={edge} />
-                    );
-                })}
-            </main>
+                <main>
+                    {edges.map((edge) => {
+                        return (
+                            <PostListItem
+                                key={edge.node.fields.slug}
+                                post={edge}
+                            />
+                        );
+                    })}
+                </main>
 
-            <Hr />
+                <Hr />
 
-            <footer>
-                <PageNav
-                    current={pageContext.currentPage}
-                    total={pageContext.totalPages}
-                    path={pageContext.basePath}
-                    showDescription
-                    useShortcut
-                />
-            </footer>
+                <footer>
+                    <PageNav
+                        current={pageContext.currentPage}
+                        total={pageContext.totalPages}
+                        path={pageContext.basePath}
+                        showDescription
+                        useShortcut
+                    />
+                </footer>
+            </section>
         </Layout>
     );
 };

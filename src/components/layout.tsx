@@ -64,13 +64,7 @@ const Layout = ({
                                 <div className="w-full mx-auto flex flex-wrap">
                                     <div className="flex w-full md:w-1/2">
                                         <div className="px-8">
-                                            <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                                                Working
-                                            </h3>
-                                            <p className="py-4 text-gray-600 dark:text-gray-400 text-sm">
-                                                I am replacing the static site
-                                                page builder to Gatsby.
-                                            </p>
+                                            <Bio disablePaddingY />
                                         </div>
                                     </div>
 
@@ -89,7 +83,7 @@ const Layout = ({
                                                     <a
                                                         href="https://bbon.kr"
                                                         target="_blank"
-                                                        rel="nofollow"
+                                                        rel="nofollow noopener noreferrer"
                                                         className="text-green-600"
                                                     >
                                                         Other Blog

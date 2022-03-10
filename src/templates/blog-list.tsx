@@ -1,6 +1,5 @@
 import { graphql, Link, PageProps } from 'gatsby';
 import * as React from 'react';
-import Bio from '../components/bio';
 import { Hr } from '../components/hr';
 import Layout from '../components/layout';
 import { PageNav } from '../components/pagination/page-nav';
@@ -37,19 +36,6 @@ const BlogListTemplate = ({
                     pageContext.totalPages
                 } page${pageContext.totalPages > 1 ? 's' : ''}`}
             />
-
-            <Bio />
-            {/* <header>
-                <aside className="flex gap-2">
-                    <span>{`Posts on`}</span>
-                    <span className="text-green-500">{`${pageContext.currentPage}`}</span>
-                    <span>of</span>
-                    <span>{`${pageContext.totalPages} page${
-                        pageContext.totalPages > 1 ? 's' : ''
-                    }`}</span>
-                </aside>
-                <h1 className="flex gap-2"></h1>
-            </header> */}
 
             <main>
                 {edges?.map((edge) => {

@@ -3,7 +3,6 @@ import { graphql, Link, PageProps } from 'gatsby';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
-import Bio from '../components/bio';
 
 interface SiteMetadata {
     title: string;
@@ -25,7 +24,6 @@ const NotFoundPage = ({ data, location }: NotFoundPageProps) => {
     return (
         <Layout location={location} title={siteTitle ?? title}>
             <Seo title={title} />
-            <Bio />
             <header>
                 <h1 className="text-2xl">404: Not Found</h1>
             </header>

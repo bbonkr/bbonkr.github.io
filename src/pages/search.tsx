@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
-import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Posts } from '../models/data';
@@ -34,7 +33,6 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
     };
 
     const filteredPosts = React.useMemo(() => {
-        
         return (posts ?? []).filter((x) => {
             if (!formState?.values?.keyword) {
                 return false;
@@ -66,8 +64,6 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
                     (or the directory you specified for the
                     "gatsby-source-filesystem" plugin in gatsby-config.js).
                 </p>
-
-                <Bio />
             </Layout>
         );
     }
@@ -75,7 +71,7 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
     return (
         <Layout location={location} title={siteTitle}>
             <Seo title="Search" />
-            <Bio />
+
             <header>
                 <h1>Search</h1>
             </header>
