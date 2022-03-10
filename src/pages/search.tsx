@@ -34,6 +34,7 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
     };
 
     const filteredPosts = React.useMemo(() => {
+        
         return (posts ?? []).filter((x) => {
             if (!formState?.values?.keyword) {
                 return false;
@@ -155,6 +156,7 @@ export const pageQuery = graphql`
                             }
                         }
                     }
+                    rawMarkdownBody
                 }
             }
         }
