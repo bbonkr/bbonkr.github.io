@@ -1,4 +1,4 @@
-import { FluidObject } from 'gatsby-image';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 export interface GitHub {
     owner: string;
@@ -22,7 +22,8 @@ interface FeaturedImage {
 }
 
 interface ImageSharp {
-    fluid: FluidObject;
+    // fluid: FluidObject;
+    gatsbyImageData: IGatsbyImageData;
 }
 
 export interface Field {

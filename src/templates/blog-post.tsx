@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
-import Img from 'gatsby-image';
+import { getSrc } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
@@ -15,17 +16,22 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const { previous, next } = data;
     const hasFeaturedImage = Boolean(
-        post.frontmatter.featuredImage?.childImageSharp?.fluid
+        post.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
     );
+
+    const featuredImageSrc = post.frontmatter.featuredImage?.childImageSharp
+        ?.gatsbyImageData
+        ? getSrc(
+              post.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
+          )
+        : undefined;
 
     return (
         <Layout location={location} title={siteTitle}>
             <Seo
                 title={post.frontmatter.title}
                 description={post.frontmatter.description || post.excerpt}
-                image={
-                    post.frontmatter.featuredImage?.childImageSharp?.fluid.src
-                }
+                image={featuredImageSrc}
             />
             <article
                 className="blog-post py-6"
@@ -33,14 +39,16 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                 itemType="http://schema.org/Article"
             >
                 <header className="font-sans relative">
-                    {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
+                    {post.frontmatter.featuredImage?.childImageSharp
+                        ?.gatsbyImageData && (
                         <React.Fragment>
-                            <Img
-                                fluid={
+                            <GatsbyImage
+                                image={
                                     post.frontmatter.featuredImage
-                                        .childImageSharp?.fluid
+                                        .childImageSharp?.gatsbyImageData
                                 }
-                                className="blur-0"
+                                alt={`Featured image for ${post.frontmatter.title}`}
+                                className="blur-sm max-w-full max-h-80"
                             />
                         </React.Fragment>
                     )}
@@ -208,9 +216,10 @@ export const pageQuery = graphql`
                 }
                 featuredImage {
                     childImageSharp {
-                        fluid(maxWidth: 1024) {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData(layout: FIXED)
+                        # fluid(maxWidth: 1024) {
+                        #     ...GatsbyImageSharpFluid
+                        # }
                     }
                 }
                 draft
