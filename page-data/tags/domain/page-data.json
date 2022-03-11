@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/domain",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"소개 내가 가진 도메인으로 네이버의 서비스를 사용할 수 있게 해주는 서비스입니다. 비슷한 서비스로는 Google Apps (지금은 Google Apps For Work), Microsoft Domains (지금은 Office 365), Daum…","fields":{"slug":"/2015/01/18/naver-works/"},"frontmatter":{"date":"January 18, 2015","title":"Naver Works","tags":["naver","service","domain"],"categories":["computing"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"domain","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/domain"}},
-    "staticQueryHashes": ["3068608076"]}
+    "staticQueryHashes": ["3068608076","3199328057"]}

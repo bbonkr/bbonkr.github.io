@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/dotnet-6",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":".NET 5 웹 응용프로그램을 .NET 6 웹 응용프로그램으로 변환하고, 관련 내용을 요약해서 작성했습니다. Target Project GitHub: bbonkr/bing-wallpaper 웹 응용프로그램의 대상 프레임워크를 .NET 5 에서 .NET…","fields":{"slug":"/2021/12/15/change-the-web-application-target-framework-from-net-5-to-net-6/"},"frontmatter":{"date":"December 15, 2021","title":"Change the web application target framework from .NET 5 to .NET 6","tags":["dotnet","dotnet 5","dotnet 6","github","github-repository"],"categories":["blog","computing","repository"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"dotnet 6","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/dotnet-6"}},
-    "staticQueryHashes": ["3068608076"]}
+    "staticQueryHashes": ["3068608076","3199328057"]}

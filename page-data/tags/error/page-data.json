@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/error",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Windows 1…","fields":{"slug":"/2015/09/04/windows-10-media-pack/"},"frontmatter":{"date":"September 04, 2015","title":"Windows 10 사진 앱 실행불가","tags":["windows","windows 10","app","error"],"categories":["computing"],"draft":null,"comments":false,"featuredImage":null}}}]}},"pageContext":{"tag":"error","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/error"}},
-    "staticQueryHashes": ["3068608076"]}
+    "staticQueryHashes": ["3068608076","3199328057"]}

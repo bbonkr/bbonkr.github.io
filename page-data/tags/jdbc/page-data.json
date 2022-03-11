@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-templates-tags-tsx",
     "path": "/tags/jdbc",
     "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"SQL Server용 Microsoft JDBC 드라이버 홈페이지 Download: SQL Server용 Microsoft JDBC Driver 4.2, 4.1 및 4.0 드라이버 이름 JDBC URL 지원되는 SQL Server…","fields":{"slug":"/2016/02/16/sql-server-jdbc-driver/"},"frontmatter":{"date":"February 16, 2016","title":"SQL Server JDBC Driver","tags":["sql server","jdbc"],"categories":["computing"],"draft":null,"comments":false,"featuredImage":null}}}]}},"pageContext":{"tag":"jdbc","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/jdbc"}},
-    "staticQueryHashes": ["3068608076"]}
+    "staticQueryHashes": ["3068608076","3199328057"]}
