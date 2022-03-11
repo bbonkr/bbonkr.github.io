@@ -217,9 +217,6 @@ export const pageQuery = graphql`
                 featuredImage {
                     childImageSharp {
                         gatsbyImageData(layout: FIXED)
-                        # fluid(maxWidth: 1024) {
-                        #     ...GatsbyImageSharpFluid
-                        # }
                     }
                 }
                 draft
@@ -236,9 +233,7 @@ export const pageQuery = graphql`
                 comments
                 featuredImage {
                     childImageSharp {
-                        fluid(maxWidth: 1024) {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData(layout: FIXED)
                     }
                 }
             }
@@ -253,9 +248,7 @@ export const pageQuery = graphql`
                 comments
                 featuredImage {
                     childImageSharp {
-                        fluid(maxWidth: 1024) {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData(layout: FIXED)
                     }
                 }
             }
