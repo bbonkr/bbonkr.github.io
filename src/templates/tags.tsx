@@ -135,9 +135,7 @@ export const pageQuery = graphql`
                         comments
                         featuredImage {
                             childImageSharp {
-                                fluid(maxWidth: 1024) {
-                                    ...GatsbyImageSharpFluid
-                                }
+                                gatsbyImageData(layout: FIXED)
                             }
                         }
                     }

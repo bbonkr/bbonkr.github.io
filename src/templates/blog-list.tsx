@@ -87,9 +87,7 @@ export const blogListQuery = graphql`
                         categories
                         featuredImage {
                             childImageSharp {
-                                fluid(maxWidth: 1024) {
-                                    ...GatsbyImageSharpFluid
-                                }
+                                gatsbyImageData(layout: FIXED)
                             }
                         }
                         draft
