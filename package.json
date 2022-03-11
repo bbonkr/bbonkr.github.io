@@ -25,7 +25,6 @@
     "@tailwindcss/forms": "^0.4.0",
     "autoprefixer": "^10.4.2",
     "gatsby": "^4.9.3",
-    "gatsby-image": "^3.11.0",
     "gatsby-plugin-feed": "^4.7.0",
     "gatsby-plugin-gatsby-cloud": "^4.9.0",
     "gatsby-plugin-google-analytics": "^4.7.0",
