@@ -22,7 +22,7 @@
     "http-server": "http-server --port 8001 public/"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.0",
     "autoprefixer": "^10.4.2",
     "gatsby": "^4.9.3",
     "gatsby-plugin-feed": "^4.7.0",
