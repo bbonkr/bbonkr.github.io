@@ -22,7 +22,7 @@
     "http-server": "http-server --port 8001 public/"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.0",
     "autoprefixer": "^10.4.2",
     "gatsby": "^4.9.3",
     "gatsby-plugin-feed": "^4.7.0",
@@ -56,15 +56,15 @@
     "typeface-montserrat": "^1.1.13"
   },
   "devDependencies": {
-    "@types/node": "^17.0.11",
-    "@types/react": "^17.0.39",
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/parser": "^5.11.0",
-    "eslint": "^8.7.0",
+    "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^10.0.1",
     "gatsby-plugin-postcss": "^5.6.0",
     "http-server": "^14.1.0",
     "npm-check": "^5.9.2",
