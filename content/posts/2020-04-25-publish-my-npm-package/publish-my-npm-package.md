@@ -8,6 +8,9 @@ tags:
   - typescript
 intro:
 comments:
+github:
+  owner: bbonkr
+  repo: bbon-formatter
 ---
 
 자주 사용되는 기능을 Typescript 로 작성해서 NPM 에 게시한 후 다른 프로젝트에서 사용하고 싶어 NPM 에 패키지를 어떻게 공개하는지를 확인했습니다.
@@ -425,7 +428,7 @@ $ npm publish --access public
 
 게시한 NPM 패키지는 다른 패키지 사용과 동일하게 사용할 수 있습니다.
 
-새로은 프로젝트를 준비하고, 아래 명령으로 패키지를 설치합니다.
+새 프로젝트를 준비하고, 아래 명령으로 패키지를 설치합니다.
 
 ```bash
 $ npm install --save @bbon/formatter
