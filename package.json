@@ -10,17 +10,12 @@
   ],
   "scripts": {
     "build": "gatsby build",
-    "build:fast": "dotenv -e .env gatsby build",
     "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{jsx,ts,tsx}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "check": "npm-check",
-    "check:update": "npm-check -u",
-    "prehttp-server": "npm run clean && npm run build",
-    "http-server": "http-server --port 8001 public/"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.0",
