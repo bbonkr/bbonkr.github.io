@@ -9,20 +9,34 @@ jobs:
   build:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         
       - name: Set Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            .cache
+            public
+          key: ${{ runner.os }}-node-${{ hasFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - run: |
           npm install
+
       - run: |
           npm run build
         env:
           NODE_ENV: production
           GA_ID: ${{ secrets.GA_ID }}
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
