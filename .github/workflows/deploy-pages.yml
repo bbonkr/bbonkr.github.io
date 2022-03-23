@@ -34,8 +34,7 @@ jobs:
 
       - name: Build
         run: |
-          rm -r .cache 
-          rm -r public 
+          npm run clean
           npm run build
         env:
           NODE_ENV: production
