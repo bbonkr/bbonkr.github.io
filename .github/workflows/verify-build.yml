@@ -26,9 +26,14 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-node-
 
-      - run: |
+      - name: Install dependencies
+        run: |
           npm install
-      - run: |
+
+      - name: Build 
+        run: |
+          rm -r .cache
+          rm -r public 
           npm run build
         env:
           NODE_ENV: production
