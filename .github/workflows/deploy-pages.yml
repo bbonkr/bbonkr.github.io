@@ -34,7 +34,6 @@ jobs:
 
       - name: Build
         run: |
-          npm run clean
           npm run build
         env:
           NODE_ENV: production
