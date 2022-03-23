@@ -17,21 +17,23 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            .cache
-            public
-          key: ${{ runner.os }}-node-${{ hasFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # - name: Cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.npm
+      #       .cache
+      #       public
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
-      - run: |
+      - name: Install dependencies
+        run: |
           npm install
 
-      - run: |
+      - name: Build
+        run: |
           npm run build
         env:
           NODE_ENV: production
