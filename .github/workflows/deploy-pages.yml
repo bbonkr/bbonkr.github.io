@@ -7,7 +7,9 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }} 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,16 +19,13 @@ jobs:
         with:
           node-version: '16'
 
-      # - name: Cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: |
-      #       ~/.npm
-      #       .cache
-      #       public
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: |
@@ -46,3 +45,6 @@ jobs:
           # external_repository: bbonkr/bbonkr.github.io
           publish_branch: gh-pages  # default: gh-pages
           publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          full_commit_message: ${{ github.event.head_commit.message }}
