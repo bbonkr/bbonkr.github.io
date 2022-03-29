@@ -1,4 +1,4 @@
-.article-body > * {
+.article-body * {
     @apply my-3 break-words;
 }
 
@@ -103,4 +103,8 @@
 
 .article-body table tr:last-child td {
     @apply border-b-0;
+}
+
+.article-body code[class*='language-'] {
+    @apply break-words;
 }
