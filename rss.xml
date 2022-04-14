@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Mar 2022 12:31:53 GMT</lastBuildDate><item><title><![CDATA[GitHub Action: Get Version Action]]></title><description><![CDATA[NPM package.json 또는 c# SDK 스타일 프로젝트 파일의 version 문자열을 추출하는 깃허브 액션입니다. View on Marketplace: get-version-action 출시 버전 get-version-action…]]></description><link>https://bbon.me/2022/01/20/git-hub-action-get-version-action/</link><guid isPermaLink="false">https://bbon.me/2022/01/20/git-hub-action-get-version-action/</guid><pubDate>Thu, 20 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;NPM package.json 또는 c# SDK 스타일 프로젝트 파일의 version 문자열을 추출하는 깃허브 액션입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 14 Apr 2022 11:11:25 GMT</lastBuildDate><item><title><![CDATA[Reduce docker image size]]></title><description><![CDATA[GitHub Actions 의 워크플로우를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다. GitHub: bing-wallpaper docker image workflow…]]></description><link>https://bbon.me/2022/04/14/reduce-docker-image-size/</link><guid isPermaLink="false">https://bbon.me/2022/04/14/reduce-docker-image-size/</guid><pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;GitHub Actions 의 워크플로우&lt;/a&gt;를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;GitHub: bing-wallpaper docker image workflow&lt;/a&gt; 에서 동작을 확인하실 수 있습니다.&lt;/p&gt;
+&lt;p&gt;언젠가 부터 워크플로우가 실패하고 있었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/runs/2089159258&quot;&gt;Merge pull request #114 from bbonkr/dev docker image #17&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;오류 메시지는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;buildx failed with: error: failed to solve: failed to copy: unexpected status: 413 Request Entity Too Large&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;오류 메시지를 참조해서 원인 해결을 위해 검색을 해보면 사설 도커 레지스트리 환경에서 허용 업로드 크기를 초과한 경우 발생하는 메시지로 판단됩니다.&lt;/p&gt;
+&lt;p&gt;하지만, 도커 레지스트리 실행환경에는 허용 업로드 크기를 제한하고 있지 않습니다.&lt;/p&gt;
+&lt;p&gt;nginx 허용 업로드 크기관련 구성은 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;http {
+  client_max_body_size 0;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;서버 측에서 문제를 해결할 수 없다고 생각되어 도커 이미지 크기를 줄이기로 결정했습니다.&lt;/p&gt;
+&lt;h2&gt;확인&lt;/h2&gt;
+&lt;h3&gt;응용프로그램 출력 크기 확인&lt;/h3&gt;
+&lt;p&gt;dotnet cli 게시 명령으로 출력해서 크기를 확인해보니 아래와 같이 크기가 확인됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ dotnet publish ./src/Bing.Wallpaper/Bing.Wallpaper.csproj -c Release -o ./test-out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;du&lt;/span&gt; -sh ./test-out
+298M	./test-out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;생각보다 크기가 큽니다.&lt;/p&gt;
+&lt;p&gt;실행되는 환경이 linux x64 환경으로 제한되니, 출력 크기를 줄이기 위해 플랫폼을 지정해서 확인합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ dotnet publish ./src/Bing.Wallpaper/Bing.Wallpaper.csproj -c Release -o ./test-out --runtime linux-x64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;du&lt;/span&gt; -sh ./test-out
+161M	./test-out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;dotnet cli 출력 명령 실행중 여러 경고가 출력됩니다.&lt;/p&gt;
+&lt;p&gt;그 중, —runtime 을 지정하는 경우  단일 파일로 출력할지 여부를 지정하라는 메시지가 있어, 게시 옵션을 추가합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ dotnet publish ./src/Bing.Wallpaper/Bing.Wallpaper.csproj -c Release -o ./test-out --runtime linux-x64 --no-self-contained&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;du&lt;/span&gt; -sh ./test-out
+ 71M	./test-out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;298 MB 에서 71MB 로 출력 파일의 크기가 줄어들었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/edffe0775d89519e46c44ca363337903/0a47e/reduce-docker-image-size-001.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.0253164556962%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+klEQVQoz41Si7KFIAj0/z+2o2m+Ye9gebJOzs0ZAnJYlhWVc8ayLNBaw3sPYwxWYxBjQIwJ/TAz3hwlnxgjtm07Cgk+EVImAAQiQqXd/2fSVI2de1yIsXqGi4x+/Y7fwVDGFpYC2DsJUkiEj6Pmcfx7xTCldAHs1gFsIOiNkMrZjGeA8gillEfhx6wQYANjDYyYeSpBYxhCgLW2AdZafzrXSo2RPFguBBcqtKvNS35heGF0MBz9U9yPTzvb8V71pGk2AR0Ldglv0vAp0BdQHkVMxped7Hk3WXqx+3/nXKuRWOT62cPZmFJ4Lj9PZVEzfe4jy66KPd2N8R97VrVpsIp6KwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;응용프로그램 출력 크기&quot;
+        title=&quot;응용프로그램 출력 크기&quot;
+        src=&quot;/static/edffe0775d89519e46c44ca363337903/0a47e/reduce-docker-image-size-001.png&quot;
+        srcset=&quot;/static/edffe0775d89519e46c44ca363337903/c26ae/reduce-docker-image-size-001.png 158w,
+/static/edffe0775d89519e46c44ca363337903/6bdcf/reduce-docker-image-size-001.png 315w,
+/static/edffe0775d89519e46c44ca363337903/0a47e/reduce-docker-image-size-001.png 600w&quot;
+        sizes=&quot;(max-width: 600px) 100vw, 600px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;도커 이미지 빌드 확인&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Apple M1 을 사용하는 로컬 장치에 도커 데스트톱을 설치해서 임의의 버전을 태그로 지정해서 빌드해서 확인을 진행했습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;현재 도커 빌드 정의 파일에서 여러 단계의 빌드를 사용하고 있습니다.&lt;/p&gt;
+&lt;p&gt;base 별칭을 설정한 이미지를 변경해서 크기를 줄일 수 있을 것으로 생각됩니다.&lt;/p&gt;
+&lt;p&gt;기록해두지 않아서 정확하지 않지만,  &lt;code class=&quot;language-text&quot;&gt;mcr.microsoft.com/dotnet/aspnet:6.0&lt;/code&gt; 이미지를 기반으로 작성된 도커 이미지는 약 400 MB 를 초과하는 크기였습니다.&lt;/p&gt;
+&lt;p&gt;제공되는 다른 이미지로 시도합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-aspnet&quot;&gt;DockerHub: ASP.NET Core Runtime&lt;/a&gt; 페이지에서 제공되는 이미지를 모두 확인하실 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;크기가 작을 것으로 예상되는 alpine 이미지를 사용해서 빌드합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; mcr.microsoft.com/dotnet/aspnet:6.0-alpine &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; base&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; build &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt; -t bbonkr/bing-wallpaper:1.0.3 --platform linux/amd64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;도커 이미지의 크기는 174.34 MB 입니다.&lt;/p&gt;
+&lt;p&gt;매우 많이 줄어들었습니다.&lt;/p&gt;
+&lt;p&gt;그런데, 컨테이너 실행시 오류가 발생합니다.&lt;/p&gt;
+&lt;p&gt;오류 메시지는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Unhandled exception. System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter &apos;name&apos;)
+
+en-us is an invalid culture identifier.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;관련 내용을 찾아보면, apline 에서는 지역화 기능을 사용할 수 없습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://andrewlock.net/dotnet-core-docker-and-cultures-solving-culture-issues-porting-a-net-core-app-from-windows-to-linux/#the-fix-install-the-icu-cultures-and-disable-globalization-invariant-mode&quot;&gt;The fix: install the ICU cultures and disable Globalization Invariant Mode&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;.NET 지역화 기능을 사용할 필요가 없으면, 도커 빌드 정의에 아래 정보를 추가해서 빌드하면 됩니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;base 별칭이 지정된 이미지에서 아래 명령이 실행되어야 합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; apk add --no-cache icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ENV&lt;/span&gt; DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;메인 프로젝트 파일을 열고 아래 정보를 추가합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;PropertyGroup&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;InvariantGlobalization&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;false&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;InvariantGlobalization&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;PropertyGroup&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;응용 프로그램에서 필요한 다른 의존 라이브러리가 있다면, 모두 찾아서 설치해야 합니다.&lt;/p&gt;
+&lt;p&gt;매우 불편합니다.&lt;/p&gt;
+&lt;p&gt;크기를 조금 더 커지더라도, 편리하게 사용하기 위해 Debian 기반 이미지로 변경합니다.&lt;/p&gt;
+&lt;p&gt;dockerfile 의 base 단계 이미지를 변경합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; base&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; build &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt; -t bbonkr/bing-wallpaper:1.0.6 --platform linux/amd64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;도커 이미지의 크기는 282.32 MB 입니다.&lt;/p&gt;
+&lt;p&gt;컨테이너를 실행하면 정상적으로 실행됩니다.&lt;/p&gt;
+&lt;p&gt;혹시나 다른 이슈가 있으면 대응하기 위해 자주 사용하는 Ubuntu 기반 이미지로 변경합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;&lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; mcr.microsoft.com/dotnet/aspnet:6.0-focal &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; base&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;도커 이미지의 크기는 283.68 MB 입니다.&lt;/p&gt;
+&lt;p&gt;컨테이너를 실행하면 정상적으로 실행됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ba983bf46c288819ee1a231e33b86b1f/0a47e/reduce-docker-image-size-002.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.0253164556962%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABDUlEQVQoz42Si46EIAxF/f/PNL6NWTWggNBubp0aMuvs2KSUKl5OW4sQAhtjxLdtEw/eMxGLEdG1f2IFFuecCMF2n3jziZkSx5g4peeOywssSGKMrzuIl43YBboI86hGH7AvQmstqzilxD8mCi1I8UyJzR55tpmbyD5khNKzEM6P3m6eLXGIZ279Sb4H+kgthH3f87IsQqmE6iACKdy6+KL40kMIHcfxhzCPOUme3xJi8d7LlHEAw7m7/cnErylrqU+m+J+JIDYQQ+nrunJZljxNk+TDMHDTNFxVley7ruO6rsXbtuVxHCUix3tUV+QkEM4njt5qf+d5luHpGTyHgEb9j4u7xt+VrOLfSv4Fw0yx+0gpuVoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;도커 이미지 크기&quot;
+        title=&quot;도커 이미지 크기&quot;
+        src=&quot;/static/ba983bf46c288819ee1a231e33b86b1f/0a47e/reduce-docker-image-size-002.png&quot;
+        srcset=&quot;/static/ba983bf46c288819ee1a231e33b86b1f/c26ae/reduce-docker-image-size-002.png 158w,
+/static/ba983bf46c288819ee1a231e33b86b1f/6bdcf/reduce-docker-image-size-002.png 315w,
+/static/ba983bf46c288819ee1a231e33b86b1f/0a47e/reduce-docker-image-size-002.png 600w&quot;
+        sizes=&quot;(max-width: 600px) 100vw, 600px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;완료&lt;/h2&gt;
+&lt;p&gt;작성되는 도커 이미지 크기를 조정한 후 GitHub Actions 워크플로우에서 사설 도커 레지스트리에 업로드하는 동작도 정상적으로 실행됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;&lt;img src=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml/badge.svg&quot; alt=&quot;docker image&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[GitHub Action: Get Version Action]]></title><description><![CDATA[NPM package.json 또는 c# SDK 스타일 프로젝트 파일의 version 문자열을 추출하는 깃허브 액션입니다. View on Marketplace: get-version-action 출시 버전 get-version-action…]]></description><link>https://bbon.me/2022/01/20/git-hub-action-get-version-action/</link><guid isPermaLink="false">https://bbon.me/2022/01/20/git-hub-action-get-version-action/</guid><pubDate>Thu, 20 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;NPM package.json 또는 c# SDK 스타일 프로젝트 파일의 version 문자열을 추출하는 깃허브 액션입니다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/marketplace/actions/get-version-action&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Marketplace-get--version--action-blueviolet&quot; alt=&quot;View on Marketplace: get-version-action&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/bbonkr/get-version-action/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/bbonkr/get-version-action?display_name=tag&amp;#x26;style=flat-square&amp;#x26;include_prereleases&quot; alt=&quot;출시 버전&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;get-version-action&lt;/h2&gt;
 &lt;h3&gt;Overview&lt;/h3&gt;
