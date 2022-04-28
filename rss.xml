@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 28 Apr 2022 08:47:10 GMT</lastBuildDate><item><title><![CDATA[Reduce docker image size]]></title><description><![CDATA[GitHub Actions 의 워크플로우를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다. GitHub: bing-wallpaper docker image workflow…]]></description><link>https://bbon.me/2022/04/14/reduce-docker-image-size/</link><guid isPermaLink="false">https://bbon.me/2022/04/14/reduce-docker-image-size/</guid><pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;GitHub Actions 의 워크플로우&lt;/a&gt;를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 28 Apr 2022 08:58:50 GMT</lastBuildDate><item><title><![CDATA[Typescript project with eslint@8]]></title><description><![CDATA[타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다. eslint 패키지를 업데이트(v8.x…]]></description><link>https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</link><guid isPermaLink="false">https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</guid><pubDate>Thu, 28 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/package/eslint&quot;&gt;eslint&lt;/a&gt; 패키지를 업데이트(v8.x) 하고 나니,  린트 실행시 오류가 발생합니다.&lt;/p&gt;
+&lt;p&gt;오류 메시지는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Oops! Something went wrong! :(
+
+ESLint: 8.14.0
+
+TypeError: Failed to load plugin &apos;@typescript-eslint&apos; declared in &apos;.eslintrc&apos;: Class extends value undefined is not a constructor or null&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;해결 방법&lt;/h2&gt;
+&lt;p&gt;동일한 문제에 대한 &lt;a href=&quot;https://github.com/eslint/eslint/issues/15149#issuecomment-943117082&quot;&gt;깃허브 이슈&lt;/a&gt;가 있습니다.&lt;/p&gt;
+&lt;p&gt;아래 두 패키지가 &lt;a href=&quot;https://www.npmjs.com/package/eslint&quot;&gt;eslint&lt;/a&gt;@7 을 대상으로 하고 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/@typescript-eslint/parser&quot;&gt;@typescript-eslint/parser&lt;/a&gt;@4&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/@typescript-eslint/eslint-plugin&quot;&gt;@typescript-eslint/eslint-plugin&lt;/a&gt;@4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;다행히 두 패키지 모두 &lt;a href=&quot;https://www.npmjs.com/package/eslint&quot;&gt;eslint&lt;/a&gt;@8을 대상으로한 업데이트가 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; i @typescript-eslint/parser@5 @typescript-eslint/eslint-plugin@5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;두 패키지를 업데이트(v5)한 후 린트가 정상적으로 동작합니다.&lt;/p&gt;
+&lt;h2&gt;관련 링크&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bbonkr/bbon-formatter/issues/108&quot;&gt;Fail to lint with eslint@8 #108&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Reduce docker image size]]></title><description><![CDATA[GitHub Actions 의 워크플로우를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다. GitHub: bing-wallpaper docker image workflow…]]></description><link>https://bbon.me/2022/04/14/reduce-docker-image-size/</link><guid isPermaLink="false">https://bbon.me/2022/04/14/reduce-docker-image-size/</guid><pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;GitHub Actions 의 워크플로우&lt;/a&gt;를 이용해서 ASP.NET Core 응용프로그램을 도커 이미지로 빌드해서 사설 도커 레지스트리에 업로드하고 있습니다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/workflows/docker.yml&quot;&gt;GitHub: bing-wallpaper docker image workflow&lt;/a&gt; 에서 동작을 확인하실 수 있습니다.&lt;/p&gt;
 &lt;p&gt;언젠가 부터 워크플로우가 실패하고 있었습니다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/bbonkr/bing-wallpaper/actions/runs/2089159258&quot;&gt;Merge pull request #114 from bbonkr/dev docker image #17&lt;/a&gt;&lt;/p&gt;
