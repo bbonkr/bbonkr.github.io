@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tags-tsx",
-    "path": "/tags/js",
-    "result": {"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"…","fields":{"slug":"/2019/02/09/rename-app/"},"frontmatter":{"date":"February 09, 2019","title":"Rename App","tags":["electron","javascript","js"],"categories":["computing"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"js","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/js"}},
-    "staticQueryHashes": ["3068608076","3199328057"]}
+{"componentChunkName":"component---src-templates-tags-tsx","path":"/tags/js","result":{"data":{"site":{"siteMetadata":{"title":"<bbon />"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"…","fields":{"slug":"/2019/02/09/rename-app/"},"frontmatter":{"date":"February 09, 2019","title":"Rename App","tags":["electron","javascript","js"],"categories":["computing"],"draft":null,"comments":null,"featuredImage":null}}}]}},"pageContext":{"tag":"js","limit":6,"skip":0,"totalPages":1,"currentPage":1,"basePath":"/tags/js"}},"staticQueryHashes":["2644450635","3199328057"]}
