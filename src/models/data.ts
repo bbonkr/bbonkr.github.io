@@ -58,6 +58,7 @@ export interface Author {
 
 export interface Seo {
     facebookAppId?: string;
+    naverSiteVerification?: string;
 }
 
 export interface SiteMetadata {
