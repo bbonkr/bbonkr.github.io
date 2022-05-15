@@ -21,6 +21,7 @@ module.exports = {
         },
         seo: {
             facebookAppId: process.env.FB_APP_ID,
+            naverSiteVerification: process.env.NAVER_SITE_VERIFICATION,
         },
     },
     plugins: [

@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Site } from '../models/data';
+import { FaSitemap } from 'react-icons/fa';
 
 interface SeoProps {
     description?: string;
@@ -92,6 +93,13 @@ const Seo = ({ description, lang, meta, image, title }: SeoProps) => {
         metaElementRecords.push({
             name: `twitter:creator`,
             content: site.siteMetadata?.social?.twitter,
+        });
+    }
+
+    if (site.siteMetadata?.seo?.naverSiteVerification) {
+        metaElementRecords.push({
+            name: 'naver-site-verification',
+            content: site.siteMetadata?.seo?.facebookAppId,
         });
     }
 
