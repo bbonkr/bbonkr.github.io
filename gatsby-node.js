@@ -396,6 +396,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Seo {
         facebookAppId: String
+        naverSiteVerification: String
     }
 
     type MarkdownRemark implements Node {
