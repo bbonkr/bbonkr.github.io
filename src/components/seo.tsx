@@ -36,6 +36,7 @@ const Seo = ({ description, lang, meta, image, title }: SeoProps) => {
                         }
                         seo {
                             facebookAppId
+                            naverSiteVerification
                         }
                     }
                 }
