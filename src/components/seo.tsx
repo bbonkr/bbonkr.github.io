@@ -99,7 +99,7 @@ const Seo = ({ description, lang, meta, image, title }: SeoProps) => {
     if (site.siteMetadata?.seo?.naverSiteVerification) {
         metaElementRecords.push({
             name: 'naver-site-verification',
-            content: site.siteMetadata?.seo?.facebookAppId,
+            content: site.siteMetadata?.seo?.naverSiteVerification,
         });
     }
 
