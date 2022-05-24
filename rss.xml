@@ -1,4 +1,219 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 May 2022 06:03:19 GMT</lastBuildDate><item><title><![CDATA[Typescript project with eslint@8]]></title><description><![CDATA[타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다. eslint 패키지를 업데이트(v8.x…]]></description><link>https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</link><guid isPermaLink="false">https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</guid><pubDate>Thu, 28 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 May 2022 06:18:57 GMT</lastBuildDate><item><title><![CDATA[Enumerable String Union Type]]></title><description><![CDATA[지정된 문자열만 사용할 수 있는 문자열 변수를 선언할 때, 문자열 조합 형식 String Union Type…]]></description><link>https://bbon.me/2022/05/24/enumerable-string-union-type/</link><guid isPermaLink="false">https://bbon.me/2022/05/24/enumerable-string-union-type/</guid><pubDate>Tue, 24 May 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;지정된 문자열만 사용할 수 있는 문자열 변수를 선언할 때, 문자열 조합 형식 &lt;small&gt;String Union Type&lt;/small&gt;을 사용합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Status&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Todo&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;InProgress&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Done&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; status&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Status &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// ✔️ OK&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; status2&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Status &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;None&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// ❌ Error&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이 때, 문자열 조합 형식이 허용하는 문자열을 출력하려고 하면, 쉬운 방법이 생각나지 않습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;아래 코드는 임의로 작성한 코드이고, 동작하지 않습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token literal-property property&quot;&gt;some&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Status &lt;span class=&quot;token comment&quot;&gt;// ??&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;select&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Status&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;option&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;option&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt; // ??
+&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;select&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이를 위해 아래와 같이 형식 정의를 변경할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; statusTypes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;InProgress&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Done&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Status&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; statusTypes&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; status&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Status &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// ✔️ OK&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; status2&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Status &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;None&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// ❌ Error&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;첫번째, 두번째 &lt;code class=&quot;language-text&quot;&gt;Status&lt;/code&gt; 형식 정의는 동일하게 동작합니다.&lt;/p&gt;
+&lt;p&gt;이제 문자열 조합 형식이 허용하는 문자열을 쉽게 출력할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;select&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;statusTypes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;option&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;option&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt; // 🙂
+&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;select&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[MAUI on MacOS]]></title><description><![CDATA[.NET MAUI Multi-platform App UI 는 C#, XAML 을 사용하여 네이티브 모바일 및 데스크톱 앱을 작성하기위한 크로스플랫폼 프레임워크입니다. What is .NET MAUI…]]></description><link>https://bbon.me/2022/05/24/maui-on-mac-os/</link><guid isPermaLink="false">https://bbon.me/2022/05/24/maui-on-mac-os/</guid><pubDate>Tue, 24 May 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;.NET MAUI &lt;small&gt;Multi-platform App UI&lt;/small&gt; 는 C#, XAML 을 사용하여 네이티브 모바일 및 데스크톱 앱을 작성하기위한 크로스플랫폼 프레임워크입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/ko-kr/dotnet/maui/what-is-maui&quot;&gt;What is .NET MAUI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;지원되는 네이트브 모바일 및 데스크톱은 아래와 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Android 5.0 (API 21) +&lt;/li&gt;
+&lt;li&gt;iOS 10 +&lt;/li&gt;
+&lt;li&gt;macOS 10.13 + (using Mac Catalyst)&lt;/li&gt;
+&lt;li&gt;Windows 11&lt;/li&gt;
+&lt;li&gt;Windows 10 version 1890 + (using Windows UI Library 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/&quot;&gt;Microsoft Build 2022&lt;/a&gt; 와 함께 여러 소식이 보여서 환경을 준비하고, 동작을 확인했습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/dotnet/introducing-dotnet-maui-one-codebase-many-platforms/&quot;&gt;2022-05-23 Introducing .NET MAUI – One Codebase, Many Platforms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mybuild.microsoft.com/en-US/sessions/599c82b6-0c5a-4add-9961-48b85d9ffde0&quot;&gt;Microsoft Build 2022 Session: Build native apps for any device with .NET and Visual Studio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/ko-kr/dotnet/maui/macos/cli&quot;&gt;.NET CLI를 사용하여 Mac Catalyst 앱 빌드&lt;/a&gt; 페이지의 내용을 실행한 기록입니다.&lt;/p&gt;
+&lt;h2&gt;사전요구사항&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;.NET 6 런타임이 설치되어 있어야 합니다.&lt;/li&gt;
+&lt;li&gt;XCode 13 이 설치되어 있어야 합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;준비&lt;/h2&gt;
+&lt;h3&gt;Install XCode Command Line Tools&lt;/h3&gt;
+&lt;p&gt;XCode 를 실행해서 Command Line Tools 설치를 진행합니다.&lt;/p&gt;
+&lt;p&gt;또는, 터미널에서 아래 명령으로 설치를 시작할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ xcode-select --install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이미 설치된 경우 아래와 같은 오류 메시지가 출력됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;xcode-select: error: command line tools are already installed, use &gt; &quot;Software Update&quot; to install updates&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;XCode 설정창을 열고 위치 Location 탭에서 Command Line Tools 항목이 현재 설치된 버전으로 선택되어 있는지 확인하고, 비어 있으면 선택합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c2a52fbee9cad6a845c7cdabaf9d195b/0e0c4/2022-05-24-maui-on-mac-os-001.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 70.25316455696203%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACBklEQVQ4y62UW27UMBSG3YeKSrACqm4AsQEiWEF3xAsrKS+wjNIHhpFADKIttIjSls4tiW/JZC4d27HPj5ym0FJ4qOCXvtixjj+fyFIYAHb8affB6fj0Cc/4ozzPkyxrSbMkz3hydPQtOTk+SdLmPU/ScZpwLhLN00TmzfzxoD94yNqsjk6P3w75CIUuvRCSlNI/KYuCsjSl/lmfqklFSioqywlJIWiYFZTm2ispIYXc29jYWIvCtdEo/VDqEkqpoJSG1hplcUHGFXJRgHMeN8UaaF1ASolhViDNddBKIR2nh+v31+81QsHFewDw3vvaOTpfOtLTmowjKhZEYhbofDEnYwzFhBCaEQAB5ONepdTnFbbSCoXoxUVrrZ/PZygnc3zPZhCVA4JDqF08DHVdI3oiIQRMqgrG2NAKDxhj14WxSWMtltagnBvM6qYFhIvu4X8TWmvj+k2hlLIXi5xz3iyXWI4HqPpnmI+GcDzFYtBHbUwjjbmUtvNGqJX+JVRK9WrnUE2nfjGd4vxwF9XhPqqDXcyOvkB/3ANZe012hZvCq5/cPIMHnAVqB7IG8O5Por8LpZC99nTfFF1c33VuIxRCvGuFlojq2xFseyn7jLG7jVBr/RX/mLIsB5cdrm5vbz/tdrsvO687W51O5/kt2eq+6b7YebXzjDF2h21ubrL4g/gfxPwAnlGf80OufeUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;XCode Command Line Tools Location&quot;
+        title=&quot;XCode Command Line Tools Location&quot;
+        src=&quot;/static/c2a52fbee9cad6a845c7cdabaf9d195b/f058b/2022-05-24-maui-on-mac-os-001.png&quot;
+        srcset=&quot;/static/c2a52fbee9cad6a845c7cdabaf9d195b/c26ae/2022-05-24-maui-on-mac-os-001.png 158w,
+/static/c2a52fbee9cad6a845c7cdabaf9d195b/6bdcf/2022-05-24-maui-on-mac-os-001.png 315w,
+/static/c2a52fbee9cad6a845c7cdabaf9d195b/f058b/2022-05-24-maui-on-mac-os-001.png 630w,
+/static/c2a52fbee9cad6a845c7cdabaf9d195b/40601/2022-05-24-maui-on-mac-os-001.png 945w,
+/static/c2a52fbee9cad6a845c7cdabaf9d195b/78612/2022-05-24-maui-on-mac-os-001.png 1260w,
+/static/c2a52fbee9cad6a845c7cdabaf9d195b/0e0c4/2022-05-24-maui-on-mac-os-001.png 1884w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;.NET 6&lt;/h3&gt;
+&lt;p&gt;가장 최근 출시된 .NET 6 SDK 를 다운로드하고, 설치합니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://dotnet.microsoft.com/en-us/download/dotnet/6.0&quot;&gt;Download .NET 6&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ dotnet --verion
+&lt;span class=&quot;token number&quot;&gt;6.0&lt;/span&gt;.300
+$ dotnet --list-sdks
+&lt;span class=&quot;token number&quot;&gt;6.0&lt;/span&gt;.300 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;/usr/local/share/dotnet/sdk&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Install .NET MAUI Workload&lt;/h3&gt;
+&lt;p&gt;각 플랫폼 SDK와 .NET MAUI 를 설치합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; dotnet workload &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; maui --source https://api.nuget.org/v3/index.json&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;각 플랫폼의 SDK 를 설치하는데, 미리 준비된 SDK가 있다면, 사용자가 SDK 경로를 지정할 수 있으면 좋을 것 같은데, 방법을 모르겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;시작&lt;/h2&gt;
+&lt;h3&gt;프로젝트 작성&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; FirstMauiApp &lt;span class=&quot;token comment&quot;&gt;# 프로젝트 디렉터리 작성&lt;/span&gt;
+$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; FirstMauiApp &lt;span class=&quot;token comment&quot;&gt;# 프로젝트 디렉터리로 이동&lt;/span&gt;
+$ dotnet new maui &lt;span class=&quot;token comment&quot;&gt;# MAUI 프로젝트 스케폴딩&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;실행&lt;/h3&gt;
+&lt;p&gt;Visual Studio 2022 for Mac (&lt;code class=&quot;language-text&quot;&gt;17.3 Preview&lt;/code&gt;) 에서 프로젝트를 열고 디버깅 시작 혹은 터미널에서 아래 명령을 실행합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d474409831285dc5b5c640dcbde825ad/2bef9/2022-05-24-maui-on-mac-os-002.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 146.2025316455696%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAdCAYAAACqhkzFAAAACXBIWXMAABYlAAAWJQFJUiTwAAAEzElEQVRIx5WVa2xTZRjHn61dh4aVRMZl7bm955yWrmvX9X7b2gFyG8oUNpBrIkFA7UAwItOgHwUNIWj8YLwEo2EbGmOEJQbF+MVoImKMgTCgBtTEYaKwbJCQcs7fnNN2SGCjNPnnPen7vL/zPO9zOUREdL7+QTqae5r27dlDu195lXI92+jZXA/t7n2JjnzyKX18uI8O9w/Q4f5+erG3l57J9VDP9u20bftztHnLVlqzdp2BoePHjxOhd7XxPGVDNvPGwnnzvm7NZI8lksnBeCI5mMlmB5d1Pja4rLPT1OPLlw+2ZTLmXjKVGkwkU8eSqdSJeCKxl4hs0+tnEBFAVGPjU37/H8GWFviaA/A2+eD1+eBrbkZLKIRAS3Bcxn/GnmlTsmv0ei/abDYnlX9TbLY5DkEc4iUGQWI3RCYXeEEscIJYCIWjhXAkVojG4oVwNFbgeNHcM2zEoi14UTpjtVpd48CamhqPxOQ8U1QwRdWYrOgSk/WBgSP69Rtj+pWRf/TLw3/rV0dG9L7+Pl2QmM4UVTdtFRWixIasVqv7NqAosTyTFciKqjk5AfFkCqNjo7hyEbh29SYO7fsOp7+4jrGRa4jEYnDygmlrnLkn0OHkkWnP4pdTZ/HWjm/xUe8Z7M0dxU/vj+L3s8NIpBMwXloxsKEE/PXnc9jxxCG8mfsen73+J059CFw6P4pYKnl/wHLIY2OjOH1yGH9dGsaXBz/HD++ewOVzJ9CaDsPBiZUBmayYRhKTMTDQh5sAbvx7Ej++J+CDl2fhm4NObF3pQn2DAkVV7g2UDKCighdEODgOXl8LouFmrOmQ0L2Aw8qFHPxeEYJ06+WTe6ioGi9KSLe14dFlnYgnk8jOnY94+mHE0/Ox+JEuJFJtEESpXGL3BgoSQzKVxoqubnR1r8RTm7dg5/M7sWHDenQs7UAmmzWKuQKgUdiyYgKD4QgSqRTC0RjWrF2HF3btQirdihmzZpvXYdhKE4Vss9k8gsTyZhilOxSNNhQlc21wOFE/cxZ4QYKsusqwiYFE5FFUVz4aixu9rJkgJhclMTPjisv9f9DkQKvVavZyLJ5AMBTWQpGoOVlagiGEwhGEIhGj5kwIqwRosVhMYCQSQSgU1Iyx5PE2ocnfDH8gYI4o+U7vJvHQTIqUX9C5Cgu71muNvuJMNDLJ8UIx7DthEwPr7HbP7AZHPj1/MVY9uVVb1LEUi5csQbZ9LsKRqHmH7H48rK6u9jBZybe3tyMQCGgGQHW5i3LPQTlJrFJguQ5TrW1Iplu1YChsemYoEAwhEoubd3oX6N2BtbW1HkGU8kZpNHqbtCaf37xDIynm6vPDPcdTDL3YTWCKUY8uzVjv7iFjF6Ti24xO0csSyyuTdePTwGRVlwSnLjhnGtIkfjZESRqy1thu65RGUWIXSuOrUJoit6kYnqqJoqCpi3JaZNM7Wmjj2wV392vg1aahWiI3PfTVeGG7RCb/Jhc/UhPK3De6JrII3nlr0Th3NdT0Cgiy+5yVSCHyGUVtrSKimXV2+ya7fdr+ujr7gUlln3Zgqo0OPFBVVJ2V9tvrpm4kohm1RFXjeSGi6UQkEpFcmSwyUbVcOjO9ishGZLk1HZwcV83xvMXh5CwOrkI5OUvpTHUZ9B+aAMOO2x3IigAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;스크린샷 2022-05-24 13.08.59.png&quot;
+        title=&quot;스크린샷 2022-05-24 13.08.59.png&quot;
+        src=&quot;/static/d474409831285dc5b5c640dcbde825ad/f058b/2022-05-24-maui-on-mac-os-002.png&quot;
+        srcset=&quot;/static/d474409831285dc5b5c640dcbde825ad/c26ae/2022-05-24-maui-on-mac-os-002.png 158w,
+/static/d474409831285dc5b5c640dcbde825ad/6bdcf/2022-05-24-maui-on-mac-os-002.png 315w,
+/static/d474409831285dc5b5c640dcbde825ad/f058b/2022-05-24-maui-on-mac-os-002.png 630w,
+/static/d474409831285dc5b5c640dcbde825ad/40601/2022-05-24-maui-on-mac-os-002.png 945w,
+/static/d474409831285dc5b5c640dcbde825ad/2bef9/2022-05-24-maui-on-mac-os-002.png 1024w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# FirstMauiApp directory&lt;/span&gt;
+$ dotnet build -t:Run -f net6.0-maccatalyst&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3818519b35db71f15ea6ce952440ef7a/11d70/2022-05-24-maui-on-mac-os-003.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 81.0126582278481%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB6ElEQVQ4y62UzW7aQBSFR+rvu1V9gC6qoCBVbTZZR1XTdNMXoM9RwaIg1EhVErU0IgtQgoFUmIQGhAO2x9iWbTSeU90BQ+OkqKg90pHHc+/9PH8eBoA1D78/qdW17XaDv2yfmVu/+4dmb1W/dZSpnY63z8xX5w1rW6sbT4lFur/zrFJ9vdnAbraL3ax+05s69l60lal9K57V8Tbbxc5Go8YYe0DAh7Xq9cFFa4qO5kcdzRdpd1uB8l0xqum2AtSrw6+MsccKGITOEWYSAOSaphqEkVthjD1SQMuyjygUCyniWGJhISGlxFKzvlSOoFrb5pXFCDnnaoRSSkGAxASgZ+Wzg9NjD8Of0xk2XuZQDfU5jrMaSF8nDa8ifHhzhf2PJnxvtiLxOkCkxMcSx/s+GicB7tJKIC1wFEVwXRe+78PzfHi+A71toVkfw/Um8DxPmXKEEMlG/hlIIMMwYJom+v0+Li97MEY9XI970HVdxUajEQaDAcIwXA1MTzkIAkynEc5POZo1C2EYJJC/m/J8UxZKztrhJy6/FOzFe0q3gbZtH8yB0Ry6cByrAmUZ34zNrc4S53z5pziOc4J/1GQyqSXAe/l8/nm5XH5fLBb3SqXSu3VMNVRbKBQ26KJhuVyO0bXzP5zJZNgvjQIVgL2LtK8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;스크린샷 2022-05-24 13.10.19.png&quot;
+        title=&quot;스크린샷 2022-05-24 13.10.19.png&quot;
+        src=&quot;/static/3818519b35db71f15ea6ce952440ef7a/f058b/2022-05-24-maui-on-mac-os-003.png&quot;
+        srcset=&quot;/static/3818519b35db71f15ea6ce952440ef7a/c26ae/2022-05-24-maui-on-mac-os-003.png 158w,
+/static/3818519b35db71f15ea6ce952440ef7a/6bdcf/2022-05-24-maui-on-mac-os-003.png 315w,
+/static/3818519b35db71f15ea6ce952440ef7a/f058b/2022-05-24-maui-on-mac-os-003.png 630w,
+/static/3818519b35db71f15ea6ce952440ef7a/40601/2022-05-24-maui-on-mac-os-003.png 945w,
+/static/3818519b35db71f15ea6ce952440ef7a/78612/2022-05-24-maui-on-mac-os-003.png 1260w,
+/static/3818519b35db71f15ea6ce952440ef7a/11d70/2022-05-24-maui-on-mac-os-003.png 1802w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# FirstMauiApp directory&lt;/span&gt;
+$ dotnet build -t:Run -f net6.0-ios&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/ko-kr/dotnet/maui/ios/cli&quot;&gt;.NET CLI를 사용하여 iOS 앱 빌드&lt;/a&gt; 페이지에서 특정 시뮬레이터에서 앱을 실행하는 방법을 확인할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7ff871dcee304ddc8d47cdec761b7b8c/e405b/2022-05-24-maui-on-mac-os-004.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 139.873417721519%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAcCAYAAABh2p9gAAAACXBIWXMAABYlAAAWJQFJUiTwAAADaUlEQVRIx62Uz28bRRTHn5oYq7R2SOOfu7ZxG8XrH+naJqrEAVIJEEgIVC5cqqp/QNP21ho4YNeR0hKEUyN6QgJR9QAScEGIH/dyhgPiQGQhVWqcXe+sHcfZ7q951awda5OGJFb7lb7a2Zn3Pjsz+2YgNJuC4KnEMTgW408GZrh0NsuFwxwXCkW4eCLJJU9Oc8nkqYGnuUQiyXFcjOf5OM/xcS4ef5Hj+Vgsnkj4BCEN8P5rb0N6OvX5/JlZnJs/I73x+lskX5gjolgkmcwsSQlZIqT7TgkZksmeJoXCnFoozqlivtjOzYpyvvASnUkJd7/86huA7z/7EaIh7kIiNvUgyPnkcHRSCkUm5GDEL0+FfNJU8Lh0YmDWDoR8cjDsbwUjfhKOTm4Ewn4lHA00w5HoJWA68gKA53m4eML7KqZ9izjjK2HaX8HMRHXo3OSiY3cfc9r/MQq+Mg14z+JzR+Hq0UkY6sM3Xy7hneto3lxYo8tXFLp8hdDlq4R+clmh9WsqrV9XnTbr2x6/dXmdfnHNNt6dX0Q4AjVwqXSjWkZEtGyqU0TrULaRxaJ5u15DALizA1gpVxygoRuUUoqHsWEYDrBWW2HA227gB5XKAGiMAjQd4MqKA7z1v0AciCVtP93tbZnmCMDdkL3eRwbuntFTzdCd3Goa2G6Z2OvaTz/DDjHx6+U1/PXbFjb+0Zw+2x4RyIJtqw9c/XsL79WbeP+39g6Yu2z2BdoswyX9EeJff2j4530Nd2sQuz9QlmWqqioSQhwrRMb/Gk1s/LuOiqKgLMu4Pa6q6sFAFrSxsYGdTgdbrRYSleCmJqFmKEhICyVJwm6360A7nc7BQMuyhkvWdQ3bRMPff1jHX75bw/WHm2ha+nDJg9jD/RQ62Mpu28Kf7yn4010FiWT2y8Ye4afsVYfPpLDdJ8Uy+959ekY+KQdpP2CpXO5fsLquD68v27b39JP3Ye1JYLVadT5qswxEehjT/trNer3OgDfdwI9KpZKzPaz+er0eaprm1Nzq6io2Gg3HrN1sNp0xFsNi2YFZWlpiwE8d0tjYGIyPj78TjUalQqGwJYripiiKvXw+38vlcj1BEHY4m806YyyGxRaLxS2e59sej+e81+sFWFhYYMDjAPAKALwHAOdGNMs56/F4JhARnrkeA2jaaNI4JewjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;스크린샷 2022-05-24 13.55.48.png&quot;
+        title=&quot;스크린샷 2022-05-24 13.55.48.png&quot;
+        src=&quot;/static/7ff871dcee304ddc8d47cdec761b7b8c/f058b/2022-05-24-maui-on-mac-os-004.png&quot;
+        srcset=&quot;/static/7ff871dcee304ddc8d47cdec761b7b8c/c26ae/2022-05-24-maui-on-mac-os-004.png 158w,
+/static/7ff871dcee304ddc8d47cdec761b7b8c/6bdcf/2022-05-24-maui-on-mac-os-004.png 315w,
+/static/7ff871dcee304ddc8d47cdec761b7b8c/f058b/2022-05-24-maui-on-mac-os-004.png 630w,
+/static/7ff871dcee304ddc8d47cdec761b7b8c/40601/2022-05-24-maui-on-mac-os-004.png 945w,
+/static/7ff871dcee304ddc8d47cdec761b7b8c/78612/2022-05-24-maui-on-mac-os-004.png 1260w,
+/static/7ff871dcee304ddc8d47cdec761b7b8c/e405b/2022-05-24-maui-on-mac-os-004.png 1566w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;마침&lt;/h2&gt;
+&lt;p&gt;XCode Command Line Tools 설치, 그 후 XCode 설정창의 위치 탭 구성만 주의하면 바로 실행할 수 있을 것이라 생각됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Typescript project with eslint@8]]></title><description><![CDATA[타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다. eslint 패키지를 업데이트(v8.x…]]></description><link>https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</link><guid isPermaLink="false">https://bbon.me/2022/04/28/typescript-project-with-eslint-8/</guid><pubDate>Thu, 28 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;타입스크립트를 사용하는 프로젝트에 린트를 구성해서 사용하고 있습니다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/package/eslint&quot;&gt;eslint&lt;/a&gt; 패키지를 업데이트(v8.x) 하고 나니,  린트 실행시 오류가 발생합니다.&lt;/p&gt;
 &lt;p&gt;오류 메시지는 아래와 같습니다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Oops! Something went wrong! :(
