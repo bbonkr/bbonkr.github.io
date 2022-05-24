@@ -8,7 +8,6 @@ categories:
 tags:
   - typescript
   - tip
-draft: true
 featuredImage: 
 comments: false
 ---    

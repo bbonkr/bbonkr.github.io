@@ -13,7 +13,6 @@ tags:
   - android
   - macos
   - windows
-draft: true
 featuredImage: 
 comments: false
 ---    
