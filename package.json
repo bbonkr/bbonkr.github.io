@@ -65,7 +65,7 @@
     "imagemin-pngquant": "^9.0.2",
     "postcss": "^8.4.12",
     "prettier": "^2.6.2",
-    "sharp": "^0.30.4",
+    "sharp": "^0.30.6",
     "svgo": "^2.8.0",
     "typescript": "^4.5.5",
     "uuid": "^8.3.2"
