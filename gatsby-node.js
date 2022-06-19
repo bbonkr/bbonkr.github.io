@@ -4,120 +4,165 @@ const kebabCase = require('lodash/kebabCase');
 
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 
-const createPostPages = async (createPage, reporter, allPosts) => {
+const createPostPages = (createPage, reporter, allPosts) => {
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
 
     const { edges } = allPosts;
 
-    if (edges.length > 0) {
-        edges.forEach((item, index) => {
-            const post = item.node;
-            const previousPostId =
-                index === 0 ? null : edges[index - 1].node.id;
-            const nextPostId =
-                index === edges.length - 1 ? null : edges[index + 1].node.id;
+    return new Promise((resolve, reject) => {
+        try {
+            if (edges.length > 0) {
+                edges.forEach((item, index) => {
+                    const post = item.node;
+                    const previousPostId =
+                        index === 0 ? null : edges[index - 1].node.id;
+                    const nextPostId =
+                        index === edges.length - 1
+                            ? null
+                            : edges[index + 1].node.id;
 
-            createPage({
-                path: post.fields.slug,
-                component: tempalte,
-                context: {
-                    id: post.id,
-                    previousPostId,
-                    nextPostId,
-                },
-            });
-        });
-    }
+                    createPage({
+                        path: post.fields.slug,
+                        component: tempalte,
+                        context: {
+                            id: post.id,
+                            previousPostId,
+                            nextPostId,
+                        },
+                    });
+                });
+            }
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
-const createTagPages = async (createPage, reporter, tagGroups) => {
+const createTagPages = (createPage, reporter, tagGroups) => {
     const template = path.resolve(`./src/templates/tags.tsx`);
 
     const tags = tagGroups.group;
 
-    if (typeof tags !== 'undefined' && tags.length > 0) {
-        tags.forEach((item) => {
-            if (typeof item !== 'undefined' && item.fieldValue) {
-                const postsPerPage = 6;
-                const posts = item.edges;
-                const totalPages = Math.ceil(posts.length / postsPerPage);
-                Array.from({ length: totalPages }).forEach((_, index) => {
-                    createPage({
-                        path: `/tags/${kebabCase(item.fieldValue)}${
-                            index === 0 ? '' : `/${index + 1}`
-                        }`,
-                        component: template,
-                        context: {
-                            tag: item.fieldValue,
-                            limit: postsPerPage,
-                            skip: index * postsPerPage,
-                            totalPages,
-                            currentPage: index + 1,
-                            basePath: `/tags/${kebabCase(item.fieldValue)}`,
-                        },
-                    });
+    return new Promise((resolve, reject) => {
+        try {
+            if (typeof tags !== 'undefined' && tags.length > 0) {
+                tags.forEach((item) => {
+                    if (typeof item !== 'undefined' && item.fieldValue) {
+                        const postsPerPage = 6;
+                        const posts = item.edges;
+                        const totalPages = Math.ceil(
+                            posts.length / postsPerPage
+                        );
+                        Array.from({ length: totalPages })
+                            .fill(0)
+                            .forEach((_, index) => {
+                                createPage({
+                                    path: `/tags/${kebabCase(item.fieldValue)}${
+                                        index === 0 ? '' : `/${index + 1}`
+                                    }`,
+                                    component: template,
+                                    context: {
+                                        tag: item.fieldValue,
+                                        limit: postsPerPage,
+                                        skip: index * postsPerPage,
+                                        totalPages,
+                                        currentPage: index + 1,
+                                        basePath: `/tags/${kebabCase(
+                                            item.fieldValue
+                                        )}`,
+                                    },
+                                });
+                            });
+                    }
                 });
             }
-        });
-    }
+
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
-const createCategoryPages = async (createPage, reporter, categoryGroups) => {
+const createCategoryPages = (createPage, reporter, categoryGroups) => {
     const template = path.resolve(`./src/templates/categories.tsx`);
 
     const categories = categoryGroups.group;
 
-    if (typeof categories !== 'undefined' && categories.length > 0) {
-        categories.forEach((item) => {
-            const postsPerPage = 6;
-            const posts = item.edges;
-            const totalPages = Math.ceil(posts.length / postsPerPage);
+    return new Promise((resolve, reject) => {
+        try {
+            if (typeof categories !== 'undefined' && categories.length > 0) {
+                categories.forEach((item) => {
+                    const postsPerPage = 6;
+                    const posts = item.edges;
+                    const totalPages = Math.ceil(posts.length / postsPerPage);
 
-            if (typeof item !== 'undefined' && item.fieldValue) {
-                Array.from({ length: totalPages }).forEach((_, index) => {
-                    createPage({
-                        path: `/categories/${kebabCase(item.fieldValue)}${
-                            index === 0 ? '' : `/${index + 1}`
-                        }`,
-                        component: template,
-                        context: {
-                            category: item.fieldValue,
-                            limit: postsPerPage,
-                            skip: index * postsPerPage,
-                            totalPages,
-                            currentPage: index + 1,
-                            basePath: `/categories/${kebabCase(
-                                item.fieldValue
-                            )}`,
-                        },
-                    });
+                    if (typeof item !== 'undefined' && item.fieldValue) {
+                        Array.from({ length: totalPages })
+                            .fill(0)
+                            .forEach((_, index) => {
+                                createPage({
+                                    path: `/categories/${kebabCase(
+                                        item.fieldValue
+                                    )}${index === 0 ? '' : `/${index + 1}`}`,
+                                    component: template,
+                                    context: {
+                                        category: item.fieldValue,
+                                        limit: postsPerPage,
+                                        skip: index * postsPerPage,
+                                        totalPages,
+                                        currentPage: index + 1,
+                                        basePath: `/categories/${kebabCase(
+                                            item.fieldValue
+                                        )}`,
+                                    },
+                                });
+                            });
+                    }
                 });
             }
-        });
-    }
+
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
-const createBlogListPages = async (createPage, reporter, allPosts) => {
+const createBlogListPages = (createPage, reporter, allPosts) => {
     const template = path.resolve(`./src/templates/blog-list.tsx`);
     const postsPerPage = 6;
     const posts = allPosts.edges;
     const totalPages = Math.ceil(posts.length / postsPerPage);
 
-    Array.from({ length: totalPages }).forEach((_, index) => {
-        createPage({
-            path: index === 0 ? `/blog` : `/blog/${index + 1}`,
-            component: template,
-            context: {
-                limit: postsPerPage,
-                skip: index * postsPerPage,
-                totalPages,
-                currentPage: index + 1,
-                basePath: '/blog',
-            },
-        });
+    return new Promise((resolve, reject) => {
+        try {
+            Array.from({ length: totalPages }).forEach((_, index) => {
+                createPage({
+                    path: index === 0 ? `/blog` : `/blog/${index + 1}`,
+                    component: template,
+                    context: {
+                        limit: postsPerPage,
+                        skip: index * postsPerPage,
+                        totalPages,
+                        currentPage: index + 1,
+                        basePath: '/blog',
+                    },
+                });
+            });
+
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
     });
 };
 
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['createPages']}
+ */
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions;
     const isProd = isProductionStage();
@@ -222,18 +267,31 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     if (result.errors) {
         reporter.panicOnBuild(`There was an error loading data`, result.errors);
-        return;
+
+        throw result.errors;
     }
 
-    await createPostPages(createPage, reporter, result.data.allPosts);
+    try {
+        await createPostPages(createPage, reporter, result.data.allPosts);
 
-    await createTagPages(createPage, reporter, result.data.tagGroups);
+        await createTagPages(createPage, reporter, result.data.tagGroups);
 
-    await createCategoryPages(createPage, reporter, result.data.categoryGroups);
+        await createCategoryPages(
+            createPage,
+            reporter,
+            result.data.categoryGroups
+        );
 
-    await createBlogListPages(createPage, reporter, result.data.allPosts);
+        await createBlogListPages(createPage, reporter, result.data.allPosts);
+    } catch (e) {
+        throw e;
+    }
 };
 
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['onCreateNode']}
+ */
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
     const isProd = isProductionStage();
@@ -328,6 +386,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     }
 };
 
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['createSchemaCustomization']}
+ */
 exports.createSchemaCustomization = ({ actions }) => {
     const { createTypes, createFieldExtension } = actions;
 

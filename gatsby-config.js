@@ -1,5 +1,8 @@
 const isProductionStage = () => process.env.NODE_ENV === 'production';
-
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
 module.exports = {
     siteMetadata: {
         title: `<bbon />`,
