@@ -98,8 +98,6 @@ const TagsPage = ({ location, data }: PageProps<Data>) => {
     );
 };
 
-export default TagsPage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -134,3 +132,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default TagsPage;

@@ -99,8 +99,6 @@ const CategoriesPage = ({ location, data }: PageProps<Data>) => {
     );
 };
 
-export default CategoriesPage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -135,3 +133,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default CategoriesPage;

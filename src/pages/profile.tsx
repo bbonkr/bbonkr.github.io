@@ -169,8 +169,6 @@ const ProfilePage = ({ data, location }: PageProps<Data>) => {
     );
 };
 
-export default ProfilePage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -193,3 +191,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default ProfilePage;

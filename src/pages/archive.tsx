@@ -45,8 +45,6 @@ const BlogPage = ({ data, location }: PageProps<Posts>) => {
     );
 };
 
-export default BlogPage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -81,3 +79,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default BlogPage;

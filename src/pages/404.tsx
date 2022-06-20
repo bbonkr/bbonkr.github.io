@@ -51,8 +51,6 @@ const NotFoundPage = ({ data, location }: NotFoundPageProps) => {
     );
 };
 
-export default NotFoundPage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -62,3 +60,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default NotFoundPage;

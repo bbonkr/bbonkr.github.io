@@ -33,7 +33,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
                     </Link>
                 </h2>
                 <small className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
-                    {post.node.frontmatter.date}
+                    {post.node.frontmatter.date.toLocaleString()}
                 </small>
             </header>
             <section className="article-body mt-1 break-words">

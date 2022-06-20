@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { ThemeProvider } from './src/context/theme/theme-context';
+// import type { GatsbyBrowser } from 'gatsby';
 
 // import tailwindcss
 import './src/css/index.css';
@@ -14,6 +15,7 @@ import 'typeface-merriweather';
 import 'prismjs/themes/prism-tomorrow.min.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
+// : GatsbyBrowser['wrapPageElement']
 export const wrapRootElement = ({ element }) => {
     return <ThemeProvider>{element}</ThemeProvider>;
 };

@@ -7,7 +7,6 @@
 
 import * as React from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
-import { FaTwitter } from 'react-icons/fa';
 import { useSiteQuery } from '../hooks/queries/useSiteQuery';
 import SocialLinks from './social-links';
 

@@ -119,8 +119,6 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
     );
 };
 
-export default SearchPage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -156,3 +154,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default SearchPage;

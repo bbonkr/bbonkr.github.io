@@ -39,8 +39,6 @@ const HomePage = ({ data, location }: PageProps<Posts>) => {
     );
 };
 
-export default HomePage;
-
 export const pageQuery = graphql`
     query {
         site {
@@ -75,3 +73,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default HomePage;

@@ -1,3 +1,6 @@
+// import { GatsbyConfig } from 'gatsby';
+// import type { MarkdownRemarks, Site } from './src/models/data';
+
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 // @ts-check
 /**
@@ -27,6 +30,11 @@ module.exports = {
             naverSiteVerification: process.env.NAVER_SITE_VERIFICATION,
         },
     },
+    graphqlTypegen: true,
+    trailingSlash: 'never',
+    // flags: {
+    //     LMDB_STORE: true,
+    // },
     plugins: [
         {
             resolve: `gatsby-plugin-typescript`,
@@ -36,7 +44,6 @@ module.exports = {
                 allExtensions: true, // defaults to false
             },
         },
-
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -64,12 +71,13 @@ module.exports = {
                 gfm: true,
                 // Plugins configs
                 plugins: [
-                    {
-                        resolve: `gatsby-remark-images`,
-                        options: {
-                            maxWidth: 630,
-                        },
-                    },
+                    // build stuck
+                    // {
+                    //     resolve: `gatsby-remark-images`,
+                    //     options: {
+                    //         maxWidth: 630,
+                    //     },
+                    // },
                     {
                         resolve: `gatsby-remark-responsive-iframe`,
                         options: {
@@ -115,24 +123,31 @@ module.exports = {
         `,
                 feeds: [
                     {
-                        serialize: ({ query: { site, allMarkdownRemark } }) => {
-                            return allMarkdownRemark.edges.map((edge) => {
-                                const node = edge.node;
-                                return Object.assign({}, node.frontmatter, {
-                                    description: node.excerpt,
-                                    date: node.frontmatter.date,
-                                    url:
-                                        site.siteMetadata.siteUrl +
-                                        node.fields.slug,
-                                    guid:
-                                        site.siteMetadata.siteUrl +
-                                        node.fields.slug,
-                                    custom_elements: [
-                                        { 'content:encoded': node.html },
-                                    ],
+                        serialize: ({ query: { site, allMarkdownRemark } }) =>
+                            // : {
+                            // query: {
+                            //     site: Site,
+                            //     allMarkdownRemark: MarkdownRemarks,
+                            // },
+                            // }
+                            {
+                                return allMarkdownRemark?.edges?.map((edge) => {
+                                    const node = edge.node;
+                                    return Object.assign({}, node.frontmatter, {
+                                        description: node.excerpt,
+                                        date: node.frontmatter.date,
+                                        url:
+                                            site?.siteMetadata?.siteUrl +
+                                            node.fields.slug,
+                                        guid:
+                                            site?.siteMetadata?.siteUrl +
+                                            node.fields.slug,
+                                        custom_elements: [
+                                            { 'content:encoded': node.html },
+                                        ],
+                                    });
                                 });
-                            });
-                        },
+                            },
                         query: `
 {
     site {
@@ -225,21 +240,32 @@ module.exports = {
   }
 }
       `,
-                resolvePages: ({ allMarkdownRemark: { edges } }) => {
-                    return edges.map((edge) => {
+                resolvePages: ({ allMarkdownRemark: { edges } }) =>
+                    // : {
+                    // allMarkdownRemark: MarkdownRemarks,
+                    // }
+                    {
+                        return edges?.map((edge) => {
+                            return {
+                                path: edge.node.fields.slug,
+                                modifiedGmt: edge.node.frontmatter.date,
+                            };
+                        });
+                    },
+                serialize: ({ path, modifiedGmt }) =>
+                    // : {
+                    // path: string,
+                    // modifiedGmt: Date,
+                    // }
+                    {
                         return {
-                            path: edge.node.fields.slug,
-                            modifiedGmt: edge.node.frontmatter.date,
+                            url: path,
+                            lastmod: modifiedGmt,
                         };
-                    });
-                },
-                serialize: ({ path, modifiedGmt }) => {
-                    return {
-                        url: path,
-                        lastmod: modifiedGmt,
-                    };
-                },
+                    },
             },
         },
     ],
 };
+
+exports;
