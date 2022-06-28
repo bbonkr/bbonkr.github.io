@@ -101,8 +101,6 @@ const CategoryPageTemplate = ({
     );
 };
 
-export default CategoryPageTemplate;
-
 export const pageQuery = graphql`
     query postsByCategory($category: String, $skip: Int!, $limit: Int!) {
         site {
@@ -140,3 +138,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default CategoryPageTemplate;

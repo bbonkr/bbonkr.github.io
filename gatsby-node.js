@@ -1,16 +1,49 @@
-const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+// import type { Actions, GatsbyNode, Node, Page, Reporter } from 'gatsby';
+// import { MarkdownRemark, MarkdownRemarks } from './src/models/data';
+// import { createFilePath } from 'gatsby-source-filesystem';
+// import kebabCase from 'lodash/kebabCase';
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 const kebabCase = require('lodash/kebabCase');
 
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 
-const createPostPages = async (createPage, reporter, allPosts) => {
+// type AllPosts = MarkdownRemarks;
+// type CategoryGroups = {
+//     group: {
+//         fieldValue?: string;
+//         totalCount?: number;
+//         edges: {
+//             node: MarkdownRemark;
+//         }[];
+//     }[];
+// };
+// type TagGroups = {
+//     group: {
+//         fieldValue?: string;
+//         totlaCount?: number;
+//         edges: {
+//             node: MarkdownRemark;
+//         }[];
+//     }[];
+// };
+
+const createPostPages = (
+    // actions: Actions,
+    // reporter: Reporter,
+    // allPosts?: AllPosts
+    actions,
+    reporter,
+    allPosts
+) => {
+    const { createPage } = actions;
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
+    // const tempalte = require.resolve(`./src/templates/blog-post.tsx`);
 
-    const { edges } = allPosts;
+    const edges = allPosts?.edges;
 
-    if (edges.length > 0) {
-        edges.forEach((item, index) => {
+    if ((edges?.length ?? 0) > 0) {
+        edges?.forEach((item, index) => {
             const post = item.node;
             const previousPostId =
                 index === 0 ? null : edges[index - 1].node.id;
@@ -30,78 +63,110 @@ const createPostPages = async (createPage, reporter, allPosts) => {
     }
 };
 
-const createTagPages = async (createPage, reporter, tagGroups) => {
+const createTagPages = (
+    // actions: Actions,
+    // reporter: Reporter,
+    // tagGroups?: TagGroups
+    actions,
+    reporter,
+    tagGroups
+) => {
+    const { createPage } = actions;
     const template = path.resolve(`./src/templates/tags.tsx`);
+    // const template = require.resolve(`./src/templates/tags.tsx`);
 
-    const tags = tagGroups.group;
+    const tags = tagGroups?.group;
 
     if (typeof tags !== 'undefined' && tags.length > 0) {
-        tags.forEach((item) => {
+        tags?.forEach((item) => {
             if (typeof item !== 'undefined' && item.fieldValue) {
                 const postsPerPage = 6;
                 const posts = item.edges;
                 const totalPages = Math.ceil(posts.length / postsPerPage);
-                Array.from({ length: totalPages }).forEach((_, index) => {
-                    createPage({
-                        path: `/tags/${kebabCase(item.fieldValue)}${
-                            index === 0 ? '' : `/${index + 1}`
-                        }`,
-                        component: template,
-                        context: {
-                            tag: item.fieldValue,
-                            limit: postsPerPage,
-                            skip: index * postsPerPage,
-                            totalPages,
-                            currentPage: index + 1,
-                            basePath: `/tags/${kebabCase(item.fieldValue)}`,
-                        },
+                Array.from({ length: totalPages })
+                    .fill(0)
+                    .forEach((_, index) => {
+                        createPage({
+                            path: `/tags/${kebabCase(item.fieldValue)}${
+                                index === 0 ? '' : `/${index + 1}`
+                            }`,
+                            component: template,
+                            context: {
+                                tag: item.fieldValue,
+                                limit: postsPerPage,
+                                skip: index * postsPerPage,
+                                totalPages,
+                                currentPage: index + 1,
+                                basePath: `/tags/${kebabCase(item.fieldValue)}`,
+                            },
+                        });
                     });
-                });
             }
         });
     }
 };
 
-const createCategoryPages = async (createPage, reporter, categoryGroups) => {
+const createCategoryPages = (
+    // actions: Actions,
+    // reporter: Reporter,
+    // categoryGroups?: CategoryGroups
+    actions,
+    reporter,
+    categoryGroups
+) => {
+    const { createPage } = actions;
     const template = path.resolve(`./src/templates/categories.tsx`);
+    // const template = require.resolve(`./src/templates/categories.tsx`);
 
-    const categories = categoryGroups.group;
+    const categories = categoryGroups?.group;
 
     if (typeof categories !== 'undefined' && categories.length > 0) {
-        categories.forEach((item) => {
+        categories?.forEach((item) => {
             const postsPerPage = 6;
             const posts = item.edges;
             const totalPages = Math.ceil(posts.length / postsPerPage);
 
             if (typeof item !== 'undefined' && item.fieldValue) {
-                Array.from({ length: totalPages }).forEach((_, index) => {
-                    createPage({
-                        path: `/categories/${kebabCase(item.fieldValue)}${
-                            index === 0 ? '' : `/${index + 1}`
-                        }`,
-                        component: template,
-                        context: {
-                            category: item.fieldValue,
-                            limit: postsPerPage,
-                            skip: index * postsPerPage,
-                            totalPages,
-                            currentPage: index + 1,
-                            basePath: `/categories/${kebabCase(
-                                item.fieldValue
-                            )}`,
-                        },
+                Array.from({ length: totalPages })
+                    .fill(0)
+                    .forEach((_, index) => {
+                        createPage({
+                            path: `/categories/${kebabCase(item.fieldValue)}${
+                                index === 0 ? '' : `/${index + 1}`
+                            }`,
+                            component: template,
+                            context: {
+                                category: item.fieldValue,
+                                limit: postsPerPage,
+                                skip: index * postsPerPage,
+                                totalPages,
+                                currentPage: index + 1,
+                                basePath: `/categories/${kebabCase(
+                                    item.fieldValue
+                                )}`,
+                            },
+                        });
                     });
-                });
             }
         });
     }
 };
 
-const createBlogListPages = async (createPage, reporter, allPosts) => {
+const createBlogListPages = (
+    // actions: Actions,
+    // reporter: Reporter,
+    // allPosts?: AllPosts
+    actions,
+    reporter,
+    allPosts
+) => {
+    const { createPage } = actions;
     const template = path.resolve(`./src/templates/blog-list.tsx`);
+    // const template = require.resolve(`./src/templates/blog-list.tsx`);
+
     const postsPerPage = 6;
-    const posts = allPosts.edges;
-    const totalPages = Math.ceil(posts.length / postsPerPage);
+    const posts = allPosts?.edges;
+    const totalPages = Math.ceil((posts?.length ?? 0) / postsPerPage);
 
     Array.from({ length: totalPages }).forEach((_, index) => {
         createPage({
@@ -118,13 +183,22 @@ const createBlogListPages = async (createPage, reporter, allPosts) => {
     });
 };
 
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['createPages']}
+ */
 exports.createPages = async ({ graphql, actions, reporter }) => {
-    const { createPage } = actions;
     const isProd = isProductionStage();
 
     // Define a template for blog post
 
     // Get all markdown blog posts sorted by date
+
+    // <{
+    //     allPosts: AllPosts;
+    //     categoryGroups: CategoryGroups;
+    //     tagGroups: TagGroups;
+    // }>
 
     const result = await graphql(
         `
@@ -222,113 +296,148 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     if (result.errors) {
         reporter.panicOnBuild(`There was an error loading data`, result.errors);
-        return;
+
+        throw result.errors;
     }
 
-    await createPostPages(createPage, reporter, result.data.allPosts);
+    try {
+        createPostPages(actions, reporter, result?.data?.allPosts);
 
-    await createTagPages(createPage, reporter, result.data.tagGroups);
+        createTagPages(actions, reporter, result?.data?.tagGroups);
 
-    await createCategoryPages(createPage, reporter, result.data.categoryGroups);
+        createCategoryPages(actions, reporter, result?.data?.categoryGroups);
 
-    await createBlogListPages(createPage, reporter, result.data.allPosts);
+        createBlogListPages(actions, reporter, result?.data?.allPosts);
+    } catch (e) {
+        throw e;
+    }
 };
 
+const rewriteSlug = (slug) => {
+    let datePart = '';
+    let title = '';
+
+    const tokens = slug.split('/').filter((token) => Boolean(token));
+
+    if (tokens.length > 0) {
+        datePart = tokens[0];
+        if (tokens.length > 1 && tokens[1].toLowerCase() !== 'index') {
+            title = tokens[1];
+        }
+    }
+
+    const dayRegExp =
+        /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])(?:-(.*))?$/g;
+    if (datePart.match(dayRegExp)) {
+        if (!title || title.toLowerCase() === 'index') {
+            title = datePart.replace(dayRegExp, '$4');
+        }
+
+        title = kebabCase(title);
+        datePart = datePart.replace(dayRegExp, '$1/$2/$3');
+    }
+
+    slug = `/${datePart}/${title}/`;
+
+    return slug;
+};
+
+const rewriteNode = (node) => {
+    const frontmatter = node['frontmatter'];
+    const tags = frontmatter?.tags;
+    const categories = frontmatter?.categories;
+
+    if (tags) {
+        if (typeof tags === 'string') {
+            // if tags is string, set array with tags string
+            node['frontmatter'] = {
+                ...frontmatter,
+                tags: [tags.toLowerCase()],
+            };
+        } else if (Array.isArray(tags)) {
+            // lowercase
+
+            node['frontmatter'] = {
+                ...frontmatter,
+                tags: tags.map((tag) => tag?.toLowerCase() ?? 'no-tag'),
+            };
+        }
+    } else {
+        node['frontmatter'] = {
+            ...frontmatter,
+            tags: ['no-tag'],
+        };
+    }
+
+    if (categories) {
+        if (typeof categories === 'string') {
+            node['frontmatter'] = {
+                ...frontmatter,
+                categories: [categories.toLowerCase()],
+            };
+        } else if (Array.isArray(categories)) {
+            if (categories.filter((x) => Boolean).length === 0) {
+                // If categories are empty string, set uncategorized as categories
+                node['frontmatter'] = {
+                    ...frontmatter,
+                    categories: ['uncategorized'],
+                };
+            } else {
+                node['frontmatter'] = {
+                    ...frontmatter,
+                    categories: categories.map(
+                        (category) => category?.toLowerCase() ?? 'uncategorized'
+                    ),
+                };
+            }
+        }
+    } else {
+        node['frontmatter'] = {
+            ...frontmatter,
+            categories: ['uncategorized'],
+        };
+    }
+
+    return node;
+};
+
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['onCreateNode']}
+ */
 exports.onCreateNode = ({ node, actions, getNode }) => {
+    // onCreateNode -> sourceNodes
     const { createNodeField } = actions;
     const isProd = isProductionStage();
 
-    if (node.internal.type === `MarkdownRemark`) {
+    const nodeActual = node; // as Node;
+
+    if (nodeActual?.internal?.type === `MarkdownRemark`) {
         const slug = createFilePath({
-            node,
+            node: nodeActual,
             getNode,
             // basePath: `posts`,
         });
 
-        const rewriteSlug = (slug) => {
-            let datePart = '';
-            let title = '';
-
-            const tokens = slug.split('/').filter((token) => Boolean(token));
-
-            if (tokens.length > 0) {
-                datePart = tokens[0];
-                if (tokens.length > 1 && tokens[1].toLowerCase() !== 'index') {
-                    title = tokens[1];
-                }
-            }
-
-            const dayRegExp =
-                /^(\d{4})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])(?:-(.*))?$/g;
-            if (datePart.match(dayRegExp)) {
-                if (!title || title.toLowerCase() === 'index') {
-                    title = datePart.replace(dayRegExp, '$4');
-                }
-
-                title = kebabCase(title);
-                datePart = datePart.replace(dayRegExp, '$1/$2/$3');
-            }
-
-            slug = `/${datePart}/${title}/`;
-            return slug;
-        };
-
-        const rewriteNode = (node) => {
-            if (node.frontmatter.tags) {
-                const tags = node.frontmatter.tags;
-                if (typeof tags === 'string') {
-                    // if tags is string, set array with tags string
-                    node.frontmatter.tags = [
-                        node.frontmatter.tags.toLowerCase(),
-                    ];
-                } else if (Array.isArray(tags)) {
-                    // lowercase
-                    node.frontmatter.tags = node.frontmatter.tags.map((tag) =>
-                        tag.toLowerCase()
-                    );
-                }
-            } else {
-                node.frontmatter.tags = ['no-tag'];
-            }
-
-            if (node.frontmatter.categories) {
-                if (typeof node.frontmatter.categories === 'string') {
-                    node.frontmatter.categories = [
-                        node.frontmatter.categories.toLowerCase(),
-                    ];
-                } else if (Array.isArray(node.frontmatter.categories)) {
-                    if (
-                        node.frontmatter.categories.filter((x) => Boolean)
-                            .length === 0
-                    ) {
-                        // If categories are empty string, set uncategorized as categories
-                        node.frontmatter.categories = ['uncategorized'];
-                    } else {
-                        node.frontmatter.categories =
-                            node.frontmatter.categories.map((category) =>
-                                category.toLowerCase()
-                            );
-                    }
-                }
-            } else {
-                node.frontmatter.categories = ['uncategorized'];
-            }
-
-            return node;
-        };
-
         const newSlug = rewriteSlug(slug);
-        const newNode = rewriteNode(node);
+        const newNode = rewriteNode(nodeActual);
 
-        createNodeField({
-            name: `slug`,
-            node: newNode,
-            value: newSlug,
-        });
+        if (newSlug) {
+            createNodeField({
+                name: `slug`,
+                node: nodeActual,
+                value: newSlug,
+            });
+        }
     }
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
+// @ts-check
+/**
+ * @type {import('gatsby').GatsbyNode['createSchemaCustomization']}
+ */
+exports.createSchemaCustomization = ({ actions, schema }) => {
+    // : GatsbyNode['createSchemaCustomization'] =
     const { createTypes, createFieldExtension } = actions;
 
     createFieldExtension({
@@ -371,45 +480,38 @@ exports.createSchemaCustomization = ({ actions }) => {
     // Also explicitly define the Markdown frontmatter
     // This way the "MarkdownRemark" queries will return `null` even when no
     // blog posts are stored inside "content/blog" instead of returning an error
-    createTypes(`
-    type SiteSiteMetadata {
+    const siteMatadataType = `type SiteSiteMetadata {
       author: Author
       siteUrl: String
       social: Social
       seo: Seo
-    }
-
-    type Author {
+    }`;
+    const authorType = `type Author {
       name: String
       summary: String
       location: String
       description: String
-    }
-
-    type Social {
+    }`;
+    const socialType = `type Social {
       twitter: String
       github: String
       linkedin: String
       facebook: String
       resume: String
-    }
-
-    type Seo {
+    }`;
+    const seoType = `type Seo {
         facebookAppId: String
         naverSiteVerification: String
-    }
-
-    type MarkdownRemark implements Node {
+    }`;
+    const markdownRemarkType = `type MarkdownRemark implements Node @infer {
       frontmatter: Frontmatter
       fields: Fields
-    }
-
-    type GitHub {
+    }`;
+    const githubType = `type GitHub {
         owner: String
         repo: String
-    }
-
-    type Frontmatter {
+    }`;
+    const frontmatterType = `type Frontmatter {
       title: String
       description: String
       date: Date @dateformat
@@ -418,12 +520,137 @@ exports.createSchemaCustomization = ({ actions }) => {
       github: GitHub
       draft: Boolean
       comments: Boolean
-    }
+    }`;
 
-    type Fields {
-      slug: String
-    }
-  `);
+    const featuredImageType = `type FeaturedImage {
+  childImageSharp: ImageSharp
+}`;
+
+    const frontmatterObjectType = schema.buildObjectType({
+        name: 'Frontmatter',
+        extensions: {
+            infer: false,
+        },
+        fields: {
+            title: {
+                type: 'String',
+                // resolve: (
+                //     source: any,
+                //     args: any,
+                //     context: any,
+                //     info: any
+                // ) => source.title,
+            },
+            description: {
+                type: 'String',
+                // resolve: (
+                //     source: any,
+                //     args: any,
+                //     context: any,
+                //     info: any
+                // ) => source.description,
+            },
+            date: {
+                type: 'Date', // @dateformat
+                extensions: {
+                    dateformat: {},
+                },
+                // resolve: (
+                //     source: any,
+                //     args: any,
+                //     context: any,
+                //     info: any
+                // ) => source.date,
+            },
+            categories: {
+                type: '[String!]',
+                extensions: {
+                    infer: false,
+                },
+                resolve: (source, args, context, info) => {
+                    const items = source.categories;
+                    if (typeof items === 'string') {
+                        return [kebabCase(items.toLowerCase())];
+                    } else if (Array.isArray(items)) {
+                        if (items.length === 0) {
+                            return ['uncategorized'];
+                        } else {
+                            return items.map((item) =>
+                                kebabCase(item.toLowerCase())
+                            );
+                        }
+                    } else {
+                        return ['uncategorized'];
+                    }
+                },
+            },
+            tags: {
+                type: '[String!]',
+                extensions: {
+                    infer: false,
+                },
+                resolve: (source, args, context, info) => {
+                    const items = source.tags;
+                    if (typeof items === 'string') {
+                        return [kebabCase(items.toLowerCase())];
+                    } else if (Array.isArray(items)) {
+                        if (items.length === 0) {
+                            return ['untaged'];
+                        } else {
+                            return items.map((item) =>
+                                kebabCase(item.toLowerCase())
+                            );
+                        }
+                    } else {
+                        return ['untaged'];
+                    }
+                },
+            },
+            github: {
+                type: 'GitHub',
+                // resolve: (
+                //     source: any,
+                //     args: any,
+                //     context: any,
+                //     info: any
+                // ) => {
+                //     if (source.github) {
+                //         return {
+                //             owner: source.github.owner,
+                //             repo: source.github.repo,
+                //         };
+                //     }
+                //     return null;
+                // },
+            },
+            draft: {
+                type: 'Boolean',
+            },
+            comments: {
+                type: 'Boolean',
+            },
+            featuredImage: {
+                type: 'FeaturedImage',
+            },
+        },
+    });
+    const fieldType = `type Fields {
+      slug: String!
+    }`;
+
+    createTypes([
+        fieldType,
+        authorType,
+        socialType,
+        seoType,
+        githubType,
+        // childImageType,
+        featuredImageType,
+        // frontmatterObjectType,
+        frontmatterType,
+        siteMatadataType,
+        markdownRemarkType,
+    ]);
 };
 
 // exports.createResolvers = ({ createResolvers }) => {

@@ -17,7 +17,11 @@ const supportDarkMode = () =>
 
 const ThemeContext = React.createContext<ThemeState>(themeState);
 
-const ThemeProvider = ({ children }: React.PropsWithChildren<undefined>) => {
+type ThemeProviderProps = {};
+
+const ThemeProvider = ({
+    children,
+}: React.PropsWithChildren<ThemeProviderProps>) => {
     const [theme, setTheme] = React.useState<Theme>('system');
 
     const handleToggle = () => {

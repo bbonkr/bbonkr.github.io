@@ -93,7 +93,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                                     : 'text-gray-600 dark:text-gray-400'
                             }  `}
                         >
-                            {post.frontmatter.date}
+                            {post.frontmatter.date.toLocaleString()}
                         </p>
                     </div>
                 </header>
@@ -186,8 +186,6 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
     );
 };
 
-export default BlogPostTemplate;
-
 export const pageQuery = graphql`
     query BlogPostBySlug(
         $id: String!
@@ -255,3 +253,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default BlogPostTemplate;

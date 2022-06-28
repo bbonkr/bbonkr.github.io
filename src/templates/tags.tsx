@@ -105,8 +105,6 @@ const TagPageTemplate = ({
     );
 };
 
-export default TagPageTemplate;
-
 export const pageQuery = graphql`
     query postsByTag($tag: String, $skip: Int!, $limit: Int!) {
         site {
@@ -144,3 +142,5 @@ export const pageQuery = graphql`
         }
     }
 `;
+
+export default TagPageTemplate;

@@ -60,8 +60,6 @@ const BlogListTemplate = ({
     );
 };
 
-export default BlogListTemplate;
-
 export const blogListQuery = graphql`
     query blogListQuery($skip: Int!, $limit: Int!) {
         site {
@@ -98,3 +96,5 @@ export const blogListQuery = graphql`
         }
     }
 `;
+
+export default BlogListTemplate;
