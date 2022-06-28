@@ -72,12 +72,16 @@ module.exports = {
                 // Plugins configs
                 plugins: [
                     // build stuck
-                    // {
-                    //     resolve: `gatsby-remark-images`,
-                    //     options: {
-                    //         maxWidth: 630,
-                    //     },
-                    // },
+{
+    resolve: `gatsby-remark-images`,
+    options: {
+        maxWidth: 630,
+        // maxWidth: 5000,
+        withWebp: true,
+        showCaptions: true,
+        quality: 100,
+    },
+},
                     {
                         resolve: `gatsby-remark-responsive-iframe`,
                         options: {

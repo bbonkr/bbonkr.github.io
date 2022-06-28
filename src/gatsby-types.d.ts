@@ -427,10 +427,6 @@ type FeaturedImage = {
   readonly childImageSharp: Maybe<ImageSharp>;
 };
 
-type FeaturedImageFilterInput = {
-  readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
-};
-
 type Fields = {
   readonly slug: Scalars['String'];
 };
@@ -694,14 +690,56 @@ type FileFieldsEnum =
   | 'childMarkdownRemark.fields.slug'
   | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.frontmatter.categories'
+  | 'childMarkdownRemark.frontmatter.category'
   | 'childMarkdownRemark.frontmatter.comments'
   | 'childMarkdownRemark.frontmatter.date'
   | 'childMarkdownRemark.frontmatter.description'
   | 'childMarkdownRemark.frontmatter.draft'
+  | 'childMarkdownRemark.frontmatter.featuredImage.absolutePath'
+  | 'childMarkdownRemark.frontmatter.featuredImage.accessTime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.atime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.atimeMs'
+  | 'childMarkdownRemark.frontmatter.featuredImage.base'
+  | 'childMarkdownRemark.frontmatter.featuredImage.birthTime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.birthtime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.birthtimeMs'
+  | 'childMarkdownRemark.frontmatter.featuredImage.blksize'
+  | 'childMarkdownRemark.frontmatter.featuredImage.blocks'
+  | 'childMarkdownRemark.frontmatter.featuredImage.changeTime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.children'
+  | 'childMarkdownRemark.frontmatter.featuredImage.childrenImageSharp'
+  | 'childMarkdownRemark.frontmatter.featuredImage.childrenMarkdownRemark'
+  | 'childMarkdownRemark.frontmatter.featuredImage.ctime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.ctimeMs'
+  | 'childMarkdownRemark.frontmatter.featuredImage.dev'
+  | 'childMarkdownRemark.frontmatter.featuredImage.dir'
+  | 'childMarkdownRemark.frontmatter.featuredImage.ext'
+  | 'childMarkdownRemark.frontmatter.featuredImage.extension'
+  | 'childMarkdownRemark.frontmatter.featuredImage.gid'
+  | 'childMarkdownRemark.frontmatter.featuredImage.id'
+  | 'childMarkdownRemark.frontmatter.featuredImage.ino'
+  | 'childMarkdownRemark.frontmatter.featuredImage.mode'
+  | 'childMarkdownRemark.frontmatter.featuredImage.modifiedTime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.mtime'
+  | 'childMarkdownRemark.frontmatter.featuredImage.mtimeMs'
+  | 'childMarkdownRemark.frontmatter.featuredImage.name'
+  | 'childMarkdownRemark.frontmatter.featuredImage.nlink'
+  | 'childMarkdownRemark.frontmatter.featuredImage.prettySize'
+  | 'childMarkdownRemark.frontmatter.featuredImage.publicURL'
+  | 'childMarkdownRemark.frontmatter.featuredImage.rdev'
+  | 'childMarkdownRemark.frontmatter.featuredImage.relativeDirectory'
+  | 'childMarkdownRemark.frontmatter.featuredImage.relativePath'
+  | 'childMarkdownRemark.frontmatter.featuredImage.root'
+  | 'childMarkdownRemark.frontmatter.featuredImage.size'
+  | 'childMarkdownRemark.frontmatter.featuredImage.sourceInstanceName'
+  | 'childMarkdownRemark.frontmatter.featuredImage.uid'
   | 'childMarkdownRemark.frontmatter.github.owner'
   | 'childMarkdownRemark.frontmatter.github.repo'
+  | 'childMarkdownRemark.frontmatter.intro'
+  | 'childMarkdownRemark.frontmatter.layout'
   | 'childMarkdownRemark.frontmatter.tags'
   | 'childMarkdownRemark.frontmatter.title'
+  | 'childMarkdownRemark.frontmatter.twitter_text'
   | 'childMarkdownRemark.headings'
   | 'childMarkdownRemark.headings.depth'
   | 'childMarkdownRemark.headings.id'
@@ -830,14 +868,56 @@ type FileFieldsEnum =
   | 'childrenMarkdownRemark.fields.slug'
   | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.frontmatter.categories'
+  | 'childrenMarkdownRemark.frontmatter.category'
   | 'childrenMarkdownRemark.frontmatter.comments'
   | 'childrenMarkdownRemark.frontmatter.date'
   | 'childrenMarkdownRemark.frontmatter.description'
   | 'childrenMarkdownRemark.frontmatter.draft'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.absolutePath'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.accessTime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.atime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.atimeMs'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.base'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.birthTime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.birthtime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.birthtimeMs'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.blksize'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.blocks'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.changeTime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.children'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.childrenImageSharp'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.childrenMarkdownRemark'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.ctime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.ctimeMs'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.dev'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.dir'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.ext'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.extension'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.gid'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.id'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.ino'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.mode'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.modifiedTime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.mtime'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.mtimeMs'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.name'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.nlink'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.prettySize'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.publicURL'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.rdev'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.relativeDirectory'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.relativePath'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.root'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.size'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.sourceInstanceName'
+  | 'childrenMarkdownRemark.frontmatter.featuredImage.uid'
   | 'childrenMarkdownRemark.frontmatter.github.owner'
   | 'childrenMarkdownRemark.frontmatter.github.repo'
+  | 'childrenMarkdownRemark.frontmatter.intro'
+  | 'childrenMarkdownRemark.frontmatter.layout'
   | 'childrenMarkdownRemark.frontmatter.tags'
   | 'childrenMarkdownRemark.frontmatter.title'
+  | 'childrenMarkdownRemark.frontmatter.twitter_text'
   | 'childrenMarkdownRemark.headings'
   | 'childrenMarkdownRemark.headings.depth'
   | 'childrenMarkdownRemark.headings.id'
@@ -1086,14 +1166,18 @@ type FloatQueryOperatorInput = {
 
 type Frontmatter = {
   readonly categories: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly category: Maybe<Scalars['String']>;
   readonly comments: Maybe<Scalars['Boolean']>;
   readonly date: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
   readonly draft: Maybe<Scalars['Boolean']>;
-  readonly featuredImage: Maybe<FeaturedImage>;
+  readonly featuredImage: Maybe<File>;
   readonly github: Maybe<GitHub>;
+  readonly intro: Maybe<Scalars['String']>;
+  readonly layout: Maybe<Scalars['String']>;
   readonly tags: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly title: Maybe<Scalars['String']>;
+  readonly twitter_text: Maybe<Scalars['String']>;
 };
 
 
@@ -1106,14 +1190,18 @@ type Frontmatter_dateArgs = {
 
 type FrontmatterFilterInput = {
   readonly categories: InputMaybe<StringQueryOperatorInput>;
+  readonly category: InputMaybe<StringQueryOperatorInput>;
   readonly comments: InputMaybe<BooleanQueryOperatorInput>;
   readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly draft: InputMaybe<BooleanQueryOperatorInput>;
-  readonly featuredImage: InputMaybe<FeaturedImageFilterInput>;
+  readonly featuredImage: InputMaybe<FileFilterInput>;
   readonly github: InputMaybe<GitHubFilterInput>;
+  readonly intro: InputMaybe<StringQueryOperatorInput>;
+  readonly layout: InputMaybe<StringQueryOperatorInput>;
   readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly twitter_text: InputMaybe<StringQueryOperatorInput>;
 };
 
 type GatsbyImageDataQueryOperatorInput = {
@@ -1820,17 +1908,96 @@ type MarkdownRemarkFieldsEnum =
   | 'fields.slug'
   | 'fileAbsolutePath'
   | 'frontmatter.categories'
+  | 'frontmatter.category'
   | 'frontmatter.comments'
   | 'frontmatter.date'
   | 'frontmatter.description'
   | 'frontmatter.draft'
+  | 'frontmatter.featuredImage.absolutePath'
+  | 'frontmatter.featuredImage.accessTime'
+  | 'frontmatter.featuredImage.atime'
+  | 'frontmatter.featuredImage.atimeMs'
+  | 'frontmatter.featuredImage.base'
+  | 'frontmatter.featuredImage.birthTime'
+  | 'frontmatter.featuredImage.birthtime'
+  | 'frontmatter.featuredImage.birthtimeMs'
+  | 'frontmatter.featuredImage.blksize'
+  | 'frontmatter.featuredImage.blocks'
+  | 'frontmatter.featuredImage.changeTime'
   | 'frontmatter.featuredImage.childImageSharp.children'
   | 'frontmatter.featuredImage.childImageSharp.gatsbyImageData'
   | 'frontmatter.featuredImage.childImageSharp.id'
+  | 'frontmatter.featuredImage.childMarkdownRemark.children'
+  | 'frontmatter.featuredImage.childMarkdownRemark.excerpt'
+  | 'frontmatter.featuredImage.childMarkdownRemark.excerptAst'
+  | 'frontmatter.featuredImage.childMarkdownRemark.fileAbsolutePath'
+  | 'frontmatter.featuredImage.childMarkdownRemark.headings'
+  | 'frontmatter.featuredImage.childMarkdownRemark.html'
+  | 'frontmatter.featuredImage.childMarkdownRemark.htmlAst'
+  | 'frontmatter.featuredImage.childMarkdownRemark.id'
+  | 'frontmatter.featuredImage.childMarkdownRemark.rawMarkdownBody'
+  | 'frontmatter.featuredImage.childMarkdownRemark.tableOfContents'
+  | 'frontmatter.featuredImage.childMarkdownRemark.timeToRead'
+  | 'frontmatter.featuredImage.children'
+  | 'frontmatter.featuredImage.childrenImageSharp'
+  | 'frontmatter.featuredImage.childrenImageSharp.children'
+  | 'frontmatter.featuredImage.childrenImageSharp.gatsbyImageData'
+  | 'frontmatter.featuredImage.childrenImageSharp.id'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.children'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.excerpt'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.excerptAst'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.fileAbsolutePath'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.headings'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.html'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.htmlAst'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.id'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.rawMarkdownBody'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.tableOfContents'
+  | 'frontmatter.featuredImage.childrenMarkdownRemark.timeToRead'
+  | 'frontmatter.featuredImage.children.children'
+  | 'frontmatter.featuredImage.children.id'
+  | 'frontmatter.featuredImage.ctime'
+  | 'frontmatter.featuredImage.ctimeMs'
+  | 'frontmatter.featuredImage.dev'
+  | 'frontmatter.featuredImage.dir'
+  | 'frontmatter.featuredImage.ext'
+  | 'frontmatter.featuredImage.extension'
+  | 'frontmatter.featuredImage.gid'
+  | 'frontmatter.featuredImage.id'
+  | 'frontmatter.featuredImage.ino'
+  | 'frontmatter.featuredImage.internal.content'
+  | 'frontmatter.featuredImage.internal.contentDigest'
+  | 'frontmatter.featuredImage.internal.description'
+  | 'frontmatter.featuredImage.internal.fieldOwners'
+  | 'frontmatter.featuredImage.internal.ignoreType'
+  | 'frontmatter.featuredImage.internal.mediaType'
+  | 'frontmatter.featuredImage.internal.owner'
+  | 'frontmatter.featuredImage.internal.type'
+  | 'frontmatter.featuredImage.mode'
+  | 'frontmatter.featuredImage.modifiedTime'
+  | 'frontmatter.featuredImage.mtime'
+  | 'frontmatter.featuredImage.mtimeMs'
+  | 'frontmatter.featuredImage.name'
+  | 'frontmatter.featuredImage.nlink'
+  | 'frontmatter.featuredImage.parent.children'
+  | 'frontmatter.featuredImage.parent.id'
+  | 'frontmatter.featuredImage.prettySize'
+  | 'frontmatter.featuredImage.publicURL'
+  | 'frontmatter.featuredImage.rdev'
+  | 'frontmatter.featuredImage.relativeDirectory'
+  | 'frontmatter.featuredImage.relativePath'
+  | 'frontmatter.featuredImage.root'
+  | 'frontmatter.featuredImage.size'
+  | 'frontmatter.featuredImage.sourceInstanceName'
+  | 'frontmatter.featuredImage.uid'
   | 'frontmatter.github.owner'
   | 'frontmatter.github.repo'
+  | 'frontmatter.intro'
+  | 'frontmatter.layout'
   | 'frontmatter.tags'
   | 'frontmatter.title'
+  | 'frontmatter.twitter_text'
   | 'headings'
   | 'headings.depth'
   | 'headings.id'
@@ -3541,6 +3708,32 @@ type BlogPostBySlugQueryVariables = Exact<{
 
 type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly siteUrl: string | null } | null } | null, readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly date: string | null, readonly description: string | null, readonly categories: ReadonlyArray<string> | null, readonly tags: ReadonlyArray<string> | null, readonly draft: boolean | null, readonly comments: boolean | null, readonly github: { readonly owner: string | null, readonly repo: string | null } | null, readonly featuredImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly previous: { readonly fields: { readonly slug: string } | null, readonly frontmatter: { readonly title: string | null, readonly draft: boolean | null, readonly comments: boolean | null, readonly featuredImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly next: { readonly fields: { readonly slug: string } | null, readonly frontmatter: { readonly title: string | null, readonly draft: boolean | null, readonly comments: boolean | null, readonly featuredImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
 
+type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_withWebpFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_withWebp_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFluidFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebpFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
+
 type postsByCategoryQueryVariables = Exact<{
   category: InputMaybe<Scalars['String']>;
   skip: Scalars['Int'];
@@ -3558,32 +3751,6 @@ type postsByTagQueryVariables = Exact<{
 
 
 type postsByTagQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null, readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string } | null, readonly frontmatter: { readonly date: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string> | null, readonly categories: ReadonlyArray<string> | null, readonly draft: boolean | null, readonly comments: boolean | null, readonly featuredImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } }> } };
-
-type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
-
-type GatsbyImageSharpFixed_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
-
-type GatsbyImageSharpFixed_withWebpFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
-
-type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
-
-type GatsbyImageSharpFluidFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
-
-type GatsbyImageSharpFluid_withWebpFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
-
-type GatsbyImageSharpFluid_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
 
 
 }

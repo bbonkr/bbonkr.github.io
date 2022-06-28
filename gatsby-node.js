@@ -420,7 +420,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         });
 
         const newSlug = rewriteSlug(slug);
-        // const newNode = rewriteNode(nodeActual);
+        const newNode = rewriteNode(nodeActual);
 
         if (newSlug) {
             createNodeField({
@@ -570,12 +570,14 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
                 resolve: (source, args, context, info) => {
                     const items = source.categories;
                     if (typeof items === 'string') {
-                        return [items.toLowerCase()];
+                        return [kebabCase(items.toLowerCase())];
                     } else if (Array.isArray(items)) {
                         if (items.length === 0) {
                             return ['uncategorized'];
                         } else {
-                            return items.map((item) => item.toLowerCase());
+                            return items.map((item) =>
+                                kebabCase(item.toLowerCase())
+                            );
                         }
                     } else {
                         return ['uncategorized'];
@@ -590,12 +592,14 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
                 resolve: (source, args, context, info) => {
                     const items = source.tags;
                     if (typeof items === 'string') {
-                        return [items.toLowerCase()];
+                        return [kebabCase(items.toLowerCase())];
                     } else if (Array.isArray(items)) {
                         if (items.length === 0) {
                             return ['untaged'];
                         } else {
-                            return items.map((item) => item.toLowerCase());
+                            return items.map((item) =>
+                                kebabCase(item.toLowerCase())
+                            );
                         }
                     } else {
                         return ['untaged'];
@@ -641,9 +645,9 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         seoType,
         githubType,
         // childImageType,
-        // frontmatterType,
         featuredImageType,
-        frontmatterObjectType,
+        // frontmatterObjectType,
+        frontmatterType,
         siteMatadataType,
         markdownRemarkType,
     ]);
