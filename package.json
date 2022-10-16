@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^10.4.12",
     "gatsby": "^4.24.4",
     "gatsby-plugin-feed": "^4.17.0",
     "gatsby-plugin-gtag": "^1.0.13",
