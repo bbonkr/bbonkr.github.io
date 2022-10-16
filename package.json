@@ -73,6 +73,6 @@
   },
   "resolutions": {
     "source-map": "^0.8.0-beta.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7"
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.8"
   }
 }
