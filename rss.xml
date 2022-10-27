@@ -1,4 +1,181 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Oct 2022 08:50:50 GMT</lastBuildDate><item><title><![CDATA[Fail to update Visual Studio 2022 for Mac 17.3 Preview 2]]></title><description><![CDATA[Visual Studio 2022 for Mac 17.3 Preview 2 업데이트에는 MAUI 관련 내용이 포함되어 있습니다. 업데이트 실패 2020-06-14 게시된 Visual Studio 2022 for Mac 17.3 Preview…]]></description><link>https://bbon.me/2022/06/17/fail-to-update-visual-studio-2022-for-mac-17-3-preview-2/</link><guid isPermaLink="false">https://bbon.me/2022/06/17/fail-to-update-visual-studio-2022-for-mac-17-3-preview-2/</guid><pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/visualstudio/releases/2022/mac-release-notes-preview#1730-pre2--visual-studio-2022-for-mac-v173-preview-2-newreleasebutton&quot;&gt;Visual Studio 2022 for Mac 17.3 Preview 2&lt;/a&gt; 업데이트에는 MAUI 관련 내용이 포함되어 있습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 27 Oct 2022 14:46:51 GMT</lastBuildDate><item><title><![CDATA[Let create own vscode extension]]></title><description><![CDATA[타입스크립트로 비주얼 스튜디오 확장을 작성할 준비를 하고, 작성된 확작을 게시하는 내용에 대한 리뷰입니다. 비주얼 스튜디오 코드의 확작에 대한 정보는 Extension API 페이지에서 제공하고 있습니다. 준비 Your First Extension…]]></description><link>https://bbon.me/2022/10/24/let-create-own-vscode-extension/</link><guid isPermaLink="false">https://bbon.me/2022/10/24/let-create-own-vscode-extension/</guid><pubDate>Mon, 24 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;타입스크립트로 비주얼 스튜디오 확장을 작성할 준비를 하고, 작성된 확작을 게시하는 내용에 대한 리뷰입니다.&lt;/p&gt;
+&lt;p&gt;비주얼 스튜디오 코드의 확작에 대한 정보는 &lt;a href=&quot;https://code.visualstudio.com/api&quot;&gt;Extension API&lt;/a&gt; 페이지에서 제공하고 있습니다.&lt;/p&gt;
+&lt;h2&gt;준비&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/api/get-started/your-first-extension&quot;&gt;Your First Extension: Visual Studio Code&lt;/a&gt; 페이지에서 타입스크립트로 확장을 작성하는 방법을 알려줍니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://yeoman.io/&quot;&gt;yoman&lt;/a&gt; 패키지와 &lt;a href=&quot;https://www.npmjs.com/package/generator-code&quot;&gt;VS Code Extension Generator&lt;/a&gt; 패키지를 사용해서 부트스트랩 코드를 얻을 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;의존 패키지 설치&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; yo generator-code &lt;span class=&quot;token comment&quot;&gt;# yoman 패키지와 vs code extension generator 패키지를 전역에 설치합니다.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;프로젝트 초기화&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ yo code &lt;span class=&quot;token comment&quot;&gt;# 프로젝트를 초기화하기 위한 정보를 입력받는 내용이 출력됩니다. (아래 목록을 확인하세요.)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;What type of extension do you want to create?
+&lt;ol&gt;
+&lt;li&gt;New Extension (TypeScript) 👉 &lt;strong&gt;선택&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;New Extension (JavaScript)&lt;/li&gt;
+&lt;li&gt;New Color Theme&lt;/li&gt;
+&lt;li&gt;New Language Support&lt;/li&gt;
+&lt;li&gt;New Code Snippets&lt;/li&gt;
+&lt;li&gt;New Keymap&lt;/li&gt;
+&lt;li&gt;New Extension Pack&lt;/li&gt;
+&lt;li&gt;New Language Pack (Localization)&lt;/li&gt;
+&lt;li&gt;New Web Extension (TypeScript)&lt;/li&gt;
+&lt;li&gt;New Notebook Renderer (TypeScript)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;What’s the name of your extension? &lt;strong&gt;확장 이름 입력&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;What’s the identifier of your extension? &lt;strong&gt;확장 식별자 입력&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;What’s the description of your extension? &lt;strong&gt;설명을 입력&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Initialize a git repository? &lt;strong&gt;git 저장소 초기화 N&lt;/strong&gt; 또는 git 저장소 URI&lt;/li&gt;
+&lt;li&gt;Bundle the source code with webpack? &lt;strong&gt;webpack을 사용해서 번들링 Y&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Which package manager to use?
+&lt;ol&gt;
+&lt;li&gt;npm 👉 &lt;strong&gt;선택&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;yarn&lt;/li&gt;
+&lt;li&gt;pnpm&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Do you want to open the new folder with Visual Studio Code?
+&lt;ol&gt;
+&lt;li&gt;Open with &lt;code class=&quot;language-text&quot;&gt;code&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Skip&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;프로젝트 정보를 모두 입력하면 확장의 식별자에 해당하는 디렉터리가 작성되고, 타입스크립트로 비주얼 스튜디오 코드 확장을 작성할 수 있는 환경이 준비됩니다.&lt;/p&gt;
+&lt;p&gt;준비된 프로젝트의 package.json 파일을 보면, 2. 에서 입력한 내용이 &lt;code class=&quot;language-text&quot;&gt;displayName&lt;/code&gt; 으로 사용되고, 3. 에서 입력한 내용이 &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt; 으로 사용되고, 4. 에서 입력한 내용이 &lt;code class=&quot;language-text&quot;&gt;description&lt;/code&gt; 으로 사용되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이제, 비주얼 스튜디오 코드 확작을 작성할 준비를 마쳤습니다.&lt;/p&gt;
+&lt;p&gt;원하는 기능을 구현하고, 비주얼 스튜디오 마켓플레이스에 게시하면 혹시나 비슷한 기능이 필요하신 분들이 사용할 수 있습니다.&lt;/p&gt;
+&lt;h2&gt;게시&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/api/working-with-extensions/publishing-extension&quot;&gt;Publishing Extension: Visual Studio Code&lt;/a&gt; 페이지에서 작성한 확장을 비주얼 스튜디오 마켓플레이스에 게시하는 방법을 설명합니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/&quot;&gt;비주얼 스튜디오 마켓플레이스&lt;/a&gt;에 사인인하고, &lt;a href=&quot;https://marketplace.visualstudio.com/manage&quot;&gt;비주얼 스튜디오 마켓플레이스 관리&lt;/a&gt; 페이지에서 게시자(Publisher)를 작성해야 합니다.&lt;/p&gt;
+&lt;p&gt;로컬 개발환경에서 게시하기 위해서, &lt;a href=&quot;https://github.com/microsoft/vscode-vsce&quot;&gt;vsce&lt;/a&gt; 도구를 사용합니다.&lt;/p&gt;
+&lt;p&gt;비주얼 스튜디오 마켓플레이스는 애져 데브옵스 마켓플레이스 서비스를 사용하므로, 애져 데브옵스 계정을 작성해야 합니다.&lt;/p&gt;
+&lt;p&gt;애져 데브옵스 계정 작성과 개인 액세스 토큰 (PAT, Personal Access Token)을 작성하는 방법을 &lt;a href=&quot;https://code.visualstudio.com/api/working-with-extensions/publishing-extension&quot;&gt;Publishing Extension: Visual Studio Code&lt;/a&gt;&lt;a href=&quot;https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token&quot;&gt;#Get a Personal Access Token&lt;/a&gt; 페이지에서 설명하고 있습니다.&lt;/p&gt;
+&lt;p&gt;비주얼 스튜디오 마켓플레이스의 게시자 작상과 애져 데브옵스의 액세스 토큰을 작성했으면, 이제 게시할 준비를 마쳤습니다.&lt;/p&gt;
+&lt;h3&gt;게시전 확인 사항&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/api/working-with-extensions/publishing-extension&quot;&gt;Publishing Extension: Visual Studio Code&lt;/a&gt;&lt;a href=&quot;https://code.visualstudio.com/api/working-with-extensions/publishing-extension#publishing-extensions&quot;&gt;#Publishing extensions&lt;/a&gt; 페이지에서 vsce 도구로 게시할 때, 확인하는 사항을 설명하고 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;사용하는 이미지 파일의 URI 는 &lt;code class=&quot;language-text&quot;&gt;HTTPS&lt;/code&gt; 를 사용해야 합니다.&lt;/li&gt;
+&lt;li&gt;svg 파일은 &lt;a href=&quot;https://code.visualstudio.com/api/references/extension-manifest#approved-badges&quot;&gt;신뢰하는 제공자&lt;/a&gt;가 아니면 사용하지 않는 것을 권장합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;package.json 파일에 아래 항목이 존재하는 확인합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;publisher&lt;/li&gt;
+&lt;li&gt;version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;게시자 식별자&lt;/h3&gt;
+&lt;p&gt;프로젝트의 package.json 파일을 열고, publisher 항목을 추가합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// ... 생략&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;publisher&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;비주얼 스튜디오 마켓플레이스 게시자 식별자&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// ... 생략&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;번들링 확인&lt;/h3&gt;
+&lt;p&gt;게시전에 문제없이 번들이 작성되는지 확인합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run vscode:prepublish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;vsce 도구 설치&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-g&lt;/span&gt; vsce&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;vsce 로그인&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;동일한 환경에서 게시를 시도하는 중이면 최초 한번만 vsce 로그인을 진행하시면 됩니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ vsce login &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;비주얼 스튜디오 마켓플레이스 게시자 식별자&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;개인 액세스 토큰(PAT, Personal Access Token) 입력을 기다리는 프롬프트가 출력되면 애져 데브옵스에서 작성한 개인 액세스 토큰(PAT, Personal Access Token)을 입력합니다.&lt;/p&gt;
+&lt;p&gt;아래 명령으로 정상적으로 로그인이 되었는지 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ vsce ls-publishers &lt;span class=&quot;token comment&quot;&gt;# 정상적으로 로그인된 경우 게시자 목록이 출력됩니다.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;게시&lt;/h3&gt;
+&lt;p&gt;아래 명령으로 번들링하고, 비주얼 스튜디오 마켓플레이스에 게시합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ vsce publish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;게시된 확작은 확인 후 바로 공개됩니다.&lt;/p&gt;
+&lt;h3&gt;문제해결&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;vsce publish&lt;/code&gt; 명령은 현재 작업중인 프로젝트가 깃 저장소인 경우 기본적으로 깃 태그를 작성합니다.&lt;/p&gt;
+&lt;p&gt;따라서, 현재 저장소에 작성하려는 태그가 있으면 게시가 실패합니다.&lt;/p&gt;
+&lt;p&gt;예상되는 실패 메시지는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Error: Invalid URL
+Error: Process completed with exit code 1.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이 경우 &lt;code class=&quot;language-text&quot;&gt;vsce publish&lt;/code&gt; 명령에 옵션을 추가합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ vsce publish --no-git-tag-version --no-update-package-json&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;--no-git-tag-version&lt;/code&gt;: 깃 태그를 작성하지 않습니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;--no-update-package-json&lt;/code&gt;: package.json 파일을 변경하지 않습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;마침&lt;/h2&gt;
+&lt;p&gt;이제 원하는 기능이 포함된 확장을 작성하고 게시할 수 있습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[New CS File - vscode extension]]></title><description><![CDATA[비주얼 스튜디오 코드 (Visual Studio Code…]]></description><link>https://bbon.me/2022/10/24/new-cs-file-vscode-extension/</link><guid isPermaLink="false">https://bbon.me/2022/10/24/new-cs-file-vscode-extension/</guid><pubDate>Mon, 24 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;비주얼 스튜디오 코드 (Visual Studio Code)는 매우 유용한 통합 개발 환경을 제공합니다.&lt;/p&gt;
+&lt;p&gt;저는 타입스크립트 또는 자바스크립트로 작성하는 대부분의 코드를 비주얼 스튜디오 코드를 사용해서 작성합니다.&lt;/p&gt;
+&lt;p&gt;주 사용 장치를 맥으로 변경하면서, 닷넷 프로젝트도 간혹 비주얼 스튜디오 코드를 사용해서 진행합니다. 맥용 비주얼 스튜디오가 조금 불편하기도 하고 (윈도우용 비주얼 스튜디오에 비해), 비주얼 스튜디오 코드가 더 익숙해져서 그런 것 같습니다.&lt;/p&gt;
+&lt;p&gt;비주얼 스튜디오 코드에서 닷넷 프로젝트를 열고, 작업을 진행할 때 새 파일을 작성하면 빈 파일이 작성되어 매우 불편했습니다.&lt;/p&gt;
+&lt;p&gt;비주얼 스튜디오에서 새 파일을 작성하면, 작성되는 파일이 위치하는 디렉터리 기반으로 네임스페이스를 작성해주는데, 비쥬얼 스튜디오 코드에서는 이 기능이 제공되지 않습니다.&lt;/p&gt;
+&lt;p&gt;관련 확장을 설치하고 사용을 시도했으나, 마음에 드는 확장을 찾지 못했습니다.&lt;/p&gt;
+&lt;p&gt;그래서, 비주얼 스튜디오 코드의 확장을 작성하는 방법을 확인하고, 원하는 기능을 구현해서 사용하기로 했습니다.&lt;/p&gt;
+&lt;h2&gt;New CS File 확장&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=bbonkr.kr-bbon-vscode-plugins-newcsfile&quot;&gt;New cs file&lt;/a&gt; 페이지에서 관련 정보를 찾을 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;사용&lt;/h3&gt;
+&lt;p&gt;비주얼 스튜디오 코드에서 닷넷 프로젝트를 열고, 커맨드 팔렛트에서 new cs file 명령을 찾거나, 워크 스페이스 파일 탐색기에서 폴더(디렉터리)를 선택하고 컨텍스트 메뉴를 열어 new cs file 명령을 실행합니다.&lt;/p&gt;
+&lt;p&gt;디렉터리 다이얼로그가 열리면 파일을 추가할 디렉터리를 선택합니다.
+클래스 이름 입력창이 열리면, 추가하려는 클래스 (객체) 이름을 입력하고, 엔터키를 입력합니다.&lt;/p&gt;
+&lt;p&gt;선택된 위치에 &lt;code class=&quot;language-text&quot;&gt;클래스이름.cs&lt;/code&gt; 파일이 작성되고, 작성된 파일에는 디렉터리 구조를 기반한 네임스페이스가 추가되어져 있습니다.&lt;/p&gt;
+&lt;p&gt;작상된 파일의 내용:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;csharp&quot;&gt;&lt;pre class=&quot;language-csharp&quot;&gt;&lt;code class=&quot;language-csharp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;Sample&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Models&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TestModel&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;기능&lt;/h3&gt;
+&lt;p&gt;네임스페이스는 파일이 작성되는 디렉터리와 프로젝트 파일(.csproj)의 이름을 기반으로 작성됩니다.
+다만, 프로젝트 파일(.csproj)에 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;DefaultNamespace&gt;&lt;/code&gt; 요소가 있으면 그 값을 사용합니다.&lt;/p&gt;
+&lt;p&gt;아래와 같은 구조일 때 Models 디렉터리가 선택되고 TestModel 이라는 클래스가 작성되는 파일의 예제입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;plaintext&quot;&gt;&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;- Sample           # directory
+  - Models         # directory
+    - TestModel    # 👈 Try to create file
+  - Sample.csproj  # project file&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;DefaultNamespace 요소가 없는 경우:&lt;/p&gt;
+&lt;p&gt;TestModel 파일의 내용&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;csharp&quot;&gt;&lt;pre class=&quot;language-csharp&quot;&gt;&lt;code class=&quot;language-csharp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;Sample&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Models&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TestModel&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;프로젝트 파일의 &lt;code class=&quot;language-text&quot;&gt;DefaultNamespace&lt;/code&gt; 요소가 &lt;code class=&quot;language-text&quot;&gt;Sample.SpecialEdition&lt;/code&gt; 인 경우:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;csharp&quot;&gt;&lt;pre class=&quot;language-csharp&quot;&gt;&lt;code class=&quot;language-csharp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;Sample&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;SpecialEdition&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Models&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TestModel&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;제한사항&lt;/h3&gt;
+&lt;p&gt;작업하려는 프로젝트가 열린 워크스페이스의 디렉터리와 파일이름은 알파벳 문자와 숫자로만 구성되어야 합니다.&lt;/p&gt;
+&lt;!--
+## 코드 리뷰
+
+[GitHub: bbonkr/vscode-extensions-new-cs-file](https://github.com/bbonkr/vscode-extensions-new-cs-file)
+--&gt;
+&lt;h2&gt;게시&lt;/h2&gt;
+&lt;p&gt;깃허브 액션으로 게시를 자동화합니다. 다만, 게시 시점을 조정하기 위해 깃허브 릴리즈가 게시될 때에만 비주얼 스튜디오 마켓플레이스에 게시합니다.&lt;/p&gt;
+&lt;p&gt;GitHub actions&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;기본 브랜치에 커밋이 전송됩니다.
+&lt;ol&gt;
+&lt;li&gt;코드를 체크아웃하고, 노드 환경을 구성한 후 의존 패키지를 설치하고, 지정된 npm 스크립트를 실행합니다.&lt;/li&gt;
+&lt;li&gt;package.json 의 version 값으로 깃 태그를 검색합니다.
+&lt;ol&gt;
+&lt;li&gt;version에 해당하는 깃 태그가 있는 경우 워크플로우는 종료됩니다.&lt;/li&gt;
+&lt;li&gt;깃 태그가 없는 경우 깃 태그를 작성합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;깃 태그가 작성되면 초안 상태의 깃허브 릴리즈를 작성합니다.&lt;/li&gt;
+&lt;li&gt;깃허브 릴리즈를 공개(게시)하면, 비주얼 스튜디오 마켓플레이스에 새 버전을 게시합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;마침&lt;/h2&gt;
+&lt;p&gt;비주얼 스튜디오 코드 확장에 관심이 있으시면 &lt;a href=&quot;/2022/10/24/let-create-own-vscode-extension&quot;&gt;Let create own vscode extension&lt;/a&gt; 페이지도 둘러보세요.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Fail to update Visual Studio 2022 for Mac 17.3 Preview 2]]></title><description><![CDATA[Visual Studio 2022 for Mac 17.3 Preview 2 업데이트에는 MAUI 관련 내용이 포함되어 있습니다. 업데이트 실패 2020-06-14 게시된 Visual Studio 2022 for Mac 17.3 Preview…]]></description><link>https://bbon.me/2022/06/17/fail-to-update-visual-studio-2022-for-mac-17-3-preview-2/</link><guid isPermaLink="false">https://bbon.me/2022/06/17/fail-to-update-visual-studio-2022-for-mac-17-3-preview-2/</guid><pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/visualstudio/releases/2022/mac-release-notes-preview#1730-pre2--visual-studio-2022-for-mac-v173-preview-2-newreleasebutton&quot;&gt;Visual Studio 2022 for Mac 17.3 Preview 2&lt;/a&gt; 업데이트에는 MAUI 관련 내용이 포함되어 있습니다.&lt;/p&gt;
 &lt;h2&gt;업데이트 실패&lt;/h2&gt;
 &lt;p&gt;2020-06-14 게시된 Visual Studio 2022 for Mac 17.3 Preview 2 업데이트를 시도하면 아래와 같이 오류 메시지가 출력되고, 업데이트가 실패했습니다.&lt;/p&gt;
 &lt;p&gt;&lt;figure class=&quot;gatsby-resp-image-figure&quot; style=&quot;&quot;&gt;
