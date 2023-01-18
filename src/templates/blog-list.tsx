@@ -79,7 +79,7 @@ export const blogListQuery = graphql`
                         slug
                     }
                     frontmatter {
-                        date(formatString: "MMMM DD, YYYY")
+                        date(formatString: "YYYY-MM-DD")
                         title
                         tags
                         categories

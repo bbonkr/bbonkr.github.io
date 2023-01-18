@@ -178,7 +178,7 @@ module.exports = {
         }
         frontmatter {
           title
-          date
+          date(formatString: "YYYY-MM-DD")
         }
       }
     }
@@ -236,7 +236,7 @@ module.exports = {
           slug
         }
         frontmatter {
-          date
+          date(formatString: "YYYY-MM-DD")
         }
       }
     }
@@ -270,5 +270,3 @@ module.exports = {
         },
     ],
 };
-
-exports;

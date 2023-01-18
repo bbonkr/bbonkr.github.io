@@ -239,7 +239,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                                     slug
                                 }
                                 frontmatter {
-                                    date(formatString: "MMMM DD, YYYY")
+                                    date(formatString: "YYYY-MM-DD")
                                     title
                                     tags
                                     categories
@@ -262,7 +262,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                                     slug
                                 }
                                 frontmatter {
-                                    date(formatString: "MMMM DD, YYYY")
+                                    date(formatString: "YYYY-MM-DD")
                                     title
                                     tags
                                     categories

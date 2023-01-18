@@ -46,7 +46,7 @@ const Layout = ({
                         theme={themeState.theme}
                         onToggleTheme={themeState.toggle}
                     />
-                    <div className="flex flex-col h-screen">
+                    <div className="flex flex-col min-h-screen">
                         <div
                             className="container w-full md:max-w-3xl mx-auto pt-20 flex-grow flex-1"
                             data-is-root-path={isRootPath}
