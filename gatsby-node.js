@@ -204,13 +204,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         `
             {
                 allPosts: allMarkdownRemark(
-                    sort: { fields: [frontmatter___date], order: ASC }
-                    ${
-                        // If NODE_ENV is production, excludes draft content.
-                        isProd
-                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
-                            : ''
-                    }
+                    sort: { frontmatter: { date: ASC } }
+                    filter: { frontmatter: { draft: { ne: true } } }
                     limit: 2000
                 ) {
                     edges {
@@ -230,18 +225,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         }
                     }
                 }
-
                 categoryGroups: allMarkdownRemark(
-                    ${
-                        // If NODE_ENV is production, excludes draft content.
-                        isProd
-                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
-                            : ''
-                    }
-                    limit: 2000) {
-                    group(
-                        field: frontmatter___categories
-                        ) {
+                    filter: { frontmatter: { draft: { ne: true } } }
+                    limit: 2000
+                ) {
+                    group(field: { frontmatter: { categories: SELECT } }) {
                         fieldValue
                         totalCount
                         edges {
@@ -260,18 +248,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         }
                     }
                 }
-
                 tagGroups: allMarkdownRemark(
-                    ${
-                        // If NODE_ENV is production, excludes draft content.
-                        isProd
-                            ? 'filter: {frontmatter: {draft: {ne: true}}}'
-                            : ''
-                    }
-                    limit: 2000) {
-                    group(
-                        field: frontmatter___tags
-                        ) {
+                    filter: { frontmatter: { draft: { ne: true } } }
+                    limit: 2000
+                ) {
+                    group(field: { frontmatter: { tags: SELECT } }) {
                         fieldValue
                         totalCount
                         edges {

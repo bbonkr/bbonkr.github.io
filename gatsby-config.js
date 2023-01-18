@@ -154,21 +154,21 @@ module.exports = {
                             },
                         query: `
 {
-    site {
+  site {
     siteMetadata {
       siteUrl
       title
     }
   }
   allMarkdownRemark(
-      sort: {order: DESC, fields: [frontmatter___date]}
+    sort: {frontmatter: {date: DESC}}
       ${
           // If NODE_ENV is production, excludes draft content.
           isProductionStage()
               ? 'filter: { frontmatter: { draft: { ne: true } } }'
               : ''
       }
-      ) {
+  ) {
     edges {
       node {
         excerpt
@@ -184,8 +184,7 @@ module.exports = {
     }
   }
 }
-
-            `,
+`,
                         output: '/rss.xml',
                         title: '<bbon /> RSS Feed',
                     },
@@ -216,21 +215,21 @@ module.exports = {
             options: {
                 query: `
 {
-    site {
+  site {
     siteMetadata {
       siteUrl
       title
     }
   }
   allMarkdownRemark(
-      sort: {order: DESC, fields: [frontmatter___date]}
-      ${
-          // If NODE_ENV is production, excludes draft content.
-          isProductionStage()
-              ? 'filter: { frontmatter: { draft: { ne: true } } }'
-              : ''
-      }
-      ) {
+    sort: {frontmatter: {date: DESC}}
+ ${
+     // If NODE_ENV is production, excludes draft content.
+     isProductionStage()
+         ? 'filter: { frontmatter: { draft: { ne: true } } }'
+         : ''
+ }
+  ) {
     edges {
       node {
         fields {
