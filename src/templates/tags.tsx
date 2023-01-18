@@ -113,7 +113,7 @@ export const pageQuery = graphql`
             }
         }
         allMarkdownRemark(
-            sort: { fields: [frontmatter___date], order: DESC }
+            sort: { frontmatter: { date: DESC } }
             filter: { frontmatter: { tags: { in: [$tag] } } }
             limit: $limit
             skip: $skip

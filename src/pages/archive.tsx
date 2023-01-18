@@ -46,16 +46,13 @@ const BlogPage = ({ data, location }: PageProps<Posts>) => {
 };
 
 export const pageQuery = graphql`
-    query {
+    query archivePageQuery {
         site {
             siteMetadata {
                 title
             }
         }
-        allMarkdownRemark(
-            limit: 10
-            sort: { fields: [frontmatter___date], order: DESC }
-        ) {
+        allMarkdownRemark(limit: 10, sort: { frontmatter: { date: DESC } }) {
             edges {
                 node {
                     excerpt
