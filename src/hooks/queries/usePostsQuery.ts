@@ -3,10 +3,10 @@ import { MarkdownRemarks } from '../../models/data';
 
 export const usePostsQuery = () => {
     const data = useStaticQuery<{ allMarkdownRemark: MarkdownRemarks }>(graphql`
-        query {
+        query postsQuery {
             allMarkdownRemark(
                 limit: 2000
-                sort: { fields: [frontmatter___date], order: DESC }
+                sort: { frontmatter: { date: DESC } }
             ) {
                 edges {
                     node {
@@ -15,7 +15,7 @@ export const usePostsQuery = () => {
                             slug
                         }
                         frontmatter {
-                            date(formatString: "MMMM DD, YYYY")
+                            date(formatString: "YYYY-MM-DD")
                             title
                             description
                             tags
