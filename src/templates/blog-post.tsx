@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
-import { getSrc } from 'gatsby-plugin-image';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { getSrc, GatsbyImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { Data } from '../models/data';
@@ -204,7 +203,7 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
-                date(formatString: "MMMM DD, YYYY")
+                date(formatString: "YYYY-MM-DD")
                 description
                 categories
                 tags

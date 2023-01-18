@@ -38,7 +38,7 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
                 return false;
             }
 
-            const regex = new RegExp(`.*${formState.values.keyword}.*`, 'gi');
+            const regex = new RegExp(`.*${formState.values.keyword}.*`, 'ig');
             if (x.node.rawMarkdownBody && regex.test(x.node.rawMarkdownBody)) {
                 return true;
             }
@@ -120,16 +120,13 @@ const SearchPage = ({ data, location }: PageProps<Posts>) => {
 };
 
 export const pageQuery = graphql`
-    query {
+    query searchPageQuery {
         site {
             siteMetadata {
                 title
             }
         }
-        allMarkdownRemark(
-            limit: 2000
-            sort: { fields: [frontmatter___date], order: DESC }
-        ) {
+        allMarkdownRemark(limit: 2000, sort: { frontmatter: { date: DESC } }) {
             edges {
                 node {
                     excerpt
@@ -137,7 +134,7 @@ export const pageQuery = graphql`
                         slug
                     }
                     frontmatter {
-                        date(formatString: "MMMM DD, YYYY")
+                        date(formatString: "YYYY-MM-DD")
                         title
                         description
                         tags

@@ -154,21 +154,21 @@ module.exports = {
                             },
                         query: `
 {
-    site {
+  site {
     siteMetadata {
       siteUrl
       title
     }
   }
   allMarkdownRemark(
-      sort: {order: DESC, fields: [frontmatter___date]}
+    sort: {frontmatter: {date: DESC}}
       ${
           // If NODE_ENV is production, excludes draft content.
           isProductionStage()
               ? 'filter: { frontmatter: { draft: { ne: true } } }'
               : ''
       }
-      ) {
+  ) {
     edges {
       node {
         excerpt
@@ -178,14 +178,13 @@ module.exports = {
         }
         frontmatter {
           title
-          date
+          date(formatString: "YYYY-MM-DD")
         }
       }
     }
   }
 }
-
-            `,
+`,
                         output: '/rss.xml',
                         title: '<bbon /> RSS Feed',
                     },
@@ -216,28 +215,28 @@ module.exports = {
             options: {
                 query: `
 {
-    site {
+  site {
     siteMetadata {
       siteUrl
       title
     }
   }
   allMarkdownRemark(
-      sort: {order: DESC, fields: [frontmatter___date]}
-      ${
-          // If NODE_ENV is production, excludes draft content.
-          isProductionStage()
-              ? 'filter: { frontmatter: { draft: { ne: true } } }'
-              : ''
-      }
-      ) {
+    sort: {frontmatter: {date: DESC}}
+ ${
+     // If NODE_ENV is production, excludes draft content.
+     isProductionStage()
+         ? 'filter: { frontmatter: { draft: { ne: true } } }'
+         : ''
+ }
+  ) {
     edges {
       node {
         fields {
           slug
         }
         frontmatter {
-          date
+          date(formatString: "YYYY-MM-DD")
         }
       }
     }
@@ -271,5 +270,3 @@ module.exports = {
         },
     ],
 };
-
-exports;

@@ -99,14 +99,14 @@ const TagsPage = ({ location, data }: PageProps<Data>) => {
 };
 
 export const pageQuery = graphql`
-    query {
+    query tagPageQuery {
         site {
             siteMetadata {
                 title
             }
         }
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-            group(field: frontmatter___tags) {
+        allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+            group(field: { frontmatter: { tags: SELECT } }) {
                 fieldValue
                 totalCount
                 edges {
@@ -116,7 +116,7 @@ export const pageQuery = graphql`
                             slug
                         }
                         frontmatter {
-                            date(formatString: "MMMM DD, YYYY")
+                            date(formatString: "YYYY-MM-DD")
                             title
                             tags
                             categories

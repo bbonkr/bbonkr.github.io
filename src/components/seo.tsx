@@ -9,7 +9,6 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Site } from '../models/data';
-import { FaSitemap } from 'react-icons/fa';
 
 interface SeoProps {
     description?: string;
