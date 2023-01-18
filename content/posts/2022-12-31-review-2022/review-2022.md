@@ -3,7 +3,7 @@ title: 'Review 2022'
 date: 2022-12-31
 categories:
     - story
-    - blob
+    - blog
 tags:
     - review
     - log
