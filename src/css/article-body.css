@@ -1,5 +1,5 @@
 .article-body * {
-    @apply my-3 break-words;
+    @apply break-words;
 }
 
 .article-body > h1,
@@ -8,39 +8,57 @@
 .article-body > h4,
 .article-body > h5,
 .article-body > h6 {
-    @apply py-2 border-green-600 px-2 my-2;
+    @apply border-green-600 font-extrabold pr-2 py-1 my-2;
 }
 
 .article-body > h2 {
-    @apply border-l-4;
+    @apply text-3xl pt-2;
+}
+
+.article-body > h2::before {
+    content: '##';
+    @apply text-green-600 mr-2 font-mono text-3xl;
 }
 
 .article-body > h3 {
-    @apply border-l-2;
+    @apply text-2xl;
+}
+
+.article-body > h3::before {
+    content: '###';
+    @apply text-green-600 mr-2 text-2xl;
 }
 
 .article-body > h4 {
-    @apply border-l-0;
-}
-.article-body > h5 {
-    @apply border-l-0;
 }
 
-.article-body > h6 {
-    @apply border-l-0;
+.article-body > h4::before {
+    content: '####';
+    @apply text-green-600 mr-2 text-xl;
 }
 
-.article-body > p {
-    @apply py-6;
+.article-body > h5::before {
+    content: '#####';
+    @apply text-green-600 mr-2;
+}
+
+.article-body > h6::before {
+    content: '######';
+    @apply text-green-600 mr-2;
+}
+
+.article-body p,
+.article-body div {
+    @apply py-3;
 }
 
 .article-body ul,
 .article-body ol {
-    @apply my-4 list-inside pl-8;
+    @apply my-2 list-inside pl-8;
 }
 
 .article-body li {
-    @apply pb-3;
+    @apply py-1;
 }
 
 .article-body ul {
@@ -56,11 +74,12 @@
     @apply py-1 pl-0;
 }
 
-.article-body > pre {
-    @apply bg-gray-900 rounded text-white font-mono text-base p-2 md:p-4;
+.article-body pre,
+.article-body code {
+    @apply bg-gray-900 rounded text-white font-mono text-base px-4 py-2;
 }
 
-.article-body > pre > code {
+.article-body pre > code {
     @apply break-words whitespace-pre-wrap;
 }
 
@@ -81,8 +100,7 @@
 }
 
 .article-body a {
-    @apply text-green-600;
-    font-weight: 500;
+    @apply text-green-600 font-bold;
 }
 
 .article-body a:hover {
@@ -107,4 +125,9 @@
 
 .article-body code[class*='language-'] {
     @apply break-words;
+}
+
+.article-body b,
+.article-body strong {
+    @apply text-green-600 font-bold;
 }
