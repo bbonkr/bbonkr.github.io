@@ -109,6 +109,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                     post.frontmatter.github.repo && (
                         <section className="article-body">
                             <h2>GitHub Repository</h2>
+                            <p></p>
                             <ThemeProvider.Consumer>
                                 {(state) => (
                                     <GitHubButtons
@@ -120,6 +121,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                                     />
                                 )}
                             </ThemeProvider.Consumer>
+                            <p></p>
                         </section>
                     )}
 
