@@ -92,6 +92,7 @@ const BlogPostTemplate = ({ data, location }: PageProps<Data>) => {
                                     : 'text-gray-600 dark:text-gray-400'
                             }  `}
                         >
+                            <span className="pr-2">🗓️</span>
                             {post.frontmatter.date.toLocaleString()}
                         </p>
                     </div>

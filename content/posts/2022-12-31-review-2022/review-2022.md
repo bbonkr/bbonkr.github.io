@@ -7,7 +7,6 @@ categories:
 tags:
     - review
     - log
-draft: true
 featuredImage:
 ---
 
@@ -64,9 +63,9 @@ featuredImage:
 
 애플 티비에서 할인하는 영화를 구매해서 시간 날때 보고, 또 보고 합니다.
 
--   [영화 목록](https://www.themoviedb.org/list/8233625)
+-   [영화 목록](https://www.themoviedb.org/list/8233625?sort_by=primary_release_date.desc)
 
-콘솔 게임기 엑스박스를 구입해서 할인하는 게임을 구매해서 저녁시간에 잔잔하게 즐기고 있습니다.
+콘솔 게임기 **엑스박스**를 구입해서 할인하는 게임을 구매해서 저녁시간에 잔잔하게 즐기고 있습니다.
 
 ## Applications and Libraries
 
