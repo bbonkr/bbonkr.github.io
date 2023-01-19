@@ -46,6 +46,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
                         </span>
                     )}
                     <div>
+                        <span className="pr-2">🗓️</span>
                         <small className="text-sm md:text-base font-normal text-gray-600 dark:text-gray-400">
                             {post.node.frontmatter.date.toLocaleString()}
                         </small>
