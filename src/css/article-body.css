@@ -1,5 +1,5 @@
 .article-body * {
-    @apply break-words;
+    @apply break-words text-lg;
 }
 
 .article-body > h1,
@@ -54,7 +54,12 @@
 
 .article-body ul,
 .article-body ol {
-    @apply my-2 list-inside pl-8;
+    @apply list-inside;
+}
+
+.article-body li ul,
+.article-body li ol {
+    @apply list-inside pl-8;
 }
 
 .article-body li {
@@ -69,21 +74,12 @@
     @apply list-decimal;
 }
 
-.article-body > ul,
-.article-body > ol {
-    @apply py-1 pl-0;
-}
-
 .article-body pre,
 .article-body code {
-    @apply bg-gray-900 rounded text-white font-mono text-base px-4 py-2;
+    @apply font-mono;
 }
 
-.article-body pre > code {
-    @apply break-words whitespace-pre-wrap;
-}
-
-.article-body p code {
+.article-body p > code {
     @apply break-words;
 }
 
@@ -130,4 +126,12 @@
 .article-body b,
 .article-body strong {
     @apply text-green-600 font-bold;
+}
+
+.article-body :not(pre) > code[class*='language-'] {
+    @apply font-mono px-2 py-1;
+}
+
+.article-body code[class*='language-'] {
+    @apply font-mono text-lg;
 }
