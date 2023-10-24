@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+// import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Header } from '../components/header';
 import Bio from '../components/bio';
@@ -16,21 +16,21 @@ const Layout = ({
 }: React.PropsWithChildren<LayoutProps>) => {
     const rootPath = '/'; // `${__PATH_PREFIX__}/`;
     const isRootPath = location?.pathname === rootPath;
-    let header;
+    // let header;
 
-    if (isRootPath) {
-        header = (
-            <h1 className="main-heading">
-                <Link to="/">{title}</Link>
-            </h1>
-        );
-    } else {
-        header = (
-            <Link className="header-link-home" to="/">
-                {title}
-            </Link>
-        );
-    }
+    // if (isRootPath) {
+    //     header = (
+    //         <h1 className="main-heading">
+    //             <Link to="/">{title}</Link>
+    //         </h1>
+    //     );
+    // } else {
+    //     header = (
+    //         <Link className="header-link-home" to="/">
+    //             {title}
+    //         </Link>
+    //     );
+    // }
 
     return (
         <ThemeProvider.Consumer>
@@ -97,7 +97,8 @@ const Layout = ({
                             <div className="container max-w-4xl mx-auto flex flex-col justify-center items-center py-8">
                                 <div className="w-full mx-auto flex flex-wrap flex-1 flex-col justify-center items-center">
                                     <div className="px-8">
-                                        © {new Date().getFullYear()}, Built with
+                                        © {new Date().getFullYear()}, Built
+                                        with
                                         {` `}
                                         <a href="https://www.gatsbyjs.com">
                                             Gatsby
