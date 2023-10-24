@@ -34,11 +34,11 @@ jobs:
           NODE_ENV: production
           GA_ID: ${{ secrets.GA_ID }}          
 
-      - name: Add comment 
-        uses: unsplash/comment-on-pr@v1.3.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          OUTPUT: "✅ This pull request is verified to build."
-        with:
-          msg: ${{ env.OUTPUT }}
-          check_for_duplicate_msg: false
+      # - name: Add comment 
+      #   uses: unsplash/comment-on-pr@v1.3.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      #     OUTPUT: "✅ This pull request is verified to build."
+      #   with:
+      #     msg: ${{ env.OUTPUT }}
+      #     check_for_duplicate_msg: false

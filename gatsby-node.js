@@ -38,7 +38,6 @@ const createPostPages = (
 ) => {
     const { createPage } = actions;
     const tempalte = path.resolve(`./src/templates/blog-post.tsx`);
-    // const tempalte = require.resolve(`./src/templates/blog-post.tsx`);
 
     const edges = allPosts?.edges;
 
