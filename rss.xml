@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 Oct 2023 09:25:16 GMT</lastBuildDate><item><title><![CDATA[깃허브 워크플로우를 활용한 자동 풀 리퀘스트 작성]]></title><description><![CDATA[개요 깃 플로우 Git flow 코드의 버전 제어를 위해 깃 Git 을 사용하면 보통 깃 플로우 Git flow 를 활용하고 계실 것으로 생각합니다. 통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main…]]></description><link>https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</link><guid isPermaLink="false">https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</guid><pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;개요&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 29 Dec 2023 04:49:46 GMT</lastBuildDate><item><title><![CDATA[깃허브 워크플로우를 활용한 자동 풀 리퀘스트 작성]]></title><description><![CDATA[개요 깃 플로우 Git flow 코드의 버전 제어를 위해 깃 Git 을 사용하면 보통 깃 플로우 Git flow 를 활용하고 계실 것으로 생각합니다. 통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main…]]></description><link>https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</link><guid isPermaLink="false">https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</guid><pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;개요&lt;/h2&gt;
 &lt;h3&gt;깃 플로우 &lt;Small&gt;Git flow&lt;/small&gt;&lt;/h3&gt;
 &lt;p&gt;코드의 버전 제어를 위해 깃 &lt;small&gt;Git&lt;/small&gt; 을 사용하면 보통 깃 플로우 &lt;small&gt;Git flow&lt;/small&gt; 를 활용하고 계실 것으로 생각합니다.&lt;/p&gt;
 &lt;p&gt;통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main) 와 코드 통합용 브랜치 (보통 dev), 작업용 브랜치 (features/*, fix/*, …) … 등 여러 브랜치를 관리해야 합니다.&lt;/p&gt;
@@ -543,7 +543,7 @@ $ &lt;span class=&quot;token function&quot;&gt;id&lt;/span&gt; &lt;span class=&q
 &lt;p&gt;작년에 주문하고, 지난 1월에 도착한 맥북 프로를 매우 유용하게 사용하고 있습니다.&lt;/p&gt;
 &lt;p&gt;간혹 윈도우 환경이 필요한 경우에는 예전에 사용하던 씽크패드 랩탑을 활용해가며 업무, 취미를 진행했습니다.&lt;/p&gt;
 &lt;h3&gt;Work&lt;/h3&gt;
-&lt;p&gt;지난 2019년부터 계약직으로 업무를 진행하던 곳에 근로계약을 요청드려 정규직으로 전환되었습니다.&lt;/p&gt;
+&lt;p&gt;지난 2020년부터 계약직으로 업무를 진행하던 곳에 근로계약을 요청드려 정규직으로 전환되었습니다.&lt;/p&gt;
 &lt;p&gt;계속 원격지에서 근무하고 있습니다.&lt;/p&gt;
 &lt;p&gt;재미난 일들을 진행했고, 백엔드 팀에서 퇴사하시는 분이 발생해서 재미없는 일도 때때로 진행하고 있습니다.&lt;/p&gt;
 &lt;h3&gt;Hobbies&lt;/h3&gt;
@@ -2296,7 +2296,7 @@ sql &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=
 &lt;li&gt;&lt;a href=&quot;https://github.com/bbonkr/react-calendar&quot;&gt;@bbon/react-calendar&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;2022년에는&lt;/h2&gt;
-&lt;p&gt;2019년 11월부터 계약해서 갱신을 반복하던 곳에서 2022년 04월까지 계약되어 협업을 진행하고 있습니다.&lt;/p&gt;
+&lt;p&gt;2020년 11월부터 계약해서 갱신을 반복하던 곳에서 2022년 04월까지 계약되어 협업을 진행하고 있습니다.&lt;/p&gt;
 &lt;p&gt;재미난 아이디어를 얻고, 계속 구현하고 공개하고 싶습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Configure end of line when using git for multi-platform development teams]]></title><description><![CDATA[개발팀의 장비가 여러 플랫폼으로 구성된 경우 GIT 구성에 따라 변경사항이 없음에도 많은 파일이 스테이징 대상으로 출력됩니다. 보통 줄의 끝 (EOL; End of line)을 처리하는 방법이 OS 마다 달라서 발생합니다. 많이 사용되는 OS…]]></description><link>https://bbon.me/2021/12/22/configure-end-of-line-when-using-git-for-multi-platform-development-teams/</link><guid isPermaLink="false">https://bbon.me/2021/12/22/configure-end-of-line-when-using-git-for-multi-platform-development-teams/</guid><pubDate>Wed, 22 Dec 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;개발팀의 장비가 여러 플랫폼으로 구성된 경우 GIT 구성에 따라 변경사항이 없음에도 많은 파일이 스테이징 대상으로 출력됩니다.&lt;/p&gt;
 &lt;p&gt;보통 줄의 끝 (EOL; End of line)을 처리하는 방법이 OS 마다 달라서 발생합니다.&lt;/p&gt;
 &lt;p&gt;많이 사용되는 OS에서 줄의 끝을 표현하는 방법은 아래와 같습니다.&lt;/p&gt;
