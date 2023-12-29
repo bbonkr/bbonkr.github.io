@@ -1,12 +1,12 @@
 ---
 title: Review 2021
 date: 2022-01-03
-categories: 
-  - "blog"
-  - "story"
-tags: 
-  - "review"
----    
+categories:
+    - 'blog'
+    - 'story'
+tags:
+    - 'review'
+---
 
 2021년을 돌아봅니다.
 
@@ -66,19 +66,18 @@ git tag, npm 게시, nuget 게시, docker image 게시를 주로 사용했습니
 
 ### 응용프로그램
 
-- [Bing Today Image Collector](https://bbon.kr/bing-today-images-collector)
-- [apps.bbon.me](https://github.com/bbonkr/apps.bbon.me)
+-   [Bing Today Image Collector](https://bbon.kr/bing-today-images-collector)
+-   [apps.bbon.me](https://github.com/bbonkr/apps.bbon.me)
 
 ### 라이브러리
 
-- [kr.bbon.EntityFrameworkCore.Extensions](https://bbon.kr/kr-bbon-entityframeworkcore-extensions-package/)
-- [kr.bbon.AspNetCore](https://github.com/bbonkr/kr.bbon.AspNetCore)
-- [kr.bbon.Core](https://github.com/bbonkr/kr.bbon.Core)
-- [@bbon/react-calendar](https://github.com/bbonkr/react-calendar)
+-   [kr.bbon.EntityFrameworkCore.Extensions](https://bbon.kr/kr-bbon-entityframeworkcore-extensions-package/)
+-   [kr.bbon.AspNetCore](https://github.com/bbonkr/kr.bbon.AspNetCore)
+-   [kr.bbon.Core](https://github.com/bbonkr/kr.bbon.Core)
+-   [@bbon/react-calendar](https://github.com/bbonkr/react-calendar)
 
 ## 2022년에는
 
-2019년 11월부터 계약해서 갱신을 반복하던 곳에서 2022년 04월까지 계약되어 협업을 진행하고 있습니다.
+2020년 11월부터 계약해서 갱신을 반복하던 곳에서 2022년 04월까지 계약되어 협업을 진행하고 있습니다.
 
 재미난 아이디어를 얻고, 계속 구현하고 공개하고 싶습니다.
-    
