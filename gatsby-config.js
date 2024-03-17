@@ -1,6 +1,3 @@
-// import { GatsbyConfig } from 'gatsby';
-// import type { MarkdownRemarks, Site } from './src/models/data';
-
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 // @ts-check
 /**
@@ -243,29 +240,20 @@ module.exports = {
   }
 }
       `,
-                resolvePages: ({ allMarkdownRemark: { edges } }) =>
-                    // : {
-                    // allMarkdownRemark: MarkdownRemarks,
-                    // }
-                    {
-                        return edges?.map((edge) => {
-                            return {
-                                path: edge.node.fields.slug,
-                                modifiedGmt: edge.node.frontmatter.date,
-                            };
-                        });
-                    },
-                serialize: ({ path, modifiedGmt }) =>
-                    // : {
-                    // path: string,
-                    // modifiedGmt: Date,
-                    // }
-                    {
+                resolvePages: ({ allMarkdownRemark: { edges } }) => {
+                    return edges?.map((edge) => {
                         return {
-                            url: path,
-                            lastmod: modifiedGmt,
+                            path: edge.node.fields.slug,
+                            modifiedGmt: edge.node.frontmatter.date,
                         };
-                    },
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
             },
         },
     ],
