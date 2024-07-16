@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 17 Mar 2024 12:40:47 GMT</lastBuildDate><item><title><![CDATA[깃허브 워크플로우를 활용한 자동 풀 리퀘스트 작성]]></title><description><![CDATA[개요 깃 플로우 Git flow 코드의 버전 제어를 위해 깃 Git 을 사용하면 보통 깃 플로우 Git flow 를 활용하고 계실 것으로 생각합니다. 통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main…]]></description><link>https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</link><guid isPermaLink="false">https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</guid><pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;개요&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[<bbon /> RSS Feed]]></title><description><![CDATA[Welcome to visit <bbon /> Blog that wrote interested topic and experience, opinions.]]></description><link>https://bbon.me</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 16 Jul 2024 06:51:01 GMT</lastBuildDate><item><title><![CDATA[Troubleshooting issues that upgrades Dotnet Maui v7 to v8]]></title><description><![CDATA[Environments Apple SDK 개발 장치가 macOS 인 경우 Xcode 를 열고, 지원 플랫폼 목록에서 아래 플랫폼 지원을 위한 SDK 를 설치해야 합니다. macOS 14.5 SDK (Xcode 설치시 기본으로 설치됩니다) iOS 1…]]></description><link>https://bbon.me/2024/07/15/troubleshooting-issues-that-upgrades-dotnet-maui-v-7-to-v-8/</link><guid isPermaLink="false">https://bbon.me/2024/07/15/troubleshooting-issues-that-upgrades-dotnet-maui-v-7-to-v-8/</guid><pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Environments&lt;/h2&gt;
+&lt;h3&gt;Apple SDK&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;개발 장치가 macOS 인 경우&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Xcode 를 열고, 지원 플랫폼 목록에서 아래 플랫폼 지원을 위한 SDK 를 설치해야 합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS 14.5 SDK (Xcode 설치시 기본으로 설치됩니다)&lt;/li&gt;
+&lt;li&gt;iOS 17.5 SDK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Android SDK&lt;/h3&gt;
+&lt;p&gt;SDK 관리자에서 &lt;code class=&quot;language-text&quot;&gt;API 34&lt;/code&gt; 관련 도구를 설치해야 합니다.&lt;/p&gt;
+&lt;h2&gt;Troubleshooting&lt;/h2&gt;
+&lt;h3&gt;프로젝트 파일 자동 포맷팅 관련 문제&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;.csproj&lt;/code&gt; 파일은 XML 형식으로 관리됩니다.&lt;/p&gt;
+&lt;p&gt;일부 편집기에서 포맷팅을 하는 경우 아래와 같이 변경되는 경우가 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;
+			&lt;span class=&quot;token attr-name&quot;&gt;Condition&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;$([MSBuild]::GetTargetPlatformIdentifier(&apos;$(TargetFramework)&apos;)) == &apos;ios&apos;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+			17.2&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;
+			&lt;span class=&quot;token attr-name&quot;&gt;Condition&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;$([MSBuild]::GetTargetPlatformIdentifier(&apos;$(TargetFramework)&apos;)) == &apos;maccatalyst&apos;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+			14.5&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이 경우, &lt;code class=&quot;language-text&quot;&gt;SupportedOSPlatformVersion&lt;/code&gt; 요소의 값인 &lt;code class=&quot;language-text&quot;&gt;17.2&lt;/code&gt; 에 빈문자열이 추가되어, 빌드시 문제가 발생할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;요소의 문자열 값에 문자열이 추가되지 않도록 아래와 같이 작성되어져야 합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Condition&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;$([MSBuild]::GetTargetPlatformIdentifier(&apos;$(TargetFramework)&apos;)) == &apos;ios&apos;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+			&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;17.2&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Condition&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;$([MSBuild]::GetTargetPlatformIdentifier(&apos;$(TargetFramework)&apos;)) == &apos;maccatalyst&apos;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+			&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;14.5&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;SupportedOSPlatformVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;전역 스타일 사용시 FlyoutItem 에 대한 클래스 이름 관련 문제&lt;/h3&gt;
+&lt;p&gt;Dotnet Maui 예제 코드를 사용했던 것으로 기억하는데, 스타일 클래스 이름을 &lt;code class=&quot;language-text&quot;&gt;MenuItemLayoutStyle&lt;/code&gt; 으로 사용하는 경우 문제가 발생합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Style&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;TargetType&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;Label&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;MenuItemLayoutStyle&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;ApplyToDerivedTypes&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;True&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Setter&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Property&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;TextColor&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&quot;token attr-name&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;.....&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;Style&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;내부적으로 처리되는 클래스 이름으로 예상됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;AppMenuItemLayoutStyle&lt;/code&gt; 등과 같이 내부적으로 사용되는 클래스 이름을 회피할 수 있게 이름을 변경해야 합니다.&lt;/p&gt;
+&lt;h3&gt;중첩된 FlexLayout 사용 관련 문제&lt;/h3&gt;
+&lt;p&gt;아래와 같이 &lt;code class=&quot;language-text&quot;&gt;FlexLayout&lt;/code&gt; 을 중첩해서 사용하는 경우 Android 에서 레이블 크기 계산에 문제가 있는 것 같습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;점수를 출력하기 위해 레이블을 사용하고 있는데, 한자리 숫자로 표시될 후 값이 증가해서 두자리가 되면 레이블 크기가 조정되지 않아 두줄로 값이 표현되고, 두줄이 모두 보이지 않아 첫자리만 출력되는 문제가 있었습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Label&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;중첩된 &lt;code class=&quot;language-text&quot;&gt;FlexLayout&lt;/code&gt; 을 제거하고, &lt;code class=&quot;language-text&quot;&gt;GridLayout&lt;/code&gt; 을 사용하게 변경해서 문제를 해결할 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Grid&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;ColumnDefinitions&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;RowDefinitions&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;Label&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Grid.Row&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Grid.Column&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;Grid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;FlexLayout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Android&lt;/h2&gt;
+&lt;h3&gt;Play Console 개발자 계정 본인 인증&lt;/h3&gt;
+&lt;p&gt;이름과 주소가 확인되는 공과금 고지서 등의 문서를 사진 촬영 후 업로드하여 개인 인증을 할 수 있다고 합니다.&lt;/p&gt;
+&lt;p&gt;저는 대부분의 고지서를 모바일로 받고 있어, 촬영할 문서를 찾기 힘들었습니다.&lt;/p&gt;
+&lt;p&gt;검색해보니, 주민등록등본으로 처리가 가능하다고 하여, 가까운 주민센터를 방문해서 발급받은 후 촬영하여 본인 인증을 마칠 수 있었습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;집에 출력이 가능한 장치가 없어서, 주민센터를 방문했습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;최신 Android 버전을 타겟팅하도록 앱을 업데이트&lt;/h3&gt;
+&lt;p&gt;Dotnet Muai v8 에 대한 개발환경을 준비하려면, andoird api 34 sdk 를 설치해야 하므로, 개발환경이 준비되었다면, Dotnet Maui 최신 버전을 적용해서 앱을 제출하면 해결됩니다.&lt;/p&gt;
+&lt;h2&gt;마침&lt;/h2&gt;
+&lt;p&gt;이렇게 올해도 무사히 구글 플레이 콘솔의 요구사항을 적절히 맞춰 넘어갈 수 있었습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to fix build time error related @tailwindcss/typography]]></title><description><![CDATA[오랜만에 빌드 스크립트를 실행하니, 아래와 같이 오류와 함께 실패합니다. Error: Cannot read properties of undefined (reading ‘700’) 검색을 하다 보니, 관련 이슈를 발견했습니다. tailwindlabs…]]></description><link>https://bbon.me/2024/04/22/how-to-fix-build-time-error-related-tailwindcss-typography/</link><guid isPermaLink="false">https://bbon.me/2024/04/22/how-to-fix-build-time-error-related-tailwindcss-typography/</guid><pubDate>Mon, 22 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;오랜만에 빌드 스크립트를 실행하니, 아래와 같이 오류와 함께 실패합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run build
+
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; sample-next-i18next@1.2.1 build
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; next build
+
+info  - Linting and checking validity of types
+info  - Creating an optimized production build
+Failed to compile.
+
+./src/components/common/RouteIndicator/RouteIndicator.module.css
+TypeError: Cannot &lt;span class=&quot;token builtin class-name&quot;&gt;read&lt;/span&gt; properties of undefined &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;reading &lt;span class=&quot;token string&quot;&gt;&apos;700&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    at module.exports &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;as typography&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/helloworld/Repos/sample-next-i18next/node_modules/@tailwindcss/typography/src/styles.js:16:65&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Error: Cannot read properties of undefined (reading ‘700’)&lt;/h3&gt;
+&lt;p&gt;검색을 하다 보니, 관련 이슈를 발견했습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/tailwindlabs/tailwindcss-typography/issues/214&quot;&gt;tailwindlabs/tailwindcss-typography: Cannot read property ‘700’ of undefined #214&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2021-10-21 글임을 확인하고 깜짝놀랬습니다.
+그동안 너무 신경을 못쓴것 같습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;@tailwindcss/typography 패키지의 최신 버전을 설치해서 해결이 가능하다고 하여, 관련 패키지들을 업그레이드했습니다.&lt;/p&gt;
+&lt;h3&gt;npm install @tailwindcss/typography@latest&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; @tailwindcss/typography@latest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이 후 tailwindcss, next-i18n 관련 변경을 반영한 후 빌드 스크립트가 정상적으로 실행되는 것을 확인했습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bbonkr/sample-next-i18next/pull/106/files&quot;&gt;관련 변경사항&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run build
+
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; sample-next-i18next@1.2.1 build
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; next build
+
+info  - Linting and checking validity of types
+info  - Creating an optimized production build
+info  - Compiled successfully
+info  - Collecting page data
+info  - Generating static pages &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;/14&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+info  - Finalizing page optimization
+
+Route &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pages&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;                              Size     First Load JS
+┌ ● /                                      &lt;span class=&quot;token number&quot;&gt;1.48&lt;/span&gt; kB         &lt;span class=&quot;token number&quot;&gt;102&lt;/span&gt; kB
+├   /_app                                  &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; B            &lt;span class=&quot;token number&quot;&gt;97.3&lt;/span&gt; kB
+├ ○ /404                                   &lt;span class=&quot;token number&quot;&gt;193&lt;/span&gt; B          &lt;span class=&quot;token number&quot;&gt;97.5&lt;/span&gt; kB
+└ ● /about                                 &lt;span class=&quot;token number&quot;&gt;1.48&lt;/span&gt; kB         &lt;span class=&quot;token number&quot;&gt;102&lt;/span&gt; kB
++ First Load JS shared by all              &lt;span class=&quot;token number&quot;&gt;99.6&lt;/span&gt; kB
+  ├ chunks/framework-7dc8a65f4a0cda33.js   &lt;span class=&quot;token number&quot;&gt;45.3&lt;/span&gt; kB
+  ├ chunks/main-9f2823b223abd7dd.js        &lt;span class=&quot;token number&quot;&gt;32.7&lt;/span&gt; kB
+  ├ chunks/pages/_app-1c32e923e1d3c53d.js  &lt;span class=&quot;token number&quot;&gt;18.5&lt;/span&gt; kB
+  ├ chunks/webpack-69bfa6990bb9e155.js     &lt;span class=&quot;token number&quot;&gt;775&lt;/span&gt; B
+  └ css/104acd707b7e6ae7.css               &lt;span class=&quot;token number&quot;&gt;2.3&lt;/span&gt; kB
+
+○  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Static&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  automatically rendered as static HTML &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uses no initial props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+●  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;SSG&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;     automatically generated as static HTML + JSON &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uses getStaticProps&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[깃허브 워크플로우를 활용한 자동 풀 리퀘스트 작성]]></title><description><![CDATA[개요 깃 플로우 Git flow 코드의 버전 제어를 위해 깃 Git 을 사용하면 보통 깃 플로우 Git flow 를 활용하고 계실 것으로 생각합니다. 통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main…]]></description><link>https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</link><guid isPermaLink="false">https://bbon.me/2023/09/10/automation-create-pull-request-using-github-workflows/</guid><pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;개요&lt;/h2&gt;
 &lt;h3&gt;깃 플로우 &lt;Small&gt;Git flow&lt;/small&gt;&lt;/h3&gt;
 &lt;p&gt;코드의 버전 제어를 위해 깃 &lt;small&gt;Git&lt;/small&gt; 을 사용하면 보통 깃 플로우 &lt;small&gt;Git flow&lt;/small&gt; 를 활용하고 계실 것으로 생각합니다.&lt;/p&gt;
 &lt;p&gt;통상적으로 깃 플로우를 활용하면 기본이 되는 브랜치 (보통 main) 와 코드 통합용 브랜치 (보통 dev), 작업용 브랜치 (features/*, fix/*, …) … 등 여러 브랜치를 관리해야 합니다.&lt;/p&gt;
