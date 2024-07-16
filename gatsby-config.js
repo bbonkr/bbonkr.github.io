@@ -1,6 +1,3 @@
-// import { GatsbyConfig } from 'gatsby';
-// import type { MarkdownRemarks, Site } from './src/models/data';
-
 const isProductionStage = () => process.env.NODE_ENV === 'production';
 // @ts-check
 /**
@@ -205,7 +202,7 @@ module.exports = {
                 icon: `static/images/logo.png`, // This path is relative to the root of the site.
             },
         },
-        `gatsby-plugin-react-helmet`,
+        // `gatsby-plugin-react-helmet`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
@@ -243,29 +240,20 @@ module.exports = {
   }
 }
       `,
-                resolvePages: ({ allMarkdownRemark: { edges } }) =>
-                    // : {
-                    // allMarkdownRemark: MarkdownRemarks,
-                    // }
-                    {
-                        return edges?.map((edge) => {
-                            return {
-                                path: edge.node.fields.slug,
-                                modifiedGmt: edge.node.frontmatter.date,
-                            };
-                        });
-                    },
-                serialize: ({ path, modifiedGmt }) =>
-                    // : {
-                    // path: string,
-                    // modifiedGmt: Date,
-                    // }
-                    {
+                resolvePages: ({ allMarkdownRemark: { edges } }) => {
+                    return edges?.map((edge) => {
                         return {
-                            url: path,
-                            lastmod: modifiedGmt,
+                            path: edge.node.fields.slug,
+                            modifiedGmt: edge.node.frontmatter.date,
                         };
-                    },
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
             },
         },
     ],
