@@ -1,23 +1,25 @@
-name: 'Deploy pages'
+name: "Deploy pages"
 
-on: # rebuild any PRs and main branch changes
-  push:
-    branches:
-      - main
+on:
+  release:
+    types: [published]
+
+env:
+  NODE_VERSION: 18
 
 jobs:
   build:
     runs-on: ubuntu-latest
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }} 
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
       - name: Set Node.js 18.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -45,8 +47,8 @@ jobs:
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           # external_repository: bbonkr/bbonkr.github.io
-          publish_branch: gh-pages  # default: gh-pages
+          publish_branch: gh-pages # default: gh-pages
           publish_dir: ./public
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
           full_commit_message: ${{ github.event.head_commit.message }}
